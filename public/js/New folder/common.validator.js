@@ -1,0 +1,1 @@
+function isEmail(a){var b=/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;return b.test(a)}function isUserName(b){var a=/^[a-zA-Z0-9_]{6,24}$/;return a.test(b)}function isNumber(b){var a=/^\d+$/;return a.test(b)};
