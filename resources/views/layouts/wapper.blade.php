@@ -81,7 +81,7 @@
                 </div>
                 <div id="divCusPostProduct">
                     <div id="UserControl1_divPostProduct" class="header-middle-righ-link">
-                        <a href="{{env("APP_URL")}}/dang-tin-rao-vat-ban-nha-dat"
+                        <a href="/quan-ly-tin/dang-tin-ban-cho-thue"
                            id="linkPostProduct"><span>Đăng tin rao</span></a>
                     </div>
                     <div class="header-middle-righ-icon">
