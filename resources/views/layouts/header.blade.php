@@ -21,6 +21,7 @@
     <title>
         Kênh thông tin bất động sản - Mua bán nhà đất số 1 Việt Nam
     </title>
+    @yield('contentCSS')
     <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css" media="all" />
     <link rel="stylesheet" type="text/css" href="/css/banner-preview.css">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
@@ -32,13 +33,16 @@
     <script src="/js/jquery-1.11.1.js"></script>
     <script src="/js/jcarousellite.js"></script>
     <script type="text/javascript" src="/js/bootstrap.min.js"></script>
-    @yield('contentCSS')
     <script>
         var csrfToken = "{{csrf_token()}}";
+        var loaded = false;
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': csrfToken
             }
+        });
+        $( document ).ajaxStop(function() {
+            loaded = false;
         });
     </script>
 </head>

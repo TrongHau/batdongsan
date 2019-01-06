@@ -10,4 +10,5 @@
 @yield('contentJS')
 <script src="/js/functions.js"></script>
 </body>
+<style></style>
 </html>

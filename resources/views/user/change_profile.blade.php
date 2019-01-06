@@ -6,22 +6,6 @@ $mySelf = Auth::user();
 @endsection
 @extends('layouts.app')
 @section('content')
-    <style>
-        .moduletitle, .moduletitle a {
-            background: #055699;
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
-            height: 30px;
-            line-height: 30px;
-            width: 100%;
-            color: white;
-            font-weight: bold;
-            margin-top: 2px;
-            padding-left: 10px;
-            text-transform: uppercase;
-            width: 740px;
-        }
-    </style>
     <div class="container-default">
         <div>
             {{--<script src="https://content.batdongsan.com.vn/Modules/Project/Scripts/Common.js" type="text/javascript"></script>--}}
@@ -94,7 +78,7 @@ $mySelf = Auth::user();
                                                         <span id="MainContent__userPage_ctl00_lblBirthDate">Ngày sinh</span>
                                                     </td>
                                                     <td>
-                                                        <input name="birth_day" type="date" value="{{old('birth_day') ?? $mySelf->birth_day}}" id="MainContent__userPage_ctl00_txtBirthDates" class="datetimepicker keycode hasDatepicker" >
+                                                        <input name="birth_day" type="date" value="{{date('Y-m-d', strtotime(old('birth_day') ?? $mySelf->birth_day))}}" id="MainContent__userPage_ctl00_txtBirthDates" class="datetimepicker keycode hasDatepicker" >
                                                         @if ($errors->has('birth_day'))
                                                             <span style="color: red;" id="errorFullName">{{ str_replace('birth day', 'ngày sinh', $errors->first('birth_day')) }}</span>
                                                         @endif
@@ -127,24 +111,30 @@ $mySelf = Auth::user();
                                                                 <td>
                                                                     <div id="divCity" class="comboboxs advance-select-box">
                                                                         <select id="select-province" name="province_id" class="advance-options select-province" style="min-width: 200px;border: 1px solid #CCC;">
-                                                                            <option value="">--Chọn Tỉnh/Thành phố--</option>
+                                                                            <option value="">-- Chọn Tỉnh/Thành phố --</option>
                                                                             @foreach($province as $item)
                                                                                 <option value="{{$item->id}}">{{$item->_name}}</option>
                                                                             @endforeach
                                                                         </select>
+                                                                        @if ($errors->has('province_id'))
+                                                                            <span style="color: red;" id="errorFullName">{{ str_replace('province id', 'Tỉnh/Thành phố', $errors->first('province_id')) }}</span>
+                                                                        @endif
                                                                     </div>
                                                                 </td>
                                                                 <td>
                                                                     <div id="divDistrict" class="comboboxs advance-select-box" title="">
                                                                         <select id="select-district" name="district_id" class="advance-options select-district" style="min-width: 200px;border: 1px solid #CCC;">
-                                                                            <option value="0" class="advance-options" style="min-width: 168px;">--Chọn Quận/Huyện--</option>
+                                                                            <option value="0" class="advance-options" style="min-width: 168px;">-- Chọn Quận/Huyện --</option>
                                                                         </select>
+                                                                        @if ($errors->has('district_id'))
+                                                                            <span style="color: red;" id="errorFullName">{{ str_replace('district id', 'Quận/Huyện', $errors->first('district_id')) }}</span>
+                                                                        @endif
                                                                     </div>
                                                                 </td>
                                                                 <td>
                                                                     <div id="divWard" class="comboboxs advance-select-box" title="">
                                                                         <select class="advance-options select-ward" name="ward_id" id="select-ward" style="min-width: 200px;">
-                                                                            <option value="0" class="advance-options" style="min-width: 168px;">--Chọn Phường/Xã--
+                                                                            <option value="0" class="advance-options" style="min-width: 168px;">-- Chọn Phường/Xã --
                                                                             </option>
                                                                         </select>
                                                                     </div>
@@ -160,7 +150,7 @@ $mySelf = Auth::user();
                                                                 <td>
                                                                     <div id="divStreet" class="comboboxs advance-select-box adv-search" title="">
                                                                         <select class="advance-options select-street" name="street_id" id="select-street" style="min-width: 200px;">
-                                                                            <option value="0" class="advance-options" style="min-width: 168px;">--Chọn Đường/Phố--
+                                                                            <option value="0" class="advance-options" style="min-width: 168px;">-- Chọn Đường/Phố --
                                                                             </option>
                                                                         </select>
                                                                     </div>
@@ -275,18 +265,30 @@ $mySelf = Auth::user();
         if(old('province_id') ?? $mySelf->province_id) {
         ?>
         $(document).ready(function() {
-            document.getElementById('select-province').value = <?php echo old('province_id') ?? $mySelf->province_id ?>;
-            getDistrict(<?php echo old('province_id') ?? $mySelf->province_id ?>, '<?php echo old('district_id') ?? $mySelf->district_id ?>', '<?php echo old('ward_id') ?? $mySelf->ward_id ?>', '<?php echo old('street_id') ?? $mySelf->street_id ?>')
+            document.getElementById('select-province').value = '<?php echo old('province_id') ?? $mySelf->province_id ?? '' ?>';
+            getDistrict('<?php echo old('province_id') ?? $mySelf->province_id ?? '' ?>', '<?php echo old('district_id') ?? $mySelf->district_id ?? '' ?>', '<?php echo old('ward_id') ?? $mySelf->ward_id ?? '' ?>', '<?php echo old('street_id') ?? $mySelf->street_id ?? '' ?>');
             <?php
-                if(old('district_id') ?? $mySelf->district_id) {
-                    ?>
-                    getWard(' <?php echo old('district_id') ?? $mySelf->district_id ?>', ' <?php echo old('ward_id') ?? $mySelf->ward_id ?>', '<?php echo old('street_id') ?? $mySelf->street_id ?>');
-                    <?php
-                }
+            if(old('district_id') ?? $mySelf->district_id ?? false) {
+            ?>
+            getWard(' <?php echo old('district_id') ?? $mySelf->district_id ?? '' ?>', ' <?php echo old('ward_id') ?? $mySelf->ward_id ?? '' ?>', '<?php echo old('street_id') ?? $mySelf->street_id ?? '' ?>');
+            <?php
+            }
             ?>
         });
         <?php
         }
         ?>
+        $('.select-province').change(function() {
+            $('#txtAddress').val('');
+        });
+        $('.select-district').change(function() {
+            $('#txtAddress').val($('.select-district option:selected').text() + ', ' + $('.select-province option:selected').text());
+        });
+        $('.select-ward').change(function() {
+            $('#txtAddress').val('Phường ' + $('.select-ward option:selected').text() + ', ' + $('.select-district option:selected').text() + ', ' + $('.select-province option:selected').text());
+        });
+        $('.select-street').change(function() {
+            $('#txtAddress').val('Đường ' + $('.select-street option:selected').text() + ', ' + $('.select-ward option:selected').text() + ', ' + $('.select-district option:selected').text() + ', ' + $('.select-province option:selected').text());
+        });
     </script>
 @endsection

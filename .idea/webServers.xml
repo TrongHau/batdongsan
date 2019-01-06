@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="7a80f9e7-f0d4-4f4e-ae7a-5a42d84d90fe" name="batdongsan" url="http://103.97.124.164">
+        <fileTransfer host="103.97.124.164" port="2018" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="2018" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

@@ -11,7 +11,4 @@ class ProvinceModel extends Model
     protected $table = 'province';
     protected $primaryKey = 'id';
     protected $fillable = ['_name', '_code'];
-    public function uploadFIle() {
-        return $this->hasMany('App\Models\UploadModel', 'album_id', 'album_id')->get();
-    }
 }

@@ -181,87 +181,24 @@ use App\Library\Helpers;
     <div class="title">Quản lý tin rao</div>
     <ul class="item">
         <li class="row-content">
-            <a href="/trang-ca-nhan" class="manage_article" title="Quản lý tin rao bán/cho thuê">
+            <a href="/thong-tin-ca-nhan" class="manage_article" title="Quản lý tin rao bán/cho thuê">
                 Quản lý tin rao bán/cho thuê</a>
         </li>
         <li class="row-content">
-            <a href="/dang-tin-rao-vat-ban-nha-dat" title="Đăng tin rao bán/cho thuê">
+            <a href="/quan-ly-tin/dang-tin-ban-cho-thue" title="Đăng tin rao bán/cho thuê">
                 Đăng tin rao bán/cho thuê</a>
         </li>
         <li id="MainContent__userPage_menuAdNewsManager" class="row-content">
-            <a href="/trang-ca-nhan/uspg-lstadnews" title="Quản lý tin rao cần mua/cần thuê">Quản lý tin cần mua/cần thuê</a>
+            <a href="/thong-tin-ca-nhan/quan-ly-mua-can-thue" title="Quản lý tin rao cần mua/cần thuê">Quản lý tin cần mua/cần thuê</a>
         </li>
         <li id="MainContent__userPage_menuPostAdNews" class="row-content">
-            <a href="/dang-tin-rao-vat-mua-nha-dat" title="Đăng tin rao cần mua/cần thuê">Đăng tin cần mua/cần thuê</a>
+            <a href="/quan-ly-tin/dang-tin-can-mua-can-thue" title="Đăng tin rao cần mua/cần thuê">Đăng tin cần mua/cần thuê</a>
         </li>
         <li id="MainContent__userPage_menuProductDraft" class="row-content">
-            <a href="/trang-ca-nhan/uspg-lstproductDraft" title="Quản lý tin nháp">
+            <a href="/trang-ca-nhan/tin-nhap" title="Quản lý tin nháp">
                 Quản lý tin nháp</a>
         </li>
 
-    </ul>
-    <div id="MainContent__userPage_pnlFinaceManagement">
-
-        <div class="title">Quản lý tài chính</div>
-        <ul class="item">
-            <li class="row-content">
-                <a href="/trang-ca-nhan/uspg-balanceinfo">Thông tin số dư</a>&nbsp;<img src="https://file4.batdongsan.com.vn/images/Icons/icon-green.png" alt="new">
-            </li>
-            <li class="row-content">
-                <a href="/trang-ca-nhan/uspg-transaction" title="Lịch sử giao dịch">
-                    Lịch sử giao dịch</a>
-            </li>
-            <li id="MainContent__userPage_menuGroupOfUser" class="row-content">
-                <a href="/trang-ca-nhan/uspg-groupofuser" title="Nhóm khuyến mãi">
-                    Nhóm khuyến mãi</a>
-            </li>
-
-            <li id="MainContent__userPage_menuEnterpriseAccount" class="row-content">
-                <a href="/trang-ca-nhan/uspg-enterpriseaccount" title="Quản lý tài khoản Doanh nghiệp">
-                    Quản lý tài khoản Doanh nghiệp</a>&nbsp;<img src="https://file4.batdongsan.com.vn/images/Icons/icon-green.png" alt="new">
-            </li>
-            <li id="MainContent__userPage_menuDeposit" class="row-content">
-                <a href="/trang-ca-nhan/uspg-paymentdeposit/method-nvpdomesticcard" title="Nạp tiền vào tài khoản">
-                    Nạp tiền vào tài khoản</a>
-            </li>
-        </ul>
-
-    </div>
-    <div class="title">Tiện ích</div>
-    <ul class="item">
-
-        <li id="MainContent__userPage_menuNotify" class="row-content">
-            <a href="/trang-ca-nhan/uspg-notify" title="Thông báo">
-                Thông báo</a>&nbsp;<img src="https://file4.batdongsan.com.vn/images/Icons/icon-green.png" alt="new">
-        </li>
-        <li id="MainContent__userPage_menuEmailRegist" class="row-content">
-            <a href="/trang-ca-nhan/uspg-emailLetter" title="Quản lý đăng kí nhận email">
-                Quản lý đăng kí nhận email</a>
-        </li>
-        <li class="row-content">
-            <a href="/trang-ca-nhan/uspg-msg" title="Hộp tin nhắn">
-                Hộp tin nhắn</a>
-        </li>
-
-        <li id="MainContent__userPage_menuChatManegement" class="row-content">
-            <a href="/trang-ca-nhan/uspg-chatinbox" title="Quản lý Chat">Quản lý Chat</a>
-        </li>
-        <li id="MainContent__userPage_menuUserPoint" class="row-content">
-            <a href="/trang-ca-nhan/uspg-userpoint" title="Quản lý điểm tích lũy">Quản lý điểm tích lũy</a>&nbsp;<img src="https://file4.batdongsan.com.vn/images/Icons/icon-green.png" alt="new">
-        </li>
-
-    </ul>
-    <div class="title">Hướng dẫn &amp; báo giá</div>
-    <ul class="item">
-        <li class="row-content">
-            <a href="/bao-gia-quang-cao#a7" target="_blank">Hướng dẫn sử dụng</a>
-        </li>
-        <li class="row-content">
-            <a href="/bao-gia-quang-cao#a8" target="_blank">Hướng dẫn thanh toán</a>
-        </li>
-        <li class="row-content">
-            <a href="/bao-gia-quang-cao#a4" target="_blank">Báo giá</a>
-        </li>
     </ul>
 </div>
 <div id="uploadimageModal" class="modal" role="dialog">

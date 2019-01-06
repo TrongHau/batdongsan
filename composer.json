@@ -6,6 +6,7 @@
     "type": "project",
     "require": {
         "php": ">=7.0.0",
+        "anhskohbo/no-captcha": "^3.0",
         "backpack/MenuCRUD": "^1.0",
         "backpack/backupmanager": "^1.4",
         "backpack/base": "^0.9.0",
@@ -42,7 +43,8 @@
         },
         "files": [
             "app/Library/constants.php",
-            "app/Library/helpers.php"
+            "app/Library/helpers.php",
+            "app/Library/UploadHandler.php"
         ]
     },
     "autoload-dev": {

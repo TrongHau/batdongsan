@@ -438,6 +438,7 @@ strong, b {
     .home-top-search img, .home-top-search input[type=image] {
         float: left;
         margin-left: 10px;
+        cursor: pointer;
     }
 
     .home-top-search .advance-select-box {
@@ -592,14 +593,13 @@ strong, b {
 
 .home-product-search {
     margin: auto;
-    margin-top: 5px;
     margin-bottom: 5px;
     z-index: 1;
     position: relative;
 }
 
 .home-product-search #searchArea {
-    height: 238px;
+    height: 255px;
     z-index: 0;
     overflow-y: scroll;
 }
@@ -1015,8 +1015,6 @@ strong, b {
 
 .p-bottom-crop {
     bottom: 0;
-    float: left;
-
 }
 
 
@@ -1115,7 +1113,6 @@ strong, b {
 
 .product-list .Header {
     width: 100%;
-    height: 57px;
 }
 
 .product-list .Main {
@@ -4022,7 +4019,7 @@ input.select-text-content {
 
 .btn-xoa {
     border: none;
-    background: #fff url('https://file4.batdongsan.com.vn/images/xoatin.gif') no-repeat;
+    background: #fff url('../imgs/xoatin.gif') no-repeat;
     color: #666 !important;
     font-weight: normal !important;
     padding-left: 15px;

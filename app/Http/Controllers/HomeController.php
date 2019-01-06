@@ -8,6 +8,8 @@ use  App\Models\DistrictModel;
 use  App\Models\ProvinceModel;
 use  App\Models\StreetModel;
 use  App\Models\WardModel;
+use App\Models\ArticleForLeaseModel;
+use App\Models\ArticleForBuyModel;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -30,8 +32,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $province = ProvinceModel::get();
-        return view('home', compact('province'));
+        $articleForLease = ArticleForLeaseModel::select(['id', 'title', 'views', 'created_at', 'status', 'aprroval', 'gallery_image', 'note', 'updated_at', 'project', 'price', 'area', 'province_id', 'province', 'district_id', 'district', 'address', 'bed_room', 'toilet', 'prefix_url', 'ddlPriceType', 'price_real'])
+            ->where('status', PUBLISHED_ARTICLE)
+            ->orderBy('created_at', 'desc')
+            ->limit(PAGING_LIST_ARTICLE_HOME)
+            ->get();
+        return view('home', compact('articleForLease'));
     }
     public function getDistrict(Request $request) {
         $district = DistrictModel::where('_province_id', $request->province_id)->get();

@@ -82,7 +82,7 @@ return [
             ],
         ],
 
-        'temporary_directory' => storage_path('app/backup-temp'),
+        'temporary_directory' => storage_path('backups'),
     ],
 
     /*

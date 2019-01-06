@@ -6,22 +6,6 @@ $mySelf = Auth::user();
 @endsection
 @extends('layouts.app')
 @section('content')
-    <style>
-        .moduletitle, .moduletitle a {
-            background: #055699;
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
-            height: 30px;
-            line-height: 30px;
-            width: 100%;
-            color: white;
-            font-weight: bold;
-            margin-top: 2px;
-            padding-left: 10px;
-            text-transform: uppercase;
-            width: 740px;
-        }
-    </style>
     <div class="container-default">
         <div>
             {{--<script src="https://content.batdongsan.com.vn/Modules/Project/Scripts/Common.js" type="text/javascript"></script>--}}

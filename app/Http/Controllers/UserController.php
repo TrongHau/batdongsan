@@ -33,7 +33,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        return view('user.index');
+        return view('article.manage_for_lease');
     }
     public function logout()
     {
@@ -48,15 +48,21 @@ class UserController extends Controller
         $this->validate($request, [
             'name' => 'required|max:50',
             'phone' => 'required',
+            'province_id' => 'required',
+            'district_id' => 'required',
         ]);
         $profile = [
             'name' => $request->name,
             'nick_name' => $request->nick_name,
             'birth_day' => date("Y/m/d", strtotime($request->input('birth_day'))),
             'province_id' => $request->province_id,
+            'province' => $request->province_id ? ProvinceModel::find($request->province_id)->_name : '',
             'district_id' => $request->district_id,
+            'district' => ($request->district_id && $request->province_id) ? DistrictModel::where('id', $request->district_id)->where('_province_id', $request->province_id)->first()->_name : '',
             'ward_id' => $request->ward_id,
+            'ward' => ($request->ward_id && $request->district_id && $request->province_id) ? WardModel::where('id', $request->ward_id)->where('_province_id', $request->province_id)->where('_district_id', $request->district_id)->first()->_name : '',
             'street_id' => $request->street_id,
+            'street' => ($request->street_id && $request->district_id && $request->province_id) ? StreetModel::where('id', $request->street_id)->where('_province_id', $request->province_id)->where('_district_id', $request->district_id)->first()->_name : '',
             'address' => $request->address,
             'phone' => $request->phone,
             'tax_code' => $request->tax_code,
