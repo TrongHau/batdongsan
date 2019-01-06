@@ -88,6 +88,12 @@
             white-space: nowrap;
             text-overflow: ellipsis;
         }
+        .header-top-left h1 {
+            margin: 0px;
+        }
+        .header-top {
+            height: 142px!important;
+        }
     </style>
 @endsection
 @section('content')
