@@ -33,6 +33,37 @@ class UserCrudController extends CrudController
                 'label' => trans('backpack::permissionmanager.email'),
                 'type'  => 'email',
             ],
+            [
+                'name'  => 'phone',
+                'label' => 'Số điện thoại',
+            ],
+            [
+                'name'  => 'province',
+                'label' => 'Tỉnh',
+            ],
+            [
+                'name'  => 'district',
+                'label' => 'Quận',
+            ],
+            [
+                'name'  => 'cash_curent',
+                'label' => 'Tiền mặt',
+                'type' => 'number',
+            ],
+            [
+                'name'  => 'point_current',
+                'label' => 'Điểm',
+                'type' => 'number',
+            ],
+            [
+                'name'  => 'user_type_id',
+                'label' => 'Loại tài khoản',
+                'type' => 'select',
+                'entity' => 'userTypeName',
+                'attribute' => 'name',
+                'model' => "App\Models\UserTypeModel",
+            ],
+
             [ // n-n relationship (with pivot table)
                'label'     => trans('backpack::permissionmanager.roles'), // Table column heading
                'type'      => 'select_multiple',
@@ -41,14 +72,14 @@ class UserCrudController extends CrudController
                'attribute' => 'name', // foreign key attribute that is shown to user
                'model'     => config('laravel-permission.models.role'), // foreign key model
             ],
-            [ // n-n relationship (with pivot table)
-               'label'     => trans('backpack::permissionmanager.extra_permissions'), // Table column heading
-               'type'      => 'select_multiple',
-               'name'      => 'permissions', // the method that defines the relationship in your Model
-               'entity'    => 'permissions', // the method that defines the relationship in your Model
-               'attribute' => 'name', // foreign key attribute that is shown to user
-               'model'     => config('laravel-permission.models.permission'), // foreign key model
-            ],
+//            [ // n-n relationship (with pivot table)
+//               'label'     => trans('backpack::permissionmanager.extra_permissions'), // Table column heading
+//               'type'      => 'select_multiple',
+//               'name'      => 'permissions', // the method that defines the relationship in your Model
+//               'entity'    => 'permissions', // the method that defines the relationship in your Model
+//               'attribute' => 'name', // foreign key attribute that is shown to user
+//               'model'     => config('laravel-permission.models.permission'), // foreign key model
+//            ],
         ]);
 
         // Fields
@@ -59,9 +90,42 @@ class UserCrudController extends CrudController
                 'type'  => 'text',
             ],
             [
+                'name'  => 'phone',
+                'label' => 'Số điện thoại',
+                'type'  => 'text',
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-6',
+                ],
+            ],
+            [
+                'name'  => 'cash_curent',
+                'label' => 'Số tiền hiện tại',
+                'type'  => 'number',
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-3',
+                ],
+            ],
+
+            [
+                'name'  => 'point_total',
+                'label' => 'Số diểm hiện tại',
+                'type'  => 'number',
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-3',
+                ],
+            ],
+            [
                 'name'  => 'email',
                 'label' => trans('backpack::permissionmanager.email'),
                 'type'  => 'email',
+            ],
+            [
+                'label' => 'Loại tài khoản',
+                'type' => 'select',
+                'name' => 'user_type_id',
+                'entity' => 'userTypeName',
+                'attribute' => 'name',
+                'model' => "App\Models\UserTypeModel",
             ],
             [
                 'name'  => 'password',

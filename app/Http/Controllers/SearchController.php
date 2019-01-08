@@ -34,7 +34,7 @@ class SearchController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function advance(Request $request, $method = -1, $province_id = -1, $district_id = -1, $ward_id = -1, $street_id = -1, $area = -1, $price = -1, $bed_room = -1, $ddlHomeDirection = -1) {
+    public function advance(Request $request, $method = -1, $province_id = -1, $district_id = -1, $ward_id = -1, $street_id = -1, $area = -1, $price = -1, $bed_room = -1, $toilet = -1, $ddlHomeDirection = -1) {
         session_start();
         $titleArticle = TypeModel::where('url', $method)->first();
         if(!$titleArticle)
@@ -162,6 +162,6 @@ class SearchController extends Controller
         }
         $article = $article->paginate(PAGING_LIST_ARTICLE_CATALOG);
         $key = '';
-        return view('catalog.article_for_lease_ban_dat', compact('titleArticle', 'article', 'key', 'method', 'province_id', 'district_id', 'ward_id', 'street_id', 'area', 'price', 'bed_room', 'ddlHomeDirection'));
+        return view('catalog.article_for_lease_ban_dat', compact('titleArticle', 'article', 'key', 'method', 'province_id', 'district_id', 'ward_id', 'street_id', 'area', 'price', 'bed_room', 'toilet', 'ddlHomeDirection'));
     }
 }

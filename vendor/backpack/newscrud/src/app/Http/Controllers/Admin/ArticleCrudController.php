@@ -30,18 +30,18 @@ class ArticleCrudController extends CrudController
         */
 
         // ------ CRUD COLUMNS
-        $this->crud->addColumn([
-                                'name' => 'created_at',
-                                'label' => 'Date',
+//        $this->crud->addColumn([
+//                                'name' => 'created_at',
+//                                'label' => 'Date',
 //                                'type' => 'date',
-        ]);
+//        ]);
         $this->crud->addColumn([
                                 'name' => 'title',
                                 'label' => 'Tiêu đề',
                             ]);
         $this->crud->addColumn([
                                 'name' => 'featured',
-                                'label' => 'Featured',
+                                'label' => 'Nỗi bật',
                                 'type' => 'check',
                             ]);
         $this->crud->addColumn([
@@ -102,6 +102,15 @@ class ArticleCrudController extends CrudController
                                 'attribute' => 'name',
                                 'model' => "Backpack\NewsCRUD\app\Models\Category",
                             ]);
+        $this->crud->addField([       // Select2Multiple = n-n relationship (with pivot table)
+                                'label' => 'Tags',
+                                'type' => 'select2_multiple',
+                                'name' => 'tags', // the method that defines the relationship in your Model
+                                'entity' => 'tags', // the method that defines the relationship in your Model
+                                'attribute' => 'name', // foreign key attribute that is shown to user
+                                'model' => "Backpack\NewsCRUD\app\Models\Tag", // foreign key model
+                                'pivot' => true, // on create&update, do you need to add/delete pivot table entries?
+                            ]);
         $this->crud->addField([    // ENUM
                                 'name' => 'status',
                                 'label' => 'Tình trạng',
@@ -109,7 +118,7 @@ class ArticleCrudController extends CrudController
                             ]);
         $this->crud->addField([    // CHECKBOX
                                 'name' => 'featured',
-                                'label' => 'Tin nỗi bật',
+                                'label' => 'Nỗi bật',
                                 'type' => 'checkbox',
                             ]);
 

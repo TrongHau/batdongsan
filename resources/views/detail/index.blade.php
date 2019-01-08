@@ -247,9 +247,9 @@ use App\Library\Helpers;
                                     <span class="normalblue">Ngày đăng:</span>
                                     {{date('d-m-Y', strtotime($article->created_at))}}
                                 </div>
-                                <a id="facebook" target="_blank" rel="nofollow" href="https://www.facebook.com/sharer/sharer.php?u=https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-nguyen-hoang-ton-phuong-dong-ngac-prj-sunshine-city/mo-cc-dep-nhat-ciputra-30-nhan-nha-tra-cham-65-ls-0-30th-ck-5-lh-0906360000-pr18856004&amp;t=Mở bán căn hộ CC đẹp nhất Ciputra, đóng 30% nhận nhà, trả chậm 65%, LS 0%, 30 th, CK 5%. 0906360000">
+                                <a id="facebook" target="_blank" rel="nofollow" href="https://www.facebook.com/sharer/sharer.php?u={{url()->current()}}&amp;t={{$article->title}}">
                                     <img src="https://file4.batdongsan.com.vn/images/opt/btn-share-facebook.png"></a>
-                                <a id="googleBookmark" target="_blank" rel="nofollow" href="https://plus.google.com/share?url=https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-nguyen-hoang-ton-phuong-dong-ngac-prj-sunshine-city/mo-cc-dep-nhat-ciputra-30-nhan-nha-tra-cham-65-ls-0-30th-ck-5-lh-0906360000-pr18856004">
+                                <a id="googleBookmark" target="_blank" rel="nofollow" href="https://plus.google.com/share?url={{url()->current()}}">
                                     <img src="https://file4.batdongsan.com.vn/images/opt/btn-share-gplus.png"></a>
                             </div>
                             <div class="clear"></div>

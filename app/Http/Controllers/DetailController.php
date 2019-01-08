@@ -16,6 +16,7 @@ use  App\User;
 use App\Models\ArticleForLeaseModel;
 use App\Models\ArticleForBuyModel;
 use App\Models\TypeModel;
+use Backpack\PageManager\app\Models\Page;
 
 class DetailController extends Controller
 {
@@ -39,17 +40,21 @@ class DetailController extends Controller
             ->where('id', $id)->first();
         if(!$article)
             return view('errors.404');
-        $province = ProvinceModel::get();
         $typeOf = 'lease';
-        return view('detail.index', compact('province', 'article', 'typeOf'));
+        return view('detail.index', compact('article', 'typeOf'));
     }
     public function articleForBuyDetail(Request $request, $position = null, $title = null, $id = null) {
         $article = ArticleForBuyModel::where('status', PUBLISHED_ARTICLE)
             ->where('id', $id)->first();
         if(!$article)
             return view('errors.404');
-        $province = ProvinceModel::get();
         $typeOf = 'buy';
-        return view('detail.index', compact('province', 'article', 'typeOf'));
+        return view('detail.index', compact('article', 'typeOf'));
+    }
+    public function aboutDetail(Request $request) {
+        $page = Page::where('slug', $request->path())->first();
+        if(!$page)
+            return view('errors.404');
+        return view('detail.page', compact('page'));
     }
 }

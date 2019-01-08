@@ -8,7 +8,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\UserModel as User;
+use App\User;
 use App\Models\UserSocialModel;
 use Illuminate\Support\Facades\Auth;
 use Socialite;
@@ -40,12 +40,11 @@ class AuthGoogleController extends Controller
         if(!$existUser) {
             $existUser = User::firstOrCreate([
                 'name' => $user->getName(),
-                'username' => '',
                 'email' => $email,
                 'user_active' => DEACTIVE_USER,
                 'user_avatar' => $user->avatar_original,
-                'app' => 'google',
-                'app_id' => $user->getId(),
+                'status' => ACTIVE_USER,
+                'app_google' => $user->getId(),
                 'user_phone_number' => ''
             ]);
         }else{

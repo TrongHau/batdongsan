@@ -21,7 +21,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'phone', 'status', 'avatar', 'app_id', 'app', 'point_total', 'point_current', 'aritcle_total', 'cash_total', 'cash_curent', 'cash_promotion',
+        'name', 'email', 'password', 'phone', 'status', 'avatar', 'app_facebook', 'app_google', 'point_total', 'point_current', 'aritcle_total', 'cash_total', 'cash_curent', 'cash_promotion',
         'birth_day', 'gender', 'province', 'province_id', 'district', 'district_id', 'ward', 'ward_id', 'street', 'street_id', 'address', 'tax_code', 'facebook', 'skype', 'zalo',
         'viber', 'user_type_id', 'nick_name'
     ];
@@ -36,6 +36,9 @@ class User extends Authenticatable
     ];
     public function UserType() {
         return $this->hasMany('App\Models\UserTypeModel', 'id', 'user_type_id')->first();
+    }
+    public function userTypeName() {
+        return $this->belongsTo('App\Models\UserTypeModel', 'user_type_id');
     }
     public function rolesBDSRoleName()
     {

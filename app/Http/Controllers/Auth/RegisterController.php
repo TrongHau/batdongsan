@@ -66,6 +66,7 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'status' => DEACTIVE_USER,
             'user_type' => DEFAULT_USER_TYPE,
             'point_current' => DEFAULT_POINT_LOGIN_NEW_USER,
             'phone' => $data['phone'],

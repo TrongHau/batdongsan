@@ -103,7 +103,6 @@ use App\Library\Helpers;
 @section('contentJS')
     <script>
         function changeSort(val) {
-            console.log(window.location);
             window.location.href = window.location.origin + window.location.pathname + '?sort=' + val;
         }
         <?php

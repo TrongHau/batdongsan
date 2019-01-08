@@ -8,7 +8,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\UserModel as User;
+use App\User;
 use App\Models\UserSocialModel;
 use Illuminate\Support\Facades\Auth;
 use Socialite;
@@ -43,9 +43,8 @@ class AuthFacebookController extends Controller
                 'email' => $email,
                 'user_active' => DEACTIVE_USER,
                 'user_avatar' => $user->avatar_original,
-                'app' => 'facebook',
-//                'username' => $user->getId(),
-                'app_id' => $user->getId(),
+                'app_facebook' => $user->getId(),
+                'status' => ACTIVE_USER,
                 'phone' => ''
             ]);
         }else{

@@ -3462,7 +3462,7 @@ input.select-text-content {
 
 .tintuc-list {
     clear: both;
-    width: 100%;
+    width: 99%;
 }
 
     .tintuc-list h3 {
@@ -3475,15 +3475,6 @@ input.select-text-content {
     width: 144px;
     margin-right: 10px;
     text-align: center;
-}
-
-.list-news-image-title {
-    background-color: White;
-    background-image: url('https://file4.batdongsan.com.vn/images/no-photo1.jpg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 100%;
-    height: 106px;
 }
 
 .font-title-list-news {

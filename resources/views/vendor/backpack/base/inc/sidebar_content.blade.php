@@ -1,5 +1,17 @@
 <li><a href="{{ backpack_url('dashboard') }}"><i class="fa fa-dashboard"></i> <span>{{ trans('backpack::base.dashboard') }}</span></a></li>
 <!-- Users, Roles Permissions -->
+
+<li><a href="{{backpack_url('article') }}"><i class="fa fa-file-o"></i> <span>Tin Tức</span></a></li>
+<li class="treeview">
+    <a href="#"><i class="fa fa-usd"></i> <span>Tin rao BĐS</span> <i class="fa fa-angle-left pull-right"></i></a>
+    <ul class="treeview-menu">
+        <li><a href="{{ backpack_url('user') }}"><i class="fa fa-btc"></i> <span>Bán - cho thuê</span></a></li>
+        <li><a href="{{ backpack_url('role') }}"><i class="fa fa-handshake-o"></i> <span>Mua - cần thuê</span></a></li>
+    </ul>
+</li>
+<li><a href="{{backpack_url('tag') }}"><i class="fa fa-tag"></i> <span>Tags</span></a></li>
+<li><a href="{{backpack_url('category') }}"><i class="fa fa-list"></i> <span>Danh mục</span></a></li>
+<li><a href="{{backpack_url('page') }}"><i class="fa fa-file"></i> <span>Dịch vụ</span></a></li>
 <li class="treeview">
     <a href="#"><i class="fa fa-group"></i> <span>Users, Roles, Permissions</span> <i class="fa fa-angle-left pull-right"></i></a>
     <ul class="treeview-menu">
@@ -8,8 +20,6 @@
         <li><a href="{{ backpack_url('permission') }}"><i class="fa fa-key"></i> <span>Permissions</span></a></li>
     </ul>
 </li>
-<li><a href="{{backpack_url('article') }}"><i class="fa fa-file-o"></i> <span>Tin Tức</span></a></li>
-<li><a href="{{backpack_url('category') }}"><i class="fa fa-list"></i> <span>Danh mục</span></a></li>
 <li class="treeview">
     <a href="#"><i class="fa fa-cogs"></i> <span>Advanced</span> <i class="fa fa-angle-left pull-right"></i></a>
     <ul class="treeview-menu">

@@ -11,11 +11,15 @@ use  App\Models\DistrictModel;
 use  App\Models\ProvinceModel;
 use  App\Models\StreetModel;
 use  App\Models\WardModel;
+use  App\Models\CategoryModel;
 use Illuminate\Support\Facades\Hash;
 use  App\User;
 use App\Models\ArticleForLeaseModel;
 use App\Models\ArticleForBuyModel;
 use App\Models\TypeModel;
+use App\Models\ArticleModel;
+use Backpack\NewsCRUD\app\Models\Article;
+use App\Models\ArticleTagModel;
 
 class CatalogController extends Controller
 {
@@ -97,5 +101,46 @@ class CatalogController extends Controller
         }
         $article = $article->paginate(PAGING_LIST_ARTICLE_CATALOG);
         return view('catalog.article_for_lease_cho_thue', compact('titleArticle', 'article', 'key'));
+    }
+
+    public function Article(Request $request, $prefix = null) {
+        if($prefix) {
+            $article = ArticleModel::where('slug', $prefix)->where('status', PUBLISHED_ARTICLE)->first();
+            if(!$article) {
+                return view('errors.404');
+            }
+            $tags = ArticleTagModel::where('article_id', $article->id)->get();
+            $articleRelate = [];
+            if($tags) {
+                foreach ($tags as $item) {
+                    $articleTags[] = $item->tag_id;
+                }
+                $tagArticleExsits = ArticleTagModel::whereIn('tag_id', $articleTags)->where('article_id', '!=', $article->id)->limit(2)->get();
+                $arrArticleIds = [];
+                if($tagArticleExsits) {
+                    foreach ($tagArticleExsits as $item) {
+                        $arrArticleIds[] = $item->article_id;
+                    }
+                }
+                $articleRelate = Article::whereIn('id', $arrArticleIds)->where('status', PUBLISHED_ARTICLE)->get();
+            }
+            return view('detail.article_tin_tuc', compact('article', 'articleRelate'));
+        } else {
+            $category = CategoryModel::where('slug', $prefix ?? $request->path())->first();
+            if(!$category)
+                return view('errors.404');
+            $arrCat = [];
+            $categoryChildren = CategoryModel::where('parent_id', $category->id)->get();
+            if(count($categoryChildren)) {
+                foreach($categoryChildren as $item) {
+                    $arrCat[] = $item->id;
+                }
+            }else{
+                $arrCat[] = $category->id;
+            }
+            $article = ArticleModel::select('title', 'slug', 'short_content', 'image', 'status', 'featured', 'views', 'created_at')->where('status', PUBLISHED_ARTICLE)->whereIn('category_id', $arrCat)->paginate(PAGING_LIST_ARTICLE_CATALOG);
+            return view('catalog.article_tin_tuc', compact('category', 'article'));
+        }
+
     }
 }

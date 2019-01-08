@@ -613,7 +613,7 @@ global $province;
                                             <tbody><tr>
                                                 <td></td>
                                                 <td>
-                                                    <div class="g-recaptcha" data-sitekey="6Lc3qIUUAAAAAMqJjXyhXMhKR7KeO1JYwdBzWaw8"></div>
+                                                    <div class="g-recaptcha" data-sitekey="{{env('NOCAPTCHA_SECRET')}}"></div>
                                                 </td>
                                             </tr>
                                             <tr>
