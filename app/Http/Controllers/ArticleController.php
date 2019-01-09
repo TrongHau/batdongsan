@@ -44,7 +44,8 @@ class ArticleController extends Controller
         $article = ArticleForLeaseModel::select(['id', 'title', 'views', 'created_at', 'status', 'aprroval', 'gallery_image', 'note', 'updated_at'])
             ->where('created_at', '>=', date('Y-m-d', strtotime('-2 months')))
             ->where('user_id', Auth::user()->id)
-            ->where('status', PUBLISHED_ARTICLE)->orderBy('created_at', 'desc')->paginate(PAGING_LIST_ARTICLE);
+//            ->where('status', PUBLISHED_ARTICLE)
+            ->orderBy('created_at', 'desc')->paginate(PAGING_LIST_ARTICLE);
         $list = view('article.item_article_lease', compact('article'));
         return view('article.manage_for_lease', compact('list'));
     }
@@ -53,7 +54,8 @@ class ArticleController extends Controller
         $article = ArticleForBuyModel::select(['id', 'title', 'views', 'created_at', 'status', 'aprroval', 'gallery_image', 'note', 'updated_at'])
             ->where('created_at', '>=', date('Y-m-d', strtotime('-2 months')))
             ->where('user_id', Auth::user()->id)
-            ->where('status', PUBLISHED_ARTICLE)->orderBy('created_at', 'desc')->paginate(PAGING_LIST_ARTICLE);
+//            ->where('status', PUBLISHED_ARTICLE)
+            ->orderBy('created_at', 'desc')->paginate(PAGING_LIST_ARTICLE);
         $list = view('article.item_article_buy', compact('article'));
         return view('article.manage_for_buy', compact('list'));
     }
@@ -118,7 +120,12 @@ class ArticleController extends Controller
     {
         $article = null;
         if($id) {
-            $article = ArticleForLeaseModel::where('id', $id)->where('user_id', Auth::user()->id)->first();
+            if(Auth::user()->rolesBDSRoleName() == ROLE_NAME_ADMIN) {
+                // kiểm tra admin truy cập trực tiếp
+                $article = ArticleForLeaseModel::where('id', $id)->first();
+            }else {
+                $article = ArticleForLeaseModel::where('id', $id)->where('user_id', Auth::user()->id)->first();
+            }
             if(!$article)
                 return view('errors.404');
         }
@@ -128,7 +135,12 @@ class ArticleController extends Controller
     {
         $article = null;
         if($id) {
-            $article = ArticleForBuyModel::where('id', $id)->where('user_id', Auth::user()->id)->first();
+            if(Auth::user()->rolesBDSRoleName() == ROLE_NAME_ADMIN) {
+                // kiểm tra admin truy cập trực tiếp
+                $article = ArticleForBuyModel::where('id', $id)->first();
+            }else {
+                $article = ArticleForBuyModel::where('id', $id)->where('user_id', Auth::user()->id)->first();
+            }
             if(!$article)
                 return view('errors.404');
         }
@@ -149,7 +161,7 @@ class ArticleController extends Controller
             'price' => 'max:999999',
             'bed_room' => 'max:99',
             'toilet' => 'max:99',
-//            'g-recaptcha-response' => 'required',
+            'g-recaptcha-response' => 'required',
         ]);
         $article = [
             'title' => $request->title,
@@ -165,7 +177,7 @@ class ArticleController extends Controller
             'street' => ($request->street_id && $request->district_id && $request->province_id) ? StreetModel::where('id', $request->street_id)->where('_province_id', $request->province_id)->where('_district_id', $request->district_id)->first()->_name : '',
             'address' => $request->address,
             'project' => $request->project,
-            'area' => $request->area,
+            'area' => $request->area ?? 0,
             'price' => $request->price,
             'ddlPriceType' => $request->ddlPriceType,
             'price_real' => ($request->price ?? 0) * Helpers::convertCurrency($request->ddlPriceType),
@@ -193,13 +205,21 @@ class ArticleController extends Controller
         $article[ 'street_url'] = Helpers::rawTiengVietUrl($article['street']);
         $olDataImgs = [];
         if($request->id) {
-            $result = ArticleForLeaseModel::where('user_id', Auth::user()->id)->where('id', $request->id)->first();
+            if(Auth::user()->rolesBDSRoleName() == ROLE_NAME_ADMIN) {
+                // kiểm tra admin truy cập trực tiếp
+                $result = ArticleForLeaseModel::where('id', $request->id)->first();
+            }else {
+                $result = ArticleForLeaseModel::where('id', $request->id)->where('user_id', Auth::user()->id)->first();
+            }
+            if(!$result)
+                return view('errors.404');
             $olDataImgs = (array)json_decode($result->gallery_image);
             $result->update($article);
         }else {
             $article['user_id'] = Auth::user()->id;
             $article['aprroval'] = APPROVAL_ARTICLE_DEFAULT;
             $article['status'] = PUBLISHED_ARTICLE;
+            $article['start_news'] = time();
             $result = ArticleForLeaseModel::create($article);
         }
         if($request->remove_imgs) {
@@ -243,7 +263,7 @@ class ArticleController extends Controller
             'contact_phone' => 'required',
             'price_to' => 'max:999999',
             'price_from' => 'max:999999',
-//            'g-recaptcha-response' => 'required',
+            'g-recaptcha-response' => 'required',
         ]);
         $article = [
             'title' => $request->title,
@@ -280,13 +300,21 @@ class ArticleController extends Controller
         $article[ 'street_url'] = Helpers::rawTiengVietUrl($article['street']);
         $olDataImgs = [];
         if($request->id) {
-            $result = ArticleForBuyModel::where('user_id', Auth::user()->id)->where('id', $request->id)->first();
+            if(Auth::user()->rolesBDSRoleName() == ROLE_NAME_ADMIN) {
+                // kiểm tra admin truy cập trực tiếp
+                $result = ArticleForBuyModel::where('id', $request->id)->first();
+            }else {
+                $result = ArticleForBuyModel::where('id', $request->id)->where('user_id', Auth::user()->id)->first();
+            }
+            if(!$result)
+                return view('errors.404');
             $olDataImgs = (array)json_decode($result->gallery_image);
             $result->update($article);
         }else {
             $article['user_id'] = Auth::user()->id;
             $article['aprroval'] = APPROVAL_ARTICLE_DEFAULT;
             $article['status'] = PUBLISHED_ARTICLE;
+            $article['start_news'] = time();
             $result = ArticleForBuyModel::create($article);
         }
         if($request->remove_imgs) {

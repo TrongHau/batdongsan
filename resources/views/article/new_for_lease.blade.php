@@ -243,7 +243,7 @@ global $province;
                                                 </div>
                                                 <div class="base4">
                                                     <div style="float: left;">
-                                                        <input name="area" type="number" value="{{old('area') ?? $article->area ?? ''}}" id="area" class="text-field" min="1" max="999" style="width: 110px;">
+                                                        <input name="area" type="number" value="{{old('area') ?? $article->area ?? ''}}" id="area" class="text-field" max="999" style="width: 110px;">
                                                         @if ($errors->has('area'))
                                                             <div class="errorMessage" style="display: block;"><p style="color: red">{{ str_replace('area', 'diện tích', $errors->first('area')) }}</p></div>
                                                         @endif

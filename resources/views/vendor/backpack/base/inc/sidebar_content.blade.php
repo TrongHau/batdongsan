@@ -5,8 +5,8 @@
 <li class="treeview">
     <a href="#"><i class="fa fa-usd"></i> <span>Tin rao BĐS</span> <i class="fa fa-angle-left pull-right"></i></a>
     <ul class="treeview-menu">
-        <li><a href="{{ backpack_url('user') }}"><i class="fa fa-btc"></i> <span>Bán - cho thuê</span></a></li>
-        <li><a href="{{ backpack_url('role') }}"><i class="fa fa-handshake-o"></i> <span>Mua - cần thuê</span></a></li>
+        <li><a href="{{ backpack_url('article_for_lease') }}"><i class="fa fa-btc"></i> <span>Bán - cho thuê</span></a></li>
+        <li><a href="{{ backpack_url('article_for_buy') }}"><i class="fa fa-handshake-o"></i> <span>Mua - cần thuê</span></a></li>
     </ul>
 </li>
 <li><a href="{{backpack_url('tag') }}"><i class="fa fa-tag"></i> <span>Tags</span></a></li>

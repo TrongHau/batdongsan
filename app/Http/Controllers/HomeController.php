@@ -33,7 +33,7 @@ class HomeController extends Controller
     public function index()
     {
         $articleForLease = ArticleForLeaseModel::select(['id', 'title', 'views', 'created_at', 'status', 'aprroval', 'gallery_image', 'note', 'updated_at', 'project', 'price', 'area', 'province_id', 'province', 'district_id', 'district', 'address', 'bed_room', 'toilet', 'prefix_url', 'ddlPriceType', 'price_real'])
-            ->where('status', PUBLISHED_ARTICLE)
+            ->where([['status', PUBLISHED_ARTICLE], ['aprroval', APPROVAL_ARTICLE_PUBLIC]])
             ->orderBy('created_at', 'desc')
             ->limit(PAGING_LIST_ARTICLE_HOME)
             ->get();

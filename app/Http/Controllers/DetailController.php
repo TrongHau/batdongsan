@@ -36,19 +36,21 @@ class DetailController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function articleForLeaseDetail(Request $request, $position = null, $title = null, $id = null) {
-        $article = ArticleForLeaseModel::where('status', PUBLISHED_ARTICLE)
+        $article = ArticleForLeaseModel::where([['status', PUBLISHED_ARTICLE], ['aprroval', APPROVAL_ARTICLE_PUBLIC]])
             ->where('id', $id)->first();
         if(!$article)
             return view('errors.404');
         $typeOf = 'lease';
+        $article->where('id', $id)->increment('views');
         return view('detail.index', compact('article', 'typeOf'));
     }
     public function articleForBuyDetail(Request $request, $position = null, $title = null, $id = null) {
-        $article = ArticleForBuyModel::where('status', PUBLISHED_ARTICLE)
+        $article = ArticleForBuyModel::where([['status', PUBLISHED_ARTICLE], ['aprroval', APPROVAL_ARTICLE_PUBLIC]])
             ->where('id', $id)->first();
         if(!$article)
             return view('errors.404');
         $typeOf = 'buy';
+        $article->where('id', $id)->increment('views');
         return view('detail.index', compact('article', 'typeOf'));
     }
     public function aboutDetail(Request $request) {

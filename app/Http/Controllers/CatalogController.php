@@ -43,7 +43,7 @@ class CatalogController extends Controller
         $titleArticle = TypeModel::where('url', $key ? explode('/', $request->path())[0] : $request->path())->first();
         if(!$titleArticle)
             return view('errors.404');
-        $article = ArticleForLeaseModel::where('status', PUBLISHED_ARTICLE);
+        $article = ArticleForLeaseModel::where([['status', PUBLISHED_ARTICLE], ['aprroval', APPROVAL_ARTICLE_PUBLIC]]);
         // hiển thị tất cả
         if($titleArticle->url != 'nha-dat-ban' && $titleArticle->url != 'nha-dat-cho-thue')
             $article = $article->where('type_article', $titleArticle->name);
@@ -75,7 +75,7 @@ class CatalogController extends Controller
         $titleArticle = TypeModel::where('url', $key ? explode('/', $request->path())[0] : $request->path())->first();
         if(!$titleArticle)
             return view('errors.404');
-        $article = ArticleForBuyModel::where('status', PUBLISHED_ARTICLE);
+        $article = ArticleForBuyModel::where([['status', PUBLISHED_ARTICLE], ['aprroval', APPROVAL_ARTICLE_PUBLIC]]);
         // hiển thị tất cả
         if($titleArticle->url != 'nha-dat-can-mua' && $titleArticle->url != 'nha-dat-can-thue')
             $article = $article->where('type_article', $titleArticle->name);
@@ -111,7 +111,7 @@ class CatalogController extends Controller
             }
             $tags = ArticleTagModel::where('article_id', $article->id)->get();
             $articleRelate = [];
-            if($tags) {
+            if(count($tags)) {
                 foreach ($tags as $item) {
                     $articleTags[] = $item->tag_id;
                 }
@@ -124,6 +124,7 @@ class CatalogController extends Controller
                 }
                 $articleRelate = Article::whereIn('id', $arrArticleIds)->where('status', PUBLISHED_ARTICLE)->get();
             }
+            $article->where('id', $article->id)->increment('views');
             return view('detail.article_tin_tuc', compact('article', 'articleRelate'));
         } else {
             $category = CategoryModel::where('slug', $prefix ?? $request->path())->first();

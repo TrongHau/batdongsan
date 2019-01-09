@@ -44,6 +44,7 @@ class ArticleCrudController extends CrudController
                                 'label' => 'Nỗi bật',
                                 'type' => 'check',
                             ]);
+
         $this->crud->addColumn([
                                 'label' => 'Danh mục',
 //                                'type' => 'closure',
@@ -60,7 +61,11 @@ class ArticleCrudController extends CrudController
                                 'name' => 'status',
                                 'label' => 'Tình trạng',
         ]);
-
+        $this->crud->addColumn([
+                                'name' => 'views',
+                                'label' => 'Lượt xem',
+                                'type' => 'number',
+                            ]);
         // ------ CRUD FIELDS
         $this->crud->addField([    // TEXT
                                 'name' => 'title',
