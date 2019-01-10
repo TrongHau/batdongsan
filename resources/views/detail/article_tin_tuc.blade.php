@@ -11,9 +11,9 @@ use App\Library\Helpers;
     <meta name="keywords" content="{{$article->title}}">
     <meta name="description" content="{{$article->short_content}}">
     <link rel="canonical" href="{{url()->current()}}" />
-    <link rel="image_src" href="{{env('APP_URL') . ($item->image ? '/'.$item->image : PATH_LOGO_DEFAULT)}}" />
+    <link rel="image_src" href="{{env('APP_URL') . ($article->image ? '/'.$article->image : PATH_LOGO_DEFAULT)}}" />
     <meta name="title" content="{{$article->title}}{{$tagRelate}}" />
-    <meta property="og:image" content="{{env('APP_URL') . ($item->image ? '/'.$item->image : PATH_LOGO_DEFAULT)}}" />
+    <meta property="og:image" content="{{env('APP_URL') . ($article->image ? '/'.$article->image : PATH_LOGO_DEFAULT)}}" />
     <meta property="og:url" content="{{url()->current()}}" />
     <meta property="og:title" content="{{$article->title}}" />
     <meta property="og:description" content="{{$article->short_content}}" />
