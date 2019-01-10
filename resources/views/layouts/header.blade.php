@@ -4,23 +4,12 @@
     <meta http-equiv="audience" content="general">
     <meta name="resource-type" content="document">
     <meta name="abstract" content="Thông tin nhà đất Việt Nam">
-    <meta name="classification" content="Bất động sản Việt Nam">
     <meta name="area" content="Nhà đất và bất động sản">
     <meta name="placename" content="Việt Nam">
-    <meta name="author" content="Batdongsan.com.vn">
-    <meta name="copyright" content="©2007 Batdongsan.com.vn">
-    <meta name="owner" content="Batdongsan.com.vn">
-    <meta name="generator" content="Daiviet Software Jsc">
-    <meta name="distribution" content="Global">
-    <meta name="keywords" content="Kênh, thông, tin, số, 1, về, bất, động, sản">
-    <meta name="description"
-          content="Kênh thông tin số 1 về bất động sản tại Việt Nam. Mang đến nguồn thông tin mua bán và cho thuê nhà đất, văn phòng, chung cư... Cập nhật tin tức bất động sản nhanh nhất và chính xác nhất.">
-    <meta name="revisit-after" content="1 days">
-    <meta name="robots" content="follow">
-    <meta name="apple-itunes-app" content="app-id=866492094">
     <title>
         Kênh thông tin bất động sản - Mua bán nhà đất số 1 Việt Nam
     </title>
+    @yield('meta')
     @yield('contentCSS')
     <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css" media="all" />
     <link rel="stylesheet" type="text/css" href="/css/banner-preview.css">
