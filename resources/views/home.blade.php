@@ -15,7 +15,7 @@ global $noibat;
         Cho thuê nhà riêng, Cho thuê nhà mặt phố, Cho thuê nhà trọ, phòng trọ, Cho thuê văn phòng, Cho thuê kho, nhà xưởng, đất, Mua nhà riêng, Cần thuê kho, nhà xưởng, đất, Cần thuê nhà trọ, phòng trọ, Tất cả các loại đất bán">
     <link rel="canonical" href="{{url()->current()}}" />
     <link rel="image_src" href="{{env('APP_URL') . PATH_LOGO_DEFAULT}}" />
-    <meta name="title" content="{{$article->title}}" />
+    <meta name="title" content="Bất Động Sản Company" />
     <meta property="og:image" content="{{env('APP_URL') . PATH_LOGO_DEFAULT}}" />
     <meta property="og:url" content="{{url()->current()}}" />
     <meta property="og:title" content="Bất Động Sản Company" />
