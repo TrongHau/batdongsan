@@ -111,9 +111,11 @@ class CatalogController extends Controller
             }
             $tags = ArticleTagModel::where('article_id', $article->id)->get();
             $articleRelate = [];
+            $tagRelate = '';
             if(count($tags)) {
                 foreach ($tags as $item) {
                     $articleTags[] = $item->tag_id;
+                    $tagRelate = $tagRelate . ';' .$item->name;
                 }
                 $tagArticleExsits = ArticleTagModel::whereIn('tag_id', $articleTags)->where('article_id', '!=', $article->id)->limit(2)->get();
                 $arrArticleIds = [];
@@ -125,7 +127,7 @@ class CatalogController extends Controller
                 $articleRelate = Article::whereIn('id', $arrArticleIds)->where('status', PUBLISHED_ARTICLE)->get();
             }
             $article->where('id', $article->id)->increment('views');
-            return view('detail.article_tin_tuc', compact('article', 'articleRelate'));
+            return view('detail.article_tin_tuc', compact('article', 'articleRelate', 'tagRelate'));
         } else {
             $category = CategoryModel::where('slug', $prefix ?? $request->path())->first();
             if(!$category)

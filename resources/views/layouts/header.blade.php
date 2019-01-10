@@ -21,6 +21,7 @@
     <title>
         Kênh thông tin bất động sản - Mua bán nhà đất số 1 Việt Nam
     </title>
+    @yield('meta')
     @yield('contentCSS')
     <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css" media="all" />
     <link rel="stylesheet" type="text/css" href="/css/banner-preview.css">
