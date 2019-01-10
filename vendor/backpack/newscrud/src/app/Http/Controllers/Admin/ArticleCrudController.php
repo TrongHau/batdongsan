@@ -6,6 +6,7 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 // VALIDATION: change the requests to match your own file names if you need form validation
 use Backpack\NewsCRUD\app\Http\Requests\ArticleRequest as StoreRequest;
 use Backpack\NewsCRUD\app\Http\Requests\ArticleRequest as UpdateRequest;
+use Artisan;
 
 class ArticleCrudController extends CrudController
 {
@@ -137,6 +138,31 @@ class ArticleCrudController extends CrudController
 
     public function update(UpdateRequest $request)
     {
-        return parent::updateCrud();
+        $this->crud->hasAccessOrFail('update');
+
+        // fallback to global request instance
+        if (is_null($request)) {
+            $request = \Request::instance();
+        }
+
+        // replace empty values with NULL, so that it will work with MySQL strict mode on
+        foreach ($request->input() as $key => $value) {
+            if (empty($value) && $value !== '0') {
+                $request->request->set($key, null);
+            }
+        }
+
+        // update the row in the db
+        $item = $this->crud->update($request->get($this->crud->model->getKeyName()),
+            $request->except('save_action', '_token', '_method', 'current_tab'));
+        $this->data['entry'] = $this->crud->entry = $item;
+
+        // show a success message
+        \Alert::success(trans('backpack::crud.update_success'))->flash();
+
+        // save the redirect choice for next time
+        $this->setSaveAction();
+        Artisan::call('schedule:run');
+        return $this->performSaveAction($item->getKey());
     }
 }

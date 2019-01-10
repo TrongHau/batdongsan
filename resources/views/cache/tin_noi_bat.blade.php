@@ -9,6 +9,17 @@ $noibat = array (
   0 => 
   array (
     'category_id' => 1,
+    'title' => 'bán đất sổ chung bình chuẩn,bao xấy dưnghhhhhhhhhhh',
+    'slug' => 'ban-dat-so-chung-binh-chuan-bao-xay-dung123123',
+    'views' => 0,
+    'image' => 'uploads/tin-tuc/20181218094703-6c96.jpg',
+    'short_content' => 'bán đất sổ chung bình chuẩn,bao xấy dưng123123',
+    'slug_category' => 'chinh-sach-quan-ly',
+    'category_parent_id' => NULL,
+  ),
+  1 => 
+  array (
+    'category_id' => 1,
     'title' => 'Luật sư chia sẻ kinh nghiệm để tránh "sập bẫy" lừa mua nhà trên giấy',
     'slug' => 'luat-su-chia-se-kinh-nghiem-de-tranh-sap-bay-lua-mua-nha-tren-giay',
     'views' => 0,
@@ -18,9 +29,9 @@ Theo Luật sư Trần Đức Phượng, Đoàn Luật sư Tp.HCM, trong quá tr
     'slug_category' => 'chinh-sach-quan-ly',
     'category_parent_id' => NULL,
   ),
-  1 => 
+  2 => 
   array (
-    'category_id' => 1,
+    'category_id' => 6,
     'title' => 'Batdongsan.com.vn thông báo lịch nghỉ nhân kỷ niệm 12 năm thành lập',
     'slug' => 'batdongsan-com-vn-thong-bao-lich-nghi-nhan-ky-niem-12-nam-thanh-lap-1',
     'views' => 0,
@@ -30,7 +41,18 @@ Ngoài các sự kiện tri ân khách hàng đã tổ chức trước đó, đ�
     'slug_category' => 'chinh-sach-quan-ly',
     'category_parent_id' => NULL,
   ),
-  2 => 
+  3 => 
+  array (
+    'category_id' => 7,
+    'title' => '4 chiến thuật đầu tư hiệu quả khi thị trường bất động sản giảm tốc',
+    'slug' => '4-chien-thuat-dau-tu-hieu-qua-khi-thi-truong-bat-dong-san-giam-toc',
+    'views' => 1,
+    'image' => 'uploads/tin-tuc/20190102114558-c5f9.jpg',
+    'short_content' => 'Theo ông Trần Khánh Quang, Tổng giám đốc Công ty Bất động sản Việt An Hòa, dấu hiệu giảm tốc của thị trường bất động sản đã xuất hiện khá rõ ở nhiều phân khúc kể từ đầu năm đến nay, trong đó rõ nhất là căn hộ, bất động sản liền thổ và nghỉ dưỡng. Dấu hiệu dễ nhận thấy nhất là sự sụt giảm nguồn cung, tiếp theo là mãi lực thị trường chậm lại. Sự vắng bóng của dân đầu tư lướt sóng cũng như hoạt động trầm lắng của thị trường thứ cấp là dấu hiệu đã lộ diện rõ thời gian qua.',
+    'slug_category' => 'chinh-sach-quan-ly',
+    'category_parent_id' => NULL,
+  ),
+  4 => 
   array (
     'category_id' => 20,
     'title' => 'Để nhà cửa bừa bộn nên suốt một năm, tôi vẫn không bán được nhà',
@@ -41,19 +63,19 @@ Ngoài các sự kiện tri ân khách hàng đã tổ chức trước đó, đ�
     'slug_category' => 'chinh-sach-quan-ly',
     'category_parent_id' => NULL,
   ),
-  3 => 
+  5 => 
   array (
     'category_id' => 20,
     'title' => 'Bế tắc vì xây biệt thự tiền tỷ ở ngoại thành nhưng muốn bán không ai mua',
     'slug' => 'be-tac-vi-xay-biet-thu-tien-ty-o-ngoai-thanh-nhung-muon-ban-khong-ai-mua',
-    'views' => 0,
+    'views' => 1,
     'image' => 'uploads/tin-tuc/20181218094703-6c96.jpg',
     'short_content' => 'Sau một thời gian ngắn chuyển đến căn biệt thự mới xây ở Nhà Bè (Tp.HCM), cả gia đình anh Quyết lại muốn trở về ngôi nhà cấp 4 tại quận 7.
 Năm 2013, anh Quyết mua được một miếng đất diện tích khoảng 600 m2 nằm tại xã Phước Lộc, huyện Nhà Bè. Khu đất này đã có 250 m2 đất lên thổ cư. Đến năm 2016, anh quyết tâm xây một ngôi nhà thật rộng rãi để đón cả nhà về ở vì đã chán cảnh chật chội trong căn nhà cấp 4 chỉ rộng 35 m2 mà có tới 5 thành viên, 3 thế hệ chung sống ở quận 7.',
     'slug_category' => 'chinh-sach-quan-ly',
     'category_parent_id' => NULL,
   ),
-  4 => 
+  6 => 
   array (
     'category_id' => 11,
     'title' => 'Vợ có được một mình đứng tên mua nhà làm tài sản riêng không?',
@@ -64,18 +86,18 @@ Năm 2013, anh Quyết mua được một miếng đất diện tích khoảng 6
     'slug_category' => 'chinh-sach-quan-ly',
     'category_parent_id' => NULL,
   ),
-  5 => 
+  7 => 
   array (
     'category_id' => 9,
     'title' => 'Có phải hỏi chồng cũ khi bán căn nhà từng ở chung?',
     'slug' => 'co-phai-hoi-chong-cu-khi-ban-can-nha-tung-o-chung',
-    'views' => 0,
+    'views' => 1,
     'image' => 'uploads/tin-tuc/20190102144958-01f8.jpg',
     'short_content' => 'Hỏi: Tôi nợ chồng cũ 15 cây vàng, tương đương giá trị của nửa căn nhà. Trả được 9 cây thì tôi hết tiền và được anh xóa nợ. Giờ tôi muốn bán nhà thì có phải hỏi ý kiến anh không?',
     'slug_category' => 'chinh-sach-quan-ly',
     'category_parent_id' => NULL,
   ),
-  6 => 
+  8 => 
   array (
     'category_id' => 11,
     'title' => 'Chưa có sổ đỏ có được tách thửa đất không?',
@@ -86,41 +108,41 @@ Năm 2013, anh Quyết mua được một miếng đất diện tích khoảng 6
     'slug_category' => 'chinh-sach-quan-ly',
     'category_parent_id' => NULL,
   ),
-  7 => 
+  9 => 
   array (
     'category_id' => 17,
     'title' => 'Có chung quyền sử dụng đất thì được cấp sổ đỏ như thế nào?',
     'slug' => 'co-chung-quyen-su-dung-dat-thi-duoc-cap-so-do-nhu-the-nao',
-    'views' => 0,
+    'views' => 1,
     'image' => 'uploads/tin-tuc/20190104105200-83f4.jpg',
     'short_content' => 'Tôi thấy Điểm a, Khoản 2.3 Điều 8 Thông tư 25/2014/TT-BTNMT quy định thửa đất được xác định theo phạm vi quản lý, sử dụng của một người sử dụng đất hoặc của một nhóm người cùng sử dụng đất hoặc của một người được nhà nước giao quản lý đất; có cùng mục đích sử dụng theo quy định của pháp luật về đất đai.',
     'slug_category' => 'chinh-sach-quan-ly',
     'category_parent_id' => NULL,
   ),
-  8 => 
+  10 => 
   array (
     'category_id' => 2,
     'title' => 'Xin cấp lại sổ đỏ bị rách cần phải làm những thủ tục gì?',
     'slug' => 'xin-cap-lai-so-do-bi-rach-can-phai-lam-nhung-thu-tuc-gi',
-    'views' => 0,
+    'views' => 1,
     'image' => 'uploads/tin-tuc/20181218094703-6c96.jpg',
     'short_content' => 'Hỏi: Hiện sổ đỏ nhà tôi bị rách 1 góc, tôi muốn xin cấp lại sổ đỏ thì phải làm những thủ tục gì? Xin tư vấn giúp!',
     'slug_category' => 'chinh-sach-quan-ly',
     'category_parent_id' => NULL,
   ),
-  9 => 
+  11 => 
   array (
     'category_id' => 8,
     'title' => 'Bất động sản ven mặt nước trên toàn cầu ngày càng đắt đỏ',
     'slug' => 'bat-dong-san-ven-mat-nuoc-tren-toan-cau-ngay-cang-dat-do',
-    'views' => 0,
+    'views' => 1,
     'image' => 'uploads/tin-tuc/20181218094703-6c96.jpg',
     'short_content' => 'Nghiên cứu mới đây của Knight Frank cho thấy giá nhà đất ven mặt nước trên toàn cầu trung bình cao hơn 40% so với những bất động sản tương đương nằm sâu trong nội địa.
 Knight Frank đã khảo sát, so sánh giá bán bất động sản ven mặt nước ở các thành phố lớn trên thế giới so với mức giá thị trường của bất động sản tương đương nằm trong nội địa.',
     'slug_category' => 'chinh-sach-quan-ly',
     'category_parent_id' => NULL,
   ),
-  10 => 
+  12 => 
   array (
     'category_id' => 9,
     'title' => 'Hàng loạt tuyến đường cửa ngõ Đông Bắc Sài Gòn sắp được đầu tư mở rộng',
@@ -131,7 +153,7 @@ Knight Frank đã khảo sát, so sánh giá bán bất động sản ven mặt 
     'slug_category' => 'chinh-sach-quan-ly',
     'category_parent_id' => NULL,
   ),
-  11 => 
+  13 => 
   array (
     'category_id' => 9,
     'title' => 'Luật không cấm xây nhà "ba chung", Tp.HCM bối rối',
@@ -142,35 +164,13 @@ Knight Frank đã khảo sát, so sánh giá bán bất động sản ven mặt 
     'slug_category' => 'chinh-sach-quan-ly',
     'category_parent_id' => NULL,
   ),
-  12 => 
+  14 => 
   array (
     'category_id' => 14,
     'title' => 'Thách thức và cơ hội nào cho thị trường bất động sản Việt Nam năm 2019?',
     'slug' => 'thach-thuc-va-co-hoi-nao-cho-thi-truong-bat-dong-san-viet-nam-nam-2019',
     'views' => 0,
     'image' => NULL,
-    'short_content' => '',
-    'slug_category' => 'chinh-sach-quan-ly',
-    'category_parent_id' => NULL,
-  ),
-  13 => 
-  array (
-    'category_id' => 6,
-    'title' => 'Chuyên gia "bắt mạch" thị trường nói gì về bong bóng BĐS năm 2019?',
-    'slug' => 'chuyen-gia-bat-mach-thi-truong-noi-gi-ve-bong-bong-bds-nam-2019',
-    'views' => 0,
-    'image' => 'uploads/tin-tuc/20181218094703-6c96.jpg',
-    'short_content' => '',
-    'slug_category' => 'chinh-sach-quan-ly',
-    'category_parent_id' => NULL,
-  ),
-  14 => 
-  array (
-    'category_id' => 2,
-    'title' => 'Chìa khóa “vàng” cho tiềm năng sinh lời của Tuần Châu Marina',
-    'slug' => 'chia-khoa-vang-cho-tiem-nang-sinh-loi-cua-tuan-chau-marina',
-    'views' => 0,
-    'image' => 'uploads/tin-tuc/20190102114558-c5f9.jpg',
     'short_content' => '',
     'slug_category' => 'chinh-sach-quan-ly',
     'category_parent_id' => NULL,

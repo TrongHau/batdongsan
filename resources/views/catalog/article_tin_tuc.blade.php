@@ -50,7 +50,7 @@ use App\Library\Helpers;
                                         </div>
                                         <div class="clear line">
                                         </div>
-                                    @endif
+                                    @else
                                         <div class="tintuc-row1 tintuc-list tc-tit">
                                             <div class="tc-img list-news-image-title">
                                                 <a href="/{{$category->slug}}/{{$item['slug']}}">
@@ -67,7 +67,8 @@ use App\Library\Helpers;
                                             <p style="text-rendering:geometricPrecision;">
                                                 <?php echo $item['short_content'] ?>
                                             </p>
-                                </div>
+                                        </div>
+                                    @endif
                                 @endforeach
                                 <div class="clear">
                                 </div>

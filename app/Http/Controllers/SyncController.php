@@ -94,6 +94,19 @@ $province = ' . var_export($province, true) . ';
                 $i++;
             }
         }
+        // tất cả tin mới
+        $category = Category::whereIn('id', [4, 5, 6, 7, 8])->get();
+        $all_tin_tuc_moi = [];
+        $i = 0;
+        foreach($category as $item) {
+            $article = Article::select('category_id', 'title', 'slug', 'views', 'image')->where('status', PUBLISHED_ARTICLE)->where('category_id', $item->id)->orderBy('id', 'desc')->limit(8)->get();
+            foreach($article as $key => $item2) {
+                $all_tin_tuc_moi[$key] = $item2->toArray();
+                $all_tin_tuc_moi[$key]['slug_category'] = $item->slug;
+                $all_tin_tuc_moi[$key]['category_parent_id'] = $item->parent_id;
+                $i++;
+            }
+        }
         // tin nỗi bật
         $noibat = [];
         $article = Article::select('category_id', 'title', 'slug', 'views', 'image', 'short_content')->where('status', PUBLISHED_ARTICLE)->where('featured', 1)->orderBy('id', 'desc')->limit(15)->get();
@@ -128,6 +141,17 @@ if ( !ENV(\'IN_PHPBB\') )
 }
 global $noibat;
 $noibat = ' . var_export($noibat, true) . ';
+?>');
+
+        file_put_contents(resource_path().'/views/cache/all_tin_tuc_moi.blade.php',
+            '<?php 
+if ( !ENV(\'IN_PHPBB\') )
+{
+    die(\'Hacking attempt\');
+    exit;
+}
+global $all_tin_tuc_moi;
+$all_tin_tuc_moi = ' . var_export($noibat, true) . ';
 ?>');
 
         return response(['Ok']);

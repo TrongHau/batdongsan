@@ -1,8 +1,10 @@
 <?php
 use App\Library\Helpers;
 global $noibat;
+global $all_tin_tuc_moi;
 ?>
 @include('cache.tin_noi_bat')
+@include('cache.all_tin_tuc_moi')
 @extends('layouts.app')
 @section('content')
     @include('layouts.top_search')
@@ -187,29 +189,21 @@ global $noibat;
                                 </div>
                                 <div class="t_left-baiviet-header-right">
                                     <div class="t_left-baiviet-header-right-link" style="border: none;">
-                                        <h3><a href="{{env("APP_URL")}}/tu-van-luat-bat-dong-san"
+                                        <h3><a href="/tu-van-luat-bat-dong-san"
                                                title="Tư vấn luật" style="font-size: 11px;">
                                                 Tư vấn luật</a></h3>
                                     </div>
                                     <div class="t_left-baiviet-header-right-link">
-                                        <h3><a href="{{env("APP_URL")}}/xay-dung/" title="Xây dựng"
-                                               style="font-size: 11px;">
-                                                Xây dựng</a></h3>
+                                        <h3><a href="/phan-tich-nhan-dinh" title="Phân tích - nhận định"
+                                               style="font-size: 11px;">Phân tích - nhận định</a></h3>
                                     </div>
                                     <div class="t_left-baiviet-header-right-link">
-                                        <h3><a href="{{env("APP_URL")}}/kien-truc/" title="Kiến trúc"
-                                               style="font-size: 11px;">
-                                                Kiến trúc</a></h3>
+                                        <h3><a href="/bat-dong-san-the-gioi" title="Bất động sản thế giới"
+                                               style="font-size: 11px;">Bất động sản thế giới</a></h3>
                                     </div>
                                     <div class="t_left-baiviet-header-right-link">
-                                        <h3><a href="{{env("APP_URL")}}/noi-ngoai-that/"
-                                               title="Nội - Ngoại thất" style="font-size: 11px;">
-                                                Nội - Ngoại thất</a></h3>
-                                    </div>
-                                    <div class="t_left-baiviet-header-right-link">
-                                        <h3><a href="{{env("APP_URL")}}/phong-thuy/" title="Phong thủy"
-                                               style="font-size: 11px;">
-                                                Phong thủy</a></h3>
+                                        <h3><a href="/tai-chinh-chung-khoan-bat-dong-san"
+                                               title="Nội - Ngoại thất" style="font-size: 11px;">Tài chính - Chứng khoán - BĐS</a></h3>
                                     </div>
                                     <div class="clear">
                                     </div>
@@ -217,81 +211,66 @@ global $noibat;
                             </div>
                             <div class="line-home">
                             </div>
+                            <?php
+                            $newsFooter = Helpers::getRandLimitArr($all_tin_tuc_moi, 10);
+                            ?>
                             <div class="t_left-baiviet-content">
                                 <div class="group-news-border-backgroup">
-                                    <a href="{{env("APP_URL")}}/biet-thu/tham-ngoi-nha-3-tang-tai-ha-noi-cua-hlv-park-hang-seo-ar96974">
+                                    <a href="/{{$newsFooter[0]['slug_category']}}/{{$newsFooter[0]['slug']}}">
                                         <img style="border: 1px solid #ccc;"
-                                             src="/imgs/20181215105007-eafd.jpg"
-                                             alt="Thăm ngôi nhà 3 tầng tại Hà Nội của HLV Park Hang-seo">
+                                             src="{{$newsFooter[0]['image'] ? '/'.$newsFooter[0]['image'] : THUMBNAIL_DEFAULT}}"
+                                             alt="{{$newsFooter[0]['title']}}">
                                     </a>
                                     <div class="group-news-title">
                                         <h4>
-                                            <a href="{{env("APP_URL")}}/biet-thu/tham-ngoi-nha-3-tang-tai-ha-noi-cua-hlv-park-hang-seo-ar96974"
-                                               title="Thăm ngôi nhà 3 tầng tại Hà Nội của HLV Park Hang-seo">
-                                                Thăm ngôi nhà 3 tầng tại Hà Nội của HLV Park Hang-seo<img
-                                                        class="news-image-video-icon" atl=""
-                                                        src="/imgs/bds-video.png">
+                                            <a href="/{{$newsFooter[0]['slug_category']}}/{{$newsFooter[0]['slug']}}"
+                                               title="{{$newsFooter[0]['title']}}">{{$newsFooter[0]['title']}}
                                             </a></h4>
                                     </div>
-                                    <div class="group-news-summary">Trong một chương trình thực tế Hàn Quốc mới đây,
-                                        HLV đội tuyển Việt Nam Park Hang-seo đã dẫn các đồng hương của mình ghé thăm
-                                        biệt thự 3 tầng trong khu nhà chuyên gia ở...
-                                    </div>
+                                    <div class="group-news-summary">{{substr($newsFooter[0]['short_content'], 0, 100)}}...</div>
                                 </div>
                                 <div class="group-news-border-backgroup">
-                                    <a href="{{env("APP_URL")}}/nha-dep/me-man-ngoi-nha-co-to-hop-an-choi-cuc-sanh-dieu-tren-san-thuong-ar96961">
+                                    <a href="/{{$newsFooter[1]['slug_category']}}/{{$newsFooter[1]['slug']}}">
                                         <img style="border: 1px solid #ccc;"
-                                             src="/imgs/20181214112828-845f.jpg"
-                                             alt="Mê mẩn ngôi nhà có &quot;tổ hợp ăn chơi&quot; cực sành điệu trên sân thượng">
+                                             src="{{$newsFooter[1]['image'] ? '/'.$newsFooter[1]['image'] : THUMBNAIL_DEFAULT}}"
+                                             alt="{{$newsFooter[1]['title']}}">
                                     </a>
                                     <div class="group-news-title">
                                         <h4>
-                                            <a href="{{env("APP_URL")}}/nha-dep/me-man-ngoi-nha-co-to-hop-an-choi-cuc-sanh-dieu-tren-san-thuong-ar96961"
-                                               title="Mê mẩn ngôi nhà có &quot;tổ hợp ăn chơi&quot; cực sành điệu trên sân thượng">
-                                                Mê mẩn ngôi nhà có "tổ hợp ăn chơi" cực sành điệu trên sân thượng
+                                            <a href="/{{$newsFooter[1]['slug_category']}}/{{$newsFooter[1]['slug']}}"
+                                               title="{{$newsFooter[1]['title']}}">{{$newsFooter[1]['title']}}
                                             </a></h4>
                                     </div>
-                                    <div class="group-news-summary">Tầng thượng của ngôi nhà này sở hữu tất cả những
-                                        gì mà người trẻ mơ ước để vui chơi, giải trí ngay tại nhà như bếp nướng
-                                        ngoài trời, bàn ăn tiện nghi, thậm...
-                                    </div>
+                                    <div class="group-news-summary">{{substr($newsFooter[1]['short_content'], 0, 100)}}...</div>
                                 </div>
                                 <div class="clear"></div>
                                 <div class="group-news-border-backgroup">
-                                    <a href="{{env("APP_URL")}}/cac-van-de-co-yeu-to-nuoc-ngoai/co-so-nao-de-xac-dinh-cong-ty-bat-dong-san-co-von-nuoc-ngoai-ar96960">
+                                    <a href="/{{$newsFooter[2]['slug_category']}}/{{$newsFooter[2]['slug']}}">
                                         <img style="border: 1px solid #ccc;"
-                                             src="/imgs/20181214144232-63a1.jpg"
-                                             alt="Cơ sở nào để xác định công ty bất động sản có vốn nước ngoài?">
+                                             src="{{$newsFooter[2]['image'] ? '/'.$newsFooter[2]['image'] : THUMBNAIL_DEFAULT}}"
+                                             alt="{{$newsFooter[2]['title']}}">
                                     </a>
                                     <div class="group-news-title">
                                         <h4>
-                                            <a href="{{env("APP_URL")}}/cac-van-de-co-yeu-to-nuoc-ngoai/co-so-nao-de-xac-dinh-cong-ty-bat-dong-san-co-von-nuoc-ngoai-ar96960"
-                                               title="Cơ sở nào để xác định công ty bất động sản có vốn nước ngoài?">
-                                                Cơ sở nào để xác định công ty bất động sản có vốn nước ngoài?
+                                            <a href="/{{$newsFooter[2]['slug_category']}}/{{$newsFooter[2]['slug']}}"
+                                               title="{{$newsFooter[2]['title']}}">{{$newsFooter[2]['title']}}
                                             </a></h4>
                                     </div>
-                                    <div class="group-news-summary">Hỏi: Tôi đang thực hiện một dự án đầu tư kinh
-                                        doanh bất động sản trong lĩnh vực nhà ở thương mại và căn hộ chung cư cao
-                                        cấp tại TP. Đà Nẵng. Để thực hiện, tôi sẽ...
-                                    </div>
+                                    <div class="group-news-summary">{{substr($newsFooter[2]['short_content'], 0, 100)}}...</div>
                                 </div>
                                 <div class="group-news-border-backgroup">
-                                    <a href="{{env("APP_URL")}}/trinh-tu-thu-tuc/co-phai-lam-thu-tuc-tach-thua-voi-dat-o-co-vuon-ao-ar96959">
+                                    <a href="/{{$newsFooter[3]['slug_category']}}/{{$newsFooter[3]['slug']}}">
                                         <img style="border: 1px solid #ccc;"
-                                             src="/imgs/20181214142900-3a78.jpg"
-                                             alt="Có phải làm thủ tục tách thửa với đất ở có vườn ao?">
+                                             src="{{$newsFooter[3]['image'] ? '/'.$newsFooter[3]['image'] : THUMBNAIL_DEFAULT}}"
+                                             alt="{{$newsFooter[3]['title']}}">
                                     </a>
                                     <div class="group-news-title">
                                         <h4>
-                                            <a href="{{env("APP_URL")}}/trinh-tu-thu-tuc/co-phai-lam-thu-tuc-tach-thua-voi-dat-o-co-vuon-ao-ar96959"
-                                               title="Có phải làm thủ tục tách thửa với đất ở có vườn ao?">
-                                                Có phải làm thủ tục tách thửa với đất ở có vườn ao?
+                                            <a href="/{{$newsFooter[3]['slug_category']}}/{{$newsFooter[3]['slug']}}"
+                                               title="{{$newsFooter[3]['title']}}">{{$newsFooter[3]['title']}}
                                             </a></h4>
                                     </div>
-                                    <div class="group-news-summary">Hỏi: Năm 2005, tôi có mua 635 m2 đất trồng cây
-                                        lâu năm, trong đó có 100 m2 đã được chuyển sang đất ở để xây nhà. Phần diện
-                                        tích đất còn lại tôi làm vườn trồng cây lâu năm,...
-                                    </div>
+                                    <div class="group-news-summary">{{substr($newsFooter[3]['short_content'], 0, 100)}}...</div>
                                 </div>
                                 <div class="clear"></div>
                                 <div style="clear: both">
@@ -299,97 +278,18 @@ global $noibat;
                                 <div class="art-latest">
                                     <div class="art-item">
                                         <ul>
-                                            <li>
-                                                <a href="{{env("APP_URL")}}/nha-dep/ngam-ngoi-nha-2-tang-tien-nghi-duoc-lam-tu-kho-thoc-cu-bo-di-ar96949"
-                                                   title="Ngắm ngôi nhà 2 tầng tiện nghi được làm từ kho thóc cũ bỏ đi">
-                                                    Ngắm ngôi nhà 2 tầng tiện nghi được làm từ kho thóc cũ bỏ đi</a>
-                                            </li>
-                                            <li>
-                                                <a href="{{env("APP_URL")}}/the-gioi-kien-truc/trung-quoc-toa-nha-duoc-thiet-ke-giong-het-chiec-may-ghi-am-co-ar96946"
-                                                   title="Trung Quốc: Tòa nhà được thiết kế giống hệt chiếc máy ghi âm cổ">
-                                                    Trung Quốc: Tòa nhà được thiết kế giống hệt chiếc máy ghi âm
-                                                    cổ</a></li>
-                                            <li>
-                                                <a href="{{env("APP_URL")}}/phong-tre-em/10-mau-phong-ngu-danh-cho-cac-cap-song-sinh-dep-tung-goc-nho-ar96894"
-                                                   title="10 mẫu phòng ngủ dành cho các cặp song sinh đẹp từng góc nhỏ">
-                                                    10 mẫu phòng ngủ dành cho các cặp song sinh đẹp từng góc nhỏ</a>
-                                            </li>
-                                            <li>
-                                                <a href="{{env("APP_URL")}}/toan-canh-ngoi-nha/can-ho-dep-va-binh-yen-nhu-khu-vuon-cua-co-gai-tre-ar96895"
-                                                   title="Căn hộ đẹp và bình yên như &quot;khu vườn&quot; của cô gái trẻ">
-                                                    Căn hộ đẹp và bình yên như "khu vườn" của cô gái trẻ</a></li>
-                                            <li>
-                                                <a href="{{env("APP_URL")}}/kien-thuc-xay-dung/nhieu-nguoi-nguy-hiem-tinh-mang-vi-nha-vuong-chuong-cop-ar96929"
-                                                   title="Nhiều người nguy hiểm tính mạng vì nhà vướng chuồng cọp">
-                                                    Nhiều người nguy hiểm tính mạng vì nhà vướng chuồng cọp</a></li>
-                                            <li>
-                                                <a href="{{env("APP_URL")}}/nha-pho/ve-ngoai-khac-la-cua-ngoi-nha-o-quan-hoang-mai-ha-noi-ar96925"
-                                                   title="Vẻ ngoài khác lạ của ngôi nhà ở quận Hoàng Mai (Hà Nội)">
-                                                    Vẻ ngoài khác lạ của ngôi nhà ở quận Hoàng Mai (Hà Nội)</a></li>
+                                            <?php unset($newsFooter[0]); unset($newsFooter[1]); unset($newsFooter[2]); unset($newsFooter[3]) ?>
+                                            @foreach($newsFooter as $item)
+                                                <li>
+                                                    <a href="/{{$item['slug_category']}}/{{$item['slug']}}"
+                                                       title="{{$item['title']}}">{{$item['title']}}</a>
+                                                </li>
+                                            @endforeach
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="container-commom">
-                    <div id="ctl43_HeaderContainer" class="box-header">
-                        <div class="name_tit" align="center">
-                            <h2 style="color: White;">
-                                Tìm kiếm tiêu biểu theo từ khóa</h2>
-                        </div>
-                    </div>
-                    <div id="ctl43_BodyContainer" class="bor_box">
-                        <div class="html-content">
-                            <div style="width:558px">
-                                <div class="tag-list ">
-                                    <div class="fleft tag-list-pad width255">
-                                        <ul>
-                                            <li>
-                                                <a href="{{env("APP_URL")}}/ban-nha-mat-pho-quan-12"
-                                                   title="Bán nhà Quận 12">Bán nhà Quận 12</a></li>
-                                            <li>
-                                                <a href="{{env("APP_URL")}}/ban-nha-rieng-quan-4"
-                                                   title="Bán nhà Quận 4">Bán nhà Quận 4</a></li>
-                                            <li>
-                                                <a href="{{env("APP_URL")}}/ban-nha-rieng-quan-7"
-                                                   title="Bán nhà Quận 7">Bán nhà Quận 7</a></li>
-                                            <li>
-                                                <a href="{{env("APP_URL")}}/ban-nha-rieng-quan-8"
-                                                   title="Bán nhà Quận 8">Bán nhà Quận 8</a></li>
-                                            <li>
-                                                <a href="{{env("APP_URL")}}/nha-dat-ban-binh-thanh"
-                                                   title="Bán nhà Bình Thạnh">Bán nhà Bình Thạnh</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="fleft width255">
-                                        <ul>
-                                            <li>
-                                                <a href="{{env("APP_URL")}}/nha-dat-ban-go-vap"
-                                                   title="Bán nhà Gò Vấp">Bán nhà Gò Vấp</a></li>
-                                            <li>
-                                                <a href="{{env("APP_URL")}}/nha-dat-ban-nha-be"
-                                                   title="Bán nhà Nhà Bè">Bán nhà Nhà Bè</a></li>
-                                            <li>
-                                                <a href="{{env("APP_URL")}}/ban-nha-mat-pho-tan-phu"
-                                                   title="Bán nhà Tân Phú">Bán nhà Tân Phú</a></li>
-                                            <li>
-                                                <a href="{{env("APP_URL")}}/ban-nha-mat-pho-quan-10"
-                                                   title="Bán nhà Quận 10">Bán nhà Quận 10</a></li>
-                                            <li>
-                                                <a href="{{env("APP_URL")}}/ban-nha-mat-pho-quan-11"
-                                                   title="Bán nhà Quận 11">Bán nhà Quận 11</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="clear">
-                                        &nbsp;
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="ctl43_FooterContainer">
                     </div>
                 </div>
                 <div style="clear: both; margin-bottom: 10px;">

@@ -76,4 +76,16 @@ class Helpers
             return 1;
         }
     }
+    public static function getRandLimitArr($arr = array(), $length = 1)
+    {
+        if (count($arr) <= $length) {
+            return $arr;
+        }
+        $randArr = array_rand($arr, $length);
+        $result = array();
+        foreach ($randArr as $val) {
+            $result[] = $arr[$val];
+        }
+        return $result;
+    }
 }
