@@ -6,8 +6,7 @@ $mySelf = Auth::user();
 @section('content')
     <div class="container-default">
         <div>
-            <script src="https://content.batdongsan.com.vn/Modules/Project/Scripts/Common.js" type="text/javascript"></script>
-            <link rel="stylesheet" type="text/css" href="https://content.batdongsan.com.vn/trang-ca-nhan/css/userpage2016.css?v=20181218" media="all">
+            <link rel="stylesheet" type="text/css" href="/css/manage_article.css" media="all">
             <div id="content-user">
                 <input type="hidden" name="ctl00$MainContent$_userPage$hdfUserId1" id="hdfUserId1" value="1007909">
                 <div class="has-bg-user">

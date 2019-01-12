@@ -23,6 +23,9 @@ use App\Models\ArticleForLeaseModel;
 use App\Models\ArticleForBuyModel;
 use File;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
+use DB;
 
 class ArticleController extends Controller
 {
@@ -42,6 +45,7 @@ class ArticleController extends Controller
     public function listArticleForLease(Request $request)
     {
         $article = ArticleForLeaseModel::select(['id', 'title', 'views', 'created_at', 'status', 'aprroval', 'gallery_image', 'note', 'updated_at'])
+            ->where('status', PUBLISHED_ARTICLE)
             ->where('created_at', '>=', date('Y-m-d', strtotime('-2 months')))
             ->where('user_id', Auth::user()->id)
 //            ->where('status', PUBLISHED_ARTICLE)
@@ -52,12 +56,32 @@ class ArticleController extends Controller
     public function listArticleForBuy(Request $request)
     {
         $article = ArticleForBuyModel::select(['id', 'title', 'views', 'created_at', 'status', 'aprroval', 'gallery_image', 'note', 'updated_at'])
+            ->where('status', PUBLISHED_ARTICLE)
             ->where('created_at', '>=', date('Y-m-d', strtotime('-2 months')))
             ->where('user_id', Auth::user()->id)
 //            ->where('status', PUBLISHED_ARTICLE)
             ->orderBy('created_at', 'desc')->paginate(PAGING_LIST_ARTICLE);
         $list = view('article.item_article_buy', compact('article'));
         return view('article.manage_for_buy', compact('list'));
+    }
+    public function listDrafArticle(Request $request)
+    {
+        $page = $request->page ?? 1;
+        $article2 = ArticleForBuyModel::select(DB::raw("id, title, views, created_at, status, aprroval, updated_at, gallery_image, note, 'buy' as 'typeOf'"))
+            ->where('status', DRAFT_ARTICLE)
+            ->where('created_at', '>=', date('Y-m-d', strtotime('-2 months')))
+            ->where('user_id', Auth::user()->id);
+        $article3 = ArticleForLeaseModel::select(DB::raw("id, title, views, created_at, status, aprroval, updated_at, gallery_image, note, 'lease' as 'typeOf'"))
+            ->where('status', DRAFT_ARTICLE)
+            ->where('created_at', '>=', date('Y-m-d', strtotime('-2 months')))
+            ->where('user_id', Auth::user()->id)
+            ->union($article2)
+            ->orderBy('created_at', 'desc')
+            ->get();
+        $slice = array_slice($article3->toArray(), 999 * ($page - 1), 999);
+        $article = new \Illuminate\Pagination\Paginator($slice, count($article3), 999);
+        $list = view('article.item_article_draf', compact('article'));
+        return view('article.manage_for_draf', compact('list'));
     }
 
     public function getListArticleForLease(Request $request) {
@@ -161,7 +185,7 @@ class ArticleController extends Controller
             'price' => 'max:999999',
             'bed_room' => 'max:99',
             'toilet' => 'max:99',
-            'g-recaptcha-response' => 'required',
+//            'g-recaptcha-response' => 'required',
         ]);
         $article = [
             'title' => $request->title,
@@ -195,6 +219,7 @@ class ArticleController extends Controller
             'contact_address' => $request->contact_address,
             'contact_phone' => $request->contact_phone,
             'contact_email' => $request->contact_email,
+            'status' => $request->submit_type == 'draf' ? DRAFT_ARTICLE : PUBLISHED_ARTICLE,
             'prefix_url' =>  strtolower(Helpers::rawTiengVietUrl($request->type_article.($request->project ? '-du-an-'.$request->project : '').'-'.explode(',', $request->address)[0]).'/'.Helpers::rawTiengVietUrl($request->title))
         ];
         $article[ 'method_article_url'] = Helpers::rawTiengVietUrl($article['method_article']);
@@ -218,7 +243,6 @@ class ArticleController extends Controller
         }else {
             $article['user_id'] = Auth::user()->id;
             $article['aprroval'] = APPROVAL_ARTICLE_DEFAULT;
-            $article['status'] = PUBLISHED_ARTICLE;
             $article['start_news'] = time();
             $result = ArticleForLeaseModel::create($article);
         }
@@ -263,7 +287,7 @@ class ArticleController extends Controller
             'contact_phone' => 'required',
             'price_to' => 'max:999999',
             'price_from' => 'max:999999',
-            'g-recaptcha-response' => 'required',
+//            'g-recaptcha-response' => 'required',
         ]);
         $article = [
             'title' => $request->title,
@@ -290,6 +314,7 @@ class ArticleController extends Controller
             'contact_address' => $request->contact_address,
             'contact_phone' => $request->contact_phone,
             'contact_email' => $request->contact_email,
+            'status' => $request->submit_type == 'draf' ? DRAFT_ARTICLE : PUBLISHED_ARTICLE,
             'prefix_url' =>  strtolower(Helpers::rawTiengVietUrl($request->type_article.($request->project ? '-du-an-'.$request->project : '').'-'.explode(',', $request->address)[0]).'/'.Helpers::rawTiengVietUrl($request->title))
         ];
         $article[ 'method_article_url'] = Helpers::rawTiengVietUrl($article['method_article']);
@@ -313,7 +338,6 @@ class ArticleController extends Controller
         }else {
             $article['user_id'] = Auth::user()->id;
             $article['aprroval'] = APPROVAL_ARTICLE_DEFAULT;
-            $article['status'] = PUBLISHED_ARTICLE;
             $article['start_news'] = time();
             $result = ArticleForBuyModel::create($article);
         }

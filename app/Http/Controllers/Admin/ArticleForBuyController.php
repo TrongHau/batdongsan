@@ -40,7 +40,10 @@ class ArticleForBuyController extends CrudController
 //                                'label' => 'Date',
 //                                'type' => 'date',
 //        ]);
-
+        $this->crud->addColumn([
+            'name' => 'id',
+            'label' => 'ID'
+        ]);
         $this->crud->addColumn([
             'name' => 'created_at',
             'label' => 'Ngày tạo',

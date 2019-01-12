@@ -36,7 +36,7 @@ $list = $article->toArray();
                     {{$item['id']}}
                 </p>
                 @if($item['aprroval'] == APPROVAL_ARTICLE_PENĐING)
-                    Đang chờ xử lý
+                    Chưa duyệt
                 @elseif($item['aprroval'] == APPROVAL_ARTICLE_PUBLIC)
                     Đã duyệt<br/>
                     {{date_format(date_create($item['updated_at']), "d-m-Y")}}

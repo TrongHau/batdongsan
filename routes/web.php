@@ -39,6 +39,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::prefix('thong-tin-ca-nhan/')->group(function () {
         Route::get('/', ['as' => 'list.ArticleLease', 'uses' => 'ArticleController@listArticleForLease']);
         Route::get('quan-ly-mua-can-thue', ['as' => 'list.ArticleLease', 'uses' => 'ArticleController@listArticleForBuy']);
+        Route::get('tin-nhap', ['as' => 'list.ArticleDraf', 'uses' => 'ArticleController@listDrafArticle']);
         Route::get('thay-doi-ca-nhan', ['as' => 'user.changeProfile', 'uses' => 'UserController@changeProfile']);
         Route::post('thay-doi-ca-nhan', ['as' => 'user.storeProfile', 'uses' => 'UserController@storeProfile']);
         Route::post('update_avatar', ['as' => 'user.storeAvatar', 'uses' => 'UserController@storeAvatar']);
@@ -131,7 +132,7 @@ Route::get('/can-thue-loai-bat-dong-san-khac', 'CatalogController@ArticleForBuy_
 Route::get('/nha-dat-ban-{position}/{title}bds-{id}', 'DetailController@articleForLeaseDetail');
 Route::get('/ban-can-ho-chung-cu-{position}/{title}bds-{id}', 'DetailController@articleForLeaseDetail');
 Route::get('/ban-nha-rieng-{position}/{title}bds-{id}', 'DetailController@articleForLeaseDetail');
-Route::get('/ban-nha-biet-thu-lien-ke-{position}/{title}bds-{id}', 'DetailController@articleForLeaseDetail');
+Route::get('/ban-biet-thu-lien-ke-{position}/{title}bds-{id}', 'DetailController@articleForLeaseDetail');
 Route::get('/ban-nha-mat-pho-{position}/{title}bds-{id}', 'DetailController@articleForLeaseDetail');
 Route::get('/ban-dat-nen-du-an-{position}/{title}bds-{id}', 'DetailController@articleForLeaseDetail');
 Route::get('/ban-dat-{position}/{title}bds-{id}', 'DetailController@articleForLeaseDetail');

@@ -40,7 +40,10 @@ class ArticleForLeaseController extends CrudController
 //                                'label' => 'Date',
 //                                'type' => 'date',
 //        ]);
-
+        $this->crud->addColumn([
+            'name' => 'id',
+            'label' => 'ID'
+        ]);
         $this->crud->addColumn([
             'name' => 'start_news',
             'label' => 'Ngày tạo',
@@ -56,7 +59,7 @@ class ArticleForLeaseController extends CrudController
             'label' => 'Thể loại',
         ]);
         $this->crud->addColumn([
-            'name' => 'status',
+            'name' => 'aprroval',
             'label' => 'Xét duyệt',
             'type' => 'check',
         ]);
@@ -82,7 +85,7 @@ class ArticleForLeaseController extends CrudController
             'label' => 'Dự án'
         ]);
         $this->crud->addColumn([
-            'name' => 'aprroval',
+            'name' => 'status',
             'label' => 'Tình trạng'
         ]);
 
@@ -135,7 +138,7 @@ class ArticleForLeaseController extends CrudController
             'type' => 'textarea',
         ]);
         $this->crud->addField([    // CHECKBOX
-            'name' => 'status',
+            'name' => 'aprroval',
             'label' => 'Tình trạng',
             'type' => 'checkbox',
         ]);

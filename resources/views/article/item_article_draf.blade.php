@@ -1,7 +1,7 @@
 <?php
 use App\Library\Helpers;
 $user = Auth::user();
-$paging = $article->links();
+$paging = '';
 $list = $article->toArray();
 ?>
 @if($list['data'])
@@ -35,19 +35,22 @@ $list = $article->toArray();
                 <p>
                     {{$item['id']}}
                 </p>
-                @if($item['aprroval'] == 0)
+                @if($item['aprroval'] == APPROVAL_ARTICLE_PENĐING)
                     Chưa duyệt
-                @elseif($item['aprroval'] == 1)
+                @elseif($item['aprroval'] == APPROVAL_ARTICLE_PUBLIC)
                     Đã duyệt<br/>
+                    {{date_format(date_create($item['updated_at']), "d-m-Y")}}
+                @elseif($item['aprroval'] == APPROVAL_ARTICLE_DELETE)
+                    Không được duyệt<br/>
                     {{date_format(date_create($item['updated_at']), "d-m-Y")}}
                 @endif
             </td>
             <td>
                 <span style="float: left; word-wrap: break-word; color: #055699;" id="view_18965371">
-                    <img style="width: 77px; height: 62px; float: left; padding-right: 8px;" src="{{$item['gallery_image'] ? Helpers::file_path($item['id'], PUBLIC_ARTICLE_LEASE, true).THUMBNAIL_PATH.json_decode($item['gallery_image'])[0] : THUMBNAIL_DEFAULT }}" alt="{{$item['title']}}">{{$item['title']}}</span>
+                    <img style="width: 77px; height: 62px; float: left; padding-right: 8px;" src="{{$item['gallery_image'] ? Helpers::file_path($item['id'], PUBLIC_ARTICLE_BUY, true).THUMBNAIL_PATH.json_decode($item['gallery_image'])[0] : THUMBNAIL_DEFAULT }}" alt="{{$item['title']}}">{{$item['title']}}</span>
                 <div style="clear: both; text-align: right; padding-top: 5px;">
                     &nbsp;
-                    <a id="MainContent__userPage_ctl00_rpItems_lnkEdit_0" href="/quan-ly-tin/dang-tin-ban-cho-thue/{{$item['id']}}">
+                    <a id="MainContent__userPage_ctl00_rpItems_lnkEdit_0" href="{{$item['typeOf'] == 'lease' ? '/quan-ly-tin/dang-tin-ban-cho-thue/' : '/quan-ly-tin/dang-tin-can-mua-can-thue/'}}{{$item['id']}}">
                         <img src="/imgs/sua.gif"> Sửa</a>&nbsp;
                     <a id="MainContent__userPage_ctl00_rpItems_lnkDel_0" class="btn-xoa" onclick="deleteArticle('{{$item['id']}}')" href="javascript:void(0)">Xóa</a>
                     <div style="display: none;">
@@ -80,8 +83,8 @@ $list = $article->toArray();
     </tbody>
 </table>
 <div class="pager">
-    <?php echo str_replace('/thong-tin-ca-nhan', '/quan-ly-tin/tin-cho-thue', $paging) ?>
+    <?php echo str_replace('/thong-tin-ca-nhan/quan-ly-mua-can-thue', '/quan-ly-tin/tin-can-thue', $paging) ?>
 </div>
 @else
-    Hiện tại bạn vẫn chưa có bài tin đăng nào.
+    Hiện tại bạn vẫn chưa có bài tin nháp nào.
 @endif

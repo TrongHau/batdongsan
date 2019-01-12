@@ -12,9 +12,9 @@ use App\Library\Helpers;
     <meta name="description" content="{{$article->title}}, {{$article->province}}, {{$article->district}}{{$article->project ? ', dự án '.$article->project : ''}}{{$article->area ? ', Diện tích sử dụng riêng: '.$article->area.'m2' : ''}}{{$article->bed_room ? ', có tới '.$article->bed_room.' phòng ngủ' : ''}}
     {{$article->toilet ? ', có tới '.$article->toilet.' toilet' : ''}}{{$article->contact_name ? ', liên hệ '.$article->contact_name : ''}}{{$article->contact_phone ? ', số điện thoại '.$article->contact_phone : ''}}{{$article->floor ? ', số tầng '.$article->floor : ''}}">
     <link rel="canonical" href="{{url()->current()}}" />
-    <link rel="image_src" href="{{env('APP_URL')}}{{$article['gallery_image'] ? Helpers::file_path($item['id'], PUBLIC_ARTICLE_BUY, true).THUMBNAIL_PATH.json_decode($item['gallery_image'])[0] : THUMBNAIL_DEFAULT }}" />
+    <link rel="image_src" href="{{env('APP_URL')}}{{$article->gallery_image ? Helpers::file_path($article->id, PUBLIC_ARTICLE_BUY, true).THUMBNAIL_PATH.json_decode($article->gallery_image)[0] : THUMBNAIL_DEFAULT }}" />
     <meta name="title" content="{{$article->title}}" />
-    <meta property="og:image" content="{{env('APP_URL')}}{{$article['gallery_image'] ? Helpers::file_path($item['id'], PUBLIC_ARTICLE_BUY, true).THUMBNAIL_PATH.json_decode($item['gallery_image'])[0] : THUMBNAIL_DEFAULT }}" />
+    <meta property="og:image" content="{{env('APP_URL')}}{{$article->gallery_image ? Helpers::file_path($article->id, PUBLIC_ARTICLE_BUY, true).THUMBNAIL_PATH.json_decode($article->gallery_image)[0] : THUMBNAIL_DEFAULT }}" />
     <meta property="og:url" content="{{url()->current()}}" />
     <meta property="og:title" content="{{$article->title}}" />
     <meta property="og:description" content="{{$article->title}}, {{$article->province}}, {{$article->district}}{{$article->project ? ', dự án '.$article->project : ''}}{{$article->area ? ', Diện tích sử dụng riêng: '.$article->area.'m2' : ''}}{{$article->bed_room ? ', có tới '.$article->bed_room.' phòng ngủ' : ''}}

@@ -195,7 +195,7 @@ use App\Library\Helpers;
             <a href="/quan-ly-tin/dang-tin-can-mua-can-thue" title="Đăng tin rao cần mua/cần thuê">Đăng tin cần mua/cần thuê</a>
         </li>
         <li id="MainContent__userPage_menuProductDraft" class="row-content">
-            <a href="/trang-ca-nhan/tin-nhap" title="Quản lý tin nháp">
+            <a href="/thong-tin-ca-nhan/tin-nhap" title="Quản lý tin nháp">
                 Quản lý tin nháp</a>
         </li>
 

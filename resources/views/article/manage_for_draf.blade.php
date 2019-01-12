@@ -45,7 +45,7 @@ $mySelf = Auth::user();
                         </div>
 
                         <div class="moduletitle">
-                            Quản lý tin rao cần mua, cần thuê
+                            Quản lý tin nháp
                         </div>
                         <table style="width: 100%; margin-top: 20px;" class="t-4-c">
                             <tbody>
@@ -112,7 +112,7 @@ $mySelf = Auth::user();
                     url: "/thong-tin-ca-nhan/xoa-tin",
                     type: "POST",
                     dataType: "json",
-                    data: {code: code, type: 2},
+                    data: {code: code, type: 1},
                     beforeSend: function () {
                         if(loaded) return false;
                         loaded = true;

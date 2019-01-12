@@ -58,6 +58,9 @@ global $province;
         .useravatar a.bluebotton {
             width: 140px!important;;
         }
+        .orangebutton {
+            background-image: url(/imgs/bg-ogrange-button.png);
+        }
     </style>
 @endsection
 @extends('layouts.app')
@@ -80,7 +83,7 @@ global $province;
                         </div>
                     </div>
                     <div id="column-no-right-user" style="width: 75%; float: left">
-                        <form action="/quan-ly-tin/dang-tin-ban-cho-thue" enctype="multipart/form-data" method="POST">
+                        <form action="/quan-ly-tin/dang-tin-ban-cho-thue" enctype="multipart/form-data" class="form_submit" method="POST">
                         <div class="post-product">
                             <div id="user_manage_product" style="border: none;">
                                 <div id="divPostNews">
@@ -636,26 +639,28 @@ global $province;
                                                     @if(isset($article->id))
                                                         <input type="hidden" name="id" value="{{ $article->id }}">
                                                         <input type="hidden" name="remove_imgs" id="remove_imgs" value="">
-                                                        <input type="submit" name="ctl00$MainContent$_userPage$ctl00$btnSave" value="Lưu tin" id="btnSave" class="bluebotton" style="width:80px;">
+                                                        <input type="hidden" name="submit_type" class="submit_type" value="">
+                                                        @if($article->status == PUBLISHED_ARTICLE)
+                                                            <input type="submit" name="ctl00$MainContent$_userPage$ctl00$btnSave" value="Lưu tin" id="btnSave" class="bluebotton" style="width:80px;">
+                                                        @else
+                                                            <input type="submit" name="ctl00$MainContent$_userPage$ctl00$btnSave" value="Đăng tin" id="btnSave" class="bluebotton" style="width:80px;">
+                                                        @endif
                                                     @else
                                                         <input type="submit" name="ctl00$MainContent$_userPage$ctl00$btnSave" value="Đăng tin" id="btnSave" class="bluebotton" style="width:80px;">
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <input id="btnCancel" type="button" value="Xem trước" name="btnCancel" class="orangebutton" onclick="ShowPreview()">
+                                                    <input id="btnCancel" type="button" value="Lưu Nháp" name="btnCancel" class="orangebutton" onclick="DirectDraft()">
                                                 </td>
                                             </tr>
                                             </tbody></table>
                                     </div>
 
-                                    <div id="divProDraftAction">
-                                        <a href="javascript:void(0)" id="MainContent__userPage_ctl00_lnkSaveDraft" onclick="return deleteProductDraft();">(*) Tin đã được lưu vào tin nháp xóa nếu bạn không muốn lưu.</a><br>
+                                    {{--<div id="divProDraftAction">--}}
+                                        {{--<a href="javascript:void(0)" id="MainContent__userPage_ctl00_lnkSaveDraft" onclick="return deleteProductDraft();">(*) Tin đã được lưu vào tin nháp xóa nếu bạn không muốn lưu.</a><br>--}}
 
-                                    </div>
-                                    <div class="product-hotline">
-                                        Nếu gặp bất kỳ khó khăn gì trong việc đăng ký, đăng nhập, đăng tin hay trong việc sử dụng website nói chung, Quý vị hãy liên hệ ngay với chúng tôi theo tổng đài CSKH:   <strong>1900 1881</strong> hoặc email: <a href="mailto:hotro@batdongsan.com.vn"><strong>hotro@batdongsan.com.vn</strong></a>
-                                        để được trợ giúp
-                                    </div>
+                                    {{--</div>--}}
+
                                 </div>
                             </div>
                         </div>
@@ -669,6 +674,10 @@ global $province;
 @endsection
 @section('contentJS')
     <script>
+        function DirectDraft() {
+            $('.submit_type').val('draf');
+            $('#btnSave').click();
+        }
         <?php
         if(old('province_id') ?? $article->province_id ?? false) {
         ?>
