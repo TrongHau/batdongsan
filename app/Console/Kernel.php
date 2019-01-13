@@ -26,7 +26,8 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
-        $schedule->call('\App\Http\Controllers\SyncController@homeTinTuc');
+//        $schedule->call('\App\Http\Controllers\SyncController@homeTinTuc');
+         $schedule->command('delete_temp')->dailyAt('00:10');
     }
 
     /**

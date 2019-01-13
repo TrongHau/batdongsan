@@ -9,6 +9,8 @@ use Backpack\CRUD\app\Http\Requests\CrudRequest as UpdateRequest;
 use App\User;
 use App\Models\ArticleForLeaseModel;
 use App\Models\ArticleForBuyModel;
+use Storage;
+use App\Library\Helpers;
 
 class ArticleForBuyController extends CrudController
 {
@@ -171,5 +173,19 @@ class ArticleForBuyController extends CrudController
         $this->data['id'] = $id;
 
         return view('vendor.backpack.article.edit_for_buy', $this->data);
+    }
+    public function destroy($id)
+    {
+        $this->crud->hasAccessOrFail('delete');
+
+        // get entry ID from Request (makes sure its the last ID for nested resources)
+        $id = $this->crud->getCurrentEntryId() ?? $id;
+        $article = $this->crud->getModel()::where('id', $id)->first();
+        if($article->gallery_image) {
+            foreach (json_decode($article->gallery_image) as $item) {
+                Storage::delete('public/' . Helpers::file_path($id, SOURCE_DATA_ARTICLE_BUY, true) . $item);
+            }
+        }
+        return $this->crud->delete($id);
     }
 }

@@ -246,9 +246,9 @@ global $province;
                                                 </div>
                                                 <div class="base4">
                                                     <div style="float: left;">
-                                                        <input name="area_from" type="number" value="{{old('area_from') ?? $article->area_from ?? ''}}" placeholder=" từ" id="area_from" class="text-field" numberonly="2" maxlength="7" style="width: 60px;">
+                                                        <input name="area_from" type="number" step=".01" value="{{old('area_from') ?? $article->area_from ?? ''}}" placeholder=" từ" id="area_from" class="text-field" numberonly="2" maxlength="7" style="width: 60px;">
                                                          -
-                                                        <input name="area_to" type="number" value="{{old('area_to') ?? $article->area_to ?? ''}}" placeholder=" đến" id="area_to" class="text-field" numberonly="2" maxlength="7" style="width: 60px;">
+                                                        <input name="area_to" type="number" step=".01" value="{{old('area_to') ?? $article->area_to ?? ''}}" placeholder=" đến" id="area_to" class="text-field" numberonly="2" maxlength="7" style="width: 60px;">
                                                     </div>
                                                     <span>m²</span>
                                                 </div>
@@ -259,9 +259,9 @@ global $province;
                                                 </div>
                                                 <div class="base4">
                                                     <div style="float: left;">
-                                                        <input name="price_from" type="number" placeholder=" từ" id="price_from" style="width: 60px;" value="{{old('price_from') ?? $article->price_from ?? ''}}" class="text-field" numberonly="2" maxlength="6">
+                                                        <input name="price_from" type="number" step=".01" placeholder=" từ" id="price_from" style="width: 60px;" value="{{old('price_from') ?? $article->price_from ?? ''}}" class="text-field" numberonly="2" maxlength="6">
                                                         -
-                                                        <input name="price_to" type="number" placeholder=" đến" id="price_to" style="width: 60px;" value="{{old('price_to') ?? $article->price_to ?? ''}}" class="text-field" numberonly="2" maxlength="6">
+                                                        <input name="price_to" type="number" step=".01" placeholder=" đến" id="price_to" style="width: 60px;" value="{{old('price_to') ?? $article->price_to ?? ''}}" class="text-field" numberonly="2" maxlength="6">
                                                         @if ($errors->has('price'))
                                                             <div class="errorMessage" style="display: block;"><p style="color: red">{{ str_replace('price', 'thành tiền', $errors->first('price')) }}</p></div>
                                                         @endif

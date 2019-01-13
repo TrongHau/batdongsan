@@ -20,6 +20,9 @@ $(function () {
         //xhrFields: {withCredentials: true},
         url: '/upload/image',
         autoUpload: true,
+        maxFileSize: 5000000,
+        minFileSize: 100000,
+        maxNumberOfFiles: 10,
         acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i
     });
 

@@ -68,7 +68,7 @@ use App\Library\Helpers;
                             </div>
                             <div class="pm-content">
                                 <div class="pm-desc">
-                                    {{$article->content_article}}
+                                    <?php echo $article->content_article ?>
                                     @if($article->gallery_image)
                                         <div class="pm-mota">
                                             Thông hình ảnh

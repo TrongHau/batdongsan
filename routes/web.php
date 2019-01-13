@@ -15,7 +15,8 @@ Route::group(['middlewareGroups' => ['web']], function () {
     Auth::routes();
 });
 
-Route::get('sync/tintuc', 'SyncController@homeTinTuc');
+//Route::get('sync/tintuc', 'SyncController@homeTinTuc');
+//Route::get('sync/delete', 'SyncController@deleteFolderTemp');
 
 Route::post('get-district', ['as' => 'get.district', 'uses' => 'HomeController@getDistrict']);
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);

@@ -18,6 +18,8 @@ use App\Models\ArticleForBuyModel;
 use App\Models\TypeModel;
 use Backpack\NewsCRUD\app\Models\Article;
 use Backpack\NewsCRUD\app\Models\Category;
+use Storage;
+use Illuminate\Filesystem\Filesystem;
 
 class SyncController extends Controller
 {
@@ -155,5 +157,13 @@ $all_tin_tuc_moi = ' . var_export($noibat, true) . ';
 ?>');
 
         return response(['Ok']);
+    }
+    public function deleteFolderTemp() {
+        $files = Storage::allFiles('public/temp/');
+        if($files) {
+            foreach ($files as $item) {
+                Storage::delete($item);
+            }
+        }
     }
 }
