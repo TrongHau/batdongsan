@@ -67,8 +67,6 @@ global $province;
 @section('content')
     <div class="container-default">
         <div>
-            {{--<script src="https://content.batdongsan.com.vn/Modules/Project/Scripts/Common.js" type="text/javascript"></script>--}}
-            {{--<link rel="stylesheet" type="text/css" href="https://content.batdongsan.com.vn/trang-ca-nhan/css/userpage2016.css?v=20181218" media="all">--}}
             <div id="content-user">
                 <input type="hidden" name="ctl00$MainContent$_userPage$hdfUserId1" id="hdfUserId1" value="1007909">
                 <div class="has-bg-user">
@@ -316,7 +314,7 @@ global $province;
                                                     @if ($errors->has('content_article'))
                                                         <div class="errorMessage" style="display: block;"><p style="color: red">{{ str_replace('content article', 'mô tả', $errors->first('content_article')) }}</p></div>
                                                     @endif
-                                                    <img src="https://file4.batdongsan.com.vn/images/Home/images/arrow.png" alt="">
+                                                    <img src="/imgs/arrow.png" alt="">
                                                     Giới thiệu chung về bất động sản của bạn. Ví dụ: Khu nhà có vị trí thuận lợi: Gần công viên, gần trường học ... Tổng diện tích 52m2, đường đi ô tô vào tận cửa.
                                                     <span style="color: #f00;">Lưu ý: tin rao chỉ để mệnh giá tiền Việt Nam Đồng.</span>
                                                 </div>
@@ -605,7 +603,7 @@ global $province;
                                             <div id="vip_cofig_info_explain" style=""><strong>Tin thường</strong>: Là loại tin đăng bằng chữ <font color="#009AD2">màu xanh</font>, khung <font color="#009AD2">màu xanh</font></div>
                                         </div>
                                         <div class="product-vipnotice">
-                                            <img alt="vip icon" src="https://file4.batdongsan.com.vn/images/Home/images/vip-icon.jpg" style="padding-top: 3px;">
+                                            <img alt="vip icon" src="/imgs/vip-icon.jpg" style="padding-top: 3px;">
                                             <div>
                                                 Quý khách nên chọn đăng tin Vip để có hiệu quả cao hơn, ví dụ: tin Vip1 có lượt  xem trung bình cao hơn <strong>20 lần</strong> so với tin thường
                                             </div>

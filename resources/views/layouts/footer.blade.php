@@ -49,16 +49,13 @@
         </div>
         <div class="footer-bottom-end">
             <div class="footer-bottom-end-row1" style="color: #555754">
-                <strong>Tổng đài CSKH: 1900 1881</strong>
-            </div>
-            <div class="footer-bottom-end-row1" style="color: #555754">
-                Copyright © 2019 Batdongsan.Company
-            </div>
-            <div class="footer-bottom-end-row1" style="color: #555754">
-                Email: vuongdiaocABC@gmail.com
-            </div>
-            <div class="footer-bottom-end-row1" style="color: #555754">
-                © 2019 - Bản quyền của website Batdongsan.company - Địa chỉ: 197/42/15 Đường TL15, Thạnh Lộc, Quận 12, HCM City - Điện thoại: 0901 472486. Email hotro@batdongsan.company
+                © 2019 - Bản quyền của website Batdongsan.company
+                <br/>
+                Địa chỉ: 197/42/15 Đường TL15, Thạnh Lộc, Quận 12, HCM City
+                <br/>
+                Điện thoại: 0901 472486
+                <br/>
+                Email hotro@batdongsan.company
             </div>
             <div class="clear10"></div>
         </div>

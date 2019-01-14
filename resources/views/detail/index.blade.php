@@ -218,6 +218,14 @@ use App\Library\Helpers;
                                             <!--begin right-->
                                             <div id="divCustomerInfo">
                                                 <div id="LeftMainContent__productDetail_contactName" class="right-content">
+                                                    <?php
+                                                        $avatarArticleUser = Helpers::file_path($article->user_id, AVATAR_PATH, true).$article->user_id.'.png';
+                                                    ?>
+                                                    @if(file_exists(public_path() . $avatarArticleUser))
+                                                    <div class="customer-avatar">
+                                                        <img width="80px" src="{{$avatarArticleUser}}">
+                                                    </div>
+                                                    @endif
                                                     <div class="normalblue left">
                                                         Tên liên lạc
                                                     </div>
@@ -269,9 +277,9 @@ use App\Library\Helpers;
                                     {{date('d-m-Y', strtotime($article->created_at))}}
                                 </div>
                                 <a id="facebook" target="_blank" rel="nofollow" href="https://www.facebook.com/sharer/sharer.php?u={{url()->current()}}&amp;t={{$article->title}}">
-                                    <img src="https://file4.batdongsan.com.vn/images/opt/btn-share-facebook.png"></a>
+                                    <img src="/imgs/btn-share-facebook.png"></a>
                                 <a id="googleBookmark" target="_blank" rel="nofollow" href="https://plus.google.com/share?url={{url()->current()}}">
-                                    <img src="https://file4.batdongsan.com.vn/images/opt/btn-share-gplus.png"></a>
+                                    <img src="/imgs/btn-share-gplus.png"></a>
                             </div>
                             <div class="clear"></div>
                         </div>

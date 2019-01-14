@@ -14,9 +14,9 @@
                          hasnotshare="False">
                         <div class="adshared">
                             <div class="aditem" time="15" style="display: block;"
-                                 src="https://file4.batdongsan.com.vn/2018/04/07/RUFz0fap/20180407105303-7dfc.jpg"
-                                 altsrc="https://file4.batdongsan.com.vn/2018/04/07/RUFz0fap/20180407105303-7dfc.jpg"
-                                 link="http://quangnamfc.batdongsan.com.vn/?utm_campaign=quangnamfc&amp;utm_medium=banner&amp;utm_source=webbds"
+                                 src="/imgs/20180407105303-7dfc.jpg"
+                                 altsrc="/imgs/20180407105303-7dfc.jpg"
+                                 link="#"
                                  bid="7550" tip="" tp="7" w="746" h="96" k=""><a
                                         href="{{env("APP_URL")}}/click.aspx?bannerid=7550" target="_blank"
                                         title="" rel="nofollow"><img
@@ -60,7 +60,7 @@
                     </div>
                     <div>
                         <div class="header-middle-righ-link max155 user_name"><img
-                                    src="https://file4.batdongsan.com.vn/images/ab/user.png"
+                                    src="/imgs/user.png"
                                     style="display: block; float: left; margin-top: 7px; margin-right: 3px;"><a
                                     style="white-space: nowrap;" href="/thong-tin-ca-nhan" class="line_user_name"  rel="nofollow">{{Auth::user()->name}}</a>
                         </div>

@@ -51,9 +51,9 @@ use App\Library\Helpers;
                         </div>
                         <div class="stat detail-tools" ct="1" ac="2" cid="97296">
                             <a id="facebook" target="_blank" rel="nofollow" href="https://www.facebook.com/sharer/sharer.php?u={{url()->current()}}&amp;t={{$article->title}}">
-                                <img src="https://file4.batdongsan.com.vn/images/opt/btn-share-facebook.png"></a>
+                                <img src="/imgs/btn-share-facebook.png"></a>
                             <a id="googleBookmark" target="_blank" rel="nofollow" href="https://plus.google.com/share?url={{url()->current()}}">
-                                <img src="https://file4.batdongsan.com.vn/images/opt/btn-share-gplus.png"></a>
+                                <img src="/imgs/btn-share-gplus.png"></a>
                         </div>
                     </div>
                     <div class="clear" style="margin-bottom: 10px;">
