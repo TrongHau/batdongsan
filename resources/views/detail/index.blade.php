@@ -44,7 +44,7 @@ use App\Library\Helpers;
                                 <span style="display: inline-block;"><span class="gia-title mar-right-15">
                                 <b>
                                     @if($typeOf == 'lease')
-                                        Giá: </b><strong>{{($article->ddlPriceType == 'thỏa thuận' || !$article->price) ? 'Thỏa thuận' : (number_format($article->price).' '.$article->ddlPriceType)}}&nbsp;</strong>
+                                        Giá: </b><strong>{{($article->ddlPriceType == 'thỏa thuận' || !$article->price) ? 'Thỏa thuận' : ($article->price.' '.$article->ddlPriceType)}}&nbsp;</strong>
                                         </span>
                                         <span class="gia-title">
                                         <b>

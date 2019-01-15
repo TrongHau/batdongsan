@@ -73,7 +73,7 @@ class Helpers
         }elseif($text == 'Trăm nghìn/m2') {
             return 100;
         }else{
-            return 1;
+            return 0;
         }
     }
     public static function getRandLimitArr($arr = array(), $length = 1)

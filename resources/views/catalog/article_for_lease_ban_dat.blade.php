@@ -71,7 +71,7 @@ use App\Library\Helpers;
                                                 <div class="p-bottom-crop fix-p-bottom-crop">
                                                     <div class="floatleft">
                                                         Giá:
-                                                        <span class="product-price">{{$item['price_real'] == 0 ? 'Thỏa thuận' : number_format($item['price']).' '.$item['ddlPriceType']}}</span>&nbsp;
+                                                        <span class="product-price">{{$item['price_real'] == 0 ? 'Thỏa thuận' : $item['price'].' '.$item['ddlPriceType']}}</span>&nbsp;
                                                         Diện tích:
                                                         <span class="product-area">{{$item['area'] ? $item['area'].' m²' : 'Chưa xác định'}}</span>&nbsp;
                                                         Quận/Huyện:
