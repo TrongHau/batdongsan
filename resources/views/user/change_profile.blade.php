@@ -15,12 +15,12 @@ $mySelf = Auth::user();
                         <div id="usercp">
                             <div class="white-background-new">
                                 @include('user.right_sidebar_avatar', ['mySelf' => $mySelf])
+                            </div>
+                        </div>
+
+                        <div class="clear">
                         </div>
                     </div>
-
-                    <div class="clear">
-                    </div>
-                </div>
                     <form action="/thong-tin-ca-nhan/thay-doi-ca-nhan" enctype="multipart/form-data" method="POST">
                         <div id="column-no-right-user" style="width: 75%; float: left">
                             <div class="moduletitle">
@@ -76,7 +76,7 @@ $mySelf = Auth::user();
                                                         <span id="MainContent__userPage_ctl00_lblBirthDate">Ngày sinh</span>
                                                     </td>
                                                     <td>
-                                                        <input name="birth_day" type="date" value="{{date('Y-m-d', strtotime(old('birth_day') ?? $mySelf->birth_day))}}" id="MainContent__userPage_ctl00_txtBirthDates" class="datetimepicker keycode hasDatepicker" >
+                                                        <input name="birth_day" type="date" value="{{old('birth_day') ? date('Y-m-d', strtotime(old('birth_day'))) : $mySelf->birth_day ? date('Y-m-d', strtotime($mySelf->birth_day)) : ''}}   {{date('Y-m-d', strtotime(old('birth_day') ?? $mySelf->birth_day))}}" id="MainContent__userPage_ctl00_txtBirthDates" class="datetimepicker keycode hasDatepicker" >
                                                         @if ($errors->has('birth_day'))
                                                             <span style="color: red;" id="errorFullName">{{ str_replace('birth day', 'ngày sinh', $errors->first('birth_day')) }}</span>
                                                         @endif
@@ -179,6 +179,9 @@ $mySelf = Auth::user();
                                                     </td>
                                                     <td>
                                                         <input name="phone" type="text" value="{{old('phone') ?? $mySelf->phone}}" maxlength="16" class="keycode" style="width:50%;">
+                                                        @if ($errors->has('phone'))
+                                                            <span style="color: red;" id="errorFullName">{{ str_replace('phone', 'số điện thoại', $errors->first('phone')) }}</span>
+                                                        @endif
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -251,10 +254,10 @@ $mySelf = Auth::user();
                             </div>
                         </div>
                     </form>
-            </div>
+                </div>
 
+            </div>
         </div>
-    </div>
     </div>
 @endsection
 @section('contentJS')

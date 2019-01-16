@@ -47,7 +47,7 @@ class UserController extends Controller
     public function storeProfile(Request $request) {
         $this->validate($request, [
             'name' => 'required|max:50',
-            'phone' => 'required',
+            'phone' => 'required|unique:users',
             'province_id' => 'required',
             'district_id' => 'required',
         ]);
