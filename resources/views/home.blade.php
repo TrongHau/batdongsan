@@ -139,7 +139,7 @@ global $all_tin_tuc_moi;
                                             <div class="p-bottom-left">
                                                 <div>
                                                     <div class="left">Giá</div>
-                                                    :&nbsp;{{$item->price_real == 0 ? 'Thỏa thuận' : number_format($item->price).' '.$item->ddlPriceType}}
+                                                    :&nbsp;{{$item->price_real == 0 ? 'Thỏa thuận' :$item->price.' '.$item->ddlPriceType}}
                                                 </div>
                                                 <div>
                                                     <div class="left">Diện tích</div>
