@@ -19,7 +19,7 @@ use App\Library\Helpers;
                     <div class="product-list product-list-page" pagekey="afgYRJI2uSWSXQ70P/5TjQ==">
                         <div class="Title">
                             <h1>
-                                {{$titleArticle->name}} tại Việt Nam</h1>
+                                {{$titleArticle->name}} tại {{$local ?? 'Việt Nam'}}</h1>
                             <div class="Footer">
                                 Có <span class="greencolor"><strong>{{number_format($article->total())}}</strong></span> bất động sản.
                             </div>
@@ -75,7 +75,8 @@ use App\Library\Helpers;
                                                         Diện tích:
                                                         <span class="product-area">{{$item['area'] ? $item['area'].' m²' : 'Chưa xác định'}}</span>&nbsp;
                                                         Quận/Huyện:
-                                                        <span class="product-city-dist">{{$item['district']}}, {{$item['province']}}</span>
+                                                        <span class="product-city-dist"><a href="/tim-kiem-nang-cao/tat-ca-nha-ban-dat-ban/-1/{{$item['district_id']}}/-1/-1/-1/-1/-1/-1/-1">{{$item['district']}}</a>,
+                                                            <a href="/tim-kiem-nang-cao/tat-ca-nha-ban-dat-ban/{{$item['province_id']}}/-1/-1/-1/-1/-1/-1/-1/-1">{{$item['province']}}</a></span>
                                                     </div>
                                                     <div class="floatright mar-right-10">{{date('d-m-Y', strtotime($item['created_at']))}}</div>
                                                     <div class="clear"></div>

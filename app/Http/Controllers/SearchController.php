@@ -46,11 +46,19 @@ class SearchController extends Controller
         }elseif($method == 'tat-ca-dat-ban') {
             $article = $article->whereIn('type_article', ['Bán đất nền dự án', 'Bán đất', 'Bán trang trại, khu nghỉ dưỡng', 'Bán kho, nhà xưởng']);
         }
-        if($province_id > 0) {
-            $article = $article->where('province_id', $province_id);
-        }
         if($district_id > 0) {
             $article = $article->where('district_id', $district_id);
+            $district = DistrictModel::where('id', $district_id)->first();
+            if(!$district)
+                return view('errors.404');
+            $local = $district->_name;
+        }
+        if($province_id > 0) {
+            $article = $article->where('province_id', $province_id);
+            $province = ProvinceModel::where('id', $province_id)->first();
+            if(!$province)
+                return view('errors.404');
+            $local = $province->_name;
         }
         if($ward_id > 0) {
             $article = $article->where('ward_id', $ward_id);
@@ -162,6 +170,6 @@ class SearchController extends Controller
         }
         $article = $article->paginate(PAGING_LIST_ARTICLE_CATALOG);
         $key = '';
-        return view('catalog.article_for_lease_ban_dat', compact('titleArticle', 'article', 'key', 'method', 'province_id', 'district_id', 'ward_id', 'street_id', 'area', 'price', 'bed_room', 'toilet', 'ddlHomeDirection'));
+        return view('catalog.article_for_lease_ban_dat', compact('titleArticle', 'article', 'key', 'method', 'province_id', 'district_id', 'ward_id', 'street_id', 'area', 'price', 'bed_room', 'toilet', 'ddlHomeDirection', 'local'));
     }
 }

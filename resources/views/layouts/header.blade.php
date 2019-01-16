@@ -1,6 +1,9 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link href="/imgs/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="audience" content="general">
     <meta name="resource-type" content="document">
     <meta name="abstract" content="Thông tin nhà đất Việt Nam">

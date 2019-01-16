@@ -149,13 +149,13 @@ global $all_tin_tuc_moi;
                                                     <div class="fleft">
                                                         <div class="left">Quận/huyện</div>
                                                         :&nbsp;<a class="link_blue"
-                                                                  href="#"
+                                                                  href="/tim-kiem-nang-cao/tat-ca-nha-ban-dat-ban/-1/{{$item->district_id}}/-1/-1/-1/-1/-1/-1/-1"
                                                                   title="Bán nhà riêng tại {{$item->district}}">{{$item->district}}</a>, <a
                                                                 class="link_blue"
-                                                                href="#"
+                                                                href="/tim-kiem-nang-cao/tat-ca-nha-ban-dat-ban/{{$item->province_id}}/-1/-1/-1/-1/-1/-1/-1/-1"
                                                                 title="Bán nhà riêng tại {{$item->province}}">{{$item->province}}</a>
                                                     </div>
-                                                    <div class="p-bottom-right font09">{{date('d-m-Y', strtotime($item->created_at))}}</div>
+                                                    <div class="p-bottom-right font09">{{date('d/m-Y', strtotime($item->created_at))}}</div>
                                                     <div class="clear"></div>
                                                 </div>
                                             </div>
