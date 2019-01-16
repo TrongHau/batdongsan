@@ -75,6 +75,7 @@ Route::get('/co-che-giai-quyet-khieu-nai', 'DetailController@aboutDetail');
 Route::get('/bao-gia-ho-tro', 'DetailController@aboutDetail');
 Route::get('/nhung-cau-hoi-thuong-gap', 'DetailController@aboutDetail');
 Route::get('/lien-he', 'DetailController@aboutDetail');
+Route::get('/chinh-sach-bao-mat-thong-tin', 'DetailController@aboutDetail');
 
 
 // catalog bán nhà đất
