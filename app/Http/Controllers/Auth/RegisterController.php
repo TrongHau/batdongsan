@@ -6,6 +6,9 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Models\MailTokenModel;
+use Illuminate\Support\Str;
+use Mail;
 
 class RegisterController extends Controller
 {
@@ -63,7 +66,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user =  User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'status' => DEACTIVE_USER,
@@ -72,5 +75,20 @@ class RegisterController extends Controller
             'phone' => $data['phone'],
             'password' => bcrypt($data['password']),
         ]);
+        $token = MailTokenModel::create([
+            'email' => $data['email'],
+            'token' => Str::random(60),
+            'created_at' => date('Y-m-d H:m', time())
+        ]);
+        $data = [
+            'user' => $user,
+            'token' => $token,
+        ];
+        Mail::send('emails.register', $data, function($message) use ($user)
+        {
+            $message->from(env('MAIL_USERNAME'), env('MAIL_FROM_NAME'));
+            $message->to($user->email, $user->name)->subject('Chúc mừng bạn đăng ký thành công batdongosan.company');
+        });
+        return $user;
     }
 }

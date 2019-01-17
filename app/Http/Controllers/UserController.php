@@ -18,6 +18,7 @@ use  App\Models\StreetModel;
 use  App\Models\WardModel;
 use Illuminate\Support\Facades\Hash;
 use  App\User;
+use App\Models\MailTokenModel;
 
 class UserController extends Controller
 {
@@ -105,5 +106,20 @@ class UserController extends Controller
             }
         }
         return redirect()->route('user.changePassword')->with('error', 'Xác nhận mật khẩu không chính xác');
+    }
+    public function verifyEmail(Request $request, $token)
+    {
+        $tokenVerify = MailTokenModel::where('token', $token)->first();
+        if(!$tokenVerify)
+            return view('errors.text_error')->with('message', 'Mã xác nhận email của bạn không tồn tại.');
+        $user = User::where('email', $tokenVerify->email)->where('status', DEACTIVE_USER)->first();
+        if(!$user)
+            return view('errors.text_error')->with('message', 'Lỗi xác thực email, kiểm tra tình trạng tài khoản của bạn.');
+        User::find($user->id)->update([
+            'status' => ACTIVE_USER
+        ]);
+        MailTokenModel::deleteToken($tokenVerify->email);
+        Auth::login($user);
+        return redirect()->route('user.changeProfile')->with('success', 'Kích hoạt tài khoản thành công.');
     }
 }

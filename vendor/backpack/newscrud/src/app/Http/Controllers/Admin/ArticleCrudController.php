@@ -133,7 +133,41 @@ class ArticleCrudController extends CrudController
 
     public function store(StoreRequest $request)
     {
-        return parent::storeCrud();
+        $this->crud->hasAccessOrFail('create');
+
+        // fallback to global request instance
+        if (is_null($request)) {
+            $request = \Request::instance();
+        }
+
+        // replace empty values with NULL, so that it will work with MySQL strict mode on
+        foreach ($request->input() as $key => $value) {
+            if (empty($value) && $value !== '0') {
+                $request->request->set($key, null);
+            }
+        }
+
+        // insert item in the db
+        $item = $this->crud->create($request->except(['save_action', '_token', '_method', 'current_tab']));
+        $this->data['entry'] = $this->crud->entry = $item;
+
+        // show a success message
+        \Alert::success(trans('backpack::crud.insert_success'))->flash();
+
+        // save the redirect choice for next time
+        $this->setSaveAction();
+        Artisan::call('schedule:run');
+        return $this->performSaveAction($item->getKey());
+    }
+
+    public function destroy($id)
+    {
+        $this->crud->hasAccessOrFail('delete');
+
+        // get entry ID from Request (makes sure its the last ID for nested resources)
+        Artisan::call('schedule:run');
+        $id = $this->crud->getCurrentEntryId() ?? $id;
+        return $this->crud->delete($id);
     }
 
     public function update(UpdateRequest $request)

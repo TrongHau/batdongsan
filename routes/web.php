@@ -34,7 +34,7 @@ Route::get('auth/facebook', 'Auth\AuthFacebookController@redirectToProvider');
 Route::get('auth/facebook/callback', 'Auth\AuthFacebookController@handleProviderCallback');
 Route::get('auth/google', 'Auth\AuthGoogleController@redirectToProvider');
 Route::get('auth/google/callback', 'Auth\AuthGoogleController@handleProviderCallback');
-
+Route::get('/xac-nhan-email/{token}', 'UserController@verifyEmail');
 Route::group(['middleware' => ['auth']], function() {
     // trang ca nhan
     Route::prefix('thong-tin-ca-nhan/')->group(function () {

@@ -236,6 +236,7 @@ global $all_tin_tuc_moi;
                             <?php
                             $newsFooter = Helpers::getRandLimitArr($all_tin_tuc_moi, 10);
                             ?>
+                            @if($newsFooter)
                             <div class="t_left-baiviet-content">
                                 <div class="group-news-border-backgroup">
                                     <a href="/{{$newsFooter[0]['slug_category']}}/{{$newsFooter[0]['slug']}}">
@@ -311,6 +312,7 @@ global $all_tin_tuc_moi;
                                     </div>
                                 </div>
                             </div>
+                            @endif
                         </div>
                     </div>
                 </div>

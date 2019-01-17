@@ -55,7 +55,7 @@
                 <br/>
                 Điện thoại: 0901 472486
                 <br/>
-                Email hotro@batdongsan.company
+                Email phatdiaoc123@gmail.com
             </div>
             <div class="clear10"></div>
         </div>
