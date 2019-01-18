@@ -55,7 +55,7 @@
                 <br/>
                 Điện thoại: 0901 472486
                 <br/>
-                Email phatdiaoc123@gmail.com
+                Email {{env('HO_TRO')}}
             </div>
             <div class="clear10"></div>
         </div>

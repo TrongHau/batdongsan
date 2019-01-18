@@ -92,7 +92,7 @@ Route::get('/ban-loai-bat-dong-san-khac', 'CatalogController@ArticleForLease_ban
 
 Route::get('/nha-dat-cho-thue/{key?}', 'CatalogController@ArticleForLease_ban_dat');
 Route::get('/cho-thue-can-ho-chung-cu', 'CatalogController@ArticleForLease_ban_dat');
-Route::get('/cho-thue-nha-rieng', 'CatalogController@ArticleForLease_ban_dat');
+Route::get('/cho-thue-can-nha-rieng', 'CatalogController@ArticleForLease_ban_dat');
 Route::get('/cho-thue-nha-mat-pho', 'CatalogController@ArticleForLease_ban_dat');
 Route::get('/cho-thue-nha-tro-phong-tro', 'CatalogController@ArticleForLease_ban_dat');
 Route::get('/cho-thue-van-phong', 'CatalogController@ArticleForLease_ban_dat');
@@ -144,7 +144,7 @@ Route::get('/ban-loai-bat-dong-san-khac-{position}/{title}bds-{id}', 'DetailCont
 
 Route::get('/nha-dat-cho-thue-{position}/{title}bds-{id}', 'DetailController@articleForLeaseDetail');
 Route::get('/cho-thue-can-ho-chung-cu-{position}/{title}bds-{id}', 'DetailController@articleForLeaseDetail');
-Route::get('/cho-thue-nha-rieng-{position}/{title}bds-{id}', 'DetailController@articleForLeaseDetail');
+Route::get('/cho-thue-can-nha-rieng-{position}/{title}bds-{id}', 'DetailController@articleForLeaseDetail');
 Route::get('/cho-thue-nha-mat-pho-{position}/{title}bds-{id}', 'DetailController@articleForLeaseDetail');
 Route::get('/cho-thue-nha-tro-phong-tro-{position}/{title}bds-{id}', 'DetailController@articleForLeaseDetail');
 Route::get('/cho-thue-van-phong-{position}/{title}bds-{id}', 'DetailController@articleForLeaseDetail');
