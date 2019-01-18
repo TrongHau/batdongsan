@@ -84,7 +84,7 @@ $province = ' . var_export($province, true) . ';
             }
         }
         // tư vấn luật
-        $category = Category::whereIn('id', [10, 11, 12, 13, 14, 15])->get();
+        $category = Category::whereIn('id', [9, 10, 11, 12, 13, 14, 15])->get();
         $tuvanluat = [];
         $i = 0;
         foreach($category as $item) {
