@@ -63,7 +63,7 @@
     display: grid;
 }
 .dot img {
-    height: 90px;
+    height: 60px;
 }
 
 .active, .dot:hover {
