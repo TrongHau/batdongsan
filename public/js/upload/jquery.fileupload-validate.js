@@ -73,10 +73,10 @@
 
             // Error and info messages:
             messages: {
-                maxNumberOfFiles: 'Maximum number of files exceeded',
-                acceptFileTypes: 'File type not allowed',
-                maxFileSize: 'File is too large',
-                minFileSize: 'File is too small'
+                maxNumberOfFiles: 'Quá số lượng đăng tải cho phép',
+                acceptFileTypes: 'File đăng tải không phải là hình ảnh',
+                maxFileSize: 'Dung lượng ảnh quá lớn hơn 5Mb',
+                minFileSize: 'Dung lượng ảnh quá nhỏ hơn 10Kb'
             }
         },
 

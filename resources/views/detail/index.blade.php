@@ -25,6 +25,7 @@ use App\Library\Helpers;
 @extends('layouts.app')
 @section('content')
     @include('layouts.top_search')
+    <link rel="stylesheet" type="text/css" href="/css/slidershow.css">
     <div class="div_2col">
         <div class="body-left">
             <div style="clear: both;">
@@ -73,13 +74,58 @@ use App\Library\Helpers;
                                         <div class="pm-mota">
                                             Thông hình ảnh
                                         </div>
-                                        @foreach(json_decode($article->gallery_image) as $item)
-                                            @if($typeOf == 'lease')
-                                                <img itemprop="image" src="{{Helpers::file_path($article->id, PUBLIC_ARTICLE_LEASE, true).$item}}" alt="{{$article->title}}" style="width:100%; height:auto;" id="imgSlide1">
-                                            @else
-                                                <img itemprop="image" src="{{Helpers::file_path($article->id, PUBLIC_ARTICLE_BUY, true).$item}}" alt="{{$article->title}}" style="width:100%; height:auto;" id="imgSlide1">
-                                            @endif
-                                        @endforeach
+                                        <div class="slideshow-container">
+                                            <?php
+                                                $preFixImage = $typeOf == 'lease' ? PUBLIC_ARTICLE_LEASE : PUBLIC_ARTICLE_BUY;
+                                                $gallery = json_decode($article->gallery_image);
+                                                $MaxImgs = count($gallery);
+                                            ?>
+                                            @foreach($gallery as $key => $item)
+                                                <div class="mySlides fade">
+                                                    <div class="numbertext">{{++$key}} / {{$MaxImgs}}</div>
+                                                    <img height="502px" src="{{Helpers::file_path($article->id, $preFixImage, true).$item}}" style="width:100%">
+                                                </div>
+                                            @endforeach
+                                            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                                            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                                        </div>
+                                        <br>
+
+                                        <div style="text-align:left">
+                                            @foreach(json_decode($article->gallery_image) as $key => $item)
+                                                <div class="dot" onclick="currentSlide({{++$key}})">
+                                                    <img src="{{Helpers::file_path($article->id, $preFixImage, true).THUMBNAIL_PATH.$item}}" />
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                        <script>
+                                            var slideIndex = 1;
+                                            showSlides(slideIndex);
+
+                                            function plusSlides(n) {
+                                                showSlides(slideIndex += n);
+                                            }
+
+                                            function currentSlide(n) {
+                                                showSlides(slideIndex = n);
+                                            }
+
+                                            function showSlides(n) {
+                                                var i;
+                                                var slides = document.getElementsByClassName("mySlides");
+                                                var dots = document.getElementsByClassName("dot");
+                                                if (n > slides.length) {slideIndex = 1}
+                                                if (n < 1) {slideIndex = slides.length}
+                                                for (i = 0; i < slides.length; i++) {
+                                                    slides[i].style.display = "none";
+                                                }
+                                                for (i = 0; i < dots.length; i++) {
+                                                    dots[i].className = dots[i].className.replace(" active", "");
+                                                }
+                                                slides[slideIndex-1].style.display = "block";
+                                                dots[slideIndex-1].className += " active";
+                                            }
+                                        </script>
                                     @endif
                                 </div>
                             </div>

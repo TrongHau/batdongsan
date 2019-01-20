@@ -244,7 +244,7 @@ global $province;
                                                 </div>
                                                 <div class="base4">
                                                     <div style="float: left;">
-                                                        <input name="area" type="number" min="1" step="any" value="{{old('area') ?? $article->area ?? ''}}" id="area" class="text-field" max="999" style="width: 110px;">
+                                                        <input name="area" type="number" step="any" value="{{old('area') ?? $article->area ?? ''}}" id="area" class="text-field" max="999" style="width: 110px;">
                                                         @if ($errors->has('area'))
                                                             <div class="errorMessage" style="display: block;"><p style="color: red">{{ str_replace('area', 'diện tích', $errors->first('area')) }}</p></div>
                                                         @endif
@@ -257,7 +257,7 @@ global $province;
                                                     Giá
                                                 </div>
                                                 <div class="base2">
-                                                    <input name="price" style="width: 215px;" type="number" min="1" step="any" id="price" value="{{old('price') ?? $article->price ?? ''}}" class="text-field" numberonly="2" maxlength="6">
+                                                    <input name="price" style="width: 215px;" type="number" step="any" id="price" value="{{old('price') ?? $article->price ?? ''}}" class="text-field" numberonly="2" maxlength="6">
                                                     @if ($errors->has('price'))
                                                         <div class="errorMessage" style="display: block;"><p style="color: red">{{ str_replace('price', 'thành tiền', $errors->first('price')) }}</p></div>
                                                     @endif
