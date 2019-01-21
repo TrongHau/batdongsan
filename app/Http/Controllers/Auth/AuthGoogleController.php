@@ -33,10 +33,10 @@ class AuthGoogleController extends Controller
      */
     public function handleProviderCallback() {
         // Get github's user infomation
-        $user = Socialite::driver('facebook')->user();
+        $user = Socialite::driver('google')->user();
         // Create user
         $email = ($user->getEmail() ? $user->getEmail() : $user->getId() . '@batdongsan_company.com');
-        $existUser = User::where('app_facebook', '=', $user->getId())->orWhere('email', '=', $email)->first();
+        $existUser = User::where('app_google', '=', $user->getId())->orWhere('email', '=', $email)->first();
         if(!$existUser) {
             $existUser = User::create([
                 'name' => $user->getName(),
