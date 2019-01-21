@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Models\MailTokenModel;
 use Illuminate\Support\Str;
+use Session;
 use Mail;
 
 class RegisterController extends Controller
@@ -30,7 +31,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/thong-tin-ca-nhan/thay-doi-ca-nhan';
 
     /**
      * Create a new controller instance.
@@ -89,6 +90,7 @@ class RegisterController extends Controller
             $message->from(env('MAIL_USERNAME'), env('MAIL_FROM_NAME'));
             $message->to($user->email, $user->name)->subject('Chúc mừng bạn đăng ký thành công batdongosan.company');
         });
+        Session::flash('success', 'Bạn đã đăng ký thành viên thành công. Vui lòng kiểm tra email để kích hoạt tài khoản của bạn');
         return $user;
     }
 }

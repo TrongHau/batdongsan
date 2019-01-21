@@ -10,7 +10,6 @@ use  App\Models\StreetModel;
 use  App\Models\WardModel;
 use App\Models\ArticleForLeaseModel;
 use App\Models\ArticleForBuyModel;
-
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller

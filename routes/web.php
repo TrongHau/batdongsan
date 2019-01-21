@@ -82,7 +82,7 @@ Route::get('/chinh-sach-bao-mat-thong-tin', 'DetailController@aboutDetail');
 Route::get('/nha-dat-ban/{key?}', 'CatalogController@ArticleForLease_ban_dat');
 Route::get('/ban-can-ho-chung-cu', 'CatalogController@ArticleForLease_ban_dat');
 Route::get('/ban-nha-rieng', 'CatalogController@ArticleForLease_ban_dat');
-Route::get('/ban-nha-biet-thu-lien-ke', 'CatalogController@ArticleForLease_ban_dat');
+Route::get('/ban-biet-thu-lien-ke', 'CatalogController@ArticleForLease_ban_dat');
 Route::get('/ban-nha-mat-pho', 'CatalogController@ArticleForLease_ban_dat');
 Route::get('/ban-dat-nen-du-an', 'CatalogController@ArticleForLease_ban_dat');
 Route::get('/ban-dat', 'CatalogController@ArticleForLease_ban_dat');
@@ -130,7 +130,7 @@ Route::get('/can-thue-loai-bat-dong-san-khac', 'CatalogController@ArticleForBuy_
 /// Content Article
 /////////
 
-// catalog bán nhà đất
+// detail bán nhà đất
 Route::get('/nha-dat-ban-{position}/{title}bds-{id}', 'DetailController@articleForLeaseDetail');
 Route::get('/ban-can-ho-chung-cu-{position}/{title}bds-{id}', 'DetailController@articleForLeaseDetail');
 Route::get('/ban-nha-rieng-{position}/{title}bds-{id}', 'DetailController@articleForLeaseDetail');
@@ -153,7 +153,7 @@ Route::get('/cho-thue-kho-nha-xuong-dat-{position}/{title}bds-{id}', 'DetailCont
 Route::get('/cho-thue-loai-bat-dong-san-khac-{position}/{title}bds-{id}', 'DetailController@articleForLeaseDetail');
 
 
-// catalog cho thuê đất
+// detail cho thuê đất
 
 Route::get('/nha-dat-can-mua-{position}/{title}bds-{id}', 'DetailController@articleForBuyDetail');
 Route::get('/mua-can-ho-chung-cu-{position}/{title}bds-{id}', 'DetailController@articleForBuyDetail');

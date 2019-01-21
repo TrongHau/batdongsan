@@ -316,7 +316,7 @@ use App\Library\Helpers;
                                 </div>
                                 <div style="width: 220px">
                                     <span class="normalblue">Loại hình tin đăng:</span>
-                                    Tin Vip đặc biệt
+                                    Tin thường
                                 </div>
                                 <div style="width: 175px">
                                     <span class="normalblue">Ngày đăng:</span>

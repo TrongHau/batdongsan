@@ -117,7 +117,7 @@ global $all_tin_tuc_moi;
                     <div id="ctl31_BodyContainer">
                         <div class="product-list tin-danh-cho-ban">
                             @foreach($articleForLease as $item)
-                                <div class="article_for_lease vip0">
+                                <div class="article_for_lease vip5">
                                     <div class="p-main">
                                         <div class="p-main-image-crop">
                                             <a class="product-avatar"
