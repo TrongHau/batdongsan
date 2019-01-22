@@ -108,8 +108,8 @@
                             căn hộ chung cư</a></li>
                     <li class="lv1"><a href="{{env("APP_URL")}}/ban-nha-rieng" class="haslink ">Bán nhà
                             riêng</a></li>
-                    <li class="lv1"><a href="{{env("APP_URL")}}/ban-nha-biet-thu-lien-ke"
-                                       class="haslink ">Bán nhà biệt thự, liền kề</a></li>
+                    <li class="lv1"><a href="{{env("APP_URL")}}/ban-biet-thu-lien-ke"
+                                       class="haslink ">Bán biệt thự, liền kề</a></li>
                     <li class="lv1"><a href="{{env("APP_URL")}}/ban-nha-mat-pho" class="haslink ">Bán nhà
                             mặt phố</a></li>
                     <li class="lv1"><a href="{{env("APP_URL")}}/ban-dat-nen-du-an" class="haslink ">Bán
