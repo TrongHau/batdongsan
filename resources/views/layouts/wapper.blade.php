@@ -20,7 +20,7 @@
                                  bid="7550" tip="" tp="7" w="746" h="96" k=""><a
                                         href="{{env("APP_URL")}}/click.aspx?bannerid=7550" target="_blank"
                                         title="" rel="nofollow"><img
-                                            src="/imgs/20180407105303-7dfc.jpg"
+                                            src="/imgs/bdscompany_cover.png"
                                             style="max-width: 100%; height:96px;"></a></div>
                         </div>
                     </div>
