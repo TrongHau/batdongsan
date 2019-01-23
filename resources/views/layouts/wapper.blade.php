@@ -18,7 +18,7 @@
                                  altsrc="/imgs/20180407105303-7dfc.jpg"
                                  link="#"
                                  bid="7550" tip="" tp="7" w="746" h="96" k=""><a
-                                        href="{{env("APP_URL")}}/click.aspx?bannerid=7550" target="_blank"
+                                        href="{{env("APP_URL")}}/nha-dat-ban" target="_blank"
                                         title="" rel="nofollow"><img
                                             src="/imgs/bdscompany_cover.png"
                                             style="max-width: 100%; height:96px;"></a></div>
@@ -55,7 +55,7 @@
                     <div>
                         <div class="header-middle-righ-link"><a href="/logout" class="line_user_name" rel="nofollow">Thoát</a></div>
                         <div class="header-middle-righ-icon"><img
-                                    src="https://file4.batdongsan.com.vn/images/ab/logout.png" id="ico_logout"
+                                    src="/imgs/logout.png" id="ico_logout"
                                     style="padding-top: 2px !important"></div>
                     </div>
                     <div>
