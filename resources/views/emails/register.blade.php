@@ -57,7 +57,7 @@
                                     <td align="right" style="font-family:Arial;font-size:15px;color:#555555;padding:20px 65px 20px 65px">
                                         Trân trọng,<br>
                                         Phòng Dịch Vụ Khách Hàng<br>
-                                        <a href="{{env('APP_URL')}}" target="_blank" >batdongsan.com.vn</a><br>
+                                        <a href="{{env('APP_URL')}}" target="_blank" >batdongsan.company</a><br>
                                         <a href="hotro@batdongsan.company" style="color:#055699" target="_blank">{{env('HO_TRO')}}</a>
                                     </td>
                                 </tr>
