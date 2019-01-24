@@ -107,7 +107,7 @@ class UserCrudController extends CrudController
             ],
 
             [
-                'name'  => 'point_total',
+                'name'  => 'point_current',
                 'label' => 'Số diểm hiện tại',
                 'type'  => 'number',
                 'wrapperAttributes' => [
