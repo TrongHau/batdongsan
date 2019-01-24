@@ -156,7 +156,7 @@ use App\Library\Helpers;
         </div>
         <div class="userbalance">
             Tổng tin rao:
-            <span id="MainContent__userPage_ltrBalance">{{number_format($mySelf->aritcle_total)}}</span><br>
+            <span id="MainContent__userPage_ltrBalance">{{number_format($mySelf->aritcle_lease_total)}}</span><br>
             Tiền mặt:
             <span id="MainContent__userPage_ltrBalance">{{number_format($mySelf->cash_curent)}} vnđ</span><br>
             Tài khoản KM:

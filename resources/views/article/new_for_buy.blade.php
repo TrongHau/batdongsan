@@ -73,7 +73,7 @@ global $province;
                     <div id="column-left-user" style="width: 25%; float: left">
                         <div id="usercp">
                             <div class="white-background-new">
-                                @include('user.right_sidebar_avatar', ['mySelf' => $mySelf])
+                                @include('user.left_sidebar_avatar', ['mySelf' => $mySelf])
                             </div>
                         </div>
 

@@ -40,4 +40,6 @@ define('DEFAULT_ROLE_NAME_EMPTY', 'user');
 define('ROLE_NAME_ADMIN', 'admin');
 define('ROLE_NAME_MANAGER', 'manager');
 define('ROLE_NAME_USER', 'user');
+define('POINT_NEW_ARTICLE_FOR_LEASE', 10);
+define('POINT_NEW_ARTICLE_FOR_BUY', 3);
 

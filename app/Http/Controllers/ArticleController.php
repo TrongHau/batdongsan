@@ -239,11 +239,37 @@ class ArticleController extends Controller
             if(!$result)
                 return view('errors.404');
             $olDataImgs = (array)json_decode($result->gallery_image);
+            if($request->submit_type != 'draf') {
+                $user = Auth::user();
+                if($user->point_current < POINT_NEW_ARTICLE_FOR_LEASE) {
+                    $mes = 'Số điểm hiện tại không đủ để đăng tin, tin của bạn sẽ được lưu vào tin nháp';
+                    $article['status'] = DRAFT_ARTICLE;
+                }else {
+                    if($result->point > 0) {
+                        $user->aritcle_lease_total = $user->aritcle_lease_total + 1;
+                        $user->point_current = $user->point_current - POINT_NEW_ARTICLE_FOR_LEASE;
+                        $article['point'] = POINT_NEW_ARTICLE_FOR_LEASE;
+                        $user->save();
+                    }
+                }
+            }
             $result->update($article);
         }else {
             $article['user_id'] = Auth::user()->id;
             $article['aprroval'] = APPROVAL_ARTICLE_DEFAULT;
             $article['start_news'] = time();
+            if($request->submit_type != 'draf') {
+                $user = Auth::user();
+                if($user->point_current < POINT_NEW_ARTICLE_FOR_LEASE) {
+                    $mes = 'Số điểm hiện tại không đủ để đăng tin, tin của bạn sẽ được lưu vào tin nháp';
+                    $result['status'] = DRAFT_ARTICLE;
+                }else {
+                    $user->aritcle_lease_total = $user->aritcle_lease_total + 1;
+                    $user->point_current = $user->point_current - POINT_NEW_ARTICLE_FOR_LEASE;
+                    $result['point'] = POINT_NEW_ARTICLE_FOR_LEASE;
+                    $user->save();
+                }
+            }
             $result = ArticleForLeaseModel::create($article);
         }
         if($request->remove_imgs) {
@@ -271,7 +297,7 @@ class ArticleController extends Controller
         if($request->id) {
             return redirect()->route('article.getArticleLease', $request->id)->with('success', 'Sửa tin thành công');
         }else{
-            return redirect()->route('article.getArticleLease')->with('success', 'Đăng tin thành công');
+            return redirect()->route('article.getArticleLease')->with('success', $mes ? $mes : 'Đăng tin thành công');
         }
     }
     public function storeArticleForBuy(Request $request)
@@ -289,6 +315,7 @@ class ArticleController extends Controller
             'price_from' => 'max:999999',
 //            'g-recaptcha-response' => 'required',
         ]);
+        $mes = '';
         $article = [
             'title' => $request->title,
             'method_article' => $request->method_article,
@@ -334,11 +361,37 @@ class ArticleController extends Controller
             if(!$result)
                 return view('errors.404');
             $olDataImgs = (array)json_decode($result->gallery_image);
+            if($request->submit_type != 'draf') {
+                $user = Auth::user();
+                if($user->point_current < POINT_NEW_ARTICLE_FOR_LEASE) {
+                    $mes = 'Số điểm hiện tại không đủ để đăng tin, tin của bạn sẽ được lưu vào tin nháp';
+                    $article['status'] = DRAFT_ARTICLE;
+                }else {
+                    if($result->point > 0) {
+                        $user->aritcle_buy_total = $user->aritcle_buy_total + 1;
+                        $user->point_current = $user->point_current - POINT_NEW_ARTICLE_FOR_BUY;
+                        $article['point'] = POINT_NEW_ARTICLE_FOR_BUY;
+                        $user->save();
+                    }
+                }
+            }
             $result->update($article);
         }else {
             $article['user_id'] = Auth::user()->id;
             $article['aprroval'] = APPROVAL_ARTICLE_DEFAULT;
             $article['start_news'] = time();
+            if($request->submit_type != 'draf') {
+                $user = Auth::user();
+                if($user->point_current < POINT_NEW_ARTICLE_FOR_BUY) {
+                    $mes = 'Số điểm hiện tại không đủ để đăng tin, tin của bạn sẽ được lưu vào tin nháp';
+                    $result['status'] = DRAFT_ARTICLE;
+                }else {
+                    $user->aritcle_buy_total = $user->aritcle_buy_total + 1;
+                    $user->point_current = $user->point_current - POINT_NEW_ARTICLE_FOR_BUY;
+                    $result['point'] = POINT_NEW_ARTICLE_FOR_BUY;
+                    $user->save();
+                }
+            }
             $result = ArticleForBuyModel::create($article);
         }
         if($request->remove_imgs) {
@@ -366,7 +419,7 @@ class ArticleController extends Controller
         if($request->id) {
             return redirect()->route('article.getArticleBuy', $request->id)->with('success', 'Sửa tin thành công');
         }else{
-            return redirect()->route('article.getArticleBuy')->with('success', 'Đăng tin thành công');
+            return redirect()->route('article.getArticleBuy')->with('success', $mes ? $mes : 'Đăng tin thành công');
         }
     }
     public function loadImage(Request $request){
