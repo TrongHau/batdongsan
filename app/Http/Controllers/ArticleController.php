@@ -187,6 +187,7 @@ class ArticleController extends Controller
             'toilet' => 'max:99',
 //            'g-recaptcha-response' => 'required',
         ]);
+        $mes = '';
         $article = [
             'title' => $request->title,
             'method_article' => $request->method_article,
