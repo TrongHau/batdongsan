@@ -163,7 +163,7 @@ use App\Library\Helpers;
             <span id="MainContent__userPage_ltrPromotion1">{{number_format($mySelf->cash_promotion)}} vnđ</span><br>
         </div>
 
-        <a id="MainContent__userPage_lnkDeposit" class="bluebotton" href="/trang-ca-nhan/uspg-paymentdeposit/method-nvpdomesticcard">Nạp tiền</a>
+        {{--<a id="MainContent__userPage_lnkDeposit" class="bluebotton" href="/trang-ca-nhan/uspg-paymentdeposit/method-nvpdomesticcard">Nạp tiền</a>--}}
     </div>
     <div class="title">Quản lý thông tin cá nhân</div>
     <ul class="item">
