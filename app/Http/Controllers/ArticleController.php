@@ -185,7 +185,7 @@ class ArticleController extends Controller
             'price' => 'max:999999',
             'bed_room' => 'max:99',
             'toilet' => 'max:99',
-//            'g-recaptcha-response' => 'required',
+            'g-recaptcha-response' => 'required',
         ]);
         $mes = '';
         $article = [
@@ -240,7 +240,7 @@ class ArticleController extends Controller
             if(!$result)
                 return view('errors.404');
             $olDataImgs = (array)json_decode($result->gallery_image);
-            if($request->submit_type != 'draf') {
+            if($article['status'] != 'draf') {
                 $user = Auth::user();
                 if($user->point_current < POINT_NEW_ARTICLE_FOR_LEASE) {
                     $mes = 'Số điểm hiện tại không đủ để đăng tin, tin của bạn sẽ được lưu vào tin nháp';
@@ -314,7 +314,7 @@ class ArticleController extends Controller
             'contact_phone' => 'required',
             'price_to' => 'max:999999',
             'price_from' => 'max:999999',
-//            'g-recaptcha-response' => 'required',
+            'g-recaptcha-response' => 'required',
         ]);
         $mes = '';
         $article = [
@@ -362,7 +362,7 @@ class ArticleController extends Controller
             if(!$result)
                 return view('errors.404');
             $olDataImgs = (array)json_decode($result->gallery_image);
-            if($request->submit_type != 'draf') {
+            if($article['status'] != 'draf') {
                 $user = Auth::user();
                 if($user->point_current < POINT_NEW_ARTICLE_FOR_LEASE) {
                     $mes = 'Số điểm hiện tại không đủ để đăng tin, tin của bạn sẽ được lưu vào tin nháp';
