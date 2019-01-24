@@ -246,7 +246,7 @@ class ArticleController extends Controller
                     $mes = 'Số điểm hiện tại không đủ để đăng tin, tin của bạn sẽ được lưu vào tin nháp';
                     $article['status'] = DRAFT_ARTICLE;
                 }else {
-                    if($result->point > 0) {
+                    if($result->point < 0) {
                         $user->aritcle_lease_total = $user->aritcle_lease_total + 1;
                         $user->point_current = $user->point_current - POINT_NEW_ARTICLE_FOR_LEASE;
                         $article['point'] = POINT_NEW_ARTICLE_FOR_LEASE;
@@ -368,7 +368,7 @@ class ArticleController extends Controller
                     $mes = 'Số điểm hiện tại không đủ để đăng tin, tin của bạn sẽ được lưu vào tin nháp';
                     $article['status'] = DRAFT_ARTICLE;
                 }else {
-                    if($result->point > 0) {
+                    if($result->point < 0) {
                         $user->aritcle_buy_total = $user->aritcle_buy_total + 1;
                         $user->point_current = $user->point_current - POINT_NEW_ARTICLE_FOR_BUY;
                         $article['point'] = POINT_NEW_ARTICLE_FOR_BUY;
