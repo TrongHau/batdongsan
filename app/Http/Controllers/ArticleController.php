@@ -296,7 +296,7 @@ class ArticleController extends Controller
             $result->save();
         }
         if($request->id) {
-            return redirect()->route('article.getArticleLease', $request->id)->with('success', 'Sửa tin thành công');
+            return redirect()->route('article.getArticleLease', $request->id)->with('success', $mes ? $mes : 'Sửa tin thành công');
         }else{
             return redirect()->route('article.getArticleLease')->with('success', $mes ? $mes : 'Đăng tin thành công');
         }
@@ -418,7 +418,7 @@ class ArticleController extends Controller
             $result->save();
         }
         if($request->id) {
-            return redirect()->route('article.getArticleBuy', $request->id)->with('success', 'Sửa tin thành công');
+            return redirect()->route('article.getArticleBuy', $request->id)->with('success', $mes ? $mes : 'Sửa tin thành công');
         }else{
             return redirect()->route('article.getArticleBuy')->with('success', $mes ? $mes : 'Đăng tin thành công');
         }
