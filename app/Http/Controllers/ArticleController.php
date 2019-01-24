@@ -240,7 +240,7 @@ class ArticleController extends Controller
             if(!$result)
                 return view('errors.404');
             $olDataImgs = (array)json_decode($result->gallery_image);
-            if($article['status'] != 'draf') {
+            if($article['status'] != DRAFT_ARTICLE) {
                 $user = Auth::user();
                 if($user->point_current < POINT_NEW_ARTICLE_FOR_LEASE) {
                     $mes = 'Số điểm hiện tại không đủ để đăng tin, tin của bạn sẽ được lưu vào tin nháp';
@@ -259,7 +259,7 @@ class ArticleController extends Controller
             $article['user_id'] = Auth::user()->id;
             $article['aprroval'] = APPROVAL_ARTICLE_DEFAULT;
             $article['start_news'] = time();
-            if($request->submit_type != 'draf') {
+            if($article['status'] != DRAFT_ARTICLE) {
                 $user = Auth::user();
                 if($user->point_current < POINT_NEW_ARTICLE_FOR_LEASE) {
                     $mes = 'Số điểm hiện tại không đủ để đăng tin, tin của bạn sẽ được lưu vào tin nháp';
@@ -362,7 +362,7 @@ class ArticleController extends Controller
             if(!$result)
                 return view('errors.404');
             $olDataImgs = (array)json_decode($result->gallery_image);
-            if($article['status'] != 'draf') {
+            if($article['status'] != DRAFT_ARTICLE) {
                 $user = Auth::user();
                 if($user->point_current < POINT_NEW_ARTICLE_FOR_LEASE) {
                     $mes = 'Số điểm hiện tại không đủ để đăng tin, tin của bạn sẽ được lưu vào tin nháp';
@@ -381,7 +381,7 @@ class ArticleController extends Controller
             $article['user_id'] = Auth::user()->id;
             $article['aprroval'] = APPROVAL_ARTICLE_DEFAULT;
             $article['start_news'] = time();
-            if($request->submit_type != 'draf') {
+            if($article['status'] != DRAFT_ARTICLE) {
                 $user = Auth::user();
                 if($user->point_current < POINT_NEW_ARTICLE_FOR_BUY) {
                     $mes = 'Số điểm hiện tại không đủ để đăng tin, tin của bạn sẽ được lưu vào tin nháp';
