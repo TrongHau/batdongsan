@@ -634,10 +634,10 @@ global $province;
                                             <tbody><tr>
                                                 <td>
                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                    <input type="hidden" name="submit_type" class="submit_type" value="">
                                                     @if(isset($article->id))
                                                         <input type="hidden" name="id" value="{{ $article->id }}">
                                                         <input type="hidden" name="remove_imgs" id="remove_imgs" value="">
-                                                        <input type="hidden" name="submit_type" class="submit_type" value="">
                                                         @if($article->status == PUBLISHED_ARTICLE)
                                                             <input type="submit" name="ctl00$MainContent$_userPage$ctl00$btnSave" value="Lưu tin" id="btnSave" class="bluebotton" style="width:80px;">
                                                         @else
