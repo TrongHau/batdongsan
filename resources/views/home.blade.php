@@ -1,7 +1,9 @@
 <?php
 use App\Library\Helpers;
+use Jenssegers\Agent\Agent;
 global $noibat;
 global $all_tin_tuc_moi;
+$Agent = new Agent();
 ?>
 @include('cache.tin_noi_bat')
 @include('cache.all_tin_tuc_moi')
@@ -27,6 +29,11 @@ global $all_tin_tuc_moi;
     <meta property="og:type" content="website" />
     <meta property="og:updated_time" content="{{time()}}" />
 @endsection
+@if($Agent->isMobile())
+@section('contentCSS')
+    <link rel="stylesheet" type="text/css" href="/css/mobile.css">
+@endsection
+@endif
 @extends('layouts.app')
 @section('content')
     @include('layouts.top_search')
@@ -155,7 +162,7 @@ global $all_tin_tuc_moi;
                                                                 href="/tim-kiem-nang-cao/tat-ca-nha-ban-dat-ban/{{$item->province_id}}/-1/-1/-1/-1/-1/-1/-1/-1"
                                                                 title="Bán nhà riêng tại {{$item->province}}">{{$item->province}}</a>
                                                     </div>
-                                                    <div class="p-bottom-right font09">{{date('d/m-Y', strtotime($item->created_at))}}</div>
+                                                    <div class="p-bottom-right font09">{{date('d/m/Y', strtotime($item->created_at))}}</div>
                                                     <div class="clear"></div>
                                                 </div>
                                             </div>

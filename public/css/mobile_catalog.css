@@ -1,0 +1,11 @@
+.p-main-image-crop {
+    width: 184px!important;
+    height: 166px!important;
+}
+.p-content {
+    width: 540px!important;
+}
+.p-main-image-crop .product-avatar-img {
+    height: 150px!important;
+    width: 180px!important;
+}

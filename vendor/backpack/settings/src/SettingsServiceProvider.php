@@ -34,7 +34,6 @@ class SettingsServiceProvider extends ServiceProvider
     {
         // define the routes for the application
         $this->setupRoutes($this->app->router);
-
         // only use the Settings package if the Settings table is present in the database
         if (!\App::runningInConsole() && count(Schema::getColumnListing('settings'))) {
             // get all settings from the database

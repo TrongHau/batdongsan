@@ -1,0 +1,30 @@
+#ctl31_ctl00_rpListProduct_lnkTitle_0 {
+    font-size: 10px;
+}
+.tin-danh-cho-ban .p-bottom-left .left {
+    width: 100px;
+    float: left;
+    font-weight: bold;
+    font-size: 19px;
+}
+.tin-danh-cho-ban .p-main-image-crop .product-avatar-img {
+    height: 180px!important;
+}
+.p-main-image-crop {
+    width: 200px!important;
+}
+.p-main-image-crop .product-avatar-img {
+    width: 194px!important;
+}
+a.link_blue:link {
+    font-size: 20px!important;
+    line-height: 36px!important;
+}
+.tin-danh-cho-ban .p-bottom-left .left {
+    width: 120px!important;
+    margin-top: 10px;
+}
+.product-list .vip5 .p-bottom-right {
+    font-size: 20px!important;
+    line-height: 36px;
+}

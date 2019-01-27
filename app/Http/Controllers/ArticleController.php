@@ -22,6 +22,7 @@ use  App\User;
 use App\Models\ArticleForLeaseModel;
 use App\Models\ArticleForBuyModel;
 use File;
+use Config;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -242,14 +243,14 @@ class ArticleController extends Controller
             $olDataImgs = (array)json_decode($result->gallery_image);
             if($article['status'] != DRAFT_ARTICLE) {
                 $user = Auth::user();
-                if($user->point_current < POINT_NEW_ARTICLE_FOR_LEASE) {
+                if($user->point_current < Config::get('settings.point_lease')) {
                     $mes = 'Số điểm hiện tại không đủ để đăng tin, tin của bạn sẽ được lưu vào tin nháp';
                     $article['status'] = DRAFT_ARTICLE;
                 }else {
                     if($result->point < 0) {
                         $user->aritcle_lease_total = $user->aritcle_lease_total + 1;
-                        $user->point_current = $user->point_current - POINT_NEW_ARTICLE_FOR_LEASE;
-                        $article['point'] = POINT_NEW_ARTICLE_FOR_LEASE;
+                        $user->point_current = $user->point_current - Config::get('settings.point_lease');
+                        $article['point'] = Config::get('settings.point_lease');
                         $user->save();
                     }
                 }
@@ -261,13 +262,13 @@ class ArticleController extends Controller
             $article['start_news'] = time();
             if($article['status'] != DRAFT_ARTICLE) {
                 $user = Auth::user();
-                if($user->point_current < POINT_NEW_ARTICLE_FOR_LEASE) {
+                if($user->point_current < Config::get('settings.point_lease')) {
                     $mes = 'Số điểm hiện tại không đủ để đăng tin, tin của bạn sẽ được lưu vào tin nháp';
                     $result['status'] = DRAFT_ARTICLE;
                 }else {
                     $user->aritcle_lease_total = $user->aritcle_lease_total + 1;
-                    $user->point_current = $user->point_current - POINT_NEW_ARTICLE_FOR_LEASE;
-                    $result['point'] = POINT_NEW_ARTICLE_FOR_LEASE;
+                    $user->point_current = $user->point_current - Config::get('settings.point_lease');
+                    $result['point'] = Config::get('settings.point_lease');
                     $user->save();
                 }
             }
@@ -364,14 +365,14 @@ class ArticleController extends Controller
             $olDataImgs = (array)json_decode($result->gallery_image);
             if($article['status'] != DRAFT_ARTICLE) {
                 $user = Auth::user();
-                if($user->point_current < POINT_NEW_ARTICLE_FOR_LEASE) {
+                if($user->point_current < Config::get('settings.point_lease')) {
                     $mes = 'Số điểm hiện tại không đủ để đăng tin, tin của bạn sẽ được lưu vào tin nháp';
                     $article['status'] = DRAFT_ARTICLE;
                 }else {
                     if($result->point < 0) {
                         $user->aritcle_buy_total = $user->aritcle_buy_total + 1;
-                        $user->point_current = $user->point_current - POINT_NEW_ARTICLE_FOR_BUY;
-                        $article['point'] = POINT_NEW_ARTICLE_FOR_BUY;
+                        $user->point_current = $user->point_current - Config::get('settings.point_buy');
+                        $article['point'] = Config::get('settings.point_buy');
                         $user->save();
                     }
                 }
@@ -383,13 +384,13 @@ class ArticleController extends Controller
             $article['start_news'] = time();
             if($article['status'] != DRAFT_ARTICLE) {
                 $user = Auth::user();
-                if($user->point_current < POINT_NEW_ARTICLE_FOR_BUY) {
+                if($user->point_current < Config::get('settings.point_buy')) {
                     $mes = 'Số điểm hiện tại không đủ để đăng tin, tin của bạn sẽ được lưu vào tin nháp';
                     $result['status'] = DRAFT_ARTICLE;
                 }else {
                     $user->aritcle_buy_total = $user->aritcle_buy_total + 1;
-                    $user->point_current = $user->point_current - POINT_NEW_ARTICLE_FOR_BUY;
-                    $result['point'] = POINT_NEW_ARTICLE_FOR_BUY;
+                    $user->point_current = $user->point_current - Config::get('settings.point_buy');
+                    $result['point'] = Config::get('settings.point_buy');
                     $user->save();
                 }
             }

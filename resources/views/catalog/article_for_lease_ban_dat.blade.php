@@ -1,6 +1,13 @@
 <?php
 use App\Library\Helpers;
+use Jenssegers\Agent\Agent;
+$Agent = new Agent();
 ?>
+@if($Agent->isMobile())
+@section('contentCSS')
+    <link rel="stylesheet" type="text/css" href="/css/mobile_catalog.css">
+@endsection
+@endif
 @extends('layouts.app')
 @section('content')
     @include('layouts.top_search', ['titleArticle' => $titleArticle, 'key' => $key])
