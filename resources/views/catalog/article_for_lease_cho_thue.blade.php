@@ -84,7 +84,7 @@ $Agent = new Agent();
                                                     Quận/Huyện:
                                                     <span class="product-city-dist">{{$item['district']}}, {{$item['province']}}</span>
                                                 </div>
-                                                <div class="floatright mar-right-10">{{date('d-m-Y', strtotime($item['created_at']))}}</div>
+                                                <div class="floatright mar-right-10">{{date('d/m/Y', strtotime($item['created_at']))}}</div>
                                                 <div class="clear"></div>
                                             </div>
                                         </div>

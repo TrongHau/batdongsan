@@ -85,7 +85,7 @@ $Agent = new Agent();
                                                         <span class="product-city-dist"><a href="/tim-kiem-nang-cao/tat-ca-nha-ban-dat-ban/-1/{{$item['district_id']}}/-1/-1/-1/-1/-1/-1/-1">{{$item['district']}}</a>,
                                                             <a href="/tim-kiem-nang-cao/tat-ca-nha-ban-dat-ban/{{$item['province_id']}}/-1/-1/-1/-1/-1/-1/-1/-1">{{$item['province']}}</a></span>
                                                     </div>
-                                                    <div class="floatright mar-right-10">{{date('d-m-Y', strtotime($item['created_at']))}}</div>
+                                                    <div class="floatright mar-right-10">{{date('d/m/Y', strtotime($item['created_at']))}}</div>
                                                     <div class="clear"></div>
                                                 </div>
                                             </div>

@@ -48,7 +48,7 @@ $Agent = new Agent();
                                             </a>
                                         </h3>
                                         <div class="datetime">
-                                            {{date('d-m-Y', strtotime($item['created_at']))}}
+                                            {{date('d/m/Y', strtotime($item['created_at']))}}
                                         </div>
                                         <p style="text-rendering:geometricPrecision;">
                                             <?php echo $item['short_content'] ?>
