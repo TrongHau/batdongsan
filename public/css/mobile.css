@@ -29,12 +29,12 @@ a.link_blue:link {
     line-height: 36px;
 }
 #product-detail, .pcc-detail {
-    width: 715px;
+    width: 715px!important;
     margin-top: 10px;
     margin-left: 15px!important;
 }
 .div_2col {
-    width: 715px;
+    width: 715px!important;
     float: left;
     margin-left: 15px!important;
 }
