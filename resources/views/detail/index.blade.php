@@ -1,5 +1,6 @@
 <?php
 use App\Library\Helpers;
+use Jenssegers\Agent\Agent;
 global $all_tin_tuc_moi;
 $Agent = new Agent();
 ?>
