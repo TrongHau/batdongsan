@@ -28,3 +28,13 @@ a.link_blue:link {
     font-size: 20px!important;
     line-height: 36px;
 }
+#product-detail, .pcc-detail {
+    width: 745px;
+    margin-top: 10px;
+    margin-left: 15px!important;
+}
+.div_2col {
+    width: 730px;
+    float: left;
+    margin-left: 15px!important;
+}

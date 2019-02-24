@@ -1,7 +1,14 @@
 <?php
 use App\Library\Helpers;
+global $all_tin_tuc_moi;
+$Agent = new Agent();
 ?>
 @extends('layouts.app')
+@if($Agent->isMobile())
+@section('contentCSS')
+    <link rel="stylesheet" type="text/css" href="/css/mobile.css">
+@endsection
+@endif
 @section('content')
     @include('layouts.top_search')
     <div class="div_2col">
