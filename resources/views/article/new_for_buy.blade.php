@@ -139,7 +139,7 @@ global $province;
                                                         <select id="method_article" name="method_article" class="advance-options" style="min-width: 220px;border: 1px solid #CCC;"  onchange="typeMethod(this.value);">
                                                             <option value="" class="advance-options" style="min-width: 195px;">-- Hình thức --</option>
                                                             <option value="Nhà đất cần mua" class="advance-options" style="min-width: 195px;">Nhà đất cần mua</option>
-                                                            <option value="Nhà đất cho thuê" class="advance-options" style="min-width: 195px;">Nhà đất cần thuê</option>
+                                                            <option value="Nhà đất cần thuê" class="advance-options" style="min-width: 195px;">Nhà đất cần thuê</option>
                                                         </select>
                                                         @if ($errors->has('method_article'))
                                                             <div class="errorMessage" style="display: block;"><p style="color: red">{{ str_replace('method article', 'hình thức', $errors->first('method_article')) }}</p></div>

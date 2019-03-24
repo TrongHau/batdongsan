@@ -45,8 +45,11 @@ class CatalogController extends Controller
             return view('errors.404');
         $article = ArticleForLeaseModel::where([['status', PUBLISHED_ARTICLE], ['aprroval', APPROVAL_ARTICLE_PUBLIC]]);
         // hiển thị tất cả
-        if($titleArticle->url != 'nha-dat-ban' && $titleArticle->url != 'nha-dat-cho-thue')
+        if($titleArticle->url == 'nha-dat-ban' || $titleArticle->url == 'nha-dat-cho-thue') {
+            $article = $article->where('method_article', $titleArticle->name);
+        }else{
             $article = $article->where('type_article', $titleArticle->name);
+        }
         // search
         if($key)
             $article = $article->where('title', 'like', '%'.$key.'%');
@@ -77,8 +80,11 @@ class CatalogController extends Controller
             return view('errors.404');
         $article = ArticleForBuyModel::where([['status', PUBLISHED_ARTICLE], ['aprroval', APPROVAL_ARTICLE_PUBLIC]]);
         // hiển thị tất cả
-        if($titleArticle->url != 'nha-dat-can-mua' && $titleArticle->url != 'nha-dat-can-thue')
+        if($titleArticle->url == 'nha-dat-can-mua' || $titleArticle->url == 'nha-dat-can-thue') {
+            $article = $article->where('method_article', $titleArticle->name);
+        }else{
             $article = $article->where('type_article', $titleArticle->name);
+        }
         // search
         if($key)
             $article = $article->where('title', 'like', '%'.$key.'%');

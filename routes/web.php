@@ -90,6 +90,7 @@ Route::get('/ban-trang-trai-khu-nghi-duong', 'CatalogController@ArticleForLease_
 Route::get('/ban-kho-nha-xuong', 'CatalogController@ArticleForLease_ban_dat');
 Route::get('/ban-loai-bat-dong-san-khac', 'CatalogController@ArticleForLease_ban_dat');
 
+// catalog nhà đất cho thuê
 Route::get('/nha-dat-cho-thue/{key?}', 'CatalogController@ArticleForLease_ban_dat');
 Route::get('/cho-thue-can-ho-chung-cu', 'CatalogController@ArticleForLease_ban_dat');
 Route::get('/cho-thue-nha-rieng', 'CatalogController@ArticleForLease_ban_dat');
@@ -101,7 +102,7 @@ Route::get('/cho-thue-kho-nha-xuong-dat', 'CatalogController@ArticleForLease_ban
 Route::get('/cho-thue-loai-bat-dong-san-khac', 'CatalogController@ArticleForLease_ban_dat');
 
 
-// catalog cho thuê đất
+// catalog cần mua
 
 Route::get('/nha-dat-can-mua/{key?}', 'CatalogController@ArticleForBuy_cho_thue');
 Route::get('/mua-can-ho-chung-cu', 'CatalogController@ArticleForBuy_cho_thue');
@@ -113,6 +114,9 @@ Route::get('/mua-dat', 'CatalogController@ArticleForBuy_cho_thue');
 Route::get('/mua-trang-trai-khu-nghi-duong', 'CatalogController@ArticleForBuy_cho_thue');
 Route::get('/mua-kho-nha-xuong', 'CatalogController@ArticleForBuy_cho_thue');
 Route::get('/mua-cac-loai-bat-dong-san-khac', 'CatalogController@ArticleForBuy_cho_thue');
+
+
+// catalog cho thuê đất
 
 Route::get('/nha-dat-can-thue/{key?}', 'CatalogController@ArticleForBuy_cho_thue');
 Route::get('/can-thue-can-ho-chung-cu', 'CatalogController@ArticleForBuy_cho_thue');
