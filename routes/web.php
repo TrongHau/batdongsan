@@ -207,6 +207,7 @@ Route::get('/chinh-sach-quan-ly/{prefix?}', 'CatalogController@Article');
 Route::get('/thong-tin-quy-hoach/{prefix?}', 'CatalogController@Article');
 Route::get('/nha-moi-gioi/{prefix?}', 'CatalogController@Article');
 Route::get('/doanh-nghiep/{prefix?}', 'CatalogController@Article');
+Route::get('/du-an/{prefix?}', 'CatalogController@Article');
 Route::get('/ho-tro/{prefix?}', 'CatalogController@Article');
 Route::get('/tin-tuc/{prefix?}', 'CatalogController@Article');
 Route::get('/tin-thi-truong/{prefix?}', 'CatalogController@Article');

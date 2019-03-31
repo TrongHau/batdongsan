@@ -37,23 +37,46 @@ $Agent = new Agent();
                                 $article = $article->toArray();
                                 ?>
                                 @foreach($article['data'] as $key => $item)
-                                    <div class="tintuc-row1 tintuc-list tc-tit">
-                                        <div class="tc-img list-news-image-title">
-                                            <a href="/{{$category->slug}}/{{$item['slug']}}">
-                                                <img class="bor_img" style="width: 132px; height: 100px;" alt="{{$item['title']}}" src="{{$item['image'] ? '/'.$item['image'] : PATH_LOGO_DEFAULT}}">
-                                            </a>&nbsp;&nbsp;</div>
-                                        <h3>
-                                            <a class="link_blue" href="/{{$category->slug}}/{{$item['slug']}}" title="{{$item['title']}}">
-                                                {{$item['title']}}
-                                            </a>
-                                        </h3>
-                                        <div class="datetime">
-                                            {{date('d/m/Y', strtotime($item['created_at']))}}
+                                    @if($key == 0 && $item['image'])
+                                        <div id="ctl23_ctl00_panelCate" class="detailsView-title-style">
+                                            <div class="font-title-list-news">
+                                            </div>
                                         </div>
-                                        <p style="text-rendering:geometricPrecision;">
-                                            <?php echo $item['short_content'] ?>
-                                        </p>
-                                    </div>
+                                        <div class="tt-thumb-img">
+                                            <a href="/{{$category->slug}}/{{$item['slug']}}">
+                                                <img style="width:216px;height:152px" src="{{$item['image'] ? '/'.$item['image'] : PATH_LOGO_DEFAULT}}" alt="{{$item['title']}}" class="bor_img">
+                                            </a>&nbsp;&nbsp;</div>
+                                        <div class="tt-thumb-cnt">
+                                            <h2>
+                                                <a class="link_blue" href="{{$item['image'] ? '/'.$item['image'] : PATH_LOGO_DEFAULT}}" title="{{$item['title']}}">{{$item['title']}}</a>
+                                            </h2>
+                                            <div class="datetime">
+                                                {{date('d/m/Y', strtotime($item['created_at']))}}
+                                            </div>
+                                            <p style="text-rendering:geometricPrecision;">
+                                                <?php echo $item['short_content'] ?></p>
+                                        </div>
+                                        <div class="clear line">
+                                        </div>
+                                    @else
+                                        <div class="tintuc-row1 tintuc-list tc-tit">
+                                            <div class="tc-img list-news-image-title">
+                                                <a href="/{{$category->slug}}/{{$item['slug']}}">
+                                                    <img class="bor_img" style="width: 132px; height: 100px;" alt="{{$item['title']}}" src="{{$item['image'] ? '/'.$item['image'] : PATH_LOGO_DEFAULT}}">
+                                                </a>&nbsp;&nbsp;</div>
+                                            <h3>
+                                                <a class="link_blue" href="/{{$category->slug}}/{{$item['slug']}}" title="{{$item['title']}}">
+                                                    {{$item['title']}}
+                                                </a>
+                                            </h3>
+                                            <div class="datetime">
+                                                {{date('d/m/Y', strtotime($item['created_at']))}}
+                                            </div>
+                                            <p style="text-rendering:geometricPrecision;">
+                                                <?php echo $item['short_content'] ?>
+                                            </p>
+                                        </div>
+                                    @endif
                                 @endforeach
                                 <div class="clear">
                                 </div>

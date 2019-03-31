@@ -250,6 +250,7 @@
             </li>
             <li class="lv0"><a href="{{env("APP_URL")}}/nha-moi-gioi" class="haslink ">Nhà môi giới</a></li>
             <li class="lv0"><a href="{{env("APP_URL")}}/doanh-nghiep" class="haslink ">Doanh nghiệp</a></li>
+            <li class="lv0"><a href="{{env("APP_URL")}}/du-an" class="haslink ">Dự Án</a></li>
             <li class="lv0"><a href="{{env("APP_URL")}}/ho-tro" class="haslink ">Hỗ trợ</a></li>
 
         </ul>
