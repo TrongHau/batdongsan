@@ -11,6 +11,7 @@ use  App\Models\WardModel;
 use App\Models\ArticleForLeaseModel;
 use App\Models\ArticleForBuyModel;
 use Illuminate\Support\Facades\Auth;
+use DB;
 
 class HomeController extends Controller
 {
@@ -31,11 +32,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $articleForLease = ArticleForLeaseModel::select(['id', 'title', 'views', 'created_at', 'status', 'aprroval', 'gallery_image', 'note', 'updated_at', 'project', 'price', 'area', 'province_id', 'province', 'district_id', 'district', 'address', 'bed_room', 'toilet', 'prefix_url', 'ddlPriceType', 'price_real'])
-            ->where([['status', PUBLISHED_ARTICLE], ['aprroval', APPROVAL_ARTICLE_PUBLIC]])
-            ->orderBy('created_at', 'desc')
-            ->limit(PAGING_LIST_ARTICLE_HOME)
-            ->get();
+
+//        $articleForLease = ArticleForLeaseModel::select(['id', 'prefix_url', 'title', 'views', 'created_at', 'status', 'aprroval', 'gallery_image', 'note', 'updated_at', 'project', 'province_id', 'province', 'district_id', 'district', 'address', 'ddlPriceType', 'price_real', 'price', 'area'])
+        $articleForLease = ArticleForLeaseModel::selectRaw('id, prefix_url, title, views, created_at, status, aprroval, gallery_image, note, updated_at, project, province_id, province, district_id, district, address, ddlPriceType, price_real, price, area, null as price_from, null as price_to, null as area_from, null as area_to')
+            ->where([['status', PUBLISHED_ARTICLE], ['aprroval', APPROVAL_ARTICLE_PUBLIC]]);
+        $articleForLease2 = ArticleForBuyModel::selectRaw('id, prefix_url, title, views, created_at, status, aprroval, gallery_image, note, updated_at, project, province_id, province, district_id, district, address, ddlPriceType, price_real, null as price, null as area, price_from, price_to, area_from, area_to')
+            ->where([['status', PUBLISHED_ARTICLE], ['aprroval', APPROVAL_ARTICLE_PUBLIC]]);
+//        dd($articleForLease2->orderBy('created_at', 'desc')->get()->toArray());
+        $articleForLease->union($articleForLease2)->limit(PAGING_LIST_ARTICLE_HOME)->orderBy('created_at', 'desc');
+        $articleForLease = $articleForLease->get();
+//        dd($articleForLease->toArray());
         return view('home', compact('articleForLease'));
     }
     public function getDistrict(Request $request) {

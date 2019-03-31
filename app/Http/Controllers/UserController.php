@@ -18,7 +18,9 @@ use  App\Models\StreetModel;
 use  App\Models\WardModel;
 use Illuminate\Support\Facades\Hash;
 use  App\User;
+use  App\Models\VerifySMSModel;
 use App\Models\MailTokenModel;
+use App\Models\PhoneModel;
 
 class UserController extends Controller
 {
@@ -48,7 +50,7 @@ class UserController extends Controller
     public function storeProfile(Request $request) {
         $this->validate($request, [
             'name' => 'required|max:50',
-            'phone' => 'required|unique:users',
+//            'phone' => 'required|unique:users',
             'province_id' => 'required',
             'district_id' => 'required',
         ]);
@@ -65,7 +67,7 @@ class UserController extends Controller
             'street_id' => $request->street_id,
             'street' => ($request->street_id && $request->district_id && $request->province_id) ? StreetModel::where('id', $request->street_id)->where('_province_id', $request->province_id)->where('_district_id', $request->district_id)->first()->_name : '',
             'address' => $request->address,
-            'phone' => $request->phone,
+//            'phone' => $request->phone,
             'tax_code' => $request->tax_code,
             'skype' => $request->skype,
             'zalo' => $request->zalo,
@@ -121,5 +123,72 @@ class UserController extends Controller
         MailTokenModel::deleteToken($tokenVerify->email);
         Auth::login($user);
         return redirect()->route('user.changeProfile')->with('success', 'Kích hoạt tài khoản thành công.');
+    }
+    public function getVerifyMobile(Request $request)
+    {
+        session_start();
+        if(!$request->phone)
+            return Helpers::ajaxResult(false, 'Vui lòng điền số điện thoại.', null);
+        if(User::where('phone', $request->phone)->first())
+            return Helpers::ajaxResult(false, 'Số điện thoại đã sử dụng', null);
+        $existOtp = VerifySMSModel::where(['user_id' => Auth::user()->id ?? session()->getId(), 'type' => 'verify_phone'])->first();
+        if($existOtp) {
+            $timeExpried = $existOtp->otp_time_expried - time();
+            if($timeExpried > 0) {
+                return Helpers::ajaxResult(true, 'Thời gian nhập mã xác thực còn lại:', ['phone' => $existOtp->phone, 'expried' => date('i', $timeExpried) . ' phút']);
+            }else{
+                $existOtp->delete();
+            }
+        }
+        $phoneFlag = PhoneModel::find($request->phone);
+        if($phoneFlag) {
+            if($phoneFlag->status == 0)
+                return Helpers::ajaxResult(false, 'Số điện thoại của bạn đã bị khóa, vui lòng liên hệ '.env('PHONE_CONTACT').' để được hỗ trợ.', null);
+        }else{
+            PhoneModel::create([
+                'phone' => $request->phone,
+                'user_id' => Auth::user()->id ?? '',
+                'count_sms' => 1,
+            ]);
+        }
+        $otp = mt_rand(1000, 9999);
+        $Content = "Ma xac thuc Batdongsan.company cua ban la: " . $otp;
+        Helpers::sendSMS($request->phone, $Content);
+        $newOtp = VerifySMSModel::create([
+            'user_id' => Auth::user()->id ?? session()->getId(),
+            'phone' => $request->phone,
+            'otp' => $otp,
+            'otp_time_expried' =>strtotime(TIME_EXPIRED_OTP),
+            'type' => 'verify_phone',
+
+        ]);
+        return Helpers::ajaxResult(true, 'Thời gian nhập mã xác thực còn lại:', ['phone' => $newOtp->phone, 'expried' => '05 phút']);
+    }
+    public function setVerifyMobile(Request $request)
+    {
+        if(!$request->phone)
+            return Helpers::ajaxResult(false, 'Vui lòng điền số điện thoại.', null);
+        if(!$request->otp)
+            return Helpers::ajaxResult(false, 'Vui lòng điền mã xác thực.', null);
+
+        $existOtp = VerifySMSModel::where(['user_id' => Auth::user()->id ?? session()->getId(), 'type' => 'verify_phone', 'phone' => $request->phone])->first();
+        if($existOtp) {
+            $phoneFlag = PhoneModel::find($existOtp->phone);
+            if($phoneFlag && $phoneFlag->status == 0)
+                return Helpers::ajaxResult(false, 'Số điện thoại của bạn đã bị khóa, vui lòng liên hệ '.env('PHONE_CONTACT').' để được hỗ trợ.', null);
+            $timeExpried = $existOtp->otp_time_expried - time();
+            if($timeExpried > 0) {
+                $user = User::where('id', $existOtp->user_id)->update([
+                    'phone' => $existOtp->phone
+                ]);
+                $existOtp->delete();
+                session_start();
+                $_SESSION['verify_phone'] = $existOtp->phone;
+                return Helpers::ajaxResult(true, 'Xác thực số điện thoại '.$existOtp->phone.' thành công!', ['phone' => $existOtp->phone]);
+            }else{
+                return Helpers::ajaxResult(false, 'Mã xác thực đã hết hạn, vui lòng gửi lại mã xác thực', null);
+            }
+        }
+        return Helpers::ajaxResult(false, 'Mã xác thực không chính xác.', null);
     }
 }

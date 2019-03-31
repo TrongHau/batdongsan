@@ -18,6 +18,10 @@ class ArticleForBuyController extends CrudController
     {
         parent::__construct();
 
+
+    }
+    public function setup()
+    {
         /*
         |--------------------------------------------------------------------------
         | BASIC CRUD INFORMATION
@@ -29,7 +33,20 @@ class ArticleForBuyController extends CrudController
         $this->crud->orderBy('id', 'desc');
 
         $this->crud->denyAccess(['create']);
+        $this->crud->enableBulkActions();
+        $this->crud->addBulkDeleteButton();
 
+        $this->crud->addFilter([ // daterange filter
+            'type' => 'date_range',
+            'name' => 'from_to',
+            'label'=> 'Hiển thị theo thời gian'
+        ],
+            false,
+            function($value) {
+                $dates = json_decode(htmlspecialchars_decode($value, ENT_QUOTES));
+                $this->crud->addClause('whereDate', 'created_at', '>=', $dates->from);
+                $this->crud->addClause('whereDate', 'created_at', '<=', $dates->to);
+            });
         /*
         |--------------------------------------------------------------------------
         | COLUMNS AND FIELDS

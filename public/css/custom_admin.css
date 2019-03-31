@@ -1,0 +1,38 @@
+.label-success {
+    padding: 5px;
+}
+.label-default {
+    padding: 5px;
+}
+.box-header {
+    z-index: 9;
+    float: right;
+    margin-bottom: -5px;
+}
+.box-header {
+    padding-top: 0px;
+}
+.box {
+    padding-top: 1px;
+}
+.ladda-button {
+    margin-top: -1.7px;
+    margin-right: 5px;
+}
+.box-header.with-border {
+    border-bottom: none;
+}
+.box-header {
+    padding-top: 5px;
+}
+.navbar-default .navbar-nav {
+    margin-top: 5px;
+}
+.navbar-default .navbar-brand {
+    margin-top: 5px;
+}
+form .box-header {
+    border-bottom: 1px solid #f4f4f4;
+    float: inherit;
+    margin-bottom: 0px;
+}

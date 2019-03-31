@@ -53,7 +53,6 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|string|max:255',
-            'phone' => 'required|string|max:20|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
@@ -73,7 +72,6 @@ class RegisterController extends Controller
             'status' => DEACTIVE_USER,
             'user_type' => DEFAULT_USER_TYPE,
             'point_current' => DEFAULT_POINT_LOGIN_NEW_USER,
-            'phone' => $data['phone'],
             'password' => bcrypt($data['password']),
         ]);
         $token = MailTokenModel::create([

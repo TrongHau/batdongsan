@@ -34,6 +34,16 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    public function roleUser()
+    {
+        return $this->belongsTo('App\Models\RoleUser', 'user_id');
+    }
+    public function role() {
+        return $this->belongsToMany(
+            config('laravel-permission.models.role'),
+            config('laravel-permission.table_names.user_has_roles')
+        );
+    }
     public function UserType() {
         return $this->hasMany('App\Models\UserTypeModel', 'id', 'user_type_id')->first();
     }

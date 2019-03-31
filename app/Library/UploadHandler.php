@@ -11,6 +11,7 @@
  */
 namespace App\Library;
 use Illuminate\Http\Response;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class UploadHandler
 {
@@ -18,7 +19,7 @@ class UploadHandler
     protected $options;
 
     // PHP File Upload error message codes:
-    // http://php.net/manual/en/features.file-upload.errors.php
+        // http://php.net/manual/en/features.file-upload.errors.php
     protected $error_messages = array(
         1 => 'The uploaded file exceeds the upload_max_filesize directive in php.ini',
         2 => 'The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form',
@@ -54,6 +55,8 @@ class UploadHandler
             'upload_url' => $this->get_full_url().'/storage/temp/',
             'input_stream' => 'php://input',
             'user_dirs' => false,
+            'watermark_img' => public_path('imgs/watermark.png'),
+            'watermark_resizePercentage' => 85,
             'mkdir_mode' => 0755,
             'param_name' => 'files',
             // Set the following option to 'POST', if your server does not support
@@ -1167,9 +1170,30 @@ class UploadHandler
                     $file->error = $this->get_error_message('abort');
                 }
             }
+            $this->generate_watermark($file_path);
+//            $this->generate_watermark(str_replace('storage/temp', 'storage/temp/thumbnail', $file_path));
             $this->set_additional_file_properties($file);
         }
         return $file;
+    }
+
+    protected function generate_watermark($file_path) {
+        $watermark = Image::make($this->options['watermark_img']);
+        $img = Image::make($file_path);
+        $watermarkSize = $img->width() - 20; //20 size of the image minus 20 margins
+        $watermarkSize = $img->width() / 2; //2 half of the image size
+        $resizePercentage = $this->options['watermark_resizePercentage'];//70% less then an actual image (play with this value)
+        $watermarkSize = round($img->width() * ((100 - $resizePercentage) / 100), 2); //watermark will be $resizePercentage less then the actual width of the image
+        // resize watermark width keep height auto
+//        $dest_x = $watermark[0] - $img->width() - 15;
+//        $dest_y = $watermark[1] - $img->height() - 15;
+
+
+        $watermark->resize($watermarkSize, null, function ($constraint) {
+            $constraint->aspectRatio();
+        });
+        $img->insert($watermark, 'bottom-left', rand(0, $img->width()), rand(0, $img->height()));
+        $img->save($file_path);
     }
 
     protected function readfile($file_path) {

@@ -13,6 +13,7 @@
 
     </div>
 </div>
+@yield('footerElement')
 <div class="footer">
     <div class="footer-bottom">
         <div class="clearboth pad-bot-10">
@@ -51,9 +52,9 @@
             <div class="footer-bottom-end-row1" style="color: #555754">
                 © 2019 - Bản quyền của website Batdongsan.company
                 <br/>
-                Địa chỉ: 197/42/15 Đường TL15, Thạnh Lộc, Quận 12, HCM City
+                Địa chỉ: {{ENV('ADDRESS_CONTACT')}}
                 <br/>
-                Điện thoại: 0901 472486
+                Điện thoại: {{ENV('PHONE_CONTACT')}}
                 <br/>
                 Email {{env('HO_TRO')}}
             </div>

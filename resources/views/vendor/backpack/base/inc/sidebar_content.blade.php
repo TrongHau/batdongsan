@@ -9,6 +9,7 @@
         <li><a href="{{ backpack_url('article_for_buy') }}"><i class="fa fa-handshake-o"></i> <span>Mua - cần thuê</span></a></li>
     </ul>
 </li>
+<li><a href="{{backpack_url('phone') }}"><i class="fa fa-phone"></i> <span>Quản lý SĐT</span></a></li>
 <li><a href="{{backpack_url('tag') }}"><i class="fa fa-tag"></i> <span>Tags</span></a></li>
 <li><a href="{{backpack_url('category') }}"><i class="fa fa-list"></i> <span>Danh mục</span></a></li>
 <li><a href="{{backpack_url('page') }}"><i class="fa fa-file"></i> <span>Dịch vụ</span></a></li>

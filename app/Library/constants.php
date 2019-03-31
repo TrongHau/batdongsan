@@ -16,8 +16,8 @@ define('APPROVAL_ARTICLE_PUBLIC', 1);
 define('APPROVAL_ARTICLE_DELETE', 2);
 define('APPROVAL_ARTICLE_DEFAULT', 1);
 define('PAGING_LIST_ARTICLE', 5);
-define('PAGING_LIST_ARTICLE_HOME', 10);
-define('PAGING_LIST_ARTICLE_CATALOG', 10);
+define('PAGING_LIST_ARTICLE_HOME', 15);
+define('PAGING_LIST_ARTICLE_CATALOG', 20);
 define('LIMIT_SHORT_CONTENT', 500);
 define('ARTICLE_LEASE', 'LEASE');
 define('ARTICLE_BUY', 'BUY');
@@ -42,4 +42,5 @@ define('ROLE_NAME_MANAGER', 'manager');
 define('ROLE_NAME_USER', 'user');
 define('POINT_NEW_ARTICLE_FOR_LEASE', 10);
 define('POINT_NEW_ARTICLE_FOR_BUY', 3);
+define('TIME_EXPIRED_OTP', '+5 minutes'); // hạn otp 5 phút
 

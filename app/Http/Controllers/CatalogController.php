@@ -147,7 +147,7 @@ class CatalogController extends Controller
             }else{
                 $arrCat[] = $category->id;
             }
-            $article = ArticleModel::select('title', 'slug', 'short_content', 'image', 'status', 'featured', 'views', 'created_at')->where('status', PUBLISHED_ARTICLE)->whereIn('category_id', $arrCat)->paginate(PAGING_LIST_ARTICLE_CATALOG);
+            $article = ArticleModel::select('title', 'slug', 'short_content', 'image', 'status', 'featured', 'views', 'created_at')->where('status', PUBLISHED_ARTICLE)->whereIn('category_id', $arrCat)->orderBy('created_at', 'desc')->paginate(PAGING_LIST_ARTICLE_CATALOG);
             return view('catalog.article_tin_tuc', compact('category', 'article'));
         }
 

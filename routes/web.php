@@ -22,6 +22,7 @@ Route::post('get-district', ['as' => 'get.district', 'uses' => 'HomeController@g
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 Route::post('/get_district', ['as' => 'get.district', 'uses' => 'HomeController@getDistrict']);
 Route::post('/get_ward', ['as' => 'get.ward', 'uses' => 'HomeController@getWard']);
+Route::get('/demo', ['as' => 'get.ward1', 'uses' => 'ArticleController@demo']);
 
 Auth::routes();
 
@@ -35,6 +36,23 @@ Route::get('auth/facebook/callback', 'Auth\AuthFacebookController@handleProvider
 Route::get('auth/google', 'Auth\AuthGoogleController@redirectToProvider');
 Route::get('auth/google/callback', 'Auth\AuthGoogleController@handleProviderCallback');
 Route::get('/xac-nhan-email/{token}', 'UserController@verifyEmail');
+
+Route::prefix('guest/')->group(function () {
+    Route::get('dang-tin-ban-cho-thue', ['as' => 'guest.article.getArticleLease', 'uses' => 'ArticleController@newGuestArticleForLease']);
+    Route::post('dang-tin-ban-cho-thue', ['as' => 'article.StoreArticleLease', 'uses' => 'ArticleController@storeArticleForLease']);
+    Route::get('dang-tin-can-mua-can-thue', ['as' => 'guest.article.getArticleBuy', 'uses' => 'ArticleController@newGuestArticleForBuy']);
+    Route::post('dang-tin-can-mua-can-thue', ['as' => 'article.StoreArticleBuy', 'uses' => 'ArticleController@storeArticleForBuy']);
+
+    Route::post('quan-ly-tin/dang-tin-ban-cho-thue', ['as' => 'guest.article.StoreArticleLease', 'uses' => 'ArticleController@storeArticleForLease']);
+    Route::post('quan-ly-tin/dang-tin-can-mua-can-thue', ['as' => 'guest.article.StoreArticleBuy', 'uses' => 'ArticleController@storeArticleForBuy']);
+
+});
+Route::get('upload/image', ['as' => 'upload.getImage', 'uses' => 'ArticleController@loadImage']);
+Route::post('upload/image', ['as' => 'upload.getImage', 'uses' => 'ArticleController@loadImage']);
+Route::delete('upload/image', ['as' => 'upload.getImage', 'uses' => 'ArticleController@loadImage']);
+Route::get('thong-tin-ca-nhan/xac-nhan-so-dien-thoai-moi', ['as' => 'uses.get.mobile', 'uses' => 'UserController@getVerifyMobile']);
+Route::post('thong-tin-ca-nhan/xac-nhan-so-dien-thoai-moi', ['as' => 'uses.verify.mobile', 'uses' => 'UserController@setVerifyMobile']);
+
 Route::group(['middleware' => ['auth']], function() {
     // trang ca nhan
     Route::prefix('thong-tin-ca-nhan/')->group(function () {
@@ -48,13 +66,10 @@ Route::group(['middleware' => ['auth']], function() {
         Route::post('thay-doi-mat-khau', ['as' => 'user.storePassword', 'uses' => 'UserController@storePassword']);
         Route::get('dang-tin', ['as' => 'user.dangtin', 'uses' => 'UserController@newArticle']);
         Route::post('xoa-tin', ['as' => 'article.xoaTin', 'uses' => 'ArticleController@deleteArticle']);
-
     });
     // quan ly tin
-    Route::get('upload/image', ['as' => 'upload.getImage', 'uses' => 'ArticleController@loadImage']);
+
     Route::get('upload/remove_image', ['as' => 'upload.getImage', 'uses' => 'ArticleController@removeImage']);
-    Route::post('upload/image', ['as' => 'upload.getImage', 'uses' => 'ArticleController@loadImage']);
-    Route::delete('upload/image', ['as' => 'upload.getImage', 'uses' => 'ArticleController@loadImage']);
     Route::prefix('quan-ly-tin/')->group(function () {
         Route::post('tin-cho-thue', ['as' => 'article.getArticleLease', 'uses' => 'ArticleController@getListArticleForLease']);
         Route::post('tin-can-thue', ['as' => 'article.getArticleBuy', 'uses' => 'ArticleController@getListArticleForBuy']);
@@ -173,6 +188,7 @@ Route::get('/mua-cac-loai-bat-dong-san-khac-{position}/{title}bds-{id}', 'Detail
 Route::get('/nha-dat-can-thue-{position}/{title}bds-{id}', 'DetailController@articleForBuyDetail');
 Route::get('/can-thue-can-ho-chung-cu-{position}/{title}bds-{id}', 'DetailController@articleForBuyDetail');
 Route::get('/can-thue-nha-rieng-{position}/{title}bds-{id}', 'DetailController@articleForBuyDetail');
+Route::get('/can-thue-can-nha-rieng-{position}/{title}bds-{id}', 'DetailController@articleForBuyDetail');
 Route::get('/nha-{position}/{title}bds-{id}', 'DetailController@articleForBuyDetail');
 Route::get('/can-thue-nha-mat-pho-{position}/{title}bds-{id}', 'DetailController@articleForBuyDetail');
 Route::get('/can-thue-nha-tro-phong-tro-{position}/{title}bds-{id}', 'DetailController@articleForBuyDetail');
@@ -189,6 +205,8 @@ Route::get('/tim-kiem-nang-cao/{method}/{province_d}/{district_id}/{ward_id}/{st
 
 Route::get('/chinh-sach-quan-ly/{prefix?}', 'CatalogController@Article');
 Route::get('/thong-tin-quy-hoach/{prefix?}', 'CatalogController@Article');
+Route::get('/nha-moi-gioi/{prefix?}', 'CatalogController@Article');
+Route::get('/doanh-nghiep/{prefix?}', 'CatalogController@Article');
 Route::get('/ho-tro/{prefix?}', 'CatalogController@Article');
 Route::get('/tin-tuc/{prefix?}', 'CatalogController@Article');
 Route::get('/tin-thi-truong/{prefix?}', 'CatalogController@Article');

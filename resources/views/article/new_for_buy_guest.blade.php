@@ -1,6 +1,7 @@
 <?php
 use App\Library\Helpers;
 $mySelf = Auth::user();
+session_start();
 global $province;
 ?>
 @include('cache.province')
@@ -73,16 +74,15 @@ global $province;
                     <div id="column-left-user" style="width: 25%; float: left">
                         <div id="usercp">
                             <div class="white-background-new">
-                                @include('user.left_sidebar_avatar', ['mySelf' => $mySelf])
+                                @include('user.left_sidebar_avatar_guest', ['mySelf' => $mySelf])
                             </div>
                         </div>
 
                         <div class="clear">
                         </div>
                     </div>
-                    @if(Auth::user()->phone)
                     <div id="column-no-right-user" style="width: 75%; float: left">
-                        <form action="/quan-ly-tin/dang-tin-can-mua-can-thue" enctype="multipart/form-data" method="POST">
+                        <form action="/guest/quan-ly-tin/dang-tin-can-mua-can-thue" enctype="multipart/form-data" method="POST">
                         <div class="post-product">
                             <div id="user_manage_product" style="border: none;">
                                 <div id="divPostNews">
@@ -381,7 +381,7 @@ global $province;
                                                     Tên liên hệ
                                                 </div>
                                                 <div class="base5">
-                                                    <input name="contact_name" type="text" required id="txtBrName" class="text-field" maxlength="200" style="width: 100%" value="{{old('contact_name') ?? $article->contact_name ?? $mySelf->name}}">
+                                                    <input name="contact_name" type="text" required id="txtBrName" class="text-field contact_phone" maxlength="200" style="width: 100%" value="{{old('contact_name')}}">
                                                     @if ($errors->has('contact_name'))
                                                         <div class="errorMessage" style="display: block;"><p style="color: red">{{ str_replace('contact name', 'tên liên hệ', $errors->first('contact_name'))}}</p></div>
                                                     @endif
@@ -392,7 +392,7 @@ global $province;
                                                     Địa chỉ
                                                 </div>
                                                 <div class="base5">
-                                                    <input name="contact_address" type="text" id="txtBrAddress" class="text-field" value="{{old('contact_address') ?? $article->contact_address ?? (($mySelf->address ? $mySelf->address.', ' : '').($mySelf->street ? $mySelf->street.', ' : '').($mySelf->ward ? $mySelf->ward.', ' : '').($mySelf->district ? $mySelf->district.', ' : '').($mySelf->province ? $mySelf->province.', Việt Nam' : ''))}}" maxlength="200" style="width: 100%;">
+                                                    <input name="contact_address" type="text" id="txtBrAddress" class="text-field" value="{{old('contact_address')}}" maxlength="200" style="width: 100%;">
                                                     @if ($errors->has('contact_address'))
                                                         <div class="errorMessage" style="display: block;"><p style="color: red">{{ str_replace('contact address', 'địa chỉ', $errors->first('contact_address'))}}</p></div>
                                                     @endif
@@ -404,8 +404,9 @@ global $province;
                                                     Di động( <span class="redfont">*</span> )
                                                 </div>
                                                 <div class="base5" style="position: relative;">
-                                                    <div id="divBrMobile" class="comboboxs advance-select-box" style="margin: 0px;height: 25px;position: relative;">
-                                                        <input type="text" name="contact_phone" disabled class="select-text-content required" value="{{old('contact_phone') ?? $article->contact_phone ?? $mySelf->phone}}" placeholder="" style="width: 175px;">
+                                                    <div id="divBrMobile" class="advance-select-box" style="margin: 0px;height: 25px;position: relative;">
+                                                        <input disabled type="text" name="contact_phone" class="select-text-content required contact_phone" value="{{old('contact_phone') ?? $_SESSION['verify_phone'] ?? ''}}" placeholder="" style="width: 175px;">
+                                                        <a id="MainContent__userPage_ctl00_lnkVerifyPrimaryNumber" class="button-blue" onclick="AddNumberPhone()" href="javascript:void(0)">{{old('contact_phone') ? 'Xác nhận số điện thoại khác' : isset($_SESSION['verify_phone']) ? 'Xác nhận số điện thoại khác' : 'Xác nhận số điện thoại đăng tin'}}</a>
                                                         @if ($errors->has('contact_phone'))
                                                             <div class="errorMessage" style="display: block;"><p style="color: red">{{ str_replace('contact phone', 'di động', $errors->first('contact_phone'))}}</p></div>
                                                         @endif
@@ -418,7 +419,7 @@ global $province;
                                                         Email:
                                                     </div>
                                                     <div class="base51">
-                                                        <input name="contact_email" type="text" id="txtBrEmail" class="text-field email-field" maxlength="100" style="width: 100%;" email="1" value="{{old('contact_email') ?? $article->contact_email ?? $mySelf->email}}">
+                                                        <input name="contact_email" type="text" id="txtBrEmail" class="text-field email-field" maxlength="100" style="width: 100%;" email="1" value="{{old('contact_email')}}">
                                                         @if ($errors->has('contact_email'))
                                                             <div class="errorMessage" style="display: block;"><p style="color: red">{{ str_replace('contact email', 'email', $errors->first('contact_email')) }}</p></div>
                                                         @endif
@@ -507,20 +508,7 @@ global $province;
                                                 <td>
                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                     <input type="hidden" name="submit_type" class="submit_type" value="">
-                                                    @if(isset($article->id))
-                                                        <input type="hidden" name="id" value="{{ $article->id }}">
-                                                        <input type="hidden" name="remove_imgs" id="remove_imgs" value="">
-                                                        @if($article->status == PUBLISHED_ARTICLE)
-                                                            <input type="submit" name="ctl00$MainContent$_userPage$ctl00$btnSave" value="Lưu tin" id="btnSave" class="bluebotton" style="width:80px;">
-                                                        @else
-                                                            <input type="submit" name="ctl00$MainContent$_userPage$ctl00$btnSave" value="Đăng tin" id="btnSave" class="bluebotton" style="width:80px;">
-                                                        @endif
-                                                    @else
-                                                        <input type="submit" name="ctl00$MainContent$_userPage$ctl00$btnSave" value="Đăng tin" id="btnSave" class="bluebotton" style="width:80px;">
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    <input id="btnCancel" type="button" value="Lưu Nháp" name="btnCancel" class="orangebutton" onclick="DirectDraft()">
+                                                    <input type="submit" name="ctl00$MainContent$_userPage$ctl00$btnSave" value="Đăng tin" id="btnSave" class="bluebotton" style="width:80px;">
                                                 </td>
                                             </tr>
                                             </tbody></table>
@@ -535,38 +523,75 @@ global $province;
                         </div>
                         </form>
                     </div>
-                    @else
-                        <div id="column-no-right-user" style="width: 75%; float: left">
-                            <div class="post-product">
-                                <div id="user_manage_product" style="border: none;">
-                                    <div class="post-message">
-                                        <div class="post-message-result">
-                                            <div style="background-color: orangered;"><span
-                                                        class="fa fa-warning fa-3x"></span></div>
-                                            <span style="color: orange;">Bạn cần cung cấp số điện thoại</span>
-                                        </div>
-                                        <div class="post-message-result-detail">
-                                                <span>Tài khoản của bạn chưa có thông tin về số điện thoại. Bạn cần cập nhật số điện thoại trước khi bắt đầu sử dụng chức năng này. Bạn hãy cập nhật số điện thoại trong chức năng <a
-                                                            href="/thong-tin-ca-nhan/thay-doi-ca-nhan">Thay đổi thông tin cá nhân</a></span>
-                                        </div>
-                                        <div class="post-message-hotline">
-                                            <span>Mọi thắc mắc xin vui lòng liên hệ tổng đài CSKH:</span><br>
-                                            <span class="fa fa-phone-square fa-2x" style="float: left;"></span>
-                                            <span class="fone"
-                                                  style="display: inline-block; font-size: 16px; color: #339900; height: 25px;">{{ENV('PHONE_CONTACT')}}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="clear">
-                            </div>
-                        </div>
-                    @endif
                 </div>
 
             </div>
         </div>
     </div>
+@endsection
+@section('footerElement')
+    <div id="verifyPopupContainer" class="modal fade" role="dialog" style="top: 50px;">
+        <div class="verifyPopup modal-dialog">
+            <!-- Modal content-->
+            <div class="verifyPopupClose fa fa-close" onclick="closePopup()"></div>
+            <div class="modal-content">
+                <div class="verifyPopupTitle">thêm số điện thoại đăng tin</div>
+                <div class="verifyPopupContent">
+                    <table>
+                        <tbody>
+                        <tr>
+                            <td style="width:130px;">Số điện thoại đăng tin</td>
+                            <td><input type="number" max="9999999999" min="0"
+                                       placeholder="Nhập số điện thoại bạn muốn thêm vào hồ sơ " style="width:350px;"
+                                       id="txtNumberPhone"></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <div id="lblPopupNumberError"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><input type="button" class="button-blue1" value="Lấy mã xác thực" onclick="SendVerifyOTP()"
+                                       id="btnPopupSendOTP"> <span id="lblSMSPopupPrice">Miễn phí</span></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <div id="lblPopupSendOTPMessage" style="display:none;">Mã xác thực đã được gửi đến số điện
+                                    thoại <span id="lblMobile">xxxx xxx xxx</span> <br>Thời gian nhập mã xác thực còn lại:
+                                    <span id="lblTimeout">05 phút</span></div>
+                                <div id="lblPopupSendOTPError"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Nhập mã xác thực</td>
+                            <td><input type="number" min="0" max="999999" placeholder="Nhập mã số bạn nhận được qua SMS"
+                                       style="width:240px; margin-right:20px;" id="txtOTP"><input type="button"
+                                                                                                  class="button-blue1"
+                                                                                                  value="Xác thực"
+                                                                                                  onclick="VerifyOTPNumberPhone()">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <div id="lblPopupOTPError"></div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        .verifyPopup .modal-content {
+            all: initial;
+        }
+    </style>
+
 @endsection
 @section('contentJS')
     <script>
@@ -784,5 +809,79 @@ global $province;
     <script src="/js/upload/jquery.fileupload-ui.js"></script>
     <!-- The main application script -->
     <script src="/js/upload/main.js"></script>
+    <script>
+        function AddNumberPhone() {
+            $("#verifyPopupContainer").modal();
+            // $("#myModal").modal();
+        }
+        function SendVerifyOTP() {
+            if(!$('#txtNumberPhone').val() || $('#txtNumberPhone').val().length < 5) {
+                $('#lblPopupSendOTPError').html('Vui lòng điền số điện thoại.');
+                return false;
+            }
 
+            $.ajax({
+                url: '/thong-tin-ca-nhan/xac-nhan-so-dien-thoai-moi',
+                type: "GET",
+                dataType: "json",
+                data: {
+                    phone: $('#txtNumberPhone').val(),
+                },
+                beforeSend: function () {
+                    if(loaded) return false;
+                    loaded = true;
+                    $('#lblPopupSendOTPError').html('');
+                    $('#lblPopupOTPError').html('');
+                    $('#lblPopupSendOTPMessage').css('display', 'none');
+                },
+                success: function(response) {
+                    if(response.success) {
+                        $('#lblMobile').html(response.data.phone);
+                        $('#lblTimeout').html(response.data.expried);
+                        $('#lblPopupSendOTPMessage').css('display', 'block');
+                    }else{
+                        $('#lblPopupSendOTPError').html(response.message);
+                    }
+                }
+            });
+        }
+        function VerifyOTPNumberPhone() {
+            if(!$('#txtNumberPhone').val() || $('#txtNumberPhone').val().length < 5) {
+                $('#lblPopupSendOTPError').html('Vui lòng điền số điện thoại.');
+                return false;
+            }
+            if(!$('#txtOTP').val() || $('#txtNumberPhone').val().length < 4) {
+                $('#lblPopupOTPError').html('Vui lòng điền chính xác mã xác thực.');
+                return false;
+            }
+
+            $.ajax({
+                url: '/thong-tin-ca-nhan/xac-nhan-so-dien-thoai-moi',
+                type: "POST",
+                dataType: "json",
+                data: {
+                    phone: $('#txtNumberPhone').val(),
+                    otp: $('#txtOTP').val(),
+                },
+                beforeSend: function () {
+                    if(loaded) return false;
+                    loaded = true;
+                    $('#lblPopupSendOTPError').html('');
+                    $('#lblPopupOTPError').html('');
+                    $('#lblPopupSendOTPMessage').css('display', 'none');
+                },
+                success: function(response) {
+                    if(response.success) {
+                        $('#verifyPopupContainer').click();
+                        $('#txtNumberPhone').val('');
+                        $('#txtOTP').val('');
+                        $('.contact_phone').val(response.data.phone);
+                        alertModal(response.message);
+                    }else{
+                        $('#lblPopupOTPError').html(response.message);
+                    }
+                }
+            });
+        }
+    </script>
 @endsection

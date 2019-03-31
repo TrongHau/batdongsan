@@ -14,7 +14,7 @@
 		<thead>
 			<tr>
 				@foreach($columns as $tableColumnKey => $tableColumnLabel)
-				<th>{{ $tableColumnLabel }}</th>
+				<th><?php echo $tableColumnLabel ?></th>
 				@endforeach
 			</tr>
 		</thead>

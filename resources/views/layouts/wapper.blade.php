@@ -79,6 +79,7 @@
                              id="ico_faq">
                     </div>
                 </div>
+                @if(Auth::check())
                 <div id="divCusPostProduct">
                     <div id="UserControl1_divPostProduct" class="header-middle-righ-link">
                         <a href="/quan-ly-tin/dang-tin-ban-cho-thue"
@@ -89,6 +90,18 @@
                              id="ico_product">
                     </div>
                 </div>
+                @else
+                    <div id="divCusPostProduct">
+                        <div id="UserControl1_divPostProduct" class="header-middle-righ-link">
+                            <a href="/guest/dang-tin-ban-cho-thue"
+                               id="linkPostProduct"><span>Đăng tin rao</span></a>
+                        </div>
+                        <div class="header-middle-righ-icon">
+                            <img src="/imgs/plus.png"
+                                 id="ico_product">
+                        </div>
+                    </div>
+                @endif
                 <div id="UserControl1_divMember">
                 </div>
             </div>
@@ -197,6 +210,10 @@
                             động sản thế giới</a></li>
                     <li class="lv1"><a href="{{env("APP_URL")}}/tai-chinh-chung-khoan-bat-dong-san"
                                        class="haslink ">Tài chính - Chứng khoán - BĐS</a></li>
+                    <li class="lv1"><a href="{{env("APP_URL")}}/chinh-sach-quan-ly"
+                                       class="haslink ">Chính sách - Quản lý</a></li>
+                    <li class="lv1"><a href="{{env("APP_URL")}}/thong-tin-quy-hoach"
+                                       class="haslink ">Thông tin quy hoạch</a></li>
                     <li class="lv1"><a href="{{env("APP_URL")}}/tu-van-luat-bat-dong-san"
                                        class="haslink indent">Tư vấn luật</a>
                         <ul>
@@ -231,8 +248,8 @@
                     </li>
                 </ul>
             </li>
-            <li class="lv0"><a href="{{env("APP_URL")}}/chinh-sach-quan-ly" class="haslink ">Chính sách - Quản lý</a></li>
-            <li class="lv0"><a href="{{env("APP_URL")}}/thong-tin-quy-hoach" class="haslink ">Thông tin quy hoạch</a></li>
+            <li class="lv0"><a href="{{env("APP_URL")}}/nha-moi-gioi" class="haslink ">Nhà môi giới</a></li>
+            <li class="lv0"><a href="{{env("APP_URL")}}/doanh-nghiep" class="haslink ">Doanh nghiệp</a></li>
             <li class="lv0"><a href="{{env("APP_URL")}}/ho-tro" class="haslink ">Hỗ trợ</a></li>
 
         </ul>

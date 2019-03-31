@@ -33,7 +33,7 @@
     <!-- BackPack Base CSS -->
     <link rel="stylesheet" href="{{ asset('vendor/backpack/backpack.base.css') }}?v=2">
     <link rel="stylesheet" href="{{ asset('vendor/backpack/overlays/backpack.bold.css') }}">
-
+    <link rel="stylesheet" href="/css/custom_admin.css">
     @yield('after_styles')
     @stack('after_styles')
 

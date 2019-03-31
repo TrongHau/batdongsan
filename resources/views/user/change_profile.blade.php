@@ -178,10 +178,11 @@ $mySelf = Auth::user();
                                                         <span style="color: #f00;">(*)</span>
                                                     </td>
                                                     <td>
-                                                        <input name="phone" type="text" value="{{old('phone') ?? $mySelf->phone}}" maxlength="16" class="keycode" style="width:50%;">
+                                                        <input name="phone" disabled type="text" value="{{old('phone') ?? $mySelf->phone}}" maxlength="16" class="keycode input_phone" style="width:50%;">
                                                         @if ($errors->has('phone'))
                                                             <span style="color: red;" id="errorFullName">{{ str_replace('phone', 'số điện thoại', $errors->first('phone')) }}</span>
                                                         @endif
+                                                        <a id="MainContent__userPage_ctl00_lnkVerifyPrimaryNumber" class="button-blue" onclick="AddNumberPhone()" href="javascript:void(0)">Đăng ký số điện thoại mới</a>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -260,6 +261,70 @@ $mySelf = Auth::user();
         </div>
     </div>
 @endsection
+@section('footerElement')
+    <div id="verifyPopupContainer" class="modal fade" role="dialog" style="top: 50px;">
+        <div class="verifyPopup modal-dialog">
+            <!-- Modal content-->
+                    <div class="verifyPopupClose fa fa-close" onclick="closePopup()"></div>
+                    <div class="modal-content">
+                        <div class="verifyPopupTitle">thêm số điện thoại đăng tin</div>
+                        <div class="verifyPopupContent">
+                            <table>
+                                <tbody>
+                                <tr>
+                                    <td style="width:130px;">Số điện thoại đăng tin</td>
+                                    <td><input type="number" max="9999999999" min="0"
+                                               placeholder="Nhập số điện thoại bạn muốn thêm vào hồ sơ " style="width:350px;"
+                                               id="txtNumberPhone"></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <div id="lblPopupNumberError"></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td><input type="button" class="button-blue1" value="Lấy mã xác thực" onclick="SendVerifyOTP()"
+                                               id="btnPopupSendOTP"> <span id="lblSMSPopupPrice">Miễn phí</span></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <div id="lblPopupSendOTPMessage" style="display:none;">Mã xác thực đã được gửi đến số điện
+                                            thoại <span id="lblMobile">xxxx xxx xxx</span> <br>Thời gian nhập mã xác thực còn lại:
+                                            <span id="lblTimeout">05 phút</span></div>
+                                        <div id="lblPopupSendOTPError"></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Nhập mã xác thực</td>
+                                    <td><input type="number" min="0" max="999999" placeholder="Nhập mã số bạn nhận được qua SMS"
+                                               style="width:240px; margin-right:20px;" id="txtOTP"><input type="button"
+                                                                                                               class="button-blue1"
+                                                                                                               value="Xác thực"
+                                                                                                               onclick="VerifyOTPNumberPhone()">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <div id="lblPopupOTPError"></div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+        </div>
+    </div>
+    <style>
+        .verifyPopup .modal-content {
+            all: initial;
+        }
+    </style>
+
+@endsection
 @section('contentJS')
     <script>
         <?php
@@ -291,5 +356,79 @@ $mySelf = Auth::user();
         $('.select-street').change(function() {
             $('#txtAddress').val('Đường ' + $('.select-street option:selected').text() + ', ' + $('.select-ward option:selected').text() + ', ' + $('.select-district option:selected').text() + ', ' + $('.select-province option:selected').text());
         });
+
+        function AddNumberPhone() {
+            $("#verifyPopupContainer").modal();
+            // $("#myModal").modal();
+        }
+        function SendVerifyOTP() {
+            if(!$('#txtNumberPhone').val() || $('#txtNumberPhone').val().length < 5) {
+                $('#lblPopupSendOTPError').html('Vui lòng điền số điện thoại.');
+                return false;
+            }
+
+            $.ajax({
+                url: '/thong-tin-ca-nhan/xac-nhan-so-dien-thoai-moi',
+                type: "GET",
+                dataType: "json",
+                data: {
+                    phone: $('#txtNumberPhone').val(),
+                },
+                beforeSend: function () {
+                    if(loaded) return false;
+                    loaded = true;
+                    $('#lblPopupSendOTPError').html('');
+                    $('#lblPopupOTPError').html('');
+                    $('#lblPopupSendOTPMessage').css('display', 'none');
+                },
+                success: function(response) {
+                   if(response.success) {
+                       $('#lblMobile').html(response.data.phone);
+                       $('#lblTimeout').html(response.data.expried);
+                       $('#lblPopupSendOTPMessage').css('display', 'block');
+                   }else{
+                       $('#lblPopupSendOTPError').html(response.message);
+                   }
+                }
+            });
+        }
+        function VerifyOTPNumberPhone() {
+            if(!$('#txtNumberPhone').val() || $('#txtNumberPhone').val().length < 5) {
+                $('#lblPopupSendOTPError').html('Vui lòng điền số điện thoại.');
+                return false;
+            }
+            if(!$('#txtOTP').val() || $('#txtNumberPhone').val().length < 4) {
+                $('#lblPopupOTPError').html('Vui lòng điền chính xác mã xác thực.');
+                return false;
+            }
+
+            $.ajax({
+                url: '/thong-tin-ca-nhan/xac-nhan-so-dien-thoai-moi',
+                type: "POST",
+                dataType: "json",
+                data: {
+                    phone: $('#txtNumberPhone').val(),
+                    otp: $('#txtOTP').val(),
+                },
+                beforeSend: function () {
+                    if(loaded) return false;
+                    loaded = true;
+                    $('#lblPopupSendOTPError').html('');
+                    $('#lblPopupOTPError').html('');
+                    $('#lblPopupSendOTPMessage').css('display', 'none');
+                },
+                success: function(response) {
+                    if(response.success) {
+                        $('#verifyPopupContainer').click();
+                        $('#txtNumberPhone').val('');
+                        $('#txtOTP').val('');
+                        $('.input_phone').val(response.data.phone);
+                        alertModal(response.message);
+                    }else{
+                        $('#lblPopupOTPError').html(response.message);
+                    }
+                }
+            });
+        }
     </script>
 @endsection

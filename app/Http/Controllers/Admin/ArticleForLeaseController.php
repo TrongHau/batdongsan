@@ -18,17 +18,34 @@ class ArticleForLeaseController extends CrudController
     {
         parent::__construct();
 
+    }
+    public function setup()
+    {
         /*
-        |--------------------------------------------------------------------------
-        | BASIC CRUD INFORMATION
-        |--------------------------------------------------------------------------
-        */
+       |--------------------------------------------------------------------------
+       | BASIC CRUD INFORMATION
+       |--------------------------------------------------------------------------
+       */
         $this->crud->setModel("App\Models\ArticleForLeaseModel");
         $this->crud->setRoute(config('backpack.base.route_prefix', 'admin').'/article_for_lease');
         $this->crud->setEntityNameStrings('article_for_lease', 'Tin rao bán, cho thuê nhà đất');
         $this->crud->orderBy('id', 'desc');
 
         $this->crud->denyAccess(['create']);
+        $this->crud->enableBulkActions();
+        $this->crud->addBulkDeleteButton();
+
+        $this->crud->addFilter([ // daterange filter
+            'type' => 'date_range',
+            'name' => 'from_to',
+            'label'=> 'Hiển thị theo thời gian'
+        ],
+            false,
+            function($value) {
+                $dates = json_decode(htmlspecialchars_decode($value, ENT_QUOTES));
+                $this->crud->addClause('whereDate', 'created_at', '>=', $dates->from);
+                $this->crud->addClause('whereDate', 'created_at', '<=', $dates->to);
+            });
 
         /*
         |--------------------------------------------------------------------------

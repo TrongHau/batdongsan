@@ -44,7 +44,7 @@
                     data-orderable="{{ var_export($column['orderable'], true) }}"
                     data-priority="{{ $column['priority'] }}"
                     >
-                    {{ $column['label'] }}
+                    <?php echo $column['label'] ?>
                   </th>
                 @endforeach
 
@@ -59,7 +59,7 @@
               <tr>
                 {{-- Table columns --}}
                 @foreach ($crud->columns as $column)
-                  <th>{{ $column['label'] }}</th>
+                  <th><?php echo $column['label'] ?></th>
                 @endforeach
 
                 @if ( $crud->buttons->where('stack', 'line')->count() )

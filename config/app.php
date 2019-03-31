@@ -182,6 +182,7 @@ return [
         Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
         Backpack\BackupManager\BackupManagerServiceProvider::class,
         Jenssegers\Agent\AgentServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class
     ],
 
     /*
@@ -236,7 +237,7 @@ return [
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'NoCaptcha' => Anhskohbo\NoCaptcha\Facades\NoCaptcha::class,
         'Agent' => Jenssegers\Agent\Facades\Agent::class,
-
+        'Image' => Intervention\Image\Facades\Image::class
     ],
     'debug_blacklist' => [
         '_COOKIE' => array_keys($_COOKIE),

@@ -47,7 +47,7 @@ $list = $article->toArray();
             </td>
             <td>
                 <span style="float: left; word-wrap: break-word; color: #055699;" id="view_18965371">
-                    <img style="width: 77px; height: 62px; float: left; padding-right: 8px;" src="{{$item['gallery_image'] ? Helpers::file_path($item['id'], PUBLIC_ARTICLE_BUY, true).THUMBNAIL_PATH.json_decode($item['gallery_image'])[0] : THUMBNAIL_DEFAULT }}" alt="{{$item['title']}}">{{$item['title']}}</span>
+                    <img style="width: 77px; height: 62px; float: left; padding-right: 8px;" src="{{$item['gallery_image'] ? Helpers::file_path($item['id'], ($item['typeOf'] == 'lease' ? PUBLIC_ARTICLE_LEASE :PUBLIC_ARTICLE_BUY), true).THUMBNAIL_PATH.json_decode($item['gallery_image'])[0] : THUMBNAIL_DEFAULT }}" alt="{{$item['title']}}">{{$item['title']}}</span>
                 <div style="clear: both; text-align: right; padding-top: 5px;">
                     &nbsp;
                     <a id="MainContent__userPage_ctl00_rpItems_lnkEdit_0" href="{{$item['typeOf'] == 'lease' ? '/quan-ly-tin/dang-tin-ban-cho-thue/' : '/quan-ly-tin/dang-tin-can-mua-can-thue/'}}{{$item['id']}}">

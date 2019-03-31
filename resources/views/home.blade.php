@@ -146,11 +146,11 @@ $Agent = new Agent();
                                             <div class="p-bottom-left">
                                                 <div>
                                                     <div class="left">Giá</div>
-                                                    :&nbsp;{{$item->price_real == 0 ? 'Thỏa thuận' :$item->price.' '.$item->ddlPriceType}}
+                                                    :&nbsp;{{($item->price_from != null && $item->price_to != null) ? ($item->price_from. ' - ' .$item->price_to.' '.$item->ddlPriceType) : ($item->price_real == 0 ? 'Thỏa thuận' : $item->price.' '.$item->ddlPriceType)}}
                                                 </div>
                                                 <div>
                                                     <div class="left">Diện tích</div>
-                                                    :&nbsp;{{$item->area ? $item->area.' m²' : 'Chưa xác định'}}
+                                                    :&nbsp;{{($item->area_from != null && $item->area_to != null) ? ($item->area_from. ' - ' .$item->area_to.' m²') : ($item->area ? $item->area.' m²' : 'Chưa xác định')}}
                                                 </div>
                                                 <div>
                                                     <div class="fleft">
