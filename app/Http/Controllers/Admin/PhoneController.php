@@ -91,11 +91,6 @@ class PhoneController extends CrudController
         ]);
 
         $this->crud->addColumn([
-            'name' => 'count_sms',
-            'label' => 'gửi sms',
-        ]);
-
-        $this->crud->addColumn([
             'name' => 'created_at',
             'label' => 'Ngày tạo',
             'type' => 'date',
