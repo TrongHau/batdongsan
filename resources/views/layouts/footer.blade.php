@@ -49,12 +49,17 @@
             </div>
         </div>
         <div class="footer-bottom-end">
-            <div class="footer-bottom-end-row1" style="color: #555754">
+            <div class="footer-bottom-end-row1" style="color: #555754; position: relative;">
                 © 2019 - Bản quyền của website Batdongsan.company
                 <br/>
                 Địa chỉ: {{ENV('ADDRESS_CONTACT')}}
                 <br/>
                 Điện thoại: {{ENV('PHONE_CONTACT')}}
+                <div style="position: absolute; right: 176px; bottom: 32px; top: 9px;">
+                    <a href="http://online.gov.vn/HomePage/WebsiteDisplay.aspx?DocId=5488" target="_blank" rel="nofollow">
+                        <img src="/imgs/dadangky.png" alt="Đã đăng ký với Bộ Công Thương" width="130px">
+                    </a>
+                </div>
                 <br/>
                 Email {{env('HO_TRO')}}
             </div>
