@@ -171,7 +171,7 @@ class UserController extends Controller
         if(!$request->otp)
             return Helpers::ajaxResult(false, 'Vui lòng điền mã xác thực.', null);
 
-        $existOtp = VerifySMSModel::where(['user_id' => Auth::user()->id ?? session()->getId(), 'type' => 'verify_phone', 'phone' => $request->phone])->first();
+        $existOtp = VerifySMSModel::where(['user_id' => Auth::user()->id ?? session()->getId(), 'type' => 'verify_phone', 'phone' => $request->phone, 'otp' => $request->otp])->first();
         if($existOtp) {
             $phoneFlag = PhoneModel::find($existOtp->phone);
             if($phoneFlag && $phoneFlag->status == 0)
