@@ -133,14 +133,15 @@ class UserController extends Controller
             return Helpers::ajaxResult(false, 'Số điện thoại đã sử dụng', null);
         if(isset($_SESSION['verify_phone']) && $_SESSION['verify_phone'] == $request->phone)
             return Helpers::ajaxResult(false, 'Số điện thoại bạn đang sử dụng', null);
-        $existOtp = VerifySMSModel::where(['user_id' => Auth::user()->id ?? session()->getId(), 'type' => 'verify_phone'])->first();
+        $existOtp = VerifySMSModel::where(['user_id' => Auth::user()->id ?? session()->getId(), 'type' => 'verify_phone', 'phone' => $request->phone])->first();
         if($existOtp) {
-            $timeExpried = $existOtp->otp_time_expried - time();
-            if($timeExpried > 0) {
-                return Helpers::ajaxResult(true, 'Thời gian nhập mã xác thực còn lại:', ['phone' => $existOtp->phone, 'expried' => date('i', $timeExpried) . ' phút']);
-            }else{
-                $existOtp->delete();
+            if($existOtp->phone == $request->phone) {
+                $timeExpried = $existOtp->otp_time_expried - time();
+                if($timeExpried > 0) {
+                    return Helpers::ajaxResult(true, 'Thời gian nhập mã xác thực còn lại:', ['phone' => $existOtp->phone, 'expried' => date('i', $timeExpried) . ' phút']);
+                }
             }
+            $existOtp->delete();
         }
         $phoneFlag = PhoneModel::find($request->phone);
         if($phoneFlag) {
