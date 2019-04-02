@@ -185,7 +185,7 @@ class ArticleController extends Controller
         $mes = '';
         $typeAuthGuest = '';
         session_start();
-        if(!Auth::check() && $_SESSION['verify_phone'] && !$request->id) {
+        if(!Auth::check() && isset($_SESSION['verify_phone']) && !$request->id) {
             Input::merge(['contact_phone' => $_SESSION['verify_phone']]);
             $typeAuthGuest = 'guest.';
         }else{
@@ -323,7 +323,7 @@ class ArticleController extends Controller
     {
         session_start();
         $typeAuthGuest = '';
-        if(!Auth::check() && $_SESSION['verify_phone'] && !$request->id) {
+        if(!Auth::check() && isset($_SESSION['verify_phone']) && !$request->id) {
             Input::merge(['contact_phone' => $_SESSION['verify_phone']]);
             $typeAuthGuest = 'guest.';
         }else{
