@@ -131,6 +131,8 @@ class UserController extends Controller
             return Helpers::ajaxResult(false, 'Vui lòng điền số điện thoại.', null);
         if(User::where('phone', $request->phone)->first())
             return Helpers::ajaxResult(false, 'Số điện thoại đã sử dụng', null);
+        if(isset($_SESSION['verify_phone']) && $_SESSION['verify_phone'] == $request->phone)
+            return Helpers::ajaxResult(false, 'Số điện thoại bạn đang sử dụng', null);
         $existOtp = VerifySMSModel::where(['user_id' => Auth::user()->id ?? session()->getId(), 'type' => 'verify_phone'])->first();
         if($existOtp) {
             $timeExpried = $existOtp->otp_time_expried - time();
