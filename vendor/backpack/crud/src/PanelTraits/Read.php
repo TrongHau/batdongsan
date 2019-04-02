@@ -180,15 +180,6 @@ trait Read
             'visibleInModal' => false,
         ])->makeFirstColumn();
 
-        $this->addColumn([
-            'type' => 'custom_html',
-            'name' => 'blank_first_column',
-            'label' => ' ',
-            'priority' => 1,
-            'searchLogic' => false,
-            'orderable' => false,
-            'visibleInModal' => false,
-        ])->makeFirstColumn();
     }
 
     /**

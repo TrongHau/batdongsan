@@ -60,9 +60,15 @@ class ArticleForBuyController extends CrudController
 //                                'type' => 'date',
 //        ]);
         $this->crud->addColumn([
-            'name' => 'id',
-            'label' => 'ID'
+            'name'  => 'id',
+            'label' => 'ID',
+            'type' => 'closure',
+            'function' => function($entry) {
+                return '<a href="/quan-ly-tin/dang-tin-ban-cho-thue/'.$entry->id.'" target="_blank">'.$entry->id.'</a>';
+            },
         ]);
+
+
         $this->crud->addColumn([
             'name' => 'created_at',
             'label' => 'Ngày tạo',
@@ -94,10 +100,6 @@ class ArticleForBuyController extends CrudController
         $this->crud->addColumn([
             'name' => 'contact_name',
             'label' => 'Liên lạc',
-        ]);
-        $this->crud->addColumn([
-            'name' => 'id',
-            'label' => 'ID'
         ]);
         $this->crud->addColumn([
             'name' => 'project',
