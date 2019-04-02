@@ -102,10 +102,6 @@ class ArticleForBuyController extends CrudController
             'label' => 'Liên lạc',
         ]);
         $this->crud->addColumn([
-            'name' => 'id',
-            'label' => 'ID'
-        ]);
-        $this->crud->addColumn([
             'name' => 'project',
             'label' => 'Dự án'
         ]);
