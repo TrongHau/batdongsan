@@ -34,6 +34,8 @@ class LoginController extends Controller
      */
     public function __construct()
     {
+        session_start();
+        $_SESSION['verify_phone'] = '';
         $this->middleware('guest')->except('logout');
     }
 }

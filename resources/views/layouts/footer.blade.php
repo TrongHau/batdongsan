@@ -56,7 +56,7 @@
                 <br/>
                 Điện thoại: {{ENV('PHONE_CONTACT')}}
                 <div style="position: absolute; right: 176px; bottom: 32px; top: 9px;">
-                    <a href="http://online.gov.vn/HomePage/WebsiteDisplay.aspx?DocId=5488" target="_blank" rel="nofollow">
+                    <a href="#" target="_blank" rel="nofollow">
                         <img src="/imgs/dadangky.png" alt="Đã đăng ký với Bộ Công Thương" width="130px">
                     </a>
                 </div>
