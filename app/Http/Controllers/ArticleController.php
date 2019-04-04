@@ -311,7 +311,7 @@ class ArticleController extends Controller
                 $imgs[] = $fileName;
             }
         }
-        $result->gallery_image = json_encode($imgs);
+        $result->gallery_image = $imgs ? json_encode($imgs) : null;
         $result->save();
         if($request->id) {
             return redirect()->route($typeAuthGuest.'article.getArticleLease', $request->id)->with('success', $mes ? $mes : 'Sửa tin thành công');
@@ -441,7 +441,7 @@ class ArticleController extends Controller
                 $imgs[] = $fileName;
             }
         }
-        $result->gallery_image = json_encode($imgs);
+        $result->gallery_image = $imgs ? json_encode($imgs) : null;
         $result->save();
         if($request->id) {
             return redirect()->route($typeAuthGuest.'article.getArticleBuy', $request->id)->with('success', $mes ? $mes : 'Sửa tin thành công');
