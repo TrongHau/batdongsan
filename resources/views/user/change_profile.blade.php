@@ -373,6 +373,7 @@ $mySelf = Auth::user();
                 dataType: "json",
                 data: {
                     phone: $('#txtNumberPhone').val(),
+                    type: 'update_profile',
                 },
                 beforeSend: function () {
                     if(loaded) return false;

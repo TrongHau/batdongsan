@@ -155,7 +155,11 @@ class UserController extends Controller
             ]);
         }
         $otp = mt_rand(1000, 9999);
-        $Content = "Ma xac thuc Batdongsan.company cua ban la: " . $otp;
+        if($request->type == 'update_profile') {
+            $Content = "Khóa xác nhận SĐT của Bạn là: " . $otp;
+        }else{
+            $Content = "Khóa xác nhận SĐT của Bạn là ".$otp.". Tin đăng của Quý Vị sẽ được hiển thị trên Website sau 8 giờ làm việc. Chi tiết LH: ".env('PHONE_CONTACT');
+        }
         Helpers::sendSMS($request->phone, $Content);
         $newOtp = VerifySMSModel::create([
             'user_id' => Auth::user()->id ?? session()->getId(),
