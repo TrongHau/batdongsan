@@ -96,10 +96,14 @@ class ArticleForLeaseController extends CrudController
             },
         ]);
         $this->crud->addColumn([
-            'name' => 'start_news',
+            'name' => 'created_at',
             'label' => 'Ngày tạo',
-            'type' => 'date'
+            'type' => 'closure',
+            'function' => function($entry) {
+                return '<a href="/'.$entry->prefix_url.'-bds-'.$entry->id.'" target="_blank">'.date_format(date_create($entry->created_at),"d-m-Y").'</a>';
+            },
         ]);
+
         $this->crud->addColumn([
             'name' => 'title',
             'label' => 'Tiêu đề',
