@@ -298,8 +298,8 @@ class ArticleController extends Controller
                 Storage::disk('public')->delete(Helpers::file_path($result->id, SOURCE_DATA_ARTICLE_LEASE, true).THUMBNAIL_PATH.$item);
             }
         }
-        if($request->upload_images) {
-            $imgs = [];
+        $imgs = [];
+        if($request->upload_images != null && $request->upload_images != '') {
             foreach($request->upload_images as $item) {
                 if(!in_array($item, $olDataImgs)) {
                     $fileName = $result->id.'-'.$item;
@@ -310,9 +310,9 @@ class ArticleController extends Controller
                 }
                 $imgs[] = $fileName;
             }
-            $result->gallery_image = json_encode($imgs);
-            $result->save();
         }
+        $result->gallery_image = json_encode($imgs);
+        $result->save();
         if($request->id) {
             return redirect()->route($typeAuthGuest.'article.getArticleLease', $request->id)->with('success', $mes ? $mes : 'Sửa tin thành công');
         }else{
@@ -428,8 +428,8 @@ class ArticleController extends Controller
                 Storage::disk('public')->delete(Helpers::file_path($result->id, SOURCE_DATA_ARTICLE_BUY, true).THUMBNAIL_PATH.$item);
             }
         }
-        if($request->upload_images) {
-            $imgs = [];
+        $imgs = [];
+        if($request->upload_images != null && $request->upload_images != '') {
             foreach($request->upload_images as $item) {
                 if(!in_array($item, $olDataImgs)) {
                     $fileName = $result->id.'-'.$item;
@@ -440,9 +440,9 @@ class ArticleController extends Controller
                 }
                 $imgs[] = $fileName;
             }
-            $result->gallery_image = json_encode($imgs);
-            $result->save();
         }
+        $result->gallery_image = json_encode($imgs);
+        $result->save();
         if($request->id) {
             return redirect()->route($typeAuthGuest.'article.getArticleBuy', $request->id)->with('success', $mes ? $mes : 'Sửa tin thành công');
         }else{
