@@ -981,7 +981,7 @@ global $province;
                 dataType: "json",
                 data: {
                     phone: $('#txtNumberPhone').val(),
-                    type: 'update_profile',
+                    type: 'update_news',
                 },
                 beforeSend: function () {
                     if(loaded) return false;
