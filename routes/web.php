@@ -50,6 +50,7 @@ Route::prefix('guest/')->group(function () {
 Route::get('upload/image', ['as' => 'upload.getImage', 'uses' => 'ArticleController@loadImage']);
 Route::post('upload/image', ['as' => 'upload.getImage', 'uses' => 'ArticleController@loadImage']);
 Route::delete('upload/image', ['as' => 'upload.getImage', 'uses' => 'ArticleController@loadImage']);
+Route::get('thong-tin-ca-nhan/xac-nhan-so-dien-thoai-moi-2', ['as' => 'uses.get.mobile', 'uses' => 'UserController@getVerifyMobile2']);
 Route::get('thong-tin-ca-nhan/xac-nhan-so-dien-thoai-moi', ['as' => 'uses.get.mobile', 'uses' => 'UserController@getVerifyMobile']);
 Route::post('thong-tin-ca-nhan/xac-nhan-so-dien-thoai-moi', ['as' => 'uses.verify.mobile', 'uses' => 'UserController@setVerifyMobile']);
 

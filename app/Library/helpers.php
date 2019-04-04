@@ -88,7 +88,7 @@ class Helpers
         }
         return $result;
     }
-    public static function sendSMS($sendPhone, $content) {
+    public static function sendSMS($sendPhone, $content, $smsResult = false) {
         $APIKey = env('SMS_API_KEY');
         $SecretKey = env('SMS_SECRET_KEY');
         // $YourPhone="0901472486";
@@ -106,22 +106,24 @@ class Helpers
         $result = curl_exec($curl);
 
         $obj = json_decode($result, true);
-        if ($obj['CodeResult'] == 100) {
-           return true;
-        } else {
-            return false;
+        if(!$smsResult) {
+            if ($obj['CodeResult'] == 100) {
+                return true;
+            } else {
+                return false;
+            }
         }
-
-//        if ($obj['CodeResult'] == 100) {
-//            print "<br>";
-//            print "CodeResult:" . $obj['CodeResult'];
-//            print "<br>";
-//            print "CountRegenerate:" . $obj['CountRegenerate'];
-//            print "<br>";
-//            print "SMSID:" . $obj['SMSID'];
-//            print "<br>";
-//        } else {
-//            print "ErrorMessage:" . $obj['ErrorMessage'];
-//        }
+        if ($obj['CodeResult'] == 100) {
+            print "<br>";
+            print "CodeResult:" . $obj['CodeResult'];
+            print "<br>";
+            print "CountRegenerate:" . $obj['CountRegenerate'];
+            print "<br>";
+            print "SMSID:" . $obj['SMSID'];
+            print "<br>";
+        } else {
+            print "ErrorMessage:" . $obj['ErrorMessage'];
+        }
+        exit();
     }
 }
