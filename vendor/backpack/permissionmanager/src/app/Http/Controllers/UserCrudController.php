@@ -6,6 +6,9 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Http\Requests\CrudRequest;
 use Backpack\PermissionManager\app\Http\Requests\UserStoreCrudRequest as StoreRequest;
 use Backpack\PermissionManager\app\Http\Requests\UserUpdateCrudRequest as UpdateRequest;
+use App\Role;
+use App\Permission;
+use App\PermissionUserModel;
 
 class UserCrudController extends CrudController
 {
@@ -20,6 +23,43 @@ class UserCrudController extends CrudController
         $this->crud->setEntityNameStrings(trans('backpack::permissionmanager.user'), trans('backpack::permissionmanager.users'));
         $this->crud->setRoute(config('backpack.base.route_prefix').'/user');
         $this->crud->enableAjaxTable();
+
+
+        $this->crud->addFilter([ // select2_multiple filter
+            'name' => 'roles',
+//            'type' => 'dropdown',
+            'type' => 'select2_multiple',
+            'label'=> 'Roles',
+            'placeholder' => 'Tìm phân quyền truy cập (Roles)'
+        ], function () {
+            return Role::orderBy('name')->get()->pluck('name', 'id')->toArray();
+        }, function ($values) {
+            $values = json_decode(htmlspecialchars_decode($values, ENT_QUOTES));
+            if (!empty($values)) {
+                // $this->crud->addClause('where', 'roles.name', 'IN', $values);
+                $this->crud->query = $this->crud->query->whereHas('roles',
+                    function ($query) use ($values) {
+                        $query->whereIn('roles.id', $values);
+                    });
+            }
+        });
+        $this->crud->addFilter([ // select2_multiple filter
+            'name' => 'permissions',
+            'type' => 'select2_multiple',
+            'label'=> 'Extra Permissions',
+            'placeholder' => 'Tìm phân quyền truy cập (Extra Permissions)'
+        ], function () {
+            return Permission::orderBy('name')->get()->pluck('name', 'id')->toArray();
+        }, function ($values) {
+            $values = json_decode(htmlspecialchars_decode($values, ENT_QUOTES));
+            if (!empty($values)) {
+                $this->crud->query = $this->crud->query->whereHas('permissions',
+                    function ($query) use ($values) {
+                        $query->whereIn('permissions.id', $values);
+                    });
+            }
+        });
+
 
         // Columns.
         $this->crud->setColumns([

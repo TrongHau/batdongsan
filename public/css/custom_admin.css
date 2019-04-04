@@ -36,3 +36,6 @@ form .box-header {
     float: inherit;
     margin-bottom: 0px;
 }
+.dropdown-menu .select2-container-multi {
+    min-width: 350px;
+}

@@ -207,6 +207,8 @@ Route::get('/tim-kiem-nang-cao/{method}/{province_d}/{district_id}/{ward_id}/{st
 Route::get('/chinh-sach-quan-ly/{prefix?}', 'CatalogController@Article');
 Route::get('/thong-tin-quy-hoach/{prefix?}', 'CatalogController@Article');
 Route::get('/nha-moi-gioi/{prefix?}', 'CatalogController@Article');
+Route::get('/cong-ty-moi-gioi/{prefix?}', 'CatalogController@Article');
+Route::get('/ca-nhan-moi-gioi/{prefix?}', 'CatalogController@Article');
 Route::get('/doanh-nghiep/{prefix?}', 'CatalogController@Article');
 Route::get('/du-an/{prefix?}', 'CatalogController@Article');
 Route::get('/ho-tro/{prefix?}', 'CatalogController@Article');

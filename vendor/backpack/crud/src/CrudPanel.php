@@ -51,7 +51,7 @@ class CrudPanel
     public $reorder_max_level = 3;
 
     public $details_row = false;
-    public $export_buttons = false;
+    public $export_buttons = true;
     public $bulk_actions = false;
 
     public $columns = []; // Define the columns for the table view as an array;

@@ -600,7 +600,7 @@ global $province;
                 document.getElementById('type_article').options[3]=new Option("Cần mua nhà biệt thự, liền kề", "Mua nhà biệt thự, liền kề", false, false);
                 document.getElementById('type_article').options[4]=new Option("Cần mua nhà mặt phố", "Mua nhà mặt phố", false, false);
                 document.getElementById('type_article').options[5]=new Option("Cần mua đất nền dự án", "Mua đất nền dự án", false, false);
-                document.getElementById('type_article').options[6]=new Option("Cần mua đất", "Bán đất", false, false);
+                document.getElementById('type_article').options[6]=new Option("Cần mua đất", "Mua đất", false, false);
                 document.getElementById('type_article').options[7]=new Option("Cần mua trang trại, khu nghỉ dưỡng", "Mua trang trại, khu nghỉ dưỡng", false, false);
                 document.getElementById('type_article').options[8]=new Option("Cần mua kho, nhà xưởng", "Mua kho, nhà xưởng", false, false);
                 document.getElementById('type_article').options[9]=new Option("Cần mua loại bất động sản khác", "Mua loại bất động sản khác", false, false);

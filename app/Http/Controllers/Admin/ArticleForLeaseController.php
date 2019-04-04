@@ -9,6 +9,7 @@ use Backpack\CRUD\app\Http\Requests\CrudRequest as UpdateRequest;
 use App\User;
 use App\Models\ArticleForLeaseModel;
 use App\Models\ArticleForBuyModel;
+use App\Models\TypeModel;
 use Storage;
 use App\Library\Helpers;
 
@@ -46,6 +47,33 @@ class ArticleForLeaseController extends CrudController
                 $this->crud->addClause('whereDate', 'created_at', '>=', $dates->from);
                 $this->crud->addClause('whereDate', 'created_at', '<=', $dates->to);
             });
+        $this->crud->addFilter([ // select2_multiple filter
+            'name' => 'method_article',
+            'type' => 'dropdown',
+            'label'=> 'Phương thức',
+            'placeholder' => 'Tìm Danh mục tin tức'
+        ], [
+            'Nhà đất cho thuê' => 'Nhà đất cho thuê',
+            'Nhà đất bán' => 'Nhà đất bán'
+        ], function ($values) {
+            if (!empty($values)) {
+                $this->crud->addClause('where', 'method_article', $values);
+            }
+        });
+
+        $this->crud->addFilter([ // select2_multiple filter
+            'name' => 'type_article',
+            'type' => 'select2_multiple',
+            'label'=> 'Danh mục',
+            'placeholder' => 'Tìm Danh mục tin tức'
+        ], function () {
+            return TypeModel::orderBy('name')->where('id', '<', 20)->pluck('name', 'name')->toArray();
+        }, function ($values) {
+            $values = json_decode(htmlspecialchars_decode($values, ENT_QUOTES));
+            if (!empty($values)) {
+                $this->crud->addClause('whereIn', 'type_article', $values);
+            }
+        });
 
         /*
         |--------------------------------------------------------------------------
