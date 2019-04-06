@@ -114,9 +114,7 @@ $mySelf = Auth::user();
                                                                                 <option value="{{$item->id}}">{{$item->_name}}</option>
                                                                             @endforeach
                                                                         </select>
-                                                                        @if ($errors->has('province_id'))
-                                                                            <span style="color: red;" id="errorFullName">{{ str_replace('province id', 'Tỉnh/Thành phố', $errors->first('province_id')) }}</span>
-                                                                        @endif
+
                                                                     </div>
                                                                 </td>
                                                                 <td>
@@ -124,9 +122,7 @@ $mySelf = Auth::user();
                                                                         <select id="select-district" name="district_id" class="advance-options select-district" style="min-width: 200px;border: 1px solid #CCC;">
                                                                             <option value="0" class="advance-options" style="min-width: 168px;">-- Chọn Quận/Huyện --</option>
                                                                         </select>
-                                                                        @if ($errors->has('district_id'))
-                                                                            <span style="color: red;" id="errorFullName">{{ str_replace('district id', 'Quận/Huyện', $errors->first('district_id')) }}</span>
-                                                                        @endif
+
                                                                     </div>
                                                                 </td>
                                                                 <td>
@@ -137,6 +133,19 @@ $mySelf = Auth::user();
                                                                         </select>
                                                                     </div>
                                                                 </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    @if ($errors->has('province_id'))
+                                                                        <span style="color: red;" id="errorFullName">{{ str_replace('province id', 'Tỉnh/Thành phố', $errors->first('province_id')) }}</span>
+                                                                    @endif
+                                                                </td>
+                                                                <td>
+                                                                    @if ($errors->has('district_id'))
+                                                                        <span style="color: red;" id="errorFullName">{{ str_replace('district id', 'Quận/Huyện', $errors->first('district_id')) }}</span>
+                                                                    @endif
+                                                                </td>
+                                                                <td></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>

@@ -48,13 +48,13 @@ $Agent = new Agent();
                                             </a>&nbsp;&nbsp;</div>
                                         <div class="tt-thumb-cnt">
                                             <h2>
-                                                <a class="link_blue" href="{{$item['image'] ? '/'.$item['image'] : PATH_LOGO_DEFAULT}}" title="{{$item['title']}}">{{$item['title']}}</a>
+                                                <a class="link_blue" href="/{{$category->slug}}/{{$item['slug']}}" title="{{$item['title']}}">{{$item['title']}}</a>
                                             </h2>
                                             <div class="datetime">
                                                 {{date('d/m/Y', strtotime($item['created_at']))}}
                                             </div>
                                             <p style="text-rendering:geometricPrecision;">
-                                                <?php echo $item['short_content'] ?></p>
+                                                <?php echo preg_replace("/[\r\n]+/", "<br/>", substr( $item['short_content'], 0, LIMIT_SHORT_CONTENT).'...')?></p>
                                         </div>
                                         <div class="clear line">
                                         </div>
@@ -73,7 +73,7 @@ $Agent = new Agent();
                                                 {{date('d/m/Y', strtotime($item['created_at']))}}
                                             </div>
                                             <p style="text-rendering:geometricPrecision;">
-                                                <?php echo $item['short_content'] ?>
+                                                <?php echo preg_replace("/[\r\n]+/", "<br/>", substr($item['short_content'], 0, LIMIT_SHORT_CONTENT).'...')?>
                                             </p>
                                         </div>
                                     @endif

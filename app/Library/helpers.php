@@ -110,7 +110,7 @@ class Helpers
             if ($obj['CodeResult'] == 100) {
                 return true;
             } else {
-                return false;
+                return $obj['CodeResult'];
             }
         }
         if ($obj['CodeResult'] == 100) {

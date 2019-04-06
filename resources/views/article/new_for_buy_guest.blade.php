@@ -121,7 +121,7 @@ global $province;
                                                             Tiêu đề(<span class="redfont">*</span>):</label>
                                                     </div>
                                                     <div class="input">
-                                                        <input name="title" placeholder="Vui lòng nhập tiêu đề tin đăng của bạn. Tối thiểu là 30 ký tự và tối đa là 99 ký tự." value="{{old('title') ?? $article->title ?? ''}}" type="text" id="txtTitle" class="text-field has-help required countTypeLength" maxlength="99" minlength="30">
+                                                        <input name="title" placeholder="Vui lòng nhập tiêu đề tin đăng của bạn. Tối thiểu là 30 ký tự và tối đa là 99 ký tự." value="{{old('title') ?? $article->title ?? ''}}" onchange="enableSmsOtp()" type="text" id="txtTitle" class="text-field has-help required countTypeLength" maxlength="99" minlength="30">
                                                         <span class="txtProductTitle_count" style="float: left; margin-left: 10px;">99</span>
                                                         @if ($errors->has('title'))
                                                             <div class="errorMessage" style="display: block;"><p style="color: red">{{ str_replace('title', 'tiêu đề', $errors->first('title')) }}</p></div>
@@ -153,7 +153,7 @@ global $province;
                                                 <div class="base4">
 
                                                     <div id="divProductCate" class="comboboxs advance-select-box pad0">
-                                                        <select id="type_article" name="type_article" class="advance-options" style="min-width: 220px;border: 1px solid #CCC;">
+                                                        <select id="type_article" name="type_article" class="advance-options" onchange="enableSmsOtp()" style="min-width: 220px;border: 1px solid #CCC;">
                                                             <option value="" class="advance-options" style="min-width: 195px;">-- Phân mục --</option>
                                                         </select>
                                                         @if ($errors->has('type_article'))
@@ -169,7 +169,7 @@ global $province;
                                                 <div class="base2">
 
                                                     <div id="divCity" class="comboboxs advance-select-box pad0">
-                                                        <select id="select-province" name="province_id" class="advance-options select-province" style="min-width: 220px;border: 1px solid #CCC;">
+                                                        <select id="select-province" name="province_id" class="advance-options select-province"  onchange="enableSmsOtp()" style="min-width: 220px;border: 1px solid #CCC;">
                                                             <option value="">-- Chọn Tỉnh/Thành phố --</option>
                                                             @foreach($province as $item)
                                                                 <option value="{{$item['id']}}">{{$item['_name']}}</option>
@@ -186,7 +186,7 @@ global $province;
                                                 <div class="base4">
 
                                                     <div id="divDistrict" class="comboboxs advance-select-box pad0">
-                                                        <select name="district_id" class="advance-options select-district" style="min-width: 220px;border: 1px solid #CCC;">
+                                                        <select name="district_id" class="advance-options select-district"  onchange="enableSmsOtp()" style="min-width: 220px;border: 1px solid #CCC;">
                                                             <option value="0" class="advance-options" style="min-width: 168px;">-- Chọn Quận/Huyện --</option>
                                                         </select>
                                                         @if ($errors->has('district_id'))
@@ -406,7 +406,7 @@ global $province;
                                                 <div class="base5" style="position: relative;">
                                                     <div id="divBrMobile" class="advance-select-box" style="margin: 0px;height: 25px;position: relative;">
                                                         <input disabled type="text" name="contact_phone" class="select-text-content required contact_phone" value="{{old('contact_phone') ?? $_SESSION['verify_phone'] ?? ''}}" placeholder="" style="width: 175px;">
-                                                        <a id="MainContent__userPage_ctl00_lnkVerifyPrimaryNumber" class="button-blue" onclick="AddNumberPhone()" href="javascript:void(0)">{{old('contact_phone') ? 'Xác nhận số điện thoại khác' : isset($_SESSION['verify_phone']) ? 'Xác nhận số điện thoại khác' : 'Xác nhận số điện thoại đăng tin'}}</a>
+                                                        <button type="button" disabled style="width: auto; cursor: pointer;" id="MainContent__userPage_ctl00_lnkVerifyPrimaryNumber" class="button-blue" onclick="AddNumberPhone()" href="javascript:void(0)">{{old('contact_phone') ? 'Xác nhận số điện thoại khác' : isset($_SESSION['verify_phone']) ? 'Xác nhận số điện thoại khác' : 'Xác nhận số điện thoại đăng tin'}}</button>
                                                         @if ($errors->has('contact_phone'))
                                                             <div class="errorMessage" style="display: block;"><p style="color: red">{{ str_replace('contact phone', 'di động', $errors->first('contact_phone'))}}</p></div>
                                                         @endif
@@ -652,6 +652,7 @@ global $province;
                 document.getElementById('ddlPriceType').options[4]=new Option("Triệu/m2/tháng", "Triệu/m2/tháng", false, false);
                 document.getElementById('ddlPriceType').options[5]=new Option("Nghìn/m2/tháng", "Nghìn/m2/tháng", false, false);
             }
+            enableSmsOtp();
         }
         $('#txtTitle').keyup(function() {
             $('.txtProductTitle_count').html(99 - this.value.length);
@@ -883,6 +884,15 @@ global $province;
                     }
                 }
             });
+        }
+        function enableSmsOtp() {
+            console.log($('.select-district').val());
+            if($('#txtTitle').val() && $('#method_article').val() && $('#type_article').val() && $('.select-province').val() != 0 && $('.select-district').val() != 0) {
+                $('#MainContent__userPage_ctl00_lnkVerifyPrimaryNumber').attr('disabled', false);
+            }else{
+                $('#MainContent__userPage_ctl00_lnkVerifyPrimaryNumber').attr('disabled', true);
+            }
+            return false;
         }
     </script>
 @endsection

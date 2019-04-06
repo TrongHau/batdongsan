@@ -1192,7 +1192,13 @@ class UploadHandler
         $watermark->resize($watermarkSize, null, function ($constraint) {
             $constraint->aspectRatio();
         });
-        $img->insert($watermark, 'bottom-left', rand(0, $img->width()), rand(0, $img->height()));
+        $ranW = rand(0, $img->width());
+        $ranH = rand(0, $img->height());
+        if($ranW > $img->width())
+            $ranW - $img->width();
+        if($ranH > $img->height())
+            $ranW - $img->height();
+        $img->insert($watermark, 'bottom-left', $ranW, $ranH);
         $img->save($file_path);
     }
 

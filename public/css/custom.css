@@ -1026,3 +1026,6 @@ table td[class*=col-], table th[class*=col-] {
 .modal_icon_csn {
     position: absolute;
 }
+button:disabled {
+    background: #dddddd;
+}
