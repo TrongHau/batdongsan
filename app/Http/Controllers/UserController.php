@@ -158,7 +158,8 @@ class UserController extends Controller
         if($request->type == 'update_profile') {
             $Content = "Khóa xác nhận SĐT của Bạn là: " . $otp;
         }else{
-            $Content = "Khóa xác nhận SĐT của Bạn là ".$otp.". Tin đăng của Quý Vị sẽ được hiển thị trên Website sau 8 giờ làm việc. Chi tiết LH: ".env('PHONE_CONTACT');
+//            $Content = "Khóa xác nhận SĐT của Bạn là ".$otp.". Tin đăng của Quý Vị sẽ được hiển thị trên Website sau 8 giờ làm việc. Chi tiết LH: ".env('PHONE_CONTACT');
+            $Content = "Khoa dang tin cho SDT cua Ban la ".$otp.". Tin dang cua Quy Vi se duoc hien thi tren Website sau 8 gio lam viec. Chi tiet LH: ".env('PHONE_CONTACT');
         }
         $Content = "Khóa xác nhận SĐT của Bạn là: " . $otp;
         $resultSms = Helpers::sendSMS($request->phone, $Content);
