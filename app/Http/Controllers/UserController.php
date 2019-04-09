@@ -158,7 +158,7 @@ class UserController extends Controller
         if($request->type == 'update_profile') {
             $Content = "Khoa xac nhan SDT của ban la: " . $otp;
         }else{
-            $Content = "Khoa dang tin SĐT cua Bạn la ".$otp.". Tin dang cua Quy Vi se duoc hien thi tren Website sau 8 gio lam viec. Chi tiet LH: 0901472486 .	Khoa dang tin SĐT cua Bạn la 1234. Tin dang cua Quy Vi se duoc hien thi tren Website sau 8 gio lam viec. Chi tiet LH: 0901472486 .";
+            $Content = "Khoa dang tin SĐT cua Bạn la ".$otp.". Tin dang cua Quy Vi se duoc hien thi tren Website sau 8 gio lam viec. Chi tiet LH: 0901472486 .";
         }
         $resultSms = Helpers::sendSMS($request->phone, $Content);
         if($resultSms !== true)
