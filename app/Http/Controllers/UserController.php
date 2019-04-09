@@ -156,12 +156,10 @@ class UserController extends Controller
         }
         $otp = mt_rand(1000, 9999);
         if($request->type == 'update_profile') {
-            $Content = "Khóa xác nhận SĐT của Bạn là: " . $otp;
+            $Content = "Khoa xac nhan SDT của ban la: " . $otp;
         }else{
-//            $Content = "Khóa xác nhận SĐT của Bạn là ".$otp.". Tin đăng của Quý Vị sẽ được hiển thị trên Website sau 8 giờ làm việc. Chi tiết LH: ".env('PHONE_CONTACT');
-            $Content = "Khoa dang tin cho SDT cua Ban la ".$otp.". Tin dang cua Quy Vi se duoc hien thi tren Website sau 8 gio lam viec. Chi tiet LH: ".env('PHONE_CONTACT');
+            $Content = "Khoa dang tin SĐT cua Bạn la ".$otp.". Tin dang cua Quy Vi se duoc hien thi tren Website sau 8 gio lam viec. Chi tiet LH: 0901472486 .	Khoa dang tin SĐT cua Bạn la 1234. Tin dang cua Quy Vi se duoc hien thi tren Website sau 8 gio lam viec. Chi tiet LH: 0901472486 .";
         }
-        $Content = "Khóa xác nhận SĐT của Bạn là: " . $otp;
         $resultSms = Helpers::sendSMS($request->phone, $Content);
         if($resultSms !== true)
             return Helpers::ajaxResult(false, 'Lỗi '.$resultSms.' hệ thống không gửi được mã xác thực, vui lòng liên hệ '.env('PHONE_CONTACT').' để được hỗ trợ.', null);
