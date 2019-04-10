@@ -194,7 +194,7 @@ class UserController extends Controller
         if($existOtp) {
             $phoneFlag = PhoneModel::find($existOtp->phone);
             if($phoneFlag && $phoneFlag->status == 0)
-                return Helpers::ajaxResult(false, 'Số điện thoại của bạn đã bị khóa, vui lòng liên hệ '.env('PHONE_CONTACT').' để được hỗ trợ.', null);
+                return Helpers::ajaxResult(false, 'Bạn đã lấy mã xác nhận 5 lần. Vui lòng thử lại sau 24 giờ. Cám ơn.', null);
             $timeExpried = $existOtp->otp_time_expried - time();
             if($timeExpried > 0) {
                 $user = User::where('id', $existOtp->user_id)->update([
