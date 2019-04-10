@@ -144,13 +144,23 @@ class UserController extends Controller
             $existOtp->delete();
         }
         $phoneFlag = PhoneModel::find($request->phone);
+        $phoneFlag = PhoneModel::find($request->phone);
         if($phoneFlag) {
             if($phoneFlag->status == 0)
                 return Helpers::ajaxResult(false, 'Số điện thoại của bạn đã bị khóa, vui lòng liên hệ '.env('PHONE_CONTACT').' để được hỗ trợ.', null);
+            if($phoneFlag->count_sms > 5) {
+                if(date("Y-m-d", strtotime($phoneFlag->updated_at)) >=  date("Y-m-d")) {
+                    return Helpers::ajaxResult(false, 'Số điện thoại của bạn đã gửi quá 5 lần trong ngày, vui lòng liên hệ '.env('PHONE_CONTACT').' để được hỗ trợ.', null);
+                }else{
+                    $phoneFlag->count_sms = 0;
+                }
+            }
+            $phoneFlag->count_sms = $phoneFlag->count_sms + 1;
+            $phoneFlag->save();
         }else{
             PhoneModel::create([
                 'phone' => $request->phone,
-                'user_id' => Auth::user()->id ?? null,
+                'user_id' => Auth::user()->id ?? '',
                 'count_sms' => 1,
             ]);
         }
