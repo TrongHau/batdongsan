@@ -156,7 +156,7 @@ class UserController extends Controller
         }
         $otp = mt_rand(1000, 9999);
         if($request->type == 'update_profile') {
-            $Content = "Khoa xac nhan SDT của ban la: " . $otp;
+            $Content = "Khoa dang tin SDT cua Ban la ".$otp.". Tin dang cua Quy Vi se duoc hien thi tren Website sau 8 gio lam viec.";
         }else{
             $Content = "Khoa dang tin SĐT cua Bạn la ".$otp.". Tin dang cua Quy Vi se duoc hien thi tren Website sau 8 gio lam viec. Chi tiet LH: 0901472486 .	Khoa dang tin SĐT cua Bạn la 1234. Tin dang cua Quy Vi se duoc hien thi tren Website sau 8 gio lam viec. Chi tiet LH: 0901472486 .";
         }
