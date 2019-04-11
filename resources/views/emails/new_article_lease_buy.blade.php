@@ -22,7 +22,7 @@ use App\Library\Helpers;
                                             <tbody>
                                             <tr>
                                                 <td style="min-width:400px;width:400px;padding-left:30px;font-size:16px;font-family:Arial;color:#055699" valign="middle">
-                                                    <a href="{{env('APP_URL') . '/admin/'.$prefix_admin_edit.'/' . $result->id . '/edit'}}" style="text-decoration:none;color:#055699" target="_blank" >{{$article->title}}</a></td>
+                                                    <a href="{{env('APP_URL') . '/admin/'.$prefix_admin_edit.'/' . $article->id . '/edit'}}" style="text-decoration:none;color:#055699" target="_blank" >{{$article->title}}</a></td>
                                             </tr>
                                             </tbody>
                                         </table>
