@@ -108,16 +108,16 @@ class ArticleForLeaseController extends CrudController
             'name' => 'title',
             'label' => 'Tiêu đề',
         ]);
-
-        $this->crud->addColumn([
-            'name' => 'type_article',
-            'label' => 'Thể loại',
-        ]);
         $this->crud->addColumn([
             'name' => 'aprroval',
             'label' => 'Xét duyệt',
             'type' => 'check',
         ]);
+        $this->crud->addColumn([
+            'name' => 'type_article',
+            'label' => 'Thể loại',
+        ]);
+
         $this->crud->addColumn([
             'name' => 'views',
             'label' => 'Lượt xem',
