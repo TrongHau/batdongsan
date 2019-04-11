@@ -76,13 +76,25 @@ $Agent = new Agent();
                                             </div>
                                             <div class="clear"></div>
                                             <div class="p-bottom-crop fix-p-bottom-crop">
+                                                <?php
+                                                if($item['method_article'] == 'Nhà đất cần mua') {
+                                                    $searchMethod = 'nha-dat-can-mua';
+                                                }elseif($item['method_article'] == 'Nhà đất cần thuê') {
+                                                    $searchMethod = 'nha-dat-can-thue';
+                                                }elseif($item['method_article']== 'Nhà đất bán') {
+                                                    $searchMethod = 'nha-dat-ban';
+                                                }elseif($item['method_article'] == 'Nhà đất cho thuê') {
+                                                    $searchMethod = 'nha-dat-cho-thue';
+                                                }
+                                                ?>
                                                 <div class="floatleft">
                                                     Giá:
                                                     <span class="product-price">{{$item['price_real'] == 0 ? 'Thỏa thuận' : $item['price_from'] .' - '. $item['price_to'] . ' '.$item['ddlPriceType']}}</span>&nbsp;
                                                     Diện tích:
                                                     <span class="product-area">{{($item['area_from'] && $item['area_to']) ? $item['area_from'] .' - '. $item['area_to'] .' m²' : 'Chưa xác định'}}</span>&nbsp;
                                                     Quận/Huyện:
-                                                    <span class="product-city-dist">{{$item['district']}}, {{$item['province']}}</span>
+                                                    <span class="product-city-dist"><a href="/tim-kiem-nang-cao/{{$searchMethod}}/{{$item['province_id']}}/{{$item['district_id']}}/-1/-1/-1/-1/-1/-1/-1">{{$item['district']}}</a>,
+                                                            <a href="/tim-kiem-nang-cao/{{$searchMethod}}/{{$item['province_id']}}/-1/-1/-1/-1/-1/-1/-1/-1">{{$item['province']}}</a></span>
                                                 </div>
                                                 <div class="floatright mar-right-10">{{date('d/m/Y', strtotime($item['created_at']))}}</div>
                                                 <div class="clear"></div>

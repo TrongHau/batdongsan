@@ -153,13 +153,24 @@ $Agent = new Agent();
                                                     :&nbsp;{{($item->area_from != null && $item->area_to != null) ? ($item->area_from. ' - ' .$item->area_to.' m²') : ($item->area ? $item->area.' m²' : 'Chưa xác định')}}
                                                 </div>
                                                 <div>
+                                                    <?php
+                                                        if($item->method_article == 'Nhà đất cần mua') {
+                                                            $searchMethod = 'nha-dat-can-mua';
+                                                        }elseif($item->method_article == 'Nhà đất cần thuê') {
+                                                            $searchMethod = 'nha-dat-can-thue';
+                                                        }elseif($item->method_article == 'Nhà đất bán') {
+                                                            $searchMethod = 'nha-dat-ban';
+                                                        }elseif($item->method_article == 'Nhà đất cho thuê') {
+                                                            $searchMethod = 'nha-dat-cho-thue';
+                                                        }
+                                                    ?>
                                                     <div class="fleft">
                                                         <div class="left">Quận/huyện</div>
                                                         :&nbsp;<a class="link_blue"
-                                                                  href="/tim-kiem-nang-cao/tat-ca-nha-ban-dat-ban/-1/{{$item->district_id}}/-1/-1/-1/-1/-1/-1/-1"
+                                                                  href="/tim-kiem-nang-cao/{{$searchMethod}}/{{$item->province_id}}/{{$item->district_id}}/-1/-1/-1/-1/-1/-1/-1"
                                                                   title="Bán nhà riêng tại {{$item->district}}">{{$item->district}}</a>, <a
                                                                 class="link_blue"
-                                                                href="/tim-kiem-nang-cao/tat-ca-nha-ban-dat-ban/{{$item->province_id}}/-1/-1/-1/-1/-1/-1/-1/-1"
+                                                                href="/tim-kiem-nang-cao/{{$searchMethod}}/{{$item->province_id}}/-1/-1/-1/-1/-1/-1/-1/-1"
                                                                 title="Bán nhà riêng tại {{$item->province}}">{{$item->province}}</a>
                                                     </div>
                                                     <div class="p-bottom-right font09">{{date('d/m/Y', strtotime($item->created_at))}}</div>

@@ -336,7 +336,94 @@ $Agent = new Agent();
                                     <img src="/imgs/btn-share-gplus.png"></a>
                             </div>
                             <div class="clear"></div>
+                            @if($relateArticle)
+                            <div class="container-default">
+                                <div>
+                                    <div class="product-list other-product product-list-new">
+                                        <div class="viewmore">
+                                            Xem thêm các bất động sản khác
+                                        </div>
+                                        <div class="Main" id="lstProductSimilar">
+                                            <div class="Header">
+                                                <div class="Left">
+                                                </div>
+                                                <div class="Repeat">
+                                                    <h2>
+                                                        {{$article->method_article}} tại {{$article->district}}
+                                                    </h2>
+                                                </div>
+                                                <div class="Right">
+                                                </div>
+                                            </div>
+                                            @foreach($relateArticle as $item)
+                                                <div class="vip5 search-productItem">
+                                                    <div class="p-title">
+                                                        <h3>
+                                                            <a href="/{{$item['prefix_url'].'-bds-'.$item['id']}}" title="{{$item['title']}}" style="text-rendering: optimizelegibility;">
+                                                                {{$item['title']}}
+                                                            </a>
+                                                        </h3>
+                                                    </div>
+                                                    <div class="p-main">
+                                                        <div class="p-main-image-crop">
+                                                            <a class="product-avatar" href="/{{$item['prefix_url'].'-bds-'.$item['id']}}" title="{{$item['title']}}" onclick="">
+                                                                <img class="product-avatar-img" src="{{$item['gallery_image'] ? Helpers::file_path($item['id'], PUBLIC_ARTICLE_LEASE, true).THUMBNAIL_PATH.json_decode($item['gallery_image'])[0] : THUMBNAIL_DEFAULT }}" alt="{{$item['title']}}">
+                                                            </a>
+                                                        </div>
+                                                        <div class="p-content">
+                                                            <div class="p-main-text" style="text-rendering: optimizelegibility;"><?php echo preg_replace("/(\r?\n){2,}/", "<br/>", mb_substr($item['content_article'], 0, LIMIT_SHORT_CONTENT_RELATE, "utf-8").'...')?></div>
+                                                        </div>
+                                                        <div class="p-bottom-crop">
+                                                            <div class="floatleft">
+                                                                <span> Giá: <strong class="product-price">{{$item['price_real'] == 0 ? 'Thỏa thuận' : $item['price'].' '.$item['ddlPriceType']}}</strong></span>
+                                                                <span> Diện tích:
+                                                                <strong class="product-area">{{$item['area'] ? $item['area'].' m²' : 'Chưa xác định'}}</strong></span>
+                                                                 <span> Quận/huyện:
+                                                                <strong class="product-city-dist">
+                                                                {{$item['province']}}, {{$item['district']}}
+                                                                </strong></span>
+                                                            </div>
+                                                            <div class="floatright mar-right-10">
+                                                                <span>{{date('d/m/Y', strtotime($item['created_at']))}}</span>
+                                                            </div>
+                                                            <div class="clear"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="clear10"></div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    <div class="clear">
+                                    </div>
+                                    <p id="view_other_product">
+                                        <?php
+                                        if($article->method_article == 'Nhà đất cần mua') {
+                                            $searchMethod = 'nha-dat-can-mua';
+                                        }elseif($article->method_article == 'Nhà đất cần thuê') {
+                                            $searchMethod = 'nha-dat-can-thue';
+                                        }elseif($article->method_article == 'Nhà đất bán') {
+                                            $searchMethod = 'nha-dat-ban';
+                                        }elseif($article->method_article == 'Nhà đất cho thuê') {
+                                            $searchMethod = 'nha-dat-cho-thue';
+                                        }
+                                        ?>
+                                        <a id="LeftMainContent__productList_lnkSimilar" rel="nofollow" href="/tim-kiem-nang-cao/{{$searchMethod}}/{{$article->province_id}}/{{$article->district_id}}/-1/-1/-1/-1/-1/-1/-1">Xem thêm các tin khác tại khu vực này</a>
+                                    </p>
+                                    <div class="separable">
+                                    </div>
+                                    <script type="text/javascript">
+                                        $('.p-title > h3 > a').each(function () {
+                                            $(this).html($(this).html().replace(/đặc khu/ig, ''));
+                                        });
+                                        $('.p-main > .p-content > .p-main-text').each(function () {
+                                            $(this).html($(this).html().replace(/đặc khu/ig, ''));
+                                        })
+                                    </script>
+                                </div>
+                            </div>
                         </div>
+                        @endif
                     </div>
                     <div class="clear">
                     </div>

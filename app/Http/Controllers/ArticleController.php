@@ -26,6 +26,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
 use DB;
+use Session;
+use Mail;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Support\Facades\Input;
 
@@ -155,6 +157,8 @@ class ArticleController extends Controller
             if(!$article)
                 return view('errors.404');
         }
+        if($article->aprroval == APPROVAL_ARTICLE_PUBLIC && Auth::user()->rolesBDSRoleName() != ROLE_NAME_ADMIN)
+            return view('errors.text_error')->with('message', 'Tin đã xét duyệt, bạn không được phép chỉnh sửa.');
         return view('article.new_for_lease', compact('article'));
     }
     public function newArticleForBuy(Request $request, $id = null)
@@ -170,6 +174,8 @@ class ArticleController extends Controller
             if(!$article)
                 return view('errors.404');
         }
+        if($article->aprroval == APPROVAL_ARTICLE_PUBLIC && Auth::user()->rolesBDSRoleName() != ROLE_NAME_ADMIN)
+            return view('errors.text_error')->with('message', 'Tin đã xét duyệt, bạn không được phép chỉnh sửa.');
         return view('article.new_for_buy', compact('article'));
     }
 
@@ -257,6 +263,8 @@ class ArticleController extends Controller
             }
             if(!$result)
                 return view('errors.404');
+            if($result->aprroval == APPROVAL_ARTICLE_PUBLIC && Auth::user()->rolesBDSRoleName() != ROLE_NAME_ADMIN)
+                return view('errors.text_error')->with('message', 'Tin đã xét duyệt, bạn không được phép chỉnh sửa.');
             $olDataImgs = (array)json_decode($result->gallery_image);
             if($article['status'] != DRAFT_ARTICLE) {
                 $user = Auth::user();
@@ -290,6 +298,17 @@ class ArticleController extends Controller
                 }
             }
             $result = ArticleForLeaseModel::create($article);
+            $data = [
+                'article' => $result,
+                'prefix_img' => PUBLIC_ARTICLE_LEASE,
+                'prefix_admin_edit' => env('APP_URL') . '/admin/article_for_lease/' . $result->id . '/edit',
+            ];
+            Mail::send('emails.new_article_lease_buy', $data, function($message) use ($result)
+            {
+                $message->from(env('MAIL_USERNAME'), env('MAIL_FROM_NAME'));
+                //env('MAIL_USERNAME_NEW_ARTICLE')
+                $message->to(env('MAIL_USERNAME_NEW_ARTICLE'), env('MAIL_USERNAME'))->subject('Tin mới, '. $result->method_article .' - '. $result->type_article . ' - '. $result->id);
+            });
         }
         if($request->remove_imgs) {
             $arrImg = explode('|', $request->remove_imgs);
@@ -313,6 +332,7 @@ class ArticleController extends Controller
         }
         $result->gallery_image = $imgs ? json_encode($imgs) : null;
         $result->save();
+
         if($request->id) {
             return redirect()->route($typeAuthGuest.'article.getArticleLease', $request->id)->with('success', $mes ? $mes : 'Sửa tin thành công');
         }else{
@@ -387,6 +407,8 @@ class ArticleController extends Controller
             }
             if(!$result)
                 return view('errors.404');
+            if($result->aprroval == APPROVAL_ARTICLE_PUBLIC && Auth::user()->rolesBDSRoleName() != ROLE_NAME_ADMIN)
+                return view('errors.text_error')->with('message', 'Tin đã xét duyệt, bạn không được phép chỉnh sửa.');
             $olDataImgs = (array)json_decode($result->gallery_image);
             if($article['status'] != DRAFT_ARTICLE) {
                 $user = Auth::user();
@@ -420,6 +442,16 @@ class ArticleController extends Controller
                 }
             }
             $result = ArticleForBuyModel::create($article);
+            $data = [
+                'article' => $result,
+                'prefix_img' => PUBLIC_ARTICLE_BUY,
+                'prefix_admin_edit' => env('APP_URL') . '/admin/article_for_buy/' . $result->id . '/edit',
+            ];
+            Mail::send('emails.new_article_lease_buy', $data, function($message) use ($result)
+            {
+                $message->from(env('MAIL_USERNAME'), env('MAIL_FROM_NAME'));
+                $message->to(env('MAIL_USERNAME_NEW_ARTICLE'), env('MAIL_USERNAME'))->subject('Tin mới, '. $result->method_article .' - '. $result->type_article . ' - '. $result->id);
+            });
         }
         if($request->remove_imgs) {
             $arrImg = explode('|', $request->remove_imgs);

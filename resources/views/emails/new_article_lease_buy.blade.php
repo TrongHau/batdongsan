@@ -19,7 +19,10 @@
                                             <tbody>
                                             <tr>
                                                 <td align="center" style="min-width:169px;width:169px">
-                                                    <a href="{{env('APP_URL')}}" style="text-decoration:none;color:#fff" target="_blank">Xem xét tin tức mới: {{$article->title}}</a></td>
+                                                    <a href="{{$prefix_admin_edit}}" style="text-decoration:none;color:#fff" target="_blank">
+                                                        <img alt="Batdongsan.com.vn" src="{{$article->gallery_image ? Helpers::file_path($article->id, $prefix_img, true).THUMBNAIL_PATH.json_decode($item->gallery_image)[0] : THUMBNAIL_DEFAULT }}" style="width:169px;vertical-align:top;height:88px;min-width:169px" class="CToWUd"> </a></td>
+                                                <td style="min-width:400px;width:400px;padding-left:30px;font-size:16px;font-family:Arial;color:#055699" valign="middle">
+                                                    <a href="{{$prefix_admin_edit}}" style="text-decoration:none;color:#055699" target="_blank" >{{$article->title}}</a></td>
                                             </tr>
                                             </tbody>
                                         </table>

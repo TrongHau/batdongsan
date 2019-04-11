@@ -148,7 +148,7 @@ class UserCrudController extends CrudController
 
             [
                 'name'  => 'point_current',
-                'label' => 'Số diểm hiện tại',
+                'label' => 'Số điểm hiện tại',
                 'type'  => 'number',
                 'wrapperAttributes' => [
                     'class' => 'form-group col-md-3',

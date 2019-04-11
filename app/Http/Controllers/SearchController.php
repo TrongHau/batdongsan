@@ -39,7 +39,24 @@ class SearchController extends Controller
         $titleArticle = TypeModel::where('url', $method)->first();
         if(!$titleArticle)
             return view('errors.404');
-        $article = ArticleForLeaseModel::where('status', PUBLISHED_ARTICLE);
+        $type = 'ban_dat';
+        // hiển thị tất cả các loại
+        if($method == 'nha-dat-ban') {
+            $article = ArticleForLeaseModel::where('status', PUBLISHED_ARTICLE);
+            $article = $article->where('method_article', 'Nhà đất bán');
+        }elseif($method == 'nha-dat-cho-thue') {
+            $article = ArticleForLeaseModel::where('status', PUBLISHED_ARTICLE);
+            $article = $article->where('method_article', 'Nhà đất cho thuê');
+        }elseif($method == 'nha-dat-can-mua') {
+            $type = 'cho_thue';
+            $article = ArticleForBuyModel::where('status', PUBLISHED_ARTICLE);
+            $article = $article->where('method_article', 'Nhà đất cần mua');
+        }elseif($method == 'nha-dat-can-thue') {
+            $type = 'cho_thue';
+            $article = ArticleForBuyModel::where('status', PUBLISHED_ARTICLE);
+            $article = $article->where('method_article', 'Nhà đất cần thuê');
+        }
+
         // hiển thị tất cả các loại
         if($method == 'tat-ca-nha-ban') {
             $article = $article->whereIn('type_article', ['Bán căn hộ chung cư', 'Bán nhà riêng', 'Bán biệt thự, liền kề', 'Bán nhà mặt phố']);
@@ -170,6 +187,6 @@ class SearchController extends Controller
         }
         $article = $article->paginate(PAGING_LIST_ARTICLE_CATALOG);
         $key = '';
-        return view('catalog.article_for_lease_ban_dat', compact('titleArticle', 'article', 'key', 'method', 'province_id', 'district_id', 'ward_id', 'street_id', 'area', 'price', 'bed_room', 'toilet', 'ddlHomeDirection', 'local'));
+        return view('catalog.article_for_lease_'.$type, compact('titleArticle', 'article', 'key', 'method', 'province_id', 'district_id', 'ward_id', 'street_id', 'area', 'price', 'bed_room', 'toilet', 'ddlHomeDirection', 'local'));
     }
 }

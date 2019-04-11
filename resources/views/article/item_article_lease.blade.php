@@ -46,9 +46,10 @@ $list = $article->toArray();
                 <span style="float: left; word-wrap: break-word; color: #055699;" id="view_18965371">
                     <img style="width: 77px; height: 62px; float: left; padding-right: 8px;" src="{{$item['gallery_image'] ? Helpers::file_path($item['id'], PUBLIC_ARTICLE_LEASE, true).THUMBNAIL_PATH.json_decode($item['gallery_image'])[0] : THUMBNAIL_DEFAULT }}" alt="{{$item['title']}}">{{$item['title']}}</span>
                 <div style="clear: both; text-align: right; padding-top: 5px;">
-                    &nbsp;
-                    <a id="MainContent__userPage_ctl00_rpItems_lnkEdit_0" href="/quan-ly-tin/dang-tin-ban-cho-thue/{{$item['id']}}">
-                        <img src="/imgs/sua.gif"> Sửa</a>&nbsp;
+                &nbsp;&nbsp;  @if($item['aprroval'] != APPROVAL_ARTICLE_PUBLIC)
+                        <a id="MainContent__userPage_ctl00_rpItems_lnkEdit_0" href="/quan-ly-tin/dang-tin-ban-cho-thue/{{$item['id']}}">
+                            <img src="/imgs/sua.gif"> Sửa</a>&nbsp;
+                    @endif
                     <a id="MainContent__userPage_ctl00_rpItems_lnkDel_0" class="btn-xoa" onclick="deleteArticle('{{$item['id']}}')" href="javascript:void(0)">Xóa</a>
                     <div style="display: none;">
 

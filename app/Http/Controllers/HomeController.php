@@ -34,9 +34,9 @@ class HomeController extends Controller
     {
 
 //        $articleForLease = ArticleForLeaseModel::select(['id', 'prefix_url', 'title', 'views', 'created_at', 'status', 'aprroval', 'gallery_image', 'note', 'updated_at', 'project', 'province_id', 'province', 'district_id', 'district', 'address', 'ddlPriceType', 'price_real', 'price', 'area'])
-        $articleForLease = ArticleForLeaseModel::selectRaw('id, prefix_url, title, views, created_at, status, aprroval, gallery_image, note, updated_at, project, province_id, province, district_id, district, address, ddlPriceType, price_real, price, area, null as price_from, null as price_to, null as area_from, null as area_to')
+        $articleForLease = ArticleForLeaseModel::selectRaw('id, method_article, prefix_url, title, views, created_at, status, aprroval, gallery_image, note, updated_at, project, province_id, province, district_id, district, address, ddlPriceType, price_real, price, area, null as price_from, null as price_to, null as area_from, null as area_to')
             ->where([['status', PUBLISHED_ARTICLE], ['aprroval', APPROVAL_ARTICLE_PUBLIC]]);
-        $articleForLease2 = ArticleForBuyModel::selectRaw('id, prefix_url, title, views, created_at, status, aprroval, gallery_image, note, updated_at, project, province_id, province, district_id, district, address, ddlPriceType, price_real, null as price, null as area, price_from, price_to, area_from, area_to')
+        $articleForLease2 = ArticleForBuyModel::selectRaw('id, method_article, prefix_url, title, views, created_at, status, aprroval, gallery_image, note, updated_at, project, province_id, province, district_id, district, address, ddlPriceType, price_real, null as price, null as area, price_from, price_to, area_from, area_to')
             ->where([['status', PUBLISHED_ARTICLE], ['aprroval', APPROVAL_ARTICLE_PUBLIC]]);
 //        dd($articleForLease2->orderBy('created_at', 'desc')->get()->toArray());
         $articleForLease->union($articleForLease2)->limit(PAGING_LIST_ARTICLE_HOME)->orderBy('created_at', 'desc');

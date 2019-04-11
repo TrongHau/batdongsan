@@ -24,6 +24,10 @@ global $tuvanluat;
                             <div id="divCategoryRe" class="comboboxs advance-select-box">
                                 <select id="search-advance-method" class="advance-options" style="min-width: 200px;">
                                     <option class="advance-options" value="-1">-- Chọn loại nhà đất --</option>
+                                    <option class="advance-options" value="nha-dat-ban">- Nhà đất bán</option>
+                                    <option class="advance-options" value="nha-dat-cho-thue">- Nhà đất cho thuê</option>
+                                    <option class="advance-options" value="nha-dat-can-mua">- Nhà đất cần mua</option>
+                                    <option class="advance-options" value="nha-dat-can-thue">- Nhà đất cần thuê</option>
                                     <option class="advance-options" value="ban-can-ho-chung-cu">- Bán căn hộ chung cư</option>
                                     <option class="advance-options" value="tat-ca-nha-ban">- Tất cả các loại nhà bán</option>
                                     <option class="advance-options" value="ban-nha-rieng">&nbsp;&nbsp;&nbsp;&nbsp;+ Bán nhà riêng </option>
