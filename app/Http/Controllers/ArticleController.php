@@ -156,9 +156,10 @@ class ArticleController extends Controller
             }
             if(!$article)
                 return view('errors.404');
+            if($article->aprroval == APPROVAL_ARTICLE_PUBLIC && Auth::user()->rolesBDSRoleName() != ROLE_NAME_ADMIN)
+                return view('errors.text_error')->with('message', 'Tin đã xét duyệt, bạn không được phép chỉnh sửa.');
         }
-        if($article->aprroval == APPROVAL_ARTICLE_PUBLIC && Auth::user()->rolesBDSRoleName() != ROLE_NAME_ADMIN)
-            return view('errors.text_error')->with('message', 'Tin đã xét duyệt, bạn không được phép chỉnh sửa.');
+
         return view('article.new_for_lease', compact('article'));
     }
     public function newArticleForBuy(Request $request, $id = null)
@@ -173,9 +174,10 @@ class ArticleController extends Controller
             }
             if(!$article)
                 return view('errors.404');
+            if($article->aprroval == APPROVAL_ARTICLE_PUBLIC && Auth::user()->rolesBDSRoleName() != ROLE_NAME_ADMIN)
+                return view('errors.text_error')->with('message', 'Tin đã xét duyệt, bạn không được phép chỉnh sửa.');
         }
-        if($article->aprroval == APPROVAL_ARTICLE_PUBLIC && Auth::user()->rolesBDSRoleName() != ROLE_NAME_ADMIN)
-            return view('errors.text_error')->with('message', 'Tin đã xét duyệt, bạn không được phép chỉnh sửa.');
+       
         return view('article.new_for_buy', compact('article'));
     }
 
