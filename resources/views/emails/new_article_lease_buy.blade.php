@@ -1,3 +1,6 @@
+<?php
+use App\Library\Helpers;
+?>
 <center>
     <table bgcolor="#fff" border="0" cellspacing="0" height="100%" style="background-color:white;max-width:600px"
            width="100%">
