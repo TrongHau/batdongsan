@@ -135,10 +135,6 @@ class ArticleForLeaseController extends CrudController
             'name' => 'project',
             'label' => 'Dự án'
         ]);
-        $this->crud->addColumn([
-            'name' => 'status',
-            'label' => 'Tình trạng'
-        ]);
 
         $this->crud->addColumn([
             'name' => 'contact_address',
@@ -170,7 +166,10 @@ class ArticleForLeaseController extends CrudController
             'label' => 'Điểm',
             'type' => 'number'
         ]);
-
+        $this->crud->addColumn([
+            'name' => 'status',
+            'label' => 'Tình trạng',
+        ]);
 
 
 

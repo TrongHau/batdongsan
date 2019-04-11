@@ -114,7 +114,7 @@ class ArticleForBuyController extends CrudController
             'label' => 'Tiêu đề',
         ]);
         $this->crud->addColumn([
-            'name' => 'status',
+            'name' => 'aprroval',
             'label' => 'Xét duyệt',
             'type' => 'check',
         ]);
@@ -141,11 +141,6 @@ class ArticleForBuyController extends CrudController
             'name' => 'project',
             'label' => 'Dự án'
         ]);
-        $this->crud->addColumn([
-            'name' => 'aprroval',
-            'label' => 'Tình trạng'
-        ]);
-
         $this->crud->addColumn([
             'name' => 'contact_address',
             'label' => 'Địa chỉ liên lạc'
@@ -175,6 +170,10 @@ class ArticleForBuyController extends CrudController
             'name' => 'point',
             'label' => 'Điểm',
             'type' => 'number'
+        ]);
+        $this->crud->addColumn([
+            'name' => 'status',
+            'label' => 'Tình Trạng',
         ]);
 
 
