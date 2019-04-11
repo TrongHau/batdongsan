@@ -302,8 +302,7 @@ class ArticleController extends Controller
             $result = ArticleForLeaseModel::create($article);
             $data = [
                 'article' => $result,
-                'prefix_img' => PUBLIC_ARTICLE_LEASE,
-                'prefix_admin_edit' => env('APP_URL') . '/admin/article_for_lease/' . $result->id . '/edit',
+                'prefix_admin_edit' => 'article_for_lease',
             ];
             Mail::send('emails.new_article_lease_buy', $data, function($message) use ($result)
             {
@@ -446,8 +445,7 @@ class ArticleController extends Controller
             $result = ArticleForBuyModel::create($article);
             $data = [
                 'article' => $result,
-                'prefix_img' => PUBLIC_ARTICLE_BUY,
-                'prefix_admin_edit' => env('APP_URL') . '/admin/article_for_buy/' . $result->id . '/edit',
+                'prefix_admin_edit' => 'article_for_buy',
             ];
             Mail::send('emails.new_article_lease_buy', $data, function($message) use ($result)
             {
