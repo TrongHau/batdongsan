@@ -160,7 +160,7 @@ class UserController extends Controller
         }else{
             PhoneModel::create([
                 'phone' => $request->phone,
-                'user_id' => Auth::user()->id ?? '',
+                'user_id' => Auth::user()->id ?? 0,
                 'count_sms' => 1,
             ]);
         }
