@@ -265,8 +265,6 @@ class ArticleController extends Controller
             }
             if(!$result)
                 return view('errors.404');
-            if($result->aprroval == APPROVAL_ARTICLE_PUBLIC && Auth::user()->rolesBDSRoleName() != ROLE_NAME_ADMIN)
-                return view('errors.text_error')->with('message', 'Tin đã xét duyệt, bạn không được phép chỉnh sửa.');
             $olDataImgs = (array)json_decode($result->gallery_image);
             if($article['status'] != DRAFT_ARTICLE) {
                 $user = Auth::user();
@@ -408,8 +406,6 @@ class ArticleController extends Controller
             }
             if(!$result)
                 return view('errors.404');
-            if($result->aprroval == APPROVAL_ARTICLE_PUBLIC && Auth::user()->rolesBDSRoleName() != ROLE_NAME_ADMIN)
-                return view('errors.text_error')->with('message', 'Tin đã xét duyệt, bạn không được phép chỉnh sửa.');
             $olDataImgs = (array)json_decode($result->gallery_image);
             if($article['status'] != DRAFT_ARTICLE) {
                 $user = Auth::user();
