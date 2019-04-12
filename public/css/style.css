@@ -1272,7 +1272,7 @@ strong, b {
 }
 
 /*.product-list img
-{    
+{
     text-align: center;
     width: auto;
     height: auto;
@@ -1417,7 +1417,7 @@ strong, b {
     font-family: tahoma;
     font-size: 13px;
     color: #e41b23;
-    padding: 7px 7px 0 7px;    
+    padding: 7px 7px 0 7px;
     text-transform: uppercase;
 }
 
@@ -2933,7 +2933,7 @@ input.select-text-content {
         display:block;
         font-size:13px;
     }
-    
+
     .pm-bottom a {
         text-decoration: none;
         color: #055699;
