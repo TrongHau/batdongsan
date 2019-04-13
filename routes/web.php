@@ -73,6 +73,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::prefix('quan-ly-tin/')->group(function () {
         Route::post('tin-cho-thue', ['as' => 'article.getArticleLease', 'uses' => 'ArticleController@getListArticleForLease']);
         Route::post('tin-can-thue', ['as' => 'article.getArticleBuy', 'uses' => 'ArticleController@getListArticleForBuy']);
+        Route::post('tin-nhap', ['as' => 'article.getArticleBuy', 'uses' => 'ArticleController@getListArticleForDraf']);
         Route::get('dang-tin-ban-cho-thue/{id?}', ['as' => 'article.getArticleLease', 'uses' => 'ArticleController@newArticleForLease']);
         Route::post('dang-tin-ban-cho-thue', ['as' => 'article.StoreArticleLease', 'uses' => 'ArticleController@storeArticleForLease']);
         Route::get('dang-tin-can-mua-can-thue/{id?}', ['as' => 'article.getArticleBuy', 'uses' => 'ArticleController@newArticleForBuy']);

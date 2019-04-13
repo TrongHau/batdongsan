@@ -1,7 +1,7 @@
 <?php
 use App\Library\Helpers;
 $user = Auth::user();
-$paging = '';
+$paging = $article->links();
 $list = $article->toArray();
 ?>
 @if($list['data'])
@@ -52,7 +52,7 @@ $list = $article->toArray();
                     &nbsp;
                     <a id="MainContent__userPage_ctl00_rpItems_lnkEdit_0" href="{{$item['typeOf'] == 'lease' ? '/quan-ly-tin/dang-tin-ban-cho-thue/' : '/quan-ly-tin/dang-tin-can-mua-can-thue/'}}{{$item['id']}}">
                         <img src="/imgs/sua.gif"> Sửa</a>&nbsp;
-                    <a id="MainContent__userPage_ctl00_rpItems_lnkDel_0" class="btn-xoa" onclick="deleteArticle('{{$item['id']}}')" href="javascript:void(0)">Xóa</a>
+                    <a id="MainContent__userPage_ctl00_rpItems_lnkDel_0" class="btn-xoa" onclick="deleteArticle('{{$item['id']}}', {{$item['typeOf'] == 'lease' ? 1 : 2}})" href="javascript:void(0)">Xóa</a>
                     <div style="display: none;">
 
                     </div>
@@ -83,7 +83,7 @@ $list = $article->toArray();
     </tbody>
 </table>
 <div class="pager">
-    <?php echo str_replace('/thong-tin-ca-nhan/quan-ly-mua-can-thue', '/quan-ly-tin/tin-can-thue', $paging) ?>
+    <?php echo str_replace('?page', 'quan-ly-tin/tin-nhap?page', $paging) ?>
 </div>
 @else
     Hiện tại bạn vẫn chưa có bài tin nháp nào.

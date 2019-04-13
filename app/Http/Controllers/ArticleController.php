@@ -71,19 +71,18 @@ class ArticleController extends Controller
     public function listDrafArticle(Request $request)
     {
         $page = $request->page ?? 1;
-        $article2 = ArticleForBuyModel::select(DB::raw("id, title, views, created_at, status, aprroval, updated_at, gallery_image, note, 'buy' as 'typeOf'"))
+        $articleForLease = ArticleForLeaseModel::selectRaw('id, method_article, type_article,prefix_url, title, views, created_at, status, aprroval, gallery_image, note, updated_at, project, province_id, province, district_id, district, address, ddlPriceType, price_real, price, area, null as price_from, null as price_to, null as area_from, null as area_to, \'lease\' as typeOf')
             ->where('status', DRAFT_ARTICLE)
             ->where('created_at', '>=', date('Y-m-d', strtotime('-2 months')))
             ->where('user_id', Auth::user()->id);
-        $article3 = ArticleForLeaseModel::select(DB::raw("id, title, views, created_at, status, aprroval, updated_at, gallery_image, note, 'lease' as 'typeOf'"))
+        $articleForBuy = ArticleForBuyModel::selectRaw('id, method_article, type_article, prefix_url, title, views, created_at, status, aprroval, gallery_image, note, updated_at, project, province_id, province, district_id, district, address, ddlPriceType, price_real, null as price, null as area, price_from, price_to, area_from, area_to, \'buy\' as typeOf')
             ->where('status', DRAFT_ARTICLE)
             ->where('created_at', '>=', date('Y-m-d', strtotime('-2 months')))
-            ->where('user_id', Auth::user()->id)
-            ->union($article2)
-            ->orderBy('created_at', 'desc')
-            ->get();
-        $slice = array_slice($article3->toArray(), 999 * ($page - 1), 999);
-        $article = new \Illuminate\Pagination\Paginator($slice, count($article3), 999);
+            ->where('user_id', Auth::user()->id);
+        $article = $articleForLease->union($articleForBuy)->orderBy('created_at', 'desc')->get();
+        $slice = array_slice($article->toArray(), PAGING_LIST_ARTICLE * ($page - 1), PAGING_LIST_ARTICLE + 1);
+        $article = new \Illuminate\Pagination\Paginator($slice, PAGING_LIST_ARTICLE);
+
         $list = view('article.item_article_draf', compact('article'));
         return view('article.manage_for_draf', compact('list'));
     }
@@ -123,6 +122,36 @@ class ArticleController extends Controller
         }
         $article = $article->where('status', PUBLISHED_ARTICLE)->orderBy('created_at', 'desc')->paginate(PAGING_LIST_ARTICLE);
         return view('article.item_article_buy', compact('article'));
+    }
+    public function getListArticleForDraf(Request $request) {
+        $page = $request->page ?? 1;
+        $articleForLease = ArticleForLeaseModel::selectRaw('id, method_article, type_article,prefix_url, title, views, created_at, status, aprroval, gallery_image, note, updated_at, project, province_id, province, district_id, district, address, ddlPriceType, price_real, price, area, null as price_from, null as price_to, null as area_from, null as area_to, \'lease\' as typeOf')
+            ->where('status', DRAFT_ARTICLE)
+            ->where('user_id', Auth::user()->id);
+        $articleForBuy = ArticleForBuyModel::selectRaw('id, method_article, type_article, prefix_url, title, views, created_at, status, aprroval, gallery_image, note, updated_at, project, province_id, province, district_id, district, address, ddlPriceType, price_real, null as price, null as area, price_from, price_to, area_from, area_to, \'buy\' as typeOf')
+            ->where('status', DRAFT_ARTICLE)
+            ->where('user_id', Auth::user()->id);
+
+        if($request->date_from) {
+            $articleForLease = $articleForLease->where('created_at', '>=', date_format(date_create($request->date_from), "Y-m-d"));
+            $articleForBuy = $articleForBuy->where('created_at', '>=', date_format(date_create($request->date_from), "Y-m-d"));
+        }
+        if($request->date_to) {
+            $articleForLease = $articleForLease->where('created_at', '<=', date_format(date_create($request->date_to), "Y-m-d").' 23:59:59');
+            $articleForBuy = $articleForBuy->where('created_at', '<=', date_format(date_create($request->date_to), "Y-m-d").' 23:59:59');
+        }
+        if($request->code) {
+            $articleForLease = $articleForLease->where('id', 'like', $request->code);
+            $articleForBuy = $articleForBuy->where('id', 'like', $request->code);
+        }
+        if($request->aprroval != -1) {
+            $articleForLease =  $articleForLease->where('aprroval', '=', $request->aprroval);
+            $articleForBuy =  $articleForBuy->where('aprroval', '=', $request->aprroval);
+        }
+        $article = $articleForLease->union($articleForBuy)->orderBy('updated_at', 'desc')->get();
+        $slice = array_slice($article->toArray(), PAGING_LIST_ARTICLE * ($page - 1), PAGING_LIST_ARTICLE + 1);
+        $article = new \Illuminate\Pagination\Paginator($slice, PAGING_LIST_ARTICLE);
+        return view('article.item_article_draf', compact('article'));
     }
     public function deleteArticle(Request $request) {
         if($request->type == 1) {

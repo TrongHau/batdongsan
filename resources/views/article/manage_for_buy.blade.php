@@ -103,7 +103,7 @@ $mySelf = Auth::user();
 @section('contentJS')
     <script>
         function doReadySearch() {
-            getList('/quan-ly-tin/tin-cho-thue');
+            getList('/quan-ly-tin/tin-can-thue');
         }
         function deleteArticle(code) {
             var r = confirm("Bạn có chắc muốn xóa tin này không?");

@@ -103,16 +103,16 @@ $mySelf = Auth::user();
 @section('contentJS')
     <script>
         function doReadySearch() {
-            getList('/quan-ly-tin/tin-cho-thue');
+            getList('/quan-ly-tin/tin-nhap');
         }
-        function deleteArticle(code) {
+        function deleteArticle(code, type = 1) {
             var r = confirm("Bạn có chắc muốn xóa tin này không?");
             if (r == true) {
                 $.ajax({
                     url: "/thong-tin-ca-nhan/xoa-tin",
                     type: "POST",
                     dataType: "json",
-                    data: {code: code, type: 1},
+                    data: {code: code, type: type},
                     beforeSend: function () {
                         if(loaded) return false;
                         loaded = true;

@@ -70,7 +70,7 @@ $mySelf = Auth::user();
                                         Mật khẩu mới
                                     </td>
                                     <td>
-                                        <input type="password" id="MainContent__userPage_ctl00_txtNewPass" {{old('password')}} class="keycode" id="password" name="password" style="width:200px;" aria-autocomplete="list">
+                                        <input type="password" id="MainContent__userPage_ctl00_txtNewPass" class="keycode" id="password" name="password" style="width:200px;" aria-autocomplete="list">
                                         @if ($errors->has('password'))
                                             <span style="color: red;" id="errorFullName">{{ str_replace('password', 'mật khẩu mới', $errors->first('password')) }}</span>
                                         @endif
@@ -86,7 +86,7 @@ $mySelf = Auth::user();
                                         Gõ lại mật khẩu
                                     </td>
                                     <td>
-                                        <input type="password" id="MainContent__userPage_ctl00_txtConfirmNewPass" name="repassword" {{old('repassword')}} id="repassword" class="keycode" style="width:200px;">
+                                        <input type="password" id="MainContent__userPage_ctl00_txtConfirmNewPass" name="repassword" id="repassword" class="keycode" style="width:200px;">
                                         @if ($errors->has('repassword'))
                                             <span style="color: red;" id="errorFullName">{{ str_replace('repassword', 'gõ lại mật khẩu', $errors->first('repassword')) }}</span>
                                         @endif
