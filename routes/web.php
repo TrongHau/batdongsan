@@ -47,6 +47,8 @@ Route::prefix('guest/')->group(function () {
     Route::post('quan-ly-tin/dang-tin-can-mua-can-thue', ['as' => 'guest.article.StoreArticleBuy', 'uses' => 'ArticleController@storeArticleForBuy']);
 
 });
+Route::post('/report/tin_tuc_mua_ban_cho_thue', ['as' => 'article.StoreArticleBuy', 'uses' => 'ReportController@newArticleForLeaseForBuy']);
+
 Route::get('upload/image', ['as' => 'upload.getImage', 'uses' => 'ArticleController@loadImage']);
 Route::post('upload/image', ['as' => 'upload.getImage', 'uses' => 'ArticleController@loadImage']);
 Route::delete('upload/image', ['as' => 'upload.getImage', 'uses' => 'ArticleController@loadImage']);

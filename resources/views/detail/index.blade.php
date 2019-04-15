@@ -25,11 +25,12 @@ $Agent = new Agent();
     <meta property="og:type" content="website" />
     <meta property="og:updated_time" content="{{time()}}" />
 @endsection
-@if($Agent->isMobile())
 @section('contentCSS')
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    @if($Agent->isMobile())
     <link rel="stylesheet" type="text/css" href="/css/mobile.css">
+    @endif
 @endsection
-@endif
 @extends('layouts.app')
 @section('content')
     @include('layouts.top_search')
@@ -335,9 +336,9 @@ $Agent = new Agent();
                                 <a id="googleBookmark" target="_blank" rel="nofollow" href="https://plus.google.com/share?url={{url()->current()}}">
                                     <img src="/imgs/btn-share-gplus.png"></a>
                             </div>
-                            <div class="clear"></div>
-                            @if($relateArticle)
-                            <div class="container-default">
+                            @if(count($relateArticle))
+                                <div class="clear"></div>
+                                <div class="container-default">
                                 <div>
                                     <div class="product-list other-product product-list-new">
                                         <div class="viewmore">
@@ -422,12 +423,19 @@ $Agent = new Agent();
                                     </script>
                                 </div>
                             </div>
+                            @endif
+                            <div class="clear"></div>
+                            <div class="pm-bottom">
+                                <div>
+                                    <b>
+                                        Lưu ý
+                                    </b>
+                                    Quý vị đang xem nội dung tin rao "{{$article->title}}". Mọi thông tin liên quan tới tin rao này là do người đăng tin đăng tải và chịu trách nhiệm. Chúng tôi luôn cố gắng để có chất lượng thông tin tốt nhất, nhưng chúng tôi không đảm bảo và không chịu trách nhiệm về bất kỳ nội dung nào liên quan tới tin rao này. Nếu quý vị phát hiện có sai sót hay vấn đề gì xin hãy <a class="openFancy fancybox.iframe" onclick="report()" href="javascript:void(0)" rel="nofollow">thông báo cho chúng tôi.</a>
+                                </div>
                         </div>
-                        @endif
                     </div>
-                    <div class="clear">
-                    </div>
-                    <div class="clear">
+                    <div class="clear"></div>
+
                     </div>
                 </div>
             </div>
@@ -437,10 +445,94 @@ $Agent = new Agent();
     </div>
     @include('layouts.slider_bar_right')
 @endsection
+@section('footerElement')
+    <div id="reportPopupContainer" class="modal fade" role="dialog" style="top: 50px;">
+        <div class="verifyPopup modal-dialog">
+            <!-- Modal content-->
+            <div class="verifyPopupClose fa fa-close" onclick="closePopup()"></div>
+            <div class="modal-content">
+                <br/>
+                <table border="0" cellpadding="5" cellspacing="0" width="100%">
+                    <tbody><tr>
+                        <td>Chú ý thông tin có dấu (<span style="color: red">*</span>) là bắt buộc
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Tên người gửi :
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input name="txtSenderName" type="text" id="txtSenderName" style="width:90%;">
+                            <span id="txtErrorSenderName" style="color:Red;display:none;">Vui lòng điền tên người gửi.</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span style="color: red">*</span> Email người gửi :
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input name="txtSenderEmail" type="text" id="txtSenderEmail" style="width:90%;"><br>
+                            <span id="txtErrorSenderEmail" style="color:Red;display:none;">Email không hợp lệ</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span style="color: red">*</span> Lý do :
+                            <select name="ddlReasons" id="ddlReasons" style="width:200px;">
+                                <option value="">--- Lý do than phiền ---</option>
+                                <option value="Không có địa chỉ, số điện thoại người bán.">Tin sai chuyên mục.</option>
+                                <option value="Không có địa chỉ, số điện thoại người bán.">Không có địa chỉ, số điện thoại người bán.</option>
+                                <option value="Không có thông tin về sản phẩm.">Không có thông tin về sản phẩm.</option>
+                                <option value="Tiêu đề tin không dấu/có ký tự lạ.">Tiêu đề tin không dấu/có ký tự lạ.</option>
+                                <option value="Đăng tin sai quy định">Đăng tin sai quy định</option>
+                                <option value="Đăng tin khống.">Đăng tin khống.</option>
+                            </select><br>
+                            <span id="ddlErrorReasons" style="color:Red;display:none;">Bạn chưa chọn lý do</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span style="color: red">*</span> Nội dung
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <textarea name="txtContent" rows="2" cols="20" id="txtContent" style="height:100px;width:90%;"></textarea><br>
+                            <span id="txtErrorContent" style="color:Red;display:none;">Bạn chưa nhập nội dung</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span style="color: red">*</span> Mã an toàn
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="g-recaptcha" data-sitekey="{{env('NOCAPTCHA_SECRET')}}"></div>
+                            <span id="errorCaptcha" style="color:Red;display:none;">Bạn chưa xác nhận mã an toàn</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center; padding-top:10px;">
+                            <input type="submit" name="btnSend" value="Gửi" onclick="sendReport()" id="btnSend" style="width:73px;">&nbsp;
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <style>
+        .verifyPopup .modal-content {
+            all: initial;
+        }
+    </style>
+
+@endsection
 @section('contentJS')
     <script>
         function changeSort(val) {
-            console.log(window.location);
             window.location.href = window.location.origin + window.location.pathname + '?sort=' + val;
         }
         <?php
@@ -450,5 +542,63 @@ $Agent = new Agent();
         <?php
         }
         ?>
+        function report() {
+            $("#reportPopupContainer").modal();
+        }
+        function sendReport() {
+            $('#txtErrorSenderName').css('display', 'none');
+            $('#txtErrorSenderEmail').css('display', 'none');
+            $('#ddlErrorReasons').css('display', 'none');
+            $('#txtErrorContent').css('display', 'none');
+            $('#errorErrorCaptcha').css('display', 'none');
+            if(!$('#txtSenderEmail').val() || $('#txtSenderEmail').val().length < 2) {
+                $('#txtErrorSenderEmail').css('display', 'block').html('Vui lòng điền email.');
+                return false;
+            }
+            if(!$('#ddlReasons').val() || $('#ddlReasons').val() == 0) {
+                $('#ddlErrorReasons').css('display', 'block').html('Bạn chưa chọn lý do');
+                return false;
+            }
+            if(!$('#txtContent').val()) {
+                $('#txtErrorContent').css('display', 'block').html('Bạn chưa nhập nội dung');
+                return false;
+            }
+            // if(grecaptcha.getResponse()) {
+            //  $('#errorCaptcha').css('display', 'block').html('Bạn chưa xác nhận mã an toàn');
+            //     return false;
+            // }
+
+            $.ajax({
+                url: '/report/tin_tuc_mua_ban_cho_thue',
+                type: "POST",
+                dataType: "json",
+                data: {
+                    name:  $('#txtSenderName').val(),
+                    email:  $('#txtSenderEmail').val(),
+                    reason:  $('#ddlReasons').val(),
+                    content_report:  $('#txtContent').val(),
+                    captcha: grecaptcha.getResponse(),
+                    id_article:  <?php echo $article->id ?>,
+                    method_report:  '<?php echo $article->method_article ?>',
+
+                },
+                beforeSend: function () {
+                    if(loaded) return false;
+                    loaded = true;
+                },
+                success: function(response) {
+                    if(response.success) {
+                        $('#reportPopupContainer').click();
+                        $('#txtSenderName').val('');
+                        $('#txtSenderEmail').val('');
+                        $('#txtContent').val('');
+                        grecaptcha.reset();
+                        alertModal(response.message);
+                    }else{
+                        $('#' + response.data[0]).css('display', 'block').html(response.message);
+                    }
+                }
+            });
+        }
     </script>
 @endsection

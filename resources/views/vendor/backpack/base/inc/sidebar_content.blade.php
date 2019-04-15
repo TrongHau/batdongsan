@@ -21,6 +21,7 @@
         <li><a href="{{ backpack_url('permission') }}"><i class="fa fa-key"></i> <span>Permissions</span></a></li>
     </ul>
 </li>
+<li><a href="{{backpack_url('report') }}"><i class="fa fa-flag"></i> <span>Cảnh báo tin</span></a></li>
 <li class="treeview">
     <a href="#"><i class="fa fa-cogs"></i> <span>Advanced</span> <i class="fa fa-angle-left pull-right"></i></a>
     <ul class="treeview-menu">

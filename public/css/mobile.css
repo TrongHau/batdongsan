@@ -38,3 +38,12 @@ a.link_blue:link {
     float: left;
     margin-left: 15px!important;
 }
+.product-list .Main {
+    width: 708px;
+}
+.other-product .Header .Repeat {
+    width: 691px !important;
+}
+#product-detail, .pcc-detail {
+    width: 708px!important;
+}
