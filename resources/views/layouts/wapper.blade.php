@@ -19,7 +19,7 @@
                     @if(!Auth::check())
                     <div>
                         <div class="header-middle-righ-link">
-                            <a href="{{env("APP_URL")}}/login" rel="nofollow">Đăng nhập</a>
+                            <a href="/login" rel="nofollow">Đăng nhập</a>
                         </div>
                         <div class="header-middle-righ-icon">
                             <img src="/imgs/login.png"
@@ -28,7 +28,7 @@
                     </div>
                     <div>
                         <div class="header-middle-righ-link max90" id="kct_username">
-                            <a href="{{env("APP_URL")}}/register" title="Đăng ký" rel="nofollow">Đăng ký
+                            <a href="/register" title="Đăng ký" rel="nofollow">Đăng ký
                             </a>
                         </div>
                         <div class="header-middle-righ-icon">
