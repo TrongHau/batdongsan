@@ -52,8 +52,8 @@ class ReportController extends Controller
             return Helpers::ajaxResult(false, 'Bạn chưa nhập nội dung', ['txtErrorContent']);
         if(!$request->reason)
             return Helpers::ajaxResult(false, 'Bạn chưa chọn lý do', ['ddlErrorReasons']);
-//        if(!$request->captcha)
-//            return Helpers::ajaxResult(false, 'Bạn chưa xác nhận mã an toàn', ['errorCaptcha']);
+        if(!$request->captcha)
+            return Helpers::ajaxResult(false, 'Bạn chưa xác nhận mã an toàn', ['errorCaptcha']);
         ReportModel::create([
             'user_id' => Auth::user()->id ?? 0,
             'name' => $request->name,

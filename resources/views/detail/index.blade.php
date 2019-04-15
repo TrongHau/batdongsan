@@ -563,10 +563,10 @@ $Agent = new Agent();
                 $('#txtErrorContent').css('display', 'block').html('Bạn chưa nhập nội dung');
                 return false;
             }
-            // if(grecaptcha.getResponse()) {
-            //  $('#errorCaptcha').css('display', 'block').html('Bạn chưa xác nhận mã an toàn');
-            //     return false;
-            // }
+            if(grecaptcha.getResponse()) {
+             $('#errorCaptcha').css('display', 'block').html('Bạn chưa xác nhận mã an toàn');
+                return false;
+            }
 
             $.ajax({
                 url: '/report/tin_tuc_mua_ban_cho_thue',
