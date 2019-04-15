@@ -481,7 +481,7 @@ $Agent = new Agent();
                             <span style="color: red">*</span> Lý do :
                             <select name="ddlReasons" id="ddlReasons" style="width:200px;">
                                 <option value="">--- Lý do than phiền ---</option>
-                                <option value="Không có địa chỉ, số điện thoại người bán.">Tin sai chuyên mục.</option>
+                                <option value="Tin sai chuyên mục.">Tin sai chuyên mục.</option>
                                 <option value="Không có địa chỉ, số điện thoại người bán.">Không có địa chỉ, số điện thoại người bán.</option>
                                 <option value="Không có thông tin về sản phẩm.">Không có thông tin về sản phẩm.</option>
                                 <option value="Tiêu đề tin không dấu/có ký tự lạ.">Tiêu đề tin không dấu/có ký tự lạ.</option>

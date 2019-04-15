@@ -51,7 +51,7 @@ class ReportController extends CrudController
             'type' => 'dropdown',
             'label'=> 'Tình Trạng'
         ], [
-            'Không có địa chỉ, số điện thoại người bán.' => 'Không có địa chỉ, số điện thoại người bán.',
+            'Tin sai chuyên mục.' => 'Tin sai chuyên mục.',
             'Không có địa chỉ, số điện thoại người bán.' => 'Không có địa chỉ, số điện thoại người bán.',
             'Không có thông tin về sản phẩm.' => 'Không có thông tin về sản phẩm.',
             'Tiêu đề tin không dấu/có ký tự lạ.' => 'Tiêu đề tin không dấu/có ký tự lạ.',
