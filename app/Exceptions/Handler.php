@@ -3,9 +3,13 @@
 namespace App\Exceptions;
 
 use Exception;
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use App\Library\Helpers;
 use Jenssegers\Agent\Agent;
+use App\Models\ErrorLogModel;
+use Illuminate\Support\Facades\Auth;
+use \Illuminate\Http\JsonResponse;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+
 
 class Handler extends ExceptionHandler
 {

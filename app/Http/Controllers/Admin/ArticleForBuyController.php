@@ -12,6 +12,7 @@ use App\Models\ArticleForBuyModel;
 use App\Models\TypeModel;
 use Storage;
 use App\Library\Helpers;
+use Mail;
 
 class ArticleForBuyController extends CrudController
 {
@@ -209,7 +210,47 @@ class ArticleForBuyController extends CrudController
 
     public function update(UpdateRequest $request)
     {
-        return parent::updateCrud();
+        $this->crud->hasAccessOrFail('update');
+
+        // fallback to global request instance
+        if (is_null($request)) {
+            $request = \Request::instance();
+        }
+
+        // replace empty values with NULL, so that it will work with MySQL strict mode on
+        foreach ($request->input() as $key => $value) {
+            if (empty($value) && $value !== '0') {
+                $request->request->set($key, null);
+            }
+        }
+
+        // update the row in the db
+        $dataArticle = ArticleForBuyModel::where('id', $request->id)->first();
+
+        if($dataArticle->aprroval == 0 && $request->aprroval) {
+            $data = [
+                'article' => $dataArticle,
+                'prefix_admin_edit' => 'article_for_lease',
+            ];
+            Mail::send('emails.approval_article_lease_buy', $data, function($message) use ($dataArticle)
+            {
+                $message->from(env('MAIL_USERNAME'), env('MAIL_FROM_NAME'));
+                //env('MAIL_USERNAME_NEW_ARTICLE')
+                $message->to($dataArticle->contact_email, $dataArticle->contact_email)->subject('Tin tức đã được chấp nhận: '.$dataArticle->title);
+            });
+
+        }
+        $item = $this->crud->update($request->get($this->crud->model->getKeyName()),
+            $request->except('save_action', '_token', '_method', 'current_tab'));
+        $this->data['entry'] = $this->crud->entry = $item;
+
+        // show a success message
+        \Alert::success(trans('backpack::crud.update_success'))->flash();
+
+        // save the redirect choice for next time
+        $this->setSaveAction();
+
+        return $this->performSaveAction($item->getKey());
     }
     public function edit($id, $template = false)
     {
@@ -217,7 +258,6 @@ class ArticleForBuyController extends CrudController
 
         // get entry ID from Request (makes sure its the last ID for nested resources)
         $id = $this->crud->getCurrentEntryId() ?? $id;
-
         // get the info for that entry
         $this->data['entry'] = $this->crud->getEntry($id);
         $this->data['crud'] = $this->crud;

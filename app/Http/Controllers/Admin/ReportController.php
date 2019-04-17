@@ -127,6 +127,33 @@ class ReportController extends CrudController
             'attribute' => 'name',
             'model' => "App\User",
         ]);
+
+        $this->crud->addField([
+            'name' => 'name',
+            'label' => 'Tên người gửi',
+        ]);
+
+        $this->crud->addField([
+            'name' => 'email',
+            'label' => 'Email',
+        ]);
+
+        $this->crud->addField([
+            'name' => 'reason_report',
+            'label' => 'Lý do gửi',
+        ]);
+
+        $this->crud->addField([
+            'name' => 'name',
+            'label' => 'Tên người gửi',
+        ]);
+
+        $this->crud->addField([
+            'name' => 'content',
+            'label' => 'Nội dung gửi',
+            'type' => 'textarea',
+        ]);
+
     }
 
     public function store(StoreRequest $request)
