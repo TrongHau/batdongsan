@@ -144,7 +144,6 @@ class UserController extends Controller
             $existOtp->delete();
         }
         $phoneFlag = PhoneModel::find($request->phone);
-        $phoneFlag = PhoneModel::find($request->phone);
         if($phoneFlag) {
             if($phoneFlag->status == 0)
                 return Helpers::ajaxResult(false, 'Số điện thoại của bạn đã bị khóa, vui lòng liên hệ '.env('PHONE_CONTACT').' để được hỗ trợ.', null);
