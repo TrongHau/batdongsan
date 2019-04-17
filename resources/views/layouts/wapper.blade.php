@@ -233,7 +233,7 @@
                     </li>
                 </ul>
             </li>
-            <li class="lv0"><a href="{{env("APP_URL")}}/nha-moi-gioi" class="haslink ">Nhà môi giới</a>
+            <li class="lv0"><a href="javascript:void(0)" class="haslink ">Nhà môi giới</a>
                 <ul>
                     <li class="lv2"><a href="{{env("APP_URL")}}/cong-ty-moi-gioi"
                                        class="haslink ">Công ty môi giới</a></li>
