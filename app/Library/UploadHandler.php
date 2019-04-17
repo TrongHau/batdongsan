@@ -1194,10 +1194,10 @@ class UploadHandler
         });
         $ranW = rand(0, $img->width());
         $ranH = rand(0, $img->height());
-        if($ranW > $img->width())
-            $ranW - $img->width();
-        if($ranH > $img->height())
-            $ranW - $img->height();
+        if($ranW >= 509)
+            $ranW = $ranW - 509;
+        if($ranH >= 300)
+            $ranH = $ranH - 300;
         $img->insert($watermark, 'bottom-left', $ranW, $ranH);
         $img->save($file_path);
     }
