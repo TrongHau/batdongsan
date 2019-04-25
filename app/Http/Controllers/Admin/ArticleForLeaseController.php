@@ -230,7 +230,7 @@ class ArticleForLeaseController extends CrudController
             {
                 $message->from(env('MAIL_USERNAME'), env('MAIL_FROM_NAME'));
                 //env('MAIL_USERNAME_NEW_ARTICLE')
-                $message->to($dataArticle->contact_email, $dataArticle->contact_email)->subject('Tin tức đã được chấp nhận: '.$dataArticle->title);
+                $message->to($dataArticle->contact_email, $dataArticle->contact_email)->subject('Tin rao đã được kiểm duyệt');
             });
 
         }
