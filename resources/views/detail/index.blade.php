@@ -336,6 +336,15 @@ $Agent = new Agent();
                                 <a id="googleBookmark" target="_blank" rel="nofollow" href="https://plus.google.com/share?url={{url()->current()}}">
                                     <img src="/imgs/btn-share-gplus.png"></a>
                             </div>
+                            <div class="clear"></div>
+                            <div class="pm-bottom">
+                                <div>
+                                    <b>
+                                        Lưu ý
+                                    </b>
+                                    Quý vị đang xem nội dung tin rao "{{$article->title}}". Mọi thông tin liên quan tới tin rao này là do người đăng tin đăng tải và chịu trách nhiệm. Chúng tôi luôn cố gắng để có chất lượng thông tin tốt nhất, nhưng chúng tôi không đảm bảo và không chịu trách nhiệm về bất kỳ nội dung nào liên quan tới tin rao này. Nếu quý vị phát hiện có sai sót hay vấn đề gì xin hãy <a class="openFancy fancybox.iframe" onclick="report()" href="javascript:void(0)" rel="nofollow">thông báo cho chúng tôi.</a>
+                                </div>
+                            </div>
                             @if(count($relateArticle))
                                 <div class="clear"></div>
                                 <div class="container-default">
@@ -425,14 +434,6 @@ $Agent = new Agent();
                             </div>
                             @endif
                             <div class="clear"></div>
-                            <div class="pm-bottom">
-                                <div>
-                                    <b>
-                                        Lưu ý
-                                    </b>
-                                    Quý vị đang xem nội dung tin rao "{{$article->title}}". Mọi thông tin liên quan tới tin rao này là do người đăng tin đăng tải và chịu trách nhiệm. Chúng tôi luôn cố gắng để có chất lượng thông tin tốt nhất, nhưng chúng tôi không đảm bảo và không chịu trách nhiệm về bất kỳ nội dung nào liên quan tới tin rao này. Nếu quý vị phát hiện có sai sót hay vấn đề gì xin hãy <a class="openFancy fancybox.iframe" onclick="report()" href="javascript:void(0)" rel="nofollow">thông báo cho chúng tôi.</a>
-                                </div>
-                        </div>
                     </div>
                     <div class="clear"></div>
 
