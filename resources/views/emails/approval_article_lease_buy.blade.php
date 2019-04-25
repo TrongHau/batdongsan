@@ -23,9 +23,10 @@ use App\Library\Helpers;
                                             <tr>
                                                 <td style="min-width:400px;width:400px;padding-left:30px;font-size:16px;font-family:Arial;color:#055699" valign="middle">
                                                     <p>Chúc mừng bạn! Tin rao của bạn đã được đăng thành công!</p>
-                                                    Xem tin tại: <a href="{{env('APP_URL') . '/'.$article->prefix_url.'-bds-'.$article->id}}" style="text-decoration:none;color:#055699" target="_blank" >{{$article->title}}</a></td>
+                                                    Xem tin tại: <a href="{{env('APP_URL') . '/'.$article->prefix_url.'-bds-'.$article->id}}" style="text-decoration:none;color:#055699" target="_blank" >{{$article->title}}</a>
                                                     <p>Thân mến,</p>
                                                     <p>Batdongsan.company</p>
+                                                </td>
                                             </tr>
                                             </tbody>
                                         </table>
