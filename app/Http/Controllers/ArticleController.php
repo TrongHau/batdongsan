@@ -331,7 +331,7 @@ class ArticleController extends Controller
             {
                 $message->from(env('MAIL_USERNAME'), env('MAIL_FROM_NAME'));
                 //env('MAIL_USERNAME_NEW_ARTICLE')
-                $message->to(env('MAIL_USERNAME_NEW_ARTICLE'), env('MAIL_USERNAME'))->subject('Tin mới, '. $result->method_article .' - '. $result->type_article . ' - '. $result->id);
+                $message->to(env('MAIL_USERNAME_NEW_ARTICLE'), env('MAIL_USERNAME'))->subject('Tin rao này đã được kiểm duyệt');
             });
         }
         if($request->remove_imgs) {
