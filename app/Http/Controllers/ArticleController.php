@@ -471,7 +471,7 @@ class ArticleController extends Controller
             Mail::send('emails.new_article_lease_buy', $data, function($message) use ($result)
             {
                 $message->from(env('MAIL_USERNAME'), env('MAIL_FROM_NAME'));
-                $message->to(env('MAIL_USERNAME_NEW_ARTICLE'), env('MAIL_USERNAME'))->subject('Tin mới, '. $result->method_article .' - '. $result->type_article . ' - '. $result->id);
+                $message->to(env('MAIL_USERNAME_NEW_ARTICLE'), env('MAIL_USERNAME'))->subject('Tin rao này đã được kiểm duyệt');
             });
         }
         if($request->remove_imgs) {
