@@ -163,6 +163,19 @@ class UserController extends Controller
                 'count_sms' => 1,
             ]);
         }
+        if(isset($_SESSION['time_expired_send_sms']) && isset($_SESSION['count_send_sms'])) {
+            if($_SESSION['count_send_sms'] > 10) {
+                if($_SESSION['time_expired_send_sms'] > time()) {
+                    return Helpers::ajaxResult(false, 'Bạn đã vược quá số lần gửi sms hôm nay, sau 24h bạn có thể tiếp tục', null);
+                }else{
+                    $_SESSION['time_expired_send_sms'] = strtotime('+24 hour');
+                }
+            }
+            $_SESSION['count_send_sms'] = $_SESSION['count_send_sms'] + 1;
+        }else{
+            $_SESSION['time_expired_send_sms'] = strtotime('+24 hour');
+            $_SESSION['count_send_sms'] = 1;
+        }
         $otp = mt_rand(1000, 9999);
         if($request->type == 'update_profile') {
             $Content = "Khoa dang tin SDT cua Ban la ".$otp.". Tin dang cua Quy Vi se duoc hien thi tren Website sau 8 gio lam viec.";
