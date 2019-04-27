@@ -351,7 +351,7 @@ $Agent = new Agent();
                                 <div class="container-default">
                                 <div>
                                     <div class="product-list other-product product-list-new">
-                                        <div class="viewmore" style="margin-bottom: 5px">
+                                        <div class="viewmore" style="margin-bottom: 8px">
                                             Xem thêm các bất động sản khác
                                         </div>
                                         <div class="Main" id="lstProductSimilar">
