@@ -166,14 +166,14 @@ class UserController extends Controller
         if(isset($_SESSION['time_expired_send_sms']) && isset($_SESSION['count_send_sms'])) {
             if($_SESSION['count_send_sms'] > 10) {
                 if($_SESSION['time_expired_send_sms'] > time()) {
-                    return Helpers::ajaxResult(false, 'Bạn đã vược quá số lần gửi sms hôm nay, sau 24h bạn có thể tiếp tục', null);
+                    return Helpers::ajaxResult(false, 'Bạn đã gửi SMS vượt quá số lần qui định. Vui lòng thử lại sau '.TIME_HOURS_EXPIRED_OTP.' giờ', null);
                 }else{
-                    $_SESSION['time_expired_send_sms'] = strtotime('+24 hour');
+                    $_SESSION['time_expired_send_sms'] = strtotime('+'.TIME_HOURS_EXPIRED_OTP.' hour');
                 }
             }
             $_SESSION['count_send_sms'] = $_SESSION['count_send_sms'] + 1;
         }else{
-            $_SESSION['time_expired_send_sms'] = strtotime('+24 hour');
+            $_SESSION['time_expired_send_sms'] = strtotime('+'.TIME_HOURS_EXPIRED_OTP.' hour');
             $_SESSION['count_send_sms'] = 1;
         }
         $otp = mt_rand(1000, 9999);
@@ -184,7 +184,7 @@ class UserController extends Controller
         }
         $resultSms = Helpers::sendSMS($request->phone, $Content);
         if($resultSms !== true)
-            return Helpers::ajaxResult(false, 'Lỗi '.$resultSms.' hệ thống không gửi được mã xác thực, vui lòng liên hệ '.env('PHONE_CONTACT').' để được hỗ trợ.', null);
+            return Helpers::ajaxResult(false, 'Lỗi '.$resultSms.' hệ thống không gửi được mã xác thực, vui lòng thử lại hoặc liên hệ '.env('PHONE_CONTACT').' để được hỗ trợ.', null);
         $newOtp = VerifySMSModel::create([
             'user_id' => Auth::user()->id ?? session()->getId(),
             'phone' => $request->phone,

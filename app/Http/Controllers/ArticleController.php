@@ -217,14 +217,7 @@ class ArticleController extends Controller
     {
         $mes = '';
         $typeAuthGuest = '';
-        session_start();
-        if(!Auth::check() && isset($_SESSION['verify_phone']) && !$request->id) {
-            Input::merge(['contact_phone' => $_SESSION['verify_phone']]);
-            $typeAuthGuest = 'guest.';
-        }else{
-            Input::merge(['contact_phone' => Auth::user()->phone]);
-        }
-        $this->validate($request, [
+        $excep = [
             'title' => 'required|max:99',
             'method_article' => 'required',
             'type_article' => 'required',
@@ -237,7 +230,19 @@ class ArticleController extends Controller
             'bed_room' => 'max:99',
             'toilet' => 'max:99',
 //            'g-recaptcha-response' => 'required',
-        ]);
+        ];
+        session_start();
+        if(!Auth::check()) {
+            if(!isset($_SESSION['verify_phone']) || !$_SESSION['verify_phone']) {
+                $excep['phone'] = 'required';
+            }else{
+                Input::merge(['contact_phone' => $_SESSION['verify_phone']]);
+                $typeAuthGuest = 'guest.';
+            }
+        }else{
+            Input::merge(['contact_phone' => Auth::user()->phone]);
+        }
+        $this->validate($request, $excep);
 
         $article = [
             'title' => $request->title,
@@ -367,9 +372,28 @@ class ArticleController extends Controller
     {
         session_start();
         $typeAuthGuest = '';
-        if(!Auth::check() && isset($_SESSION['verify_phone']) && !$request->id) {
-            Input::merge(['contact_phone' => $_SESSION['verify_phone']]);
-            $typeAuthGuest = 'guest.';
+        $excep = [
+            'title' => 'required|max:99',
+            'method_article' => 'required',
+            'type_article' => 'required',
+            'province_id' => 'required',
+            'district_id' => 'required',
+            'content_article' => 'required',
+            'address' => 'required',
+            'contact_phone' => 'required',
+            'price' => 'max:999999',
+            'bed_room' => 'max:99',
+            'toilet' => 'max:99',
+//            'g-recaptcha-response' => 'required',
+        ];
+        session_start();
+        if(!Auth::check()) {
+            if(!isset($_SESSION['verify_phone']) || !$_SESSION['verify_phone']) {
+                $excep['phone'] = 'required';
+            }else{
+                Input::merge(['contact_phone' => $_SESSION['verify_phone']]);
+                $typeAuthGuest = 'guest.';
+            }
         }else{
             Input::merge(['contact_phone' => Auth::user()->phone]);
         }
