@@ -342,7 +342,7 @@ $Agent = new Agent();
                                     <b>
                                         Lưu ý
                                     </b>
-                                    Quý vị đang xem nội dung tin rao {{$article->title}}. Mọi thông tin liên quan tới tin rao này là do người đăng tin chịu trách nhiệm. Chúng tôi luôn cố gắng hết sức để có chất lượng tin rao tốt nhất nhưng chúng tôi không đảm bảo và không chịu trách nhiệm về bất kỳ nội dung nào liên quan tới tin rao này.
+                                    Quý vị đang xem nội dung tin rao "{{$article->title}}". Mọi thông tin liên quan tới tin rao này là do người đăng tin chịu trách nhiệm. Chúng tôi luôn cố gắng hết sức để có chất lượng tin rao tốt nhất nhưng chúng tôi không đảm bảo và không chịu trách nhiệm về bất kỳ nội dung nào liên quan tới tin rao này.
                                     Khi Quý vị phát hiện trường hợp tin rao không hợp lệ như trùng lặp, thông tin sai hoặc không đúng thực tế,... ngay lập tức xin hãy <a class="openFancy fancybox.iframe" onclick="report()" href="javascript:void(0)" rel="nofollow">thông báo cho chúng tôi.</a>.
                                 </div>
                             </div>

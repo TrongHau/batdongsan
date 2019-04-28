@@ -54,7 +54,7 @@ $Agent = new Agent();
                                                 {{date('d/m/Y', strtotime($item['created_at']))}}
                                             </div>
                                             <p style="text-rendering:geometricPrecision;">
-                                                <?php echo preg_replace("/[\r\n]+/", "<br/>", mb_substr( $item['short_content'], 0, LIMIT_SHORT_CONTENT, "utf-8").'...')?></p>
+                                                <?php echo preg_replace("/[\r\n]+/", "<br/>", mb_substr( $item['short_content'], 0, LIMIT_SHORT_CONTENT, "utf-8"))?></p>
                                         </div>
                                         <div class="clear line">
                                         </div>
