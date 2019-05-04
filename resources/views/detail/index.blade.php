@@ -81,7 +81,7 @@ $Agent = new Agent();
                                     <?php echo str_replace("\r\n", '<br/>', $article->content_article) ?>
                                     @if($article->gallery_image)
                                         <div class="pm-mota">
-                                            Thông hình ảnh
+                                            Thông tin hình ảnh
                                         </div>
                                         <div class="slideshow-container">
                                             <?php
