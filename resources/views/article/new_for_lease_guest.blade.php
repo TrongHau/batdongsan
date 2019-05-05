@@ -1002,6 +1002,8 @@ global $province;
                 $('#lblPopupSendOTPError').html('Vui lòng điền số điện thoại.');
                 return false;
             }
+            console.log(grecaptcha.getResponse(widgetId1))
+            console.log(grecaptcha.getResponse(widgetId2))
             if(grecaptcha.getResponse(widgetId2)) {
                 $('#lblPopupSendOTPError').html('Vui lòng xác minh trước khi lấy mã xác thực.');
                 return false;
