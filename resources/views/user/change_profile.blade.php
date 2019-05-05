@@ -448,6 +448,7 @@ $mySelf = Auth::user();
                     }else{
                         $('#lblPopupOTPError').html(response.message);
                     }
+                    grecaptcha.reset();
                 }
             });
         }

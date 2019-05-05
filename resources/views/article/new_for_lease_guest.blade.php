@@ -1028,7 +1028,7 @@ global $province;
                     }else{
                         $('#lblPopupSendOTPError').html(response.message);
                     }
-                    grecaptcha.reset();
+                    grecaptcha.reset(widgetId2);
                 }
             });
         }
