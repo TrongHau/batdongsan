@@ -683,6 +683,12 @@ global $province;
                         </tr>
                         <tr>
                             <td></td>
+                            <td>
+                                <div id="capcha_2"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
                             <td><input type="button" class="button-blue1" value="Lấy mã xác thực" onclick="SendVerifyOTP()"
                                        id="btnPopupSendOTP"> <span id="lblSMSPopupPrice">Miễn phí</span></td>
                         </tr>
@@ -702,12 +708,6 @@ global $province;
                                                                                                   class="button-blue1"
                                                                                                   value="Xác thực"
                                                                                                   onclick="VerifyOTPNumberPhone()">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>
-                                <div id="capcha_2"></div>
                             </td>
                         </tr>
                         <tr>
@@ -998,19 +998,14 @@ global $province;
 
         function SendVerifyOTP() {
             enableSmsOtp();
-
-            var responseCapcha1 = grecaptcha.getResponse(widgetId1);
-            var responseCapcha2 = grecaptcha.getResponse(widgetId2);
-
-            console.log(responseCapcha1);
-            console.log(responseCapcha2);
-
-
             if(!$('#txtNumberPhone').val() || $('#txtNumberPhone').val().length < 5) {
                 $('#lblPopupSendOTPError').html('Vui lòng điền số điện thoại.');
                 return false;
             }
-            return false;
+            if(grecaptcha.getResponse(widgetId2)) {
+                $('#lblPopupSendOTPError').html('Vui lòng xác minh trước khi lấy mã xác thực.');
+                return false;
+            }
             $.ajax({
                 url: '/thong-tin-ca-nhan/xac-nhan-so-dien-thoai-moi',
                 type: "GET",
@@ -1034,6 +1029,7 @@ global $province;
                     }else{
                         $('#lblPopupSendOTPError').html(response.message);
                     }
+                    grecaptcha.reset();
                 }
             });
         }
@@ -1077,7 +1073,6 @@ global $province;
         }
 
         function enableSmsOtp() {
-            console.log($('.select-district').val());
             if($('#txtTitle').val() && $('#method_article').val() && $('#type_article').val() && $('.select-province').val() != 0 && $('.select-district').val() != 0) {
                 $('#MainContent__userPage_ctl00_lnkVerifyPrimaryNumber').attr('disabled', false);
             }else{
