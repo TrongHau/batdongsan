@@ -7,7 +7,7 @@ global $province;
 @include('cache.province')
 @section('contentCSS')
     <link rel="stylesheet" type="text/css" href="/css/dang-tin.css">
-    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
     {{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">--}}
     <style>
         .fileinput-button {
