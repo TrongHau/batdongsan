@@ -858,12 +858,18 @@ global $province;
             $('#txtAddress').val($('.select-district option:selected').text() + ', ' + $('.select-province option:selected').text());
         });
         $('.select-ward').change(function() {
-            $('#txtAddress').val('Phường ' + $('.select-ward option:selected').text() + ', ' + $('.select-district option:selected').text() + ', ' + $('.select-province option:selected').text());
+            var ward = $('.select-ward option:selected').val() ? 'Phường ' + $('.select-ward option:selected').text() + ', ' : '';
+            var street = $('.select-street option:selected').val() ?  ('Đường ' + $('.select-street option:selected').text() + ', ') : '';
+            $('#txtAddress').val(street + ward + $('.select-district option:selected').text() + ', ' + $('.select-province option:selected').text());
         });
         $('.select-street').change(function() {
-            $('#txtAddress').val('Đường ' + $('.select-street option:selected').text() + ', ' + 'Phường ' + $('.select-ward option:selected').text() + ', ' + $('.select-district option:selected').text() + ', ' + $('.select-province option:selected').text());
+            var ward = $('.select-ward option:selected').val() ? 'Phường ' + $('.select-ward option:selected').text() + ', ' : '';
+            var street = $('.select-street option:selected').val() ?  ('Đường ' + $('.select-street option:selected').text() + ', ') : '';
+            $('#txtAddress').val(street + ward + $('.select-district option:selected').text() + ', ' + $('.select-province option:selected').text());
         });
-
+        $('#ddlPriceType').change(function() {
+            $('#price_type').html($('#ddlPriceType').val());
+        })
 
     </script>
     <script id="template-upload" type="text/x-tmpl">

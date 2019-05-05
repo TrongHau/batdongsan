@@ -136,6 +136,8 @@ class CatalogController extends Controller
             return view('detail.article_tin_tuc', compact('article', 'articleRelate', 'tagRelate'));
         } else {
             $category = CategoryModel::where('slug', $prefix ?? $request->path())->first();
+            if($category->slug == 'tin-tuc')
+                $arrCat[] = 4;
             if(!$category)
                 return view('errors.404');
             $arrCat = [];
@@ -143,11 +145,14 @@ class CatalogController extends Controller
             if(count($categoryChildren)) {
                 foreach($categoryChildren as $item) {
                     $arrCat[] = $item->id;
+                    $categoryChildren2 = CategoryModel::where('parent_id', $item->id)->get();
+                    foreach ($categoryChildren2 as $item2) {
+                        $arrCat[] = $item2->id;
+                    }
                 }
             }else{
                 $arrCat[] = $category->id;
             }
-            $arrCat[] = 4;
             $article = ArticleModel::select('title', 'slug', 'short_content', 'image', 'status', 'featured', 'views', 'created_at')->where('status', PUBLISHED_ARTICLE)->whereIn('category_id', $arrCat)->orderBy('created_at', 'desc')->paginate(PAGING_LIST_ARTICLE_CATALOG);
             return view('catalog.article_tin_tuc', compact('category', 'article'));
         }

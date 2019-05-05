@@ -126,4 +126,32 @@ class Helpers
         }
         exit();
     }
+    public static function sessionCountTimes($idMusic, $type = 'listen') {
+        session_start();
+        if(!isset($_SESSION[$type])) {
+            $newSession[$idMusic] = [
+                'time_expiry' => strtotime('+1 hour')
+            ];
+            $_SESSION[$type] = $newSession;
+            return true;
+        }else{
+            $listen = $_SESSION[$type];
+            if(isset($listen[$idMusic])) {
+                if($listen[$idMusic]['time_expiry'] <= time()) {
+                    $listen[$idMusic] = [
+                        'time_expiry' => strtotime(TIME_EXPIRY_ADD_LISTEN_MUSIC)
+                    ];
+                    $_SESSION[$type] = $listen;
+                    return true;
+                }
+                return false;
+            }else{
+                $listen[$idMusic] = [
+                    'time_expiry' => strtotime('+1 hour')
+                ];
+                $_SESSION[$type] = $listen;
+                return true;
+            }
+        }
+    }
 }
