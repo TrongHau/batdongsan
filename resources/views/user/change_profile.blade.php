@@ -382,7 +382,7 @@ $mySelf = Auth::user();
                 $('#lblPopupSendOTPError').html('Vui lòng điền số điện thoại.');
                 return false;
             }
-            if(grecaptcha.getResponse()) {
+            if(!grecaptcha.getResponse()) {
                 $('#lblPopupSendOTPError').html('Vui lòng xác nhận mã an toàn trước khi lấy mã xác thực.');
                 return false;
             }
