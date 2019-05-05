@@ -7,7 +7,7 @@ global $province;
 @include('cache.province')
 @section('contentCSS')
     <link rel="stylesheet" type="text/css" href="/css/dang-tin.css">
-    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
     {{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">--}}
     <style>
         .fileinput-button {
@@ -616,7 +616,7 @@ global $province;
                                                     <tbody><tr>
                                                         <td></td>
                                                         <td>
-                                                            <div class="g-recaptcha" data-sitekey="{{env('NOCAPTCHA_SECRET')}}"></div>
+                                                            <div id="capcha_1"></div>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -707,7 +707,7 @@ global $province;
                         <tr>
                             <td></td>
                             <td>
-                                <div class="g-recaptcha" id="table-capcha" data-sitekey="{{env('NOCAPTCHA_SECRET')}}"></div>
+                                <div id="capcha_2"></div>
                             </td>
                         </tr>
                         <tr>
@@ -982,19 +982,33 @@ global $province;
             $("#verifyPopupContainer").modal();
             // $("#myModal").modal();
         }
+        var widgetId1;
+        var widgetId2;
+        var onloadCallback = function() {
+            // Renders the HTML element with id 'example1' as a reCAPTCHA widget.
+            // The id of the reCAPTCHA widget is assigned to 'widgetId1'.
+            widgetId1 = grecaptcha.render('capcha_1', {
+                'sitekey': '<?php echo env('NOCAPTCHA_SECRET') ?>',
+                'theme': 'light'
+            });
+            widgetId2 = grecaptcha.render(document.getElementById('capcha_2'), {
+                'sitekey': '<?php echo env('NOCAPTCHA_SECRET') ?>',
+                'theme' : 'dark'
+            });
+        }
+
+
         function SendVerifyOTP() {
             enableSmsOtp();
+
+            console.log(widgetId1);
+            console.log(widgetId2);
+
+
             if(!$('#txtNumberPhone').val() || $('#txtNumberPhone').val().length < 5) {
                 $('#lblPopupSendOTPError').html('Vui lòng điền số điện thoại.');
                 return false;
             }
-            var recapchaMulti;
-            for( i = 0; i < recaptchas.length; i++) {
-                recapchaMulti = grecaptcha.render( recaptchas[i].id, {
-                    'sitekey' : '<?php echo env('NOCAPTCHA_SECRET') ?>',
-                });
-            }
-            console.log(recapchaMulti);
             return false;
             $.ajax({
                 url: '/thong-tin-ca-nhan/xac-nhan-so-dien-thoai-moi',
