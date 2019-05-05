@@ -989,11 +989,9 @@ global $province;
             // The id of the reCAPTCHA widget is assigned to 'widgetId1'.
             widgetId1 = grecaptcha.render('capcha_1', {
                 'sitekey': '<?php echo env('NOCAPTCHA_SECRET') ?>',
-                'theme': 'light'
             });
             widgetId2 = grecaptcha.render(document.getElementById('capcha_2'), {
                 'sitekey': '<?php echo env('NOCAPTCHA_SECRET') ?>',
-                'theme' : 'dark'
             });
         }
 
@@ -1001,8 +999,11 @@ global $province;
         function SendVerifyOTP() {
             enableSmsOtp();
 
-            console.log(widgetId1);
-            console.log(widgetId2);
+            var responseCapcha1 = grecaptcha.getResponse(widgetId1);
+            var responseCapcha2 = grecaptcha.getResponse(widgetId2);
+
+            console.log(responseCapcha1);
+            console.log(responseCapcha2);
 
 
             if(!$('#txtNumberPhone').val() || $('#txtNumberPhone').val().length < 5) {
