@@ -707,6 +707,12 @@ global $province;
                         <tr>
                             <td></td>
                             <td>
+                                <div class="g-recaptcha" id="table-capcha" data-sitekey="{{env('NOCAPTCHA_SECRET')}}"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
                                 <div id="lblPopupOTPError"></div>
                             </td>
                         </tr>
@@ -982,7 +988,14 @@ global $province;
                 $('#lblPopupSendOTPError').html('Vui lòng điền số điện thoại.');
                 return false;
             }
-
+            var recapchaMulti;
+            for( i = 0; i < recaptchas.length; i++) {
+                recapchaMulti = grecaptcha.render( recaptchas[i].id, {
+                    'sitekey' : '<?php echo env('NOCAPTCHA_SECRET') ?>',
+                });
+            }
+            console.log(recapchaMulti);
+            return false;
             $.ajax({
                 url: '/thong-tin-ca-nhan/xac-nhan-so-dien-thoai-moi',
                 type: "GET",
