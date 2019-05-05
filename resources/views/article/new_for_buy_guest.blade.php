@@ -487,7 +487,7 @@ global $province;
                                             <tbody><tr>
                                                 <td></td>
                                                 <td>
-                                                    <div id="recapcha_1"></div>
+                                                    <div id="capcha_1"></div>
                                                 </td>
                                             </tr>
                                             <tr>

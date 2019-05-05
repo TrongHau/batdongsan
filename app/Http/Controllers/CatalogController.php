@@ -140,7 +140,7 @@ class CatalogController extends Controller
                 $arrCat[] = 4;
             if(!$category)
                 return view('errors.404');
-            $arrCat = [];
+            $arrCat[] = $category->id;
             $categoryChildren = CategoryModel::where('parent_id', $category->id)->get();
             if(count($categoryChildren)) {
                 foreach($categoryChildren as $item) {
@@ -150,8 +150,6 @@ class CatalogController extends Controller
                         $arrCat[] = $item2->id;
                     }
                 }
-            }else{
-                $arrCat[] = $category->id;
             }
             $article = ArticleModel::select('title', 'slug', 'short_content', 'image', 'status', 'featured', 'views', 'created_at')->where('status', PUBLISHED_ARTICLE)->whereIn('category_id', $arrCat)->orderBy('created_at', 'desc')->paginate(PAGING_LIST_ARTICLE_CATALOG);
             return view('catalog.article_tin_tuc', compact('category', 'article'));

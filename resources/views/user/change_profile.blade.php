@@ -6,6 +6,7 @@ $mySelf = Auth::user();
 @endsection
 @extends('layouts.app')
 @section('content')
+    <script src='https://www.google.com/recaptcha/api.js'></script>
     <div class="container-default">
         <div>
             <div id="content-user">
