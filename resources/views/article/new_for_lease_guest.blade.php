@@ -997,13 +997,12 @@ global $province;
 
 
         function SendVerifyOTP() {
-            enableSmsOtp();
             if(!$('#txtNumberPhone').val() || $('#txtNumberPhone').val().length < 5) {
                 $('#lblPopupSendOTPError').html('Vui lòng điền số điện thoại.');
                 return false;
             }
             if(!grecaptcha.getResponse(widgetId2)) {
-                $('#lblPopupSendOTPError').html('Vui lòng xác minh trước khi lấy mã xác thực.');
+                $('#lblPopupSendOTPError').html('Vui lòng xác nhận mã an toàn trước khi lấy mã xác thực.');
                 return false;
             }
             $.ajax({
