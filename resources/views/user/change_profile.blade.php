@@ -6,6 +6,7 @@ $mySelf = Auth::user();
 @endsection
 @extends('layouts.app')
 @section('content')
+    <script src='https://www.google.com/recaptcha/api.js'></script>
     <div class="container-default">
         <div>
             <div id="content-user">
@@ -294,6 +295,12 @@ $mySelf = Auth::user();
                                 </tr>
                                 <tr>
                                     <td></td>
+                                    <td>
+                                        <div class="g-recaptcha" data-sitekey="{{env('NOCAPTCHA_SECRET')}}"></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
                                     <td><input type="button" class="button-blue1" value="Lấy mã xác thực" onclick="SendVerifyOTP()"
                                                id="btnPopupSendOTP"> <span id="lblSMSPopupPrice">Miễn phí</span></td>
                                 </tr>
@@ -375,7 +382,10 @@ $mySelf = Auth::user();
                 $('#lblPopupSendOTPError').html('Vui lòng điền số điện thoại.');
                 return false;
             }
-
+            if(!grecaptcha.getResponse()) {
+                $('#lblPopupSendOTPError').html('Vui lòng xác nhận mã an toàn trước khi lấy mã xác thực.');
+                return false;
+            }
             $.ajax({
                 url: '/thong-tin-ca-nhan/xac-nhan-so-dien-thoai-moi',
                 type: "GET",
@@ -399,6 +409,7 @@ $mySelf = Auth::user();
                    }else{
                        $('#lblPopupSendOTPError').html(response.message);
                    }
+                    grecaptcha.reset();
                 }
             });
         }
@@ -437,6 +448,7 @@ $mySelf = Auth::user();
                     }else{
                         $('#lblPopupOTPError').html(response.message);
                     }
+                    grecaptcha.reset();
                 }
             });
         }

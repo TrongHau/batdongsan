@@ -41,7 +41,10 @@ class DetailController extends Controller
         if(!$article)
             return view('errors.404');
         $typeOf = 'lease';
-//        $article->where('id', $id)->increment('views');
+        // +1 view
+        if(Helpers::sessionCountTimes($article->id, 'article_lease')){
+            $article->where('id', $id)->increment('views');
+        }
         $relateArticle = ArticleForLeaseModel::where([['status', PUBLISHED_ARTICLE], ['aprroval', APPROVAL_ARTICLE_PUBLIC]])->where([['id','!=' ,$id], ['method_article', $article->method_article], ['province_id', $article->province_id], ['district_id', $article->district_id]])->orderBy('id', 'desc')->limit(10)->get();
         return view('detail.index', compact('article', 'typeOf', 'relateArticle'));
     }
@@ -51,7 +54,10 @@ class DetailController extends Controller
         if(!$article)
             return view('errors.404');
         $typeOf = 'buy';
-        $article->where('id', $id)->increment('views');
+        // +1 view
+        if(Helpers::sessionCountTimes($article->id, 'article_lease')){
+            $article->where('id', $id)->increment('views');
+        }
         $relateArticle = ArticleForBuyModel::where([['status', PUBLISHED_ARTICLE], ['aprroval', APPROVAL_ARTICLE_PUBLIC]])->where([['id','!=' ,$id], ['method_article', $article->method_article], ['province_id', $article->province_id], ['district_id', $article->district_id]])->orderBy('id', 'desc')->limit(10)->get();
         return view('detail.index', compact('article', 'typeOf', 'relateArticle'));
     }
