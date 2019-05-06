@@ -43,7 +43,7 @@
                             <div class="col-md-6 col-md-offset-4">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="remember"> {{ trans('backpack::base.remember_me') }}
+                                        <input type="checkbox" name="remember"> Ghi nhớ mật khẩu
                                     </label>
                                 </div>
                             </div>
