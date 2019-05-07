@@ -1006,7 +1006,7 @@ global $province;
                 $('#lblPopupSendOTPError').html('Vui lòng điền số điện thoại.');
                 return false;
             }
-            if(!grecaptcha.getResponse(widgetId2)) {
+            if(!$('#captcha').val()) {
                 $('#lblPopupSendOTPError').html('Vui lòng xác nhận mã an toàn trước khi lấy mã xác thực.');
                 return false;
             }
