@@ -37,6 +37,7 @@ define('SOURCE_DATA_ARTICLE_BUY_THUMBNAIL', 'article_buy/thumbnail/');
 define('PUBLIC_ARTICLE_BUY', '/storage/article_buy/');
 define('IMAGE_DEFAULT', '/imgs/image_default.png');
 define('THUMBNAIL_DEFAULT', '/imgs/thumbnail_default.png');
+define('THUMBNAIL_DEFAULT_2', '/imgs/thumbnail_default_2.png');
 define('DEFAULT_ROLE_NAME_EMPTY', 'user');
 define('ROLE_NAME_ADMIN', 'admin');
 define('ROLE_NAME_MANAGER', 'manager');
