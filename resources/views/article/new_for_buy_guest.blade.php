@@ -701,7 +701,7 @@ global $province;
             $('#remove_imgs').val((old ? (old + '|') : '') + img);
         }
         $('.select-province').change(function() {
-            $('#txtAddress').val('');
+            $('#txtAddress').val($('.select-province option:selected').text());
         });
         $('.select-district').change(function() {
             $('#txtAddress').val($('.select-district option:selected').text() + ', ' + $('.select-province option:selected').text());

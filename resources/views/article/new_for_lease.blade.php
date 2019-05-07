@@ -826,7 +826,10 @@ global $province;
             $('#remove_imgs').val((old ? (old + '|') : '') + img);
         }
         $('.select-province').change(function() {
-            $('#txtAddress').val('');
+            $('#txtAddress').val($('.select-province option:selected').text());
+        });
+        $('.select-district').change(function() {
+            $('#txtAddress').val($('.select-district option:selected').text() + ', ' + $('.select-province option:selected').text());
         });
         $('.select-ward').change(function() {
             var ward = $('.select-ward option:selected').val() ? 'Phường ' + $('.select-ward option:selected').text() + ', ' : '';
@@ -837,9 +840,6 @@ global $province;
             var ward = $('.select-ward option:selected').val() ? 'Phường ' + $('.select-ward option:selected').text() + ', ' : '';
             var street = $('.select-street option:selected').val() ?  ('Đường ' + $('.select-street option:selected').text() + ', ') : '';
             $('#txtAddress').val(street + ward + $('.select-district option:selected').text() + ', ' + $('.select-province option:selected').text());
-        });
-        $('.select-street').change(function() {
-            $('#txtAddress').val('Đường ' + $('.select-street option:selected').text() + ', ' + 'Phường ' + $('.select-ward option:selected').text() + ', ' + $('.select-district option:selected').text() + ', ' + $('.select-province option:selected').text());
         });
     </script>
     <script id="template-upload" type="text/x-tmpl">
