@@ -129,6 +129,8 @@ class UserController extends Controller
         session_start();
         if(!$request->phone)
             return Helpers::ajaxResult(false, 'Vui lòng điền số điện thoại.', null);
+        if (!isset($_SESSION['captcha_code']) || $_SESSION['captcha_code'] != trim($request->capcha))
+            return Helpers::ajaxResult(false, 'Mã an toàn bạn nhận không đúng', null);
         if(User::where('phone', $request->phone)->first())
             return Helpers::ajaxResult(false, 'Số điện thoại đã sử dụng', null);
         if(isset($_SESSION['verify_phone']) && $_SESSION['verify_phone'] == $request->phone)

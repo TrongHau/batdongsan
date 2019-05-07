@@ -6,7 +6,6 @@ $mySelf = Auth::user();
 @endsection
 @extends('layouts.app')
 @section('content')
-    <script src='https://www.google.com/recaptcha/api.js'></script>
     <div class="container-default">
         <div>
             <div id="content-user">
@@ -296,7 +295,9 @@ $mySelf = Auth::user();
                                 <tr>
                                     <td></td>
                                     <td>
-                                        <div class="g-recaptcha" data-sitekey="{{env('NOCAPTCHA_SECRET')}}"></div>
+                                        <img src="/captcha/image.php" id="img-captcha"/>
+                                        <img type="button" src="/imgs/icon-reload.png" value="Reload" onclick="$('#img-captcha').attr('src', '/captcha/image.php?rand=' + Math.random())" /> <br/>
+                                        <input placeholder="Nhập mã an toàn" type="text" id="captcha" value="" style=" height: 25px; border: 1px solid #ccc; padding: 0 10px; " />
                                     </td>
                                 </tr>
                                 <tr>
@@ -382,7 +383,7 @@ $mySelf = Auth::user();
                 $('#lblPopupSendOTPError').html('Vui lòng điền số điện thoại.');
                 return false;
             }
-            if(!grecaptcha.getResponse()) {
+            if(!$('#captcha').val()) {
                 $('#lblPopupSendOTPError').html('Vui lòng xác nhận mã an toàn trước khi lấy mã xác thực.');
                 return false;
             }
@@ -393,6 +394,7 @@ $mySelf = Auth::user();
                 data: {
                     phone: $('#txtNumberPhone').val(),
                     type: 'update_profile',
+                    captcha: $('#captcha').val(),
                 },
                 beforeSend: function () {
                     if(loaded) return false;
@@ -409,7 +411,6 @@ $mySelf = Auth::user();
                    }else{
                        $('#lblPopupSendOTPError').html(response.message);
                    }
-                    grecaptcha.reset();
                 }
             });
         }
