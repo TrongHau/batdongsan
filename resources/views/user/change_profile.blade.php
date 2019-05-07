@@ -417,6 +417,7 @@ $mySelf = Auth::user();
                        $('#lblPopupSendOTPError').html(response.message);
                    }
                     $('#reload-img-captcha').click();
+                    $('#captcha').val('')
                 }
             });
         }
