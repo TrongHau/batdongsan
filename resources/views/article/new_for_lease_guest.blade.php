@@ -1034,7 +1034,7 @@ global $province;
                     }else{
                         $('#lblPopupSendOTPError').html(response.message);
                     }
-                    $('#img-captcha').click();
+                    $('#reload-img-captcha').click();
                 }
             });
         }
