@@ -295,8 +295,13 @@ $mySelf = Auth::user();
                                 <tr>
                                     <td></td>
                                     <td>
-                                        <img src="/captcha/image.php" id="img-captcha"/>
-                                        <img type="button" src="/imgs/icon-reload.png" value="Reload" onclick="$('#img-captcha').attr('src', '/captcha/image.php?rand=' + Math.random())" /> <br/>
+                                        <img src="/captcha/image.php" id="img-captcha" style="float: left;"/>
+                                        <img type="button" src="/imgs/icon-reload.png" value="Reload" onclick="$('#img-captcha').attr('src', '/captcha/image.php?rand=' + Math.random())"  style="float: left; margin-top: 4px; margin-left: 4px;"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
                                         <input placeholder="Nhập mã an toàn" type="text" id="captcha" value="" style=" height: 25px; border: 1px solid #ccc; padding: 0 10px; " />
                                     </td>
                                 </tr>
