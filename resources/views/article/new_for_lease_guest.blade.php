@@ -685,7 +685,7 @@ global $province;
                             <td></td>
                             <td>
                                 <img src="/captcha/image.php" id="img-captcha" style="float: left;border: 1px solid #e8e8e8;"/>
-                                <img type="button" src="/imgs/icon-reload.png" value="Reload" onclick="$('#img-captcha').attr('src', '/captcha/image.php?rand=' + Math.random())"  style="float: left; margin-top: 7px; margin-left: 5px;"/>
+                                <img type="button" src="/imgs/icon-reload.png" id="reload-img-captcha" value="Reload" onclick="$('#img-captcha').attr('src', '/captcha/image.php?rand=' + Math.random())"  style="float: left; margin-top: 7px; margin-left: 5px;"/>
                             </td>
                         </tr>
                         <tr>
