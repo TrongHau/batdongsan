@@ -295,7 +295,7 @@ $mySelf = Auth::user();
                                 <tr>
                                     <td></td>
                                     <td>
-                                        <img src="/captcha/image.php" id="img-captcha" style="float: left;"/>
+                                        <img src="/captcha/image.php" id="img-captcha" style="float: left;border: 1px solid #e8e8e8;"/>
                                         <img type="button" src="/imgs/icon-reload.png" value="Reload" onclick="$('#img-captcha').attr('src', '/captcha/image.php?rand=' + Math.random())"  style="float: left; margin-top: 4px; margin-left: 4px;"/>
                                     </td>
                                 </tr>
@@ -416,6 +416,7 @@ $mySelf = Auth::user();
                    }else{
                        $('#lblPopupSendOTPError').html(response.message);
                    }
+                    $('#img-captcha').click();
                 }
             });
         }
@@ -454,7 +455,6 @@ $mySelf = Auth::user();
                     }else{
                         $('#lblPopupOTPError').html(response.message);
                     }
-                    grecaptcha.reset();
                 }
             });
         }

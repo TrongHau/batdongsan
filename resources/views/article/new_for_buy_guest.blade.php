@@ -554,7 +554,14 @@ global $province;
                         <tr>
                             <td></td>
                             <td>
-                                <div id="capcha_2"></div>
+                                <img src="/captcha/image.php" id="img-captcha" style="float: left;border: 1px solid #e8e8e8;"/>
+                                <img type="button" src="/imgs/icon-reload.png" value="Reload" onclick="$('#img-captcha').attr('src', '/captcha/image.php?rand=' + Math.random())"  style="float: left; margin-top: 4px; margin-left: 4px;"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <input placeholder="Nhập mã an toàn" type="text" id="captcha" value="" style=" height: 25px; border: 1px solid #ccc; padding: 0 10px; " />
                             </td>
                         </tr>
                         <tr>
@@ -833,9 +840,6 @@ global $province;
             widgetId1 = grecaptcha.render('capcha_1', {
                 'sitekey': '<?php echo env('NOCAPTCHA_SECRET') ?>',
             });
-            widgetId2 = grecaptcha.render(document.getElementById('capcha_2'), {
-                'sitekey': '<?php echo env('NOCAPTCHA_SECRET') ?>',
-            });
         }
         function SendVerifyOTP() {
             if(!$('#txtNumberPhone').val() || $('#txtNumberPhone').val().length < 5) {
@@ -853,6 +857,7 @@ global $province;
                 data: {
                     phone: $('#txtNumberPhone').val(),
                     type: 'update_news',
+                    captcha: $('#captcha').val(),
                 },
                 beforeSend: function () {
                     if(loaded) return false;
@@ -869,7 +874,7 @@ global $province;
                     }else{
                         $('#lblPopupSendOTPError').html(response.message);
                     }
-                    grecaptcha.reset(widgetId2);
+                    $('#img-captcha').click();
                 }
             });
         }
@@ -912,7 +917,6 @@ global $province;
             });
         }
         function enableSmsOtp() {
-            console.log($('.select-district').val());
             if($('#txtTitle').val() && $('#method_article').val() && $('#type_article').val() && $('.select-province').val() != 0 && $('.select-district').val() != 0) {
                 $('#MainContent__userPage_ctl00_lnkVerifyPrimaryNumber').attr('disabled', false);
             }else{
