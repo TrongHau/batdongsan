@@ -151,7 +151,7 @@
                                         Đăng nhập
                                     </button>
 
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    <a class="btn btn-link" href="{{ route('password.request') }}" style="font-size: 13px">
                                         Tìm lại mật khẩu?
                                     </a>
                                 </div>
