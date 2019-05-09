@@ -187,6 +187,7 @@ class ArticleForLeaseController extends CrudController
             'name' => 'content_article',
             'label' => 'Thông tin mô tả',
             'type' => 'textarea',
+            'rows' => '15',
         ]);
         $this->crud->addField([    // CHECKBOX
             'name' => 'aprroval',

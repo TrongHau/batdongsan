@@ -3,6 +3,7 @@
     <label>{!! $field['label'] !!}</label>
     @include('crud::inc.field_translatable_icon')
     <textarea
+        rows="{{$field['rows'] ?? 3}}"
     	name="{{ $field['name'] }}"
         @include('crud::inc.field_attributes')
 
