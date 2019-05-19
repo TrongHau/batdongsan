@@ -37,4 +37,11 @@
             loaded = false;
         });
     </script>
+    <?php
+        use Jenssegers\Agent\Agent;
+        $Agent = new Agent();
+    ?>
+    @if($Agent->isMobile())
+        <link rel="stylesheet" type="text/css" href="/css/mobile.css">
+    @endif
 </head>

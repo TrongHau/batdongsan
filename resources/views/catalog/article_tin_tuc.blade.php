@@ -50,9 +50,11 @@ $Agent = new Agent();
                                             <h2>
                                                 <a class="link_blue" href="/{{$category->slug}}/{{$item['slug']}}" title="{{$item['title']}}">{{$item['title']}}</a>
                                             </h2>
+                                            @if(!in_array($item['category_id'], [22, 23, 24, 25, 26]))
                                             <div class="datetime">
                                                 {{date('d/m/Y', strtotime($item['created_at']))}}
                                             </div>
+                                            @endif
                                             <p style="text-rendering:geometricPrecision;">
                                                 <?php echo preg_replace("/[\r\n]+/", "<br/>", mb_substr( $item['short_content'], 0, LIMIT_SHORT_CONTENT, "utf-8"))?></p>
                                         </div>
@@ -69,9 +71,11 @@ $Agent = new Agent();
                                                     {{$item['title']}}
                                                 </a>
                                             </h3>
+                                            @if(!in_array($item['category_id'], [22, 23, 24, 25, 26]))
                                             <div class="datetime">
                                                 {{date('d/m/Y', strtotime($item['created_at']))}}
                                             </div>
+                                            @endif
                                             <p style="text-rendering:geometricPrecision;">
                                                 <?php echo preg_replace("/[\r\n]+/", "<br/>", mb_substr($item['short_content'], 0, LIMIT_SHORT_CONTENT, "utf-8"))?>
                                             </p>

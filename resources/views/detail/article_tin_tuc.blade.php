@@ -23,11 +23,6 @@ $Agent = new Agent();
     <meta property="og:type" content="website" />
     <meta property="og:updated_time" content="{{time()}}" />
 @endsection
-@if($Agent->isMobile())
-@section('contentCSS')
-    <link rel="stylesheet" type="text/css" href="/css/mobile.css">
-@endsection
-@endif
 @extends('layouts.app')
 @section('content')
     @include('layouts.top_search')

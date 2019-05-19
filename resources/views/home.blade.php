@@ -135,46 +135,48 @@ $Agent = new Agent();
                                                      alt="{{$item['title']}}">
                                             </a>
                                         </div>
-                                        <div class="p-content">
-                                            <div class="p-title">
-                                                <h3><a id="ctl31_ctl00_rpListProduct_lnkTitle_0"
-                                                       title="{{$item['title']}}"
-                                                       href="/{{$item->prefix_url.'-bds-'.$item->id}}">{{$item['title']}}</a></h3>
+                                        <div class="right-content-home">
+                                            <div class="p-content">
+                                                <div class="p-title">
+                                                    <h3><a id="ctl31_ctl00_rpListProduct_lnkTitle_0"
+                                                           title="{{$item['title']}}"
+                                                           href="/{{$item->prefix_url.'-bds-'.$item->id}}">{{$item['title']}}</a></h3>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="p-bottom-crop">
-                                            <div class="p-bottom-left">
-                                                <div>
-                                                    <div class="left">Giá</div>
-                                                    :&nbsp;{{($item->price_from != null && $item->price_to != null) ? ($item->price_from. ' - ' .$item->price_to.' '.$item->ddlPriceType) : ($item->price_real == 0 ? 'Thỏa thuận' : $item->price.' '.$item->ddlPriceType)}}
-                                                </div>
-                                                <div>
-                                                    <div class="left">Diện tích</div>
-                                                    :&nbsp;{{($item->area_from != null && $item->area_to != null) ? ($item->area_from. ' - ' .$item->area_to.' m²') : ($item->area ? $item->area.' m²' : 'Chưa xác định')}}
-                                                </div>
-                                                <div>
-                                                    <?php
-                                                        if($item->method_article == 'Nhà đất cần mua') {
-                                                            $searchMethod = 'nha-dat-can-mua';
-                                                        }elseif($item->method_article == 'Nhà đất cần thuê') {
-                                                            $searchMethod = 'nha-dat-can-thue';
-                                                        }elseif($item->method_article == 'Nhà đất bán') {
-                                                            $searchMethod = 'nha-dat-ban';
-                                                        }elseif($item->method_article == 'Nhà đất cho thuê') {
-                                                            $searchMethod = 'nha-dat-cho-thue';
-                                                        }
-                                                    ?>
-                                                    <div class="fleft">
-                                                        <div class="left">Quận/huyện</div>
-                                                        :&nbsp;<a class="link_blue"
-                                                                  href="/tim-kiem-nang-cao/{{$searchMethod}}/{{$item->province_id}}/{{$item->district_id}}/-1/-1/-1/-1/-1/-1/-1"
-                                                                  title="Bán nhà riêng tại {{$item->district}}">{{$item->district}}</a>, <a
-                                                                class="link_blue"
-                                                                href="/tim-kiem-nang-cao/{{$searchMethod}}/{{$item->province_id}}/-1/-1/-1/-1/-1/-1/-1/-1"
-                                                                title="Bán nhà riêng tại {{$item->province}}">{{$item->province}}</a>
+                                            <div class="p-bottom-crop">
+                                                <div class="p-bottom-left">
+                                                    <div>
+                                                        <div class="left">Giá</div>
+                                                        :&nbsp;{{($item->price_from != null && $item->price_to != null) ? ($item->price_from. ' - ' .$item->price_to.' '.$item->ddlPriceType) : ($item->price_real == 0 ? 'Thỏa thuận' : $item->price.' '.$item->ddlPriceType)}}
                                                     </div>
-                                                    <div class="p-bottom-right font09">{{date('d/m/Y', strtotime($item->created_at))}}</div>
-                                                    <div class="clear"></div>
+                                                    <div>
+                                                        <div class="left">Diện tích</div>
+                                                        :&nbsp;{{($item->area_from != null && $item->area_to != null) ? ($item->area_from. ' - ' .$item->area_to.' m²') : ($item->area ? $item->area.' m²' : 'Chưa xác định')}}
+                                                    </div>
+                                                    <div>
+                                                        <?php
+                                                            if($item->method_article == 'Nhà đất cần mua') {
+                                                                $searchMethod = 'nha-dat-can-mua';
+                                                            }elseif($item->method_article == 'Nhà đất cần thuê') {
+                                                                $searchMethod = 'nha-dat-can-thue';
+                                                            }elseif($item->method_article == 'Nhà đất bán') {
+                                                                $searchMethod = 'nha-dat-ban';
+                                                            }elseif($item->method_article == 'Nhà đất cho thuê') {
+                                                                $searchMethod = 'nha-dat-cho-thue';
+                                                            }
+                                                        ?>
+                                                        <div class="fleft">
+                                                            <div class="left">Quận/huyện</div>
+                                                            :&nbsp;<a class="link_blue"
+                                                                      href="/tim-kiem-nang-cao/{{$searchMethod}}/{{$item->province_id}}/{{$item->district_id}}/-1/-1/-1/-1/-1/-1/-1"
+                                                                      title="Bán nhà riêng tại {{$item->district}}">{{$item->district}}</a>, <a
+                                                                    class="link_blue"
+                                                                    href="/tim-kiem-nang-cao/{{$searchMethod}}/{{$item->province_id}}/-1/-1/-1/-1/-1/-1/-1/-1"
+                                                                    title="Bán nhà riêng tại {{$item->province}}">{{$item->province}}</a>
+                                                        </div>
+                                                        <div class="p-bottom-right font09">{{date('d/m/Y', strtotime($item->created_at))}}</div>
+                                                        <div class="clear"></div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

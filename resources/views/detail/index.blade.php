@@ -381,9 +381,9 @@ $Agent = new Agent();
                                                                 <img class="product-avatar-img" src="{{$item['gallery_image'] ? Helpers::file_path($item['id'], PUBLIC_ARTICLE_LEASE, true).THUMBNAIL_PATH.json_decode($item['gallery_image'])[0] : THUMBNAIL_DEFAULT }}" alt="{{$item['title']}}">
                                                             </a>
                                                         </div>
-                                                        <div class="p-content">
-                                                            <div class="p-main-text" style="text-rendering: optimizelegibility;"><?php echo preg_replace("/(\r?\n){2,}/", "<br/>", mb_substr($item['content_article'], 0, LIMIT_SHORT_CONTENT_RELATE, "utf-8").'...')?></div>
-                                                        </div>
+                                                        <div class="p-content"><div>
+                                                        <p><?php echo preg_replace("/(\r?\n){2,}/", "<br/>", mb_substr($item['content_article'], 0, LIMIT_SHORT_CONTENT_RELATE, "utf-8").'...')?></p>
+                                                        </div></div>
                                                         <div class="p-bottom-crop">
                                                             <div class="floatleft">
                                                                 <span> Giá: <strong class="product-price">{{$item['price_real'] == 0 ? 'Thỏa thuận' : $item['price'].' '.$item['ddlPriceType']}}</strong></span>

@@ -13,6 +13,7 @@ use App\Models\TypeModel;
 use Storage;
 use App\Library\Helpers;
 use Mail;
+use Jenssegers\Agent\Agent;
 
 class ArticleForBuyController extends CrudController
 {
@@ -91,39 +92,73 @@ class ArticleForBuyController extends CrudController
 //                                'label' => 'Date',
 //                                'type' => 'date',
 //        ]);
-        $this->crud->addColumn([
-            'name'  => 'id',
-            'label' => 'ID',
-            'type' => 'closure',
-            'function' => function($entry) {
-                return '<a href="/quan-ly-tin/dang-tin-can-mua-can-thue/'.$entry->id.'" target="_blank">'.$entry->id.'</a>';
-            },
-        ]);
+        $Agent = new Agent();
+        if($Agent->isMobile()) {
 
 
-        $this->crud->addColumn([
-            'name' => 'created_at',
-            'label' => 'Ngày tạo',
-            'type' => 'closure',
-            'function' => function($entry) {
-                return '<a href="/'.$entry->prefix_url.'-bds-'.$entry->id.'" target="_blank">'.date_format(date_create($entry->created_at),"d-m-Y").'</a>';
-            },
-        ]);
+            $this->crud->addColumn([
+                'name' => 'aprroval',
+                'label' => 'XD',
+                'type' => 'check',
+            ]);
+            $this->crud->addColumn([
+                'name' => 'created_at',
+                'label' => 'Ngày tạo',
+                'type' => 'closure',
+                'function' => function($entry) {
+                    return '<a href="/'.$entry->prefix_url.'-bds-'.$entry->id.'" target="_blank">'.date_format(date_create($entry->created_at),"d-m-Y").'</a>';
+                },
+            ]);
+            $this->crud->addColumn([
+                'name' => 'type_article',
+                'label' => 'Thể loại',
+            ]);
 
-        $this->crud->addColumn([
-            'name' => 'title',
-            'label' => 'Tiêu đề',
-        ]);
-        $this->crud->addColumn([
-            'name' => 'aprroval',
-            'label' => 'Xét duyệt',
-            'type' => 'check',
-        ]);
+            $this->crud->addColumn([
+                'name'  => 'id',
+                'label' => 'ID',
+                'type' => 'closure',
+                'function' => function($entry) {
+                    return '<a href="/quan-ly-tin/dang-tin-ban-cho-thue/'.$entry->id.'" target="_blank">'.$entry->id.'</a>';
+                },
+            ]);
 
-        $this->crud->addColumn([
-            'name' => 'type_article',
-            'label' => 'Thể loại',
-        ]);
+            $this->crud->addColumn([
+                'name' => 'title',
+                'label' => 'Tiêu đề',
+            ]);
+        } else {
+            $this->crud->addColumn([
+                'name'  => 'id',
+                'label' => 'ID',
+                'type' => 'closure',
+                'function' => function($entry) {
+                    return '<a href="/quan-ly-tin/dang-tin-ban-cho-thue/'.$entry->id.'" target="_blank">'.$entry->id.'</a>';
+                },
+            ]);
+            $this->crud->addColumn([
+                'name' => 'created_at',
+                'label' => 'Ngày tạo',
+                'type' => 'closure',
+                'function' => function($entry) {
+                    return '<a href="/'.$entry->prefix_url.'-bds-'.$entry->id.'" target="_blank">'.date_format(date_create($entry->created_at),"d-m-Y").'</a>';
+                },
+            ]);
+
+            $this->crud->addColumn([
+                'name' => 'title',
+                'label' => 'Tiêu đề',
+            ]);
+            $this->crud->addColumn([
+                'name' => 'aprroval',
+                'label' => 'Xét duyệt',
+                'type' => 'check',
+            ]);
+            $this->crud->addColumn([
+                'name' => 'type_article',
+                'label' => 'Thể loại',
+            ]);
+        }
 
         $this->crud->addColumn([
             'name' => 'views',
