@@ -9232,7 +9232,7 @@ ul.tincc-paging li {
 }
 
 .fix-p-bottom-crop {
-    margin-top: -18px;
+    /*margin-top: -18px;*/
 }
 
 #product-detail .kqchitiet {
@@ -13491,3 +13491,11 @@ form.under-login-popup {
     width: 578px;
     position: relative;
 }
+.Main .p-bottom-crop {
+    width: 100%;
+    display: contents;
+}
+.Main .p-main-text {
+    height: 77px;
+}
+
