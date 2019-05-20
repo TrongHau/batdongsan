@@ -1578,7 +1578,7 @@ strong, b {
 .product-list .vip3 .p-main-text {
     color: #000000;
     font-family: tahoma;
-    line-height: 18px;
+    line-height: 19px;
     font-size: 12px;
     margin-right: 7px; /*width: 645px;     float: left;*/
     margin-top: 0px;
@@ -13497,5 +13497,7 @@ form.under-login-popup {
 }
 .Main .p-main-text {
     height: 77px;
+    overflow: hidden;
 }
+
 
