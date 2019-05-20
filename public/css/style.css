@@ -1015,7 +1015,7 @@ strong, b {
 .p-bottom-crop {
     bottom: 0;
     float: left;
-    position: absolute;
+    /*position: absolute;*/
 }
 
 
