@@ -1017,7 +1017,9 @@ strong, b {
     float: left;
     /*position: absolute;*/
 }
-
+.right-content-home .p-bottom-crop {
+    position: absolute;
+}
 
 .p-main {
     /*position: relative;*/
