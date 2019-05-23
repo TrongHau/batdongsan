@@ -15,4 +15,13 @@ Route::group([
     CRUD::resource('article_for_buy', 'ArticleForBuyController');
     CRUD::resource('phone', 'PhoneController');
     CRUD::resource('report', 'ReportController');
+
+    Route::get('sync_article/sync_article', 'SyncArticleController@getSyncArticle');
+    Route::post('sync_article/sync_post_article', 'SyncArticleController@storeSyncArticle');
+
+    CRUD::resource('sync_article', 'SyncArticleController');
+
+
+
+
 }); // this should be the absolute last line of this file
