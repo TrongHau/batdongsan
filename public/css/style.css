@@ -1015,9 +1015,11 @@ strong, b {
 .p-bottom-crop {
     bottom: 0;
     float: left;
+    /*position: absolute;*/
+}
+.right-content-home .p-bottom-crop {
     position: absolute;
 }
-
 
 .p-main {
     /*position: relative;*/
@@ -1576,7 +1578,7 @@ strong, b {
 .product-list .vip3 .p-main-text {
     color: #000000;
     font-family: tahoma;
-    line-height: 18px;
+    line-height: 19px;
     font-size: 12px;
     margin-right: 7px; /*width: 645px;     float: left;*/
     margin-top: 0px;
@@ -9230,7 +9232,7 @@ ul.tincc-paging li {
 }
 
 .fix-p-bottom-crop {
-    margin-top: -18px;
+    /*margin-top: -18px;*/
 }
 
 #product-detail .kqchitiet {
@@ -13489,3 +13491,13 @@ form.under-login-popup {
     width: 578px;
     position: relative;
 }
+.Main .p-bottom-crop {
+    width: 100%;
+    display: contents;
+}
+.Main .p-main-text {
+    height: 77px;
+    overflow: hidden;
+}
+
+

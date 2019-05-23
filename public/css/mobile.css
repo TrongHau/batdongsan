@@ -110,7 +110,7 @@ a.link_blue:link {
     height: 100px;
 }
 .p-bottom-crop {
-    position: absolute;
+    /*position: absolute;*/
     display: grid;
 }
 .right-content-home {

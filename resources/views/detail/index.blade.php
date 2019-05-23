@@ -368,7 +368,7 @@ $Agent = new Agent();
                                             </div>
                                             @foreach($relateArticle as $item)
                                                 <div class="vip5 search-productItem">
-                                                    <div class="p-title">
+                                                    <div class="p-title" style="padding-left: 7px;">
                                                         <h3>
                                                             <a href="/{{$item['prefix_url'].'-bds-'.$item['id']}}" title="{{$item['title']}}" style="text-rendering: optimizelegibility;">
                                                                 {{$item['title']}}
@@ -384,14 +384,14 @@ $Agent = new Agent();
                                                         <div class="p-content"><div>
                                                         <p><?php echo preg_replace("/(\r?\n){2,}/", "<br/>", mb_substr($item['content_article'], 0, LIMIT_SHORT_CONTENT_RELATE, "utf-8").'...')?></p>
                                                         </div></div>
-                                                        <div class="p-bottom-crop">
+                                                        <div class="p-bottom-crop" style=" width: 100%; display: contents;">
                                                             <div class="floatleft">
                                                                 <span> Giá: <strong class="product-price">{{$item['price_real'] == 0 ? 'Thỏa thuận' : $item['price'].' '.$item['ddlPriceType']}}</strong></span>
                                                                 <span> Diện tích:
                                                                 <strong class="product-area">{{$item['area'] ? $item['area'].' m²' : 'Chưa xác định'}}</strong></span>
                                                                  <span> Quận/huyện:
                                                                 <strong class="product-city-dist">
-                                                                {{$item['province']}}, {{$item['district']}}
+                                                                {{$item['district']}}, {{$item['province']}}
                                                                 </strong></span>
                                                             </div>
                                                             <div class="floatright mar-right-10">
