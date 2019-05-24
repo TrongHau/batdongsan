@@ -61,10 +61,10 @@ class SyncArticleModel extends Model
         return $this->belongsTo('Backpack\NewsCRUD\app\Models\Category', 'category_id');
     }
 
-    public function tags()
-    {
-        return $this->belongsToMany('Backpack\NewsCRUD\app\Models\Tag', 'article_tag');
-    }
+//    public function tags_sync()
+//    {
+//        return $this->belongsToMany('Backpack\NewsCRUD\app\Models\Tag', 'article_tag');
+//    }
 
     /*
     |--------------------------------------------------------------------------

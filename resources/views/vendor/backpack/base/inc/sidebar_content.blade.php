@@ -2,7 +2,7 @@
 <!-- Users, Roles Permissions -->
 
 <li><a href="{{backpack_url('article') }}"><i class="fa fa-file-o"></i> <span>Tin Tức</span></a></li>
-<li><a href="{{backpack_url('sync_article') }}"><i class="fa fa-file-o"></i> <span>Lấy Tin Tức</span></a></li>
+<li><a href="{{backpack_url('sync_article') }}"><i class="fa fa-cloud-download"></i> <span>Lấy Tin Tức</span></a></li>
 <li class="treeview">
     <a href="#"><i class="fa fa-usd"></i> <span>Tin rao BĐS</span> <i class="fa fa-angle-left pull-right"></i></a>
     <ul class="treeview-menu">

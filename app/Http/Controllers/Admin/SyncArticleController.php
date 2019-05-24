@@ -8,7 +8,10 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\NewsCRUD\app\Http\Requests\ArticleRequest as StoreRequest;
 use Backpack\NewsCRUD\app\Http\Requests\ArticleRequest as UpdateRequest;
 use Artisan;
+use Storage;
 use App\Models\CategoryModel;
+use App\Models\SyncArticleModel;
+use App\Models\ArticleModel;
 
 class SyncArticleController extends CrudController
 {
@@ -148,15 +151,15 @@ class SyncArticleController extends CrudController
             'attribute' => 'name',
             'model' => "Backpack\NewsCRUD\app\Models\Category",
         ]);
-        $this->crud->addField([       // Select2Multiple = n-n relationship (with pivot table)
-            'label' => 'Tags',
-            'type' => 'select2_multiple',
-            'name' => 'tags', // the method that defines the relationship in your Model
-            'entity' => 'tags', // the method that defines the relationship in your Model
-            'attribute' => 'name', // foreign key attribute that is shown to user
-            'model' => "Backpack\NewsCRUD\app\Models\Tag", // foreign key model
-            'pivot' => true, // on create&update, do you need to add/delete pivot table entries?
-        ]);
+//        $this->crud->addField([       // Select2Multiple = n-n relationship (with pivot table)
+//            'label' => 'Tags',
+//            'type' => 'select2_multiple',
+//            'name' => 'tags', // the method that defines the relationship in your Model
+//            'entity' => 'tags', // the method that defines the relationship in your Model
+//            'attribute' => 'name', // foreign key attribute that is shown to user
+//            'model' => "Backpack\NewsCRUD\app\Models\Tag", // foreign key model
+//            'pivot' => true, // on create&update, do you need to add/delete pivot table entries?
+//        ]);
         $this->crud->addField([    // ENUM
             'name' => 'status',
             'label' => 'Tình trạng',
@@ -170,6 +173,7 @@ class SyncArticleController extends CrudController
 
         $this->crud->enableAjaxTable();
         $this->crud->setListView('crud::list_sync_article');
+        $this->crud->setEditView('crud::edit_sync_article');
     }
 
     public function store(StoreRequest $request)
@@ -240,20 +244,116 @@ class SyncArticleController extends CrudController
         Artisan::call('schedule:run');
         return $this->performSaveAction($item->getKey());
     }
+    public function approvalSyncArticle(Request $request, $id) {
+        $article = SyncArticleModel::find($id);
+        ArticleModel::create($article->toArray());
+        $article->delete();
+        \Alert::success('Duyệt tin thành công')->flash();
+        return \Redirect::to($this->crud->route);
+    }
     public function getSyncArticle() {
         return view('vendor.backpack.article.sync_article');
     }
     public function storeSyncArticle(Request $request) {
         $url = '';
+        $dataNews = [];
+        $dateStart = strtotime(str_replace('T', ' ', $request->start_date));
+        $dateEnd = strtotime(str_replace('T', ' ', $request->end_date));
+
         if($request->type == 'bds.com.vn') {
-            $url = 'https://batdongsan.com.vn/tin-thi-truong';
+            $this->getArticleBDS(5, 'tin-thi-truong', $dateStart, $dateEnd);
         }
-        $file = $this->get_fcontent($url);
-        preg_match_all('@<a class="link_blue" href=\'(.*?)\'@si', $file[0], $data_url);
-        preg_match_all('@<div class="datetime">\r\n(.*?)\r\n</div>@si', $file[0], $data_url_date);
+        if($request->type == 'bds.com.vn') {
+            $this->getArticleBDS(6, 'phan-tich-nhan-dinh', $dateStart, $dateEnd);
+        }
+        if($request->type == 'bds.com.vn') {
+            $this->getArticleBDS(1, 'chinh-sach-quan-ly', $dateStart, $dateEnd);
+        }
+        if($request->type == 'bds.com.vn') {
+            $this->getArticleBDS(7, 'bat-dong-san-the-gioi', $dateStart, $dateEnd);
+        }
+        if($request->type == 'bds.com.vn') {
+            $this->getArticleBDS(8, 'tai-chinh-chung-khoan-bat-dong-san', $dateStart, $dateEnd);
+        }
+        if($request->type == 'bds.com.vn') {
+            $this->getArticleBDS(2, 'thong-tin-quy-hoach', $dateStart, $dateEnd);
+        }
+        if($request->type == 'bds.com.vn') {
+            $this->getArticleBDS(10, 'trinh-tu-thu-tuc', $dateStart, $dateEnd);
+        }
+        if($request->type == 'bds.com.vn') {
+            $this->getArticleBDS(11, 'quyen-so-huu', $dateStart, $dateEnd);
+        }
+        if($request->type == 'bds.com.vn') {
+            $this->getArticleBDS(12, 'tranh-chap', $dateStart, $dateEnd);
+        }
+        if($request->type == 'bds.com.vn') {
+            $this->getArticleBDS(13, 'xay-dung-hoan-cong', $dateStart, $dateEnd);
+        }
+        if($request->type == 'bds.com.vn') {
+            $this->getArticleBDS(14, 'nghia-vu-tai-chinh', $dateStart, $dateEnd);
+        }
+        if($request->type == 'bds.com.vn') {
+            $this->getArticleBDS(15, 'cac-van-de-co-yeu-to-nuoc-ngoai', $dateStart, $dateEnd);
+        }
+        if($request->type == 'bds.com.vn') {
+            $this->getArticleBDS(17, 'loi-khuyen-cho-nguoi-mua', $dateStart, $dateEnd);
+        }
+        if($request->type == 'bds.com.vn') {
+            $this->getArticleBDS(18, 'loi-khuyen-cho-nguoi-ban', $dateStart, $dateEnd);
+        }
+        if($request->type == 'bds.com.vn') {
+            $this->getArticleBDS(19, 'loi-khuyen-cho-nha-dau-tu', $dateStart, $dateEnd);
+        }
+        if($request->type == 'bds.com.vn') {
+            $this->getArticleBDS(20, 'loi-khuyen-cho-nguoi-thue', $dateStart, $dateEnd);
+        }
+        if($request->type == 'bds.com.vn') {
+            $this->getArticleBDS(21, 'loi-khuyen-cho-nguoi-cho-thue', $dateStart, $dateEnd);
+        }
+        \Alert::success('Đã lấy tin tức mới thành công')->flash();
+        return \Redirect::to($this->crud->route);
+    }
+    function getArticleBDS($cat_id, $refixNews, $dateStart, $dateEnd) {
+        $refixUrl = 'https://batdongsan.com.vn';
+        for($i = 1; $i <= ($request->page ?? 1); $i++) {
+            $file = $this->get_fcontent($refixUrl . '/' . $refixNews . '/p' . $i);
+            preg_match_all('@id="ctl23_BodyContainer"(.*?)id="RightMainContent"@si', $file[0], $content);
+            preg_match_all('@<a class="link_blue" href=\'(.*?)\' title=\'(.*?)\'>\r\n(.*?)</a>@si', $content[0][0], $data_url);
+            preg_match_all('@<div class="datetime">\r\n(.*?)\r\n</div>@si', $content[0][0], $data_url_date);
+            preg_match_all('@src=\'(.*?)\'@si', $content[0][0], $data_img);
+            foreach ($data_url_date[1] as $key => $item) {
+                $dateArticle = strtotime(str_replace('/', '-', substr($item, 6). ' '. substr($item, 0, 5)));
+                if($dateArticle >= $dateStart && $dateArticle <= $dateEnd) {
+                    $title = str_replace('\r\n', '', $data_url[3][$key]);
+                    if(!SyncArticleModel::where('title', $title)->first() && !ArticleModel::where('title', $title)->first()) {
+                        $fileContent = $this->get_fcontent($refixUrl . $data_url[1][$key]);
+                        preg_match_all('@<h2 id="ctl23_ctl00_divSummary" class="summary">(.*?)</h2>@si', $fileContent[0], $data_short_content);
+                        preg_match_all('@<div id="divContents" class="detailsView-contents-style detail-article-content">(.*?)</div>\r\n<div id="ctl23_ctl00_divSourceNews"@si', $fileContent[0], $data_content);
 
-        dd($request->start_date);
-
+                        $urlImage = $data_img[1][$key];
+                        $contents = file_get_contents($urlImage);
+                        $name = substr($urlImage, strrpos($urlImage, '/') + 1);
+                        Storage::disk('public_uploads')->put('sync/cover/'.$refixNews.'/' . $name, $contents);
+                        $contentData = $data_content[1][0] ?? '';
+                        preg_match_all('@src="(.*?)"@si', $contentData, $data_imgs_content);
+                        foreach ($data_imgs_content[1] as $itemImgs) {
+                            $contentImg = file_get_contents($itemImgs);
+                            $nameImg = substr($itemImgs, strrpos($itemImgs, '/') + 1);
+                            Storage::disk('public_uploads')->put('sync/content/'.$refixNews.'/' . $nameImg, $contentImg);
+                            $contentData = str_replace($contentData, $itemImgs, $nameImg);
+                        }
+                        SyncArticleModel::create([
+                            'category_id' => $cat_id,
+                            'title' => $title,
+                            'short_content' => $data_short_content[1][0] ?? '',
+                            'content' => $data_content[1][0] ?? '',
+                            'image' => $name,
+                        ]);
+                    }
+                }
+            }
+        }
     }
     function get_fcontent( $url,  $javascript_loop = 0, $timeout = 5 ) {
         $url = str_replace( "&amp;", "&", urldecode(trim($url)) );
