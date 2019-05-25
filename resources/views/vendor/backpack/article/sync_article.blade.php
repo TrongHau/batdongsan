@@ -44,7 +44,7 @@
                                 <input type="number" name="page" class="form-control" value="1">
                             </div>
                             <div class="form-group col-xs-3">
-                                <label>Thời gian bắt đầu đăng tin</label>
+                                <label>Bắt đầu đăng tin</label>
                                 <input type="datetime-local" id="meeting-time" class="form-control"
                                        name="start_date" value="{{date('Y-m-d', strtotime('-1 day'))}}T{{date('H:i')}}">
                             </div>

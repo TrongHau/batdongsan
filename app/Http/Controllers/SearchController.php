@@ -55,6 +55,33 @@ class SearchController extends Controller
             $type = 'cho_thue';
             $article = ArticleForBuyModel::where('status', PUBLISHED_ARTICLE);
             $article = $article->where('method_article', 'Nhà đất cần thuê');
+        }elseif($method == 'ban-can-ho-chung-cu') {
+            $article = ArticleForBuyModel::where('status', PUBLISHED_ARTICLE);
+            $article = $article->where('method_article', 'Bán căn hộ chung cư');
+        }elseif($method == 'ban-nha-rieng') {
+            $article = ArticleForBuyModel::where('status', PUBLISHED_ARTICLE);
+            $article = $article->where('method_article', 'Bán nhà riêng');
+        }elseif($method == 'ban-nha-biet-thu-lien-ke') {
+            $article = ArticleForBuyModel::where('status', PUBLISHED_ARTICLE);
+            $article = $article->where('method_article', 'Bán biệt thự, liền kề');
+        }elseif($method == 'ban-nha-mat-pho') {
+            $article = ArticleForBuyModel::where('status', PUBLISHED_ARTICLE);
+            $article = $article->where('method_article', 'Bán nhà mặt phố');
+        }elseif($method == 'ban-dat-nen-du-an') {
+            $article = ArticleForBuyModel::where('status', PUBLISHED_ARTICLE);
+            $article = $article->where('method_article', 'Bán đất nền dự án');
+        }elseif($method == 'ban-dat') {
+            $article = ArticleForBuyModel::where('status', PUBLISHED_ARTICLE);
+            $article = $article->where('method_article', 'Bán đất');
+        }elseif($method == 'ban-trang-trai-khu-nghi-duong') {
+            $article = ArticleForBuyModel::where('status', PUBLISHED_ARTICLE);
+            $article = $article->where('method_article', 'Bán trang trại, khu nghỉ dưỡng');
+        }elseif($method == 'ban-kho-nha-xuong') {
+            $article = ArticleForBuyModel::where('status', PUBLISHED_ARTICLE);
+            $article = $article->where('method_article', 'Bán kho, nhà xưởng');
+        }elseif($method == 'ban-loai-bat-dong-san-khac') {
+            $article = ArticleForBuyModel::where('status', PUBLISHED_ARTICLE);
+            $article = $article->where('method_article', 'Bán loại bất động sản khác');
         }
 
         // hiển thị tất cả các loại
