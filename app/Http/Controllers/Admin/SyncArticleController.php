@@ -348,7 +348,7 @@ class SyncArticleController extends CrudController
                             'title' => $title,
                             'short_content' => $data_short_content[1][0] ?? '',
                             'content' => $data_content[1][0] ?? '',
-                            'image' => '/uploads/sync/cover/' . $refixNews . '/' . $name,
+                            'image' => 'uploads/sync/cover/' . $refixNews . '/' . $name,
                         ]);
                     }
                 }
