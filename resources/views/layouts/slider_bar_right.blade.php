@@ -31,7 +31,7 @@ global $tuvanluat;
                                     <option class="advance-options" value="ban-can-ho-chung-cu">- Bán căn hộ chung cư</option>
                                     <option class="advance-options" value="tat-ca-nha-ban">- Tất cả các loại nhà bán</option>
                                     <option class="advance-options" value="ban-nha-rieng">&nbsp;&nbsp;&nbsp;&nbsp;+ Bán nhà riêng </option>
-                                    <option class="advance-options" value="ban-nha-biet-thu-lien-ke">&nbsp;&nbsp;&nbsp;&nbsp;+ Bán nhà biệt thự, liền kề</option>
+                                    <option class="advance-options" value="ban-biet-thu-lien-ke">&nbsp;&nbsp;&nbsp;&nbsp;+ Bán biệt thự, liền kề</option>
                                     <option class="advance-options" value="ban-nha-mat-pho">&nbsp;&nbsp;&nbsp;&nbsp;+ Bán nhà mặt phố</option>
                                     <option class="advance-options" value="tat-ca-dat-ban">- Tất cả các loại đất bán</option>
                                     <option class="advance-options" value="ban-dat-nen-du-an">&nbsp;&nbsp;&nbsp;&nbsp;+ Bán đất nền dự án</option>

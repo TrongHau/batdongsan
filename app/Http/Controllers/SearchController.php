@@ -61,7 +61,7 @@ class SearchController extends Controller
         }elseif($method == 'ban-nha-rieng') {
             $article = ArticleForBuyModel::where('status', PUBLISHED_ARTICLE);
             $article = $article->where('method_article', 'Bán nhà riêng');
-        }elseif($method == 'ban-nha-biet-thu-lien-ke') {
+        }elseif($method == 'ban-biet-thu-lien-ke') {
             $article = ArticleForBuyModel::where('status', PUBLISHED_ARTICLE);
             $article = $article->where('method_article', 'Bán biệt thự, liền kề');
         }elseif($method == 'ban-nha-mat-pho') {
@@ -86,10 +86,10 @@ class SearchController extends Controller
 
         // hiển thị tất cả các loại
         if($method == 'tat-ca-nha-ban') {
-            $article = ArticleForBuyModel::where('status', PUBLISHED_ARTICLE);
+            $article = ArticleForLeaseModel::where('status', PUBLISHED_ARTICLE);
             $article = $article->whereIn('type_article', ['Bán căn hộ chung cư', 'Bán nhà riêng', 'Bán biệt thự, liền kề', 'Bán nhà mặt phố']);
         }elseif($method == 'tat-ca-dat-ban') {
-            $article = ArticleForBuyModel::where('status', PUBLISHED_ARTICLE);
+            $article = ArticleForLeaseModel::where('status', PUBLISHED_ARTICLE);
             $article = $article->whereIn('type_article', ['Bán đất nền dự án', 'Bán đất', 'Bán trang trại, khu nghỉ dưỡng', 'Bán kho, nhà xưởng']);
         }
         if($district_id > 0) {
