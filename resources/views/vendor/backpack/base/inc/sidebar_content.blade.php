@@ -2,12 +2,19 @@
 <!-- Users, Roles Permissions -->
 
 <li><a href="{{backpack_url('article') }}"><i class="fa fa-file-o"></i> <span>Tin Tức</span></a></li>
-<li><a href="{{backpack_url('sync_article') }}"><i class="fa fa-cloud-download"></i> <span>Lấy Tin Tức</span></a></li>
 <li class="treeview">
     <a href="#"><i class="fa fa-usd"></i> <span>Tin rao BĐS</span> <i class="fa fa-angle-left pull-right"></i></a>
     <ul class="treeview-menu">
         <li><a href="{{ backpack_url('article_for_lease') }}"><i class="fa fa-btc"></i> <span>Bán - cho thuê</span></a></li>
         <li><a href="{{ backpack_url('article_for_buy') }}"><i class="fa fa-handshake-o"></i> <span>Mua - cần thuê</span></a></li>
+    </ul>
+</li>
+<li class="treeview">
+    <a href="#"><i class="fa fa-cloud-download"></i> <span>Lấy tin</span> <i class="fa fa-angle-left pull-right"></i></a>
+    <ul class="treeview-menu">
+        <li><a href="{{ backpack_url('sync_article') }}"><i class="fa fa-file-o"></i> <span>Lấy tin tức</span></a></li>
+        <li><a href="{{ backpack_url('sync_article_for_lease') }}"><i class="fa fa-btc"></i> <span>Lấy rao bán</span></a></li>
+        <li><a href="{{ backpack_url('sync_article_for_buy') }}"><i class="fa fa-handshake-o"></i> <span>Lấy rao cho thuê</span></a></li>
     </ul>
 </li>
 <li><a href="{{backpack_url('phone') }}"><i class="fa fa-phone"></i> <span>Quản lý SĐT</span></a></li>
