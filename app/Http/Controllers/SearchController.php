@@ -61,7 +61,7 @@ class SearchController extends Controller
         }elseif($method == 'ban-nha-rieng') {
             $article = ArticleForBuyModel::where('status', PUBLISHED_ARTICLE);
             $article = $article->where('method_article', 'Bán nhà riêng');
-        }elseif($method == 'ban-nha-biet-thu-lien-ke') {
+        }elseif($method == 'ban-biet-thu-lien-ke') {
             $article = ArticleForBuyModel::where('status', PUBLISHED_ARTICLE);
             $article = $article->where('method_article', 'Bán biệt thự, liền kề');
         }elseif($method == 'ban-nha-mat-pho') {
