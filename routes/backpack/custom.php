@@ -22,6 +22,12 @@ Route::group([
 
     CRUD::resource('sync_article', 'SyncArticleController');
 
+    Route::get('sync_article_for_lease/sync_article_for_lease', 'SyncArticleForLeaseController@getSyncArticle');
+    Route::get('sync_article_for_lease/approval/{id}', 'SyncArticleForLeaseController@approvalSyncArticle');
+    Route::post('sync_article_for_lease/sync_post_article', 'SyncArticleForLeaseController@storeSyncArticle');
+
+    CRUD::resource('sync_article_for_lease', 'SyncArticleForLeaseController');
+
 
 
 
