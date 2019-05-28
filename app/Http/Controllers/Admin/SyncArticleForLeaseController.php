@@ -13,6 +13,10 @@ use App\Models\CategoryModel;
 use App\Models\SyncArticleForLeaseModel;
 use App\Models\ArticleForLeaseModel;
 use App\Models\ArticleModel;
+use App\Models\DistrictModel;
+use App\Models\ProvinceModel;
+use App\Models\WardModel;
+use App\Models\StreetModel;
 
 class SyncArticleForLeaseController extends CrudController
 {
@@ -262,12 +266,12 @@ class SyncArticleForLeaseController extends CrudController
         $dateEnd = strtotime(str_replace('T', ' ', $request->end_date));
 
         if($request->type == 'bds.com.vn') {
-            $this->getArticleBDS(21, 'nha-dat-ban', $dateStart, $dateEnd);
+            $this->getArticleBDS(21, 'nha-dat-ban', 'Nhà đất bán', $dateStart, $dateEnd);
         }
         \Alert::success('Đã lấy tin tức mới thành công')->flash();
         return \Redirect::to($this->crud->route);
     }
-    function getArticleBDS($cat_id, $refixNews, $dateStart, $dateEnd) {
+    function getArticleBDS($cat_id, $refixNews, $nameRefixNews, $dateStart, $dateEnd) {
         $refixUrl = 'https://batdongsan.com.vn';
         for($i = 1; $i <= ($request->page ?? 1); $i++) {
             $file = $this->get_fcontent($refixUrl . '/' . $refixNews . '/p' . $i);
@@ -280,7 +284,7 @@ class SyncArticleForLeaseController extends CrudController
                     $title = str_replace('\n', ' ', strip_tags($data_url[3][$key]));
                     if(!SyncArticleForLeaseModel::where('title', $title)->first() && !ArticleForLeaseModel::where('title', $title)->first()) {
                         $fileContent = $this->get_fcontent($refixUrl . $data_url[1][$key]);
-                        preg_match_all('@<div class="pm-desc">(.*?)</div>@si', $fileContent[0], $data_content);
+                        preg_match_all('@<div class="pm-desc">\r\n(.*?)\r\n</div>@si', $fileContent[0], $data_content);
                         preg_match_all('@<img itemprop="image"(.*?)src=\'(.*?)\'@si', $fileContent[0], $data_imgs_content);
                         $contentData = $data_content[1][0] ?? '';
                         if(isset($data_imgs_content[2])) {
@@ -290,25 +294,74 @@ class SyncArticleForLeaseController extends CrudController
 //                                Storage::disk('public_uploads')->put($result->id, SOURCE_DATA_ARTICLE_LEASE, true) . $nameImg, $contentImg);
                             }
                         }
+                        preg_match_all('@Giá:</b>\r\n<strong>\r\n(.*?) (.*?)&nbsp;@si', $fileContent[0], $price);
+                        preg_match_all('@Diện tích:</b>\r\n<strong>\r\n(.*?)</strong>@si', $fileContent[0], $are);
+                        preg_match_all('@Loại tin rao\r\n</div>\r\n<div class="right">\r\n(.*?)\r\n</div>\r\n@si', $fileContent[0], $type);
+                        preg_match_all('@Địa chỉ\r\n</div>\r\n<div class="right">\r\n(.*?)\r\n</div>\r\n@si', $fileContent[0], $province);
+                        $province_ = explode(',', $province[1][0]);
+                        if(count($province_) == 5) {
+                            $project = trim($province_[0]);
+                            $province = trim($province_[4]);
+                            $district = trim($province_[3]);
+                            $ward = trim($province_[2]);
+                            $street= trim($province_[1]);
+                        }elseif(count($province_) == 4) {
+                            $project = '';
+                            $province = trim($province_[3]);
+                            $district = trim($province_[2]);
+                            $ward = trim($province_[1]);
+                            $street= trim($province_[0]);
+                        }elseif(count($province_) == 3) {
+                            $project = trim($province_[0]);
+                            $province = trim($province_[2]);
+                            $district = trim($province_[1]);
+                            $ward = '';
+                            $street= '';
+                        }elseif(count($province_) == 2) {
+                            $project = '';
+                            $province = trim($province_[1]);
+                            $district = trim($province_[0]);
+                            $ward = '';
+                            $street = '';
+                        }
+                        $province_id = '';
+                        $district_id = '';
+                        $ward_id = '';
+                        $street_id = '';
+                        $provinceData = ProvinceModel::whereRaw('LOWER(`_name`) LIKE ? ',[trim(strtolower($province))])->first();
+                        if($provinceData) {
+                            $districtData = DistrictModel::whereRaw('LOWER(`_name`) LIKE ? ',[trim(strtolower($district))])->where('_province_id', $provinceData->id)->first();
+                            $province_id = $provinceData->id;
+                            $district_id = $districtData->id ?? '';
+                        }
+                        if($ward && $province_id && $district_id) {
+                            $wardData = WardModel::whereRaw('LOWER(`_name`) LIKE ? ',[trim(strtolower($ward))])->where([['_province_id', $province_id], ['_district_id', $district_id]])->first();
+                            $ward_id = $wardData->id ?? '';
+                        }
+                        if($street && $province_id && $district_id) {
+                            $streetData = WardModel::whereRaw('LOWER(`_name`) LIKE ? ',[trim(strtolower($street))])->where([['_province_id', $province_id], ['_district_id', $district_id]])->first();
+                            $street_id = $streetData->id ?? '';
+                        }
+                        dd(1);
                         $article = [
-                            'title' => $request->title,
-                            'method_article' => $request->method_article,
-                            'type_article' => $request->type_article,
-                            'province_id' => $request->province_id,
-                            'province' => $request->province_id ? ProvinceModel::find($request->province_id)->_name : '',
-                            'district_id' => $request->district_id,
-                            'district' => ($request->district_id && $request->province_id) ? DistrictModel::where('id', $request->district_id)->where('_province_id', $request->province_id)->first()->_name : '',
-                            'ward_id' => $request->ward_id,
-                            'ward' => ($request->ward_id && $request->district_id && $request->province_id) ? WardModel::where('id', $request->ward_id)->where('_province_id', $request->province_id)->where('_district_id', $request->district_id)->first()->_name : '',
-                            'street_id' => $request->street_id,
-                            'street' => ($request->street_id && $request->district_id && $request->province_id) ? StreetModel::where('id', $request->street_id)->where('_province_id', $request->province_id)->where('_district_id', $request->district_id)->first()->_name : '',
-                            'address' => $request->address,
-                            'project' => $request->project,
-                            'area' => $request->area ?? 0,
-                            'price' => $request->price,
-                            'ddlPriceType' => $request->ddlPriceType,
-                            'price_real' => ($request->price ?? 0) * Helpers::convertCurrency($request->ddlPriceType),
-                            'content_article' => $request->content_article,
+                            'title' => $title,
+                            'method_article' => $nameRefixNews,
+                            'type_article' => $type[1][0] ?? '',
+                            'province_id' => $province_id,
+                            'province' => $province,
+                            'district_id' => $district_id,
+                            'district' => $district,
+                            'ward_id' => $ward_id,
+                            'ward' => $ward,
+                            'street_id' => $street_id,
+                            'street' => $street,
+                            'address' => ($street ? $street. ', ' : '') . ($ward ? $ward. ', ' : '') . $district . ', ' . $province,
+                            'project' => $project,
+                            'area' => isset($are[1][0]) ? str_replace('m²', '', $are[1][0]) : '',
+                            'price' => $price[1][0] ?? '',
+                            'ddlPriceType' => $price[2][0] ?? '',
+                            'price_real' => ($price[1][0] ?? 0) * Helpers::convertCurrency($price[2][0] ?? ''),
+                            'content_article' => $data_content[1][0] ?? '',
                             'facade' => $request->facade,
                             'land_width' => $request->land_width,
                             'ddlHomeDirection' => $request->ddlHomeDirection,
