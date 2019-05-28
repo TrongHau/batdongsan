@@ -390,7 +390,6 @@ class ArticleController extends Controller
             'toilet' => 'max:99',
 //            'g-recaptcha-response' => 'required',
         ];
-        session_start();
         if(!Auth::check()) {
             if(!isset($_SESSION['verify_phone']) || !$_SESSION['verify_phone']) {
                 $excep['phone'] = 'required';
