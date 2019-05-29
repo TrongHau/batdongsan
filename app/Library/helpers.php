@@ -64,13 +64,14 @@ class Helpers
         return preg_replace(array('/[^a-zA-Z0-9 -]/', '/[ -]+/', '/^-|-$/'), array('-', $spaceReplace, '-'), self::khongdau($str));
     }
     public static function convertCurrency($text) {
-        if($text == 'Triệu' || $text == 'Triệu/m2' || $text == 'Triệu/tháng' || $text == 'Triệu/m2/tháng') {
+        $text = strtolower($text);
+        if($text == 'triệu' || $text == 'triệu/m2' || $text == 'triệu/m²' || $text == 'triệu/tháng' || $text == 'triệu/m2/tháng' || $text == 'triệu/m²/tháng') {
             return 1000000;
-        }elseif($text == 'Tỷ') {
+        }elseif($text == 'Tỷ' || $text == 'tỷ') {
             return 1000000000;
-        }elseif($text == 'Nghìn/m2/tháng' || $text == 'Nghìn/tháng') {
+        }elseif($text == 'nghìn/m2/tháng' || $text == 'nghìn/tháng') {
             return 1000;
-        }elseif($text == 'Trăm nghìn/m2') {
+        }elseif($text == 'trăm nghìn/m2' || $text == 'trăm nghìn/m²') {
             return 100;
         }else{
             return 0;

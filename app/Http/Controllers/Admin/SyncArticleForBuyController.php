@@ -5,13 +5,22 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 // VALIDATION: change the requests to match your own file names if you need form validation
-use Backpack\NewsCRUD\app\Http\Requests\ArticleRequest as StoreRequest;
-use Backpack\NewsCRUD\app\Http\Requests\ArticleRequest as UpdateRequest;
+use Backpack\CRUD\app\Http\Requests\CrudRequest as StoreRequest;
+use Backpack\CRUD\app\Http\Requests\CrudRequest as UpdateRequest;
 use Artisan;
 use Storage;
+use App\Models\TypeModel;
+use Jenssegers\Agent\Agent;
+use Illuminate\Support\Facades\Auth;
+use App\Library\Helpers;
 use App\Models\CategoryModel;
-use App\Models\SyncArticleModel;
+use App\Models\SyncArticleForBuyModel;
+use App\Models\ArticleForBuyModel;
 use App\Models\ArticleModel;
+use App\Models\DistrictModel;
+use App\Models\ProvinceModel;
+use App\Models\WardModel;
+use App\Models\StreetModel;
 
 class SyncArticleForBuyController extends CrudController
 {
@@ -28,9 +37,48 @@ class SyncArticleForBuyController extends CrudController
         |--------------------------------------------------------------------------
         */
         $this->crud->setModel("App\Models\SyncArticleForBuyModel");
-        $this->crud->setRoute(config('backpack.base.route_prefix', 'admin').'/sync_article');
-        $this->crud->setEntityNameStrings('article', 'Lấy Tin Tức');
+        $this->crud->setRoute(config('backpack.base.route_prefix', 'admin').'/sync_article_for_buy');
+        $this->crud->setEntityNameStrings('article', 'Lấy rao mua - cần thuê');
         $this->crud->orderBy('id', 'desc');
+
+        $this->crud->addFilter([ // daterange filter
+            'type' => 'date_range',
+            'name' => 'from_to',
+            'label'=> 'Hiển thị theo thời gian'
+        ],
+            false,
+            function($value) {
+                $dates = json_decode(htmlspecialchars_decode($value, ENT_QUOTES));
+                $this->crud->addClause('whereDate', 'created_at', '>=', $dates->from);
+                $this->crud->addClause('whereDate', 'created_at', '<=', $dates->to);
+            });
+        $this->crud->addFilter([ // select2_multiple filter
+            'name' => 'method_article',
+            'type' => 'dropdown',
+            'label'=> 'Phương thức',
+            'placeholder' => 'Tìm Danh mục tin tức'
+        ], [
+            'Nhà đất cho thuê' => 'Nhà đất cho thuê',
+            'Nhà đất bán' => 'Nhà đất bán'
+        ], function ($values) {
+            if (!empty($values)) {
+                $this->crud->addClause('where', 'method_article', $values);
+            }
+        });
+
+        $this->crud->addFilter([ // select2_multiple filter
+            'name' => 'type_article',
+            'type' => 'select2_multiple',
+            'label'=> 'Danh mục',
+            'placeholder' => 'Tìm Danh mục tin tức'
+        ], function () {
+            return TypeModel::orderBy('name')->where('id', '<', 20)->pluck('name', 'name')->toArray();
+        }, function ($values) {
+            $values = json_decode(htmlspecialchars_decode($values, ENT_QUOTES));
+            if (!empty($values)) {
+                $this->crud->addClause('whereIn', 'type_article', $values);
+            }
+        });
 
         /*
         |--------------------------------------------------------------------------
@@ -44,72 +92,135 @@ class SyncArticleForBuyController extends CrudController
 //                                'label' => 'Date',
 //                                'type' => 'date',
 //        ]);
-        $this->crud->addFilter([ // daterange filter
-            'type' => 'date_range',
-            'name' => 'from_to',
-            'label'=> 'Hiển thị theo thời gian'
-        ],
-            false,
-            function($value) {
-                $dates = json_decode(htmlspecialchars_decode($value, ENT_QUOTES));
-                $this->crud->addClause('whereDate', 'created_at', '>=', $dates->from);
-                $this->crud->addClause('whereDate', 'created_at', '<=', $dates->to);
-            });
-        $this->crud->addFilter([ // select2_multiple filter
-            'name' => 'roles',
-//            'type' => 'dropdown',
-            'type' => 'select2_multiple',
-            'label'=> 'Danh mục',
-            'placeholder' => 'Tìm Danh mục tin tức'
-        ], function () {
-            return CategoryModel::orderBy('name')->get()->pluck('name', 'id')->toArray();
-        }, function ($values) {
-            $values = json_decode(htmlspecialchars_decode($values, ENT_QUOTES));
-            if (!empty($values)) {
-                $this->crud->addClause('whereIn', 'category_id', $values);
-            }
-        });
-        $this->crud->enableBulkActions();
-        $this->crud->addBulkDeleteButton();
-        $this->crud->addColumn([
-            'name'  => 'id',
-            'label' => 'ID',
-            'type' => 'closure',
-            'function' => function($entry) {
-                return '<a href="/'.$entry->category->slug.'/'.$entry->slug.'" target="_blank">'.$entry->id.'</a>';
-            },
-        ]);
-        $this->crud->addColumn([
-            'name' => 'title',
-            'label' => 'Tiêu đề',
-        ]);
-        $this->crud->addColumn([
-            'name' => 'featured',
-            'label' => 'Nỗi bật',
-            'type' => 'check',
-        ]);
 
-        $this->crud->addColumn([
-            'label' => 'Danh mục',
-//                                'type' => 'closure',
-            'type' => 'select',
-            'name' => 'category_id',
-            'entity' => 'category',
-            'attribute' => 'name',
-            'model' => "Backpack\NewsCRUD\app\Models\Category",
-//                                'function' => function($entry) {
-//                                    return $entry->category->name;
-//                                }
-        ]);
-        $this->crud->addColumn([
-            'name' => 'status',
-            'label' => 'Tình trạng',
-        ]);
+        $Agent = new Agent();
+        if($Agent->isMobile()) {
+
+
+            $this->crud->addColumn([
+                'name' => 'aprroval',
+                'label' => 'XD',
+                'type' => 'check',
+            ]);
+            $this->crud->addColumn([
+                'name' => 'created_at',
+                'label' => 'Ngày tạo',
+                'type' => 'closure',
+                'function' => function($entry) {
+                    return '<a href="/'.$entry->prefix_url.'-bds-'.$entry->id.'" target="_blank">'.date_format(date_create($entry->created_at),"d-m-Y").'</a>';
+                },
+            ]);
+            $this->crud->addColumn([
+                'name' => 'type_article',
+                'label' => 'Thể loại',
+            ]);
+
+            $this->crud->addColumn([
+                'name'  => 'id',
+                'label' => 'ID',
+                'type' => 'closure',
+                'function' => function($entry) {
+                    return '<a href="/quan-ly-tin/dang-tin-ban-cho-thue/'.$entry->id.'" target="_blank">'.$entry->id.'</a>';
+                },
+            ]);
+
+            $this->crud->addColumn([
+                'name' => 'title',
+                'label' => 'Tiêu đề',
+            ]);
+        } else {
+            $this->crud->addColumn([
+                'name'  => 'id',
+                'label' => 'ID',
+                'type' => 'closure',
+                'function' => function($entry) {
+                    return '<a href="/quan-ly-tin/dang-tin-ban-cho-thue/'.$entry->id.'" target="_blank">'.$entry->id.'</a>';
+                },
+            ]);
+            $this->crud->addColumn([
+                'name' => 'created_at',
+                'label' => 'Ngày tạo',
+                'type' => 'closure',
+                'function' => function($entry) {
+                    return '<a href="/'.$entry->prefix_url.'-bds-'.$entry->id.'" target="_blank">'.date_format(date_create($entry->created_at),"d-m-Y").'</a>';
+                },
+            ]);
+
+            $this->crud->addColumn([
+                'name' => 'title',
+                'label' => 'Tiêu đề',
+            ]);
+            $this->crud->addColumn([
+                'name' => 'aprroval',
+                'label' => 'Xét duyệt',
+                'type' => 'check',
+            ]);
+            $this->crud->addColumn([
+                'name' => 'type_article',
+                'label' => 'Thể loại',
+            ]);
+        }
+
+
+
+
         $this->crud->addColumn([
             'name' => 'views',
             'label' => 'Lượt xem',
             'type' => 'number',
         ]);
+        $this->crud->addColumn([
+            'name' => 'address',
+            'label' => 'Địa chỉ',
+        ]);
+        $this->crud->addColumn([
+            'name' => 'contact_name',
+            'label' => 'Liên lạc',
+        ]);
+        $this->crud->addColumn([
+            'name' => 'project',
+            'label' => 'Dự án'
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'contact_address',
+            'label' => 'Địa chỉ liên lạc'
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'contact_phone',
+            'label' => 'Sđt liên lạc'
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'contact_email',
+            'label' => 'Email liên lạc'
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'area',
+            'label' => 'Diện tích'
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'price_real',
+            'label' => 'Giá',
+            'type' => 'number'
+        ]);
+        $this->crud->addColumn([
+            'name' => 'point',
+            'label' => 'Điểm',
+            'type' => 'number'
+        ]);
+        $this->crud->addColumn([
+            'name' => 'status',
+            'label' => 'Tình trạng',
+        ]);
+
+
+
+
+
         // ------ CRUD FIELDS
         $this->crud->addField([    // TEXT
             'name' => 'title',
@@ -118,62 +229,20 @@ class SyncArticleForBuyController extends CrudController
             'placeholder' => 'Nhập tiêu đề tin tức',
         ]);
         $this->crud->addField([
-            'name' => 'slug',
-            'label' => 'Slug (URL)',
-            'type' => 'text',
-            'hint' => 'Sẽ được tạo tự động từ tiêu đề của bạn, nếu để trống.',
-            // 'disabled' => 'disabled'
-        ]);
-        $this->crud->addField([
-            'name' => 'short_content',
-            'label' => 'Nội dung ngắn',
+            'name' => 'content_article',
+            'label' => 'Thông tin mô tả',
             'type' => 'textarea',
-            'placeholder' => 'Nội dung ngắn thể hiện',
-        ]);
-
-        $this->crud->addField([    // WYSIWYG
-            'name' => 'content',
-            'label' => 'Nội dung',
-            'type' => 'ckeditor',
-            'placeholder' => 'Your textarea text here',
-        ]);
-
-        $this->crud->addField([    // Image
-            'name' => 'image',
-            'label' => 'Ảnh đại diện',
-            'type' => 'browse',
-        ]);
-        $this->crud->addField([    // SELECT
-            'label' => 'Danh mục',
-            'type' => 'select2',
-            'name' => 'category_id',
-            'entity' => 'category',
-            'attribute' => 'name',
-            'model' => "Backpack\NewsCRUD\app\Models\Category",
-        ]);
-//        $this->crud->addField([       // Select2Multiple = n-n relationship (with pivot table)
-//            'label' => 'Tags',
-//            'type' => 'select2_multiple',
-//            'name' => 'tags', // the method that defines the relationship in your Model
-//            'entity' => 'tags', // the method that defines the relationship in your Model
-//            'attribute' => 'name', // foreign key attribute that is shown to user
-//            'model' => "Backpack\NewsCRUD\app\Models\Tag", // foreign key model
-//            'pivot' => true, // on create&update, do you need to add/delete pivot table entries?
-//        ]);
-        $this->crud->addField([    // ENUM
-            'name' => 'status',
-            'label' => 'Tình trạng',
-            'type' => 'enum',
+            'rows' => '15',
         ]);
         $this->crud->addField([    // CHECKBOX
-            'name' => 'featured',
-            'label' => 'Nỗi bật',
+            'name' => 'aprroval',
+            'label' => 'Tình trạng',
             'type' => 'checkbox',
         ]);
 
         $this->crud->enableAjaxTable();
-        $this->crud->setListView('crud::list_sync_article');
-        $this->crud->setEditView('crud::edit_sync_article');
+        $this->crud->setListView('crud::list_sync_article_for_buy');
+        $this->crud->setEditView('crud::edit_sync_for_buy_article');
     }
 
     public function store(StoreRequest $request)
@@ -245,14 +314,26 @@ class SyncArticleForBuyController extends CrudController
         return $this->performSaveAction($item->getKey());
     }
     public function approvalSyncArticle(Request $request, $id) {
-        $article = SyncArticleModel::find($id);
-        ArticleModel::create($article->toArray());
+        $article = SyncArticleForBuyModel::find($id);
+        $result = ArticleForBuyModel::create($article->toArray());
+        if($article->gallery_image) {
+            $imgs = json_decode($article->gallery_image);
+            $gallery_image = [];
+            foreach ($imgs as $item) {
+                $fileName = $result->id.'-'.$item;
+                Storage::disk('public')->move(Helpers::file_path($article->id, SOURCE_DATA_SYNC_ARTICLE_BUY, true).$item, Helpers::file_path($result->id, SOURCE_DATA_ARTICLE_LEASE, true).$fileName);
+                Storage::disk('public')->move(Helpers::file_path($article->id, SOURCE_DATA_SYNC_ARTICLE_BUY, true).THUMBNAIL_PATH.$item, Helpers::file_path($result->id, SOURCE_DATA_ARTICLE_LEASE, true).THUMBNAIL_PATH.$fileName);
+                $gallery_image[] = $fileName;
+            }
+            $result->gallery_image = json_encode($gallery_image);
+            $result->save();
+        }
         $article->delete();
         \Alert::success('Duyệt tin thành công')->flash();
         return \Redirect::to($this->crud->route);
     }
     public function getSyncArticle() {
-        return view('vendor.backpack.article.sync_article');
+        return view('vendor.backpack.article.sync_article_for_buy');
     }
     public function storeSyncArticle(Request $request) {
         $url = '';
@@ -261,97 +342,129 @@ class SyncArticleForBuyController extends CrudController
         $dateEnd = strtotime(str_replace('T', ' ', $request->end_date));
 
         if($request->type == 'bds.com.vn') {
-            $this->getArticleBDS(5, 'tin-thi-truong', $dateStart, $dateEnd);
+            $this->getArticleBDS('nha-dat-can-mua', 'Nhà đất cần mua', $dateStart, $dateEnd);
         }
         if($request->type == 'bds.com.vn') {
-            $this->getArticleBDS(6, 'phan-tich-nhan-dinh', $dateStart, $dateEnd);
-        }
-        if($request->type == 'bds.com.vn') {
-            $this->getArticleBDS(1, 'chinh-sach-quan-ly', $dateStart, $dateEnd);
-        }
-        if($request->type == 'bds.com.vn') {
-            $this->getArticleBDS(7, 'bat-dong-san-the-gioi', $dateStart, $dateEnd);
-        }
-        if($request->type == 'bds.com.vn') {
-            $this->getArticleBDS(8, 'tai-chinh-chung-khoan-bat-dong-san', $dateStart, $dateEnd);
-        }
-        if($request->type == 'bds.com.vn') {
-            $this->getArticleBDS(2, 'thong-tin-quy-hoach', $dateStart, $dateEnd);
-        }
-        if($request->type == 'bds.com.vn') {
-            $this->getArticleBDS(10, 'trinh-tu-thu-tuc', $dateStart, $dateEnd);
-        }
-        if($request->type == 'bds.com.vn') {
-            $this->getArticleBDS(11, 'quyen-so-huu', $dateStart, $dateEnd);
-        }
-        if($request->type == 'bds.com.vn') {
-            $this->getArticleBDS(12, 'tranh-chap', $dateStart, $dateEnd);
-        }
-        if($request->type == 'bds.com.vn') {
-            $this->getArticleBDS(13, 'xay-dung-hoan-cong', $dateStart, $dateEnd);
-        }
-        if($request->type == 'bds.com.vn') {
-            $this->getArticleBDS(14, 'nghia-vu-tai-chinh', $dateStart, $dateEnd);
-        }
-        if($request->type == 'bds.com.vn') {
-            $this->getArticleBDS(15, 'cac-van-de-co-yeu-to-nuoc-ngoai', $dateStart, $dateEnd);
-        }
-        if($request->type == 'bds.com.vn') {
-            $this->getArticleBDS(17, 'loi-khuyen-cho-nguoi-mua', $dateStart, $dateEnd);
-        }
-        if($request->type == 'bds.com.vn') {
-            $this->getArticleBDS(18, 'loi-khuyen-cho-nguoi-ban', $dateStart, $dateEnd);
-        }
-        if($request->type == 'bds.com.vn') {
-            $this->getArticleBDS(19, 'loi-khuyen-cho-nha-dau-tu', $dateStart, $dateEnd);
-        }
-        if($request->type == 'bds.com.vn') {
-            $this->getArticleBDS(20, 'loi-khuyen-cho-nguoi-thue', $dateStart, $dateEnd);
-        }
-        if($request->type == 'bds.com.vn') {
-            $this->getArticleBDS(21, 'loi-khuyen-cho-nguoi-cho-thue', $dateStart, $dateEnd);
+            $this->getArticleBDS('nha-dat-can-thue', 'Nhà đất cần thuê', $dateStart, $dateEnd);
         }
         \Alert::success('Đã lấy tin tức mới thành công')->flash();
         return \Redirect::to($this->crud->route);
     }
-    function getArticleBDS($cat_id, $refixNews, $dateStart, $dateEnd) {
+    function getArticleBDS($refixNews, $nameRefixNews, $dateStart, $dateEnd) {
         $refixUrl = 'https://batdongsan.com.vn';
         for($i = 1; $i <= ($request->page ?? 1); $i++) {
             $file = $this->get_fcontent($refixUrl . '/' . $refixNews . '/p' . $i);
-            preg_match_all('@id="ctl23_BodyContainer"(.*?)id="RightMainContent"@si', $file[0], $content);
-            preg_match_all('@<a class="link_blue" href=\'(.*?)\' title=\'(.*?)\'>\r\n(.*?)</a>@si', $content[0][0], $data_url);
-            preg_match_all('@<div class="datetime">\r\n(.*?)\r\n</div>@si', $content[0][0], $data_url_date);
-            preg_match_all('@src=\'(.*?)\'@si', $content[0][0], $data_img);
+            preg_match_all('@<div class="Main">(.*?)<div class="separable">@si', $file[0], $content);
+            preg_match_all('@<div class=\'p-title\'>\r\n<a href=\'(.*?)\' title=\'(.*?)\'>@si', $content[0][0], $data_url);
+            preg_match_all('@<div class=\'floatright mar-right-10 bot-right-abs\'>\r\n(.*?)</div>@si', $content[0][0], $data_url_date);
             foreach ($data_url_date[1] as $key => $item) {
-                $dateArticle = strtotime(str_replace('/', '-', substr($item, 6). ' '. substr($item, 0, 5)));
+                $dateArticle = strtotime(str_replace('/', '-', substr($item, -10)));
                 if($dateArticle >= $dateStart && $dateArticle <= $dateEnd) {
-                    $title = str_replace('\r\n', '', strip_tags($data_url[3][$key]));
-                    if(!SyncArticleModel::where('title', $title)->first() && !ArticleModel::where('title', $title)->first()) {
+                    $title = html_entity_decode(str_replace('\n', ' ', strip_tags($data_url[2][$key])));
+                    if(!SyncArticleForBuyModel::where('title', $title)->first() && !ArticleForBuyModel::where('title', $title)->first()) {
                         $fileContent = $this->get_fcontent($refixUrl . $data_url[1][$key]);
-                        preg_match_all('@<h2 id="ctl23_ctl00_divSummary" class="summary">(.*?)</h2>@si', $fileContent[0], $data_short_content);
-                        preg_match_all('@<div id="divContents" class="detailsView-contents-style detail-article-content">(.*?)</div>\r\n<div id="ctl23_ctl00_divSourceNews"@si', $fileContent[0], $data_content);
-                        $urlImage = $data_img[1][$key];
-                        $contents = file_get_contents($urlImage);
-                        $name = substr($urlImage, strrpos($urlImage, '/') + 1);
-                        Storage::disk('public_uploads')->put('sync/cover/'.$refixNews.'/' . $name, $contents);
-                        $contentData = $data_content[1][0] ?? '';
-                        preg_match_all('@<img(.*?)>@si', $contentData, $data_imgs_content);
-                        if(isset($data_imgs_content[0][0])) {
-                            preg_match_all('@src="(.*?)"@si', $data_imgs_content[0][0], $data_imgs_content);
-                            foreach ($data_imgs_content[1] as $itemImgs) {
-                                $contentImg = file_get_contents($itemImgs);
-                                $nameImg = substr($itemImgs, strrpos($itemImgs, '/') + 1);
-                                Storage::disk('public_uploads')->put('sync/content/'.$refixNews.'/' . $nameImg, $contentImg);
-                                $contentData = str_replace($contentData, $itemImgs, $nameImg);
-                            }
+                        preg_match_all('@<div class="pm-desc">\r\n(.*?)\r\n</div>@si', $fileContent[0], $data_content);
+                        preg_match_all('@<img onmouseover="this.style.cursor=\'pointer\'" alt="(.*?)" title=\'(.*?)\' src=\'(.*?)\' />@si', $fileContent[0], $data_imgs_content);
+                        preg_match_all('@Giá:</b>\r\n<strong>\r\n(.*?) (.*?) - (.*?) (.*?)&nbsp;@si', $fileContent[0], $price);
+                        preg_match_all('@Diện tích:</b>\r\n<strong>\r\n(.*?)</strong>@si', $fileContent[0], $area);
+                        preg_match_all('@Loại tin rao\r\n</div>\r\n<div class="right">\r\n(.*?)\r\n</div>@si', $fileContent[0], $type);
+                        preg_match_all('@Thuộc dự án\r\n</div>\r\n<div class="right">\r\n<a href=\'(.*?)\'>(.*?)</a>\r\n@si', $fileContent[0], $project);
+                        preg_match_all('@Địa chỉ\r\n</div>\r\n<div class="right">\r\n(.*?)\r\n</div>@si', $fileContent[0], $province);
+                        preg_match_all('@Tên liên lạc\r\n</div>\r\n<div class="right">\r\n(.*?)\r\n</div>@si', $fileContent[0], $contact_name);
+                        preg_match_all('@Mobile\r\n</div>\r\n<div class="right">\r\n(.*?)\r\n</div>@si', $fileContent[0], $contact_phone);
+                        preg_match_all('@Địa chỉ\r\n</div>\r\n<div class="right">\r\n(.*?)\r\n</div>@si', $fileContent[0], $contact_address);
+                        $province_ = explode(',', $province[1][0]);
+                        $address = $province[1][0];
+                        $province__ = explode(' - ', last($province_));
+                        $province = trim(last($province__));
+                        array_pop($province__);
+                        $district = trim(last($province__));
+                        $province_id = null;
+                        $district_id = null;
+                        $ward_id = null;
+                        $street_id = null;
+                        $ward = null;
+                        $street = null;
+                        $provinceData = ProvinceModel::where('_name', $province)->first();
+                        if($provinceData) {
+                            $districtData = DistrictModel::where('_name', $district)->where('_province_id', $provinceData->id)->first();
+                            $province_id = $provinceData->id;
+                            $district_id = $districtData->id ?? null;
                         }
-                        SyncArticleModel::create([
-                            'category_id' => $cat_id,
+                        $project = $project[2][0] ?? null;
+                        if(!is_numeric($price[1][0])) {
+                            $price_ = 0;
+                            $ddlPriceType = 'Thỏa thuận';
+                            $price[1][0] = null;
+                            $price[3][0] = null;
+                        }else{
+                            $price_ = $price[1][0];
+                            $ddlPriceType = ucfirst($price[2][0] ?? null);
+                        }
+                        $type = $type[1][0] ?? null;
+                        if(($strPostype = strpos($type, '(')) != false) {
+                            $type = substr($type, 0, $strPostype - 1);
+                        }
+                        $area = isset($area[1][0]) ? str_replace('m²', '', $area[1][0]) : null;
+                        $area = $area == 'Không xác định' ? null : $area;
+                        $area_from = $area ? ((explode(' - ', $area)[0]) ?? null) : null;
+                        $area_to = $area ? (explode(' - ', $area)[1] ?? null) : null;
+                        $article = [
                             'title' => $title,
-                            'short_content' => $data_short_content[1][0] ?? '',
-                            'content' => $data_content[1][0] ?? '',
-                            'image' => 'uploads/sync/cover/' . $refixNews . '/' . $name,
-                        ]);
+                            'method_article' => $nameRefixNews,
+                            'type_article' => $type,
+                            'province_id' => $province_id,
+                            'province' => $province,
+                            'district_id' => $district_id,
+                            'district' => $district,
+                            'ward_id' => $ward_id,
+                            'ward' => $ward,
+                            'street_id' => $street_id,
+                            'street' => $street,
+                            'address' => $address,
+                            'project' => $project,
+                            'area_from' => is_numeric($area_from) ? $area_from : null,
+                            'area_to' => is_numeric($area_to) ? $area_to : null,
+                            'price_from' => $price[1][0] ?? null,
+                            'price_to' => $price[3][0] ?? null,
+                            'unit' => '',
+                            'ddlPriceType' => $ddlPriceType,
+                            'price_real' => $price_ * Helpers::convertCurrency($price[2][0] ?? null),
+                            'content_article' => $data_content[1][0] ?? null,
+                            'gallery_image' => null,
+                            'contact_name' => $contact_name[1][0] ?? null,
+                            'contact_address' => $contact_address[1][0] ?? null,
+                            'contact_phone' => $contact_phone[1][0] ?? null,
+                            'contact_email' => null,
+                            'status' => PUBLISHED_ARTICLE,
+                            'prefix_url' =>  strtolower(Helpers::rawTiengVietUrl($type .'-'.explode(',', $address)[0]).'/'.Helpers::rawTiengVietUrl($title)),
+                            'user_id' => Auth::user()->id,
+                            'aprroval' => APPROVAL_ARTICLE_PUBLIC,
+                            'start_news' => time(),
+                            'method_article_url' => Helpers::rawTiengVietUrl($nameRefixNews),
+                            'type_article_url' => Helpers::rawTiengVietUrl($type ?? null),
+                            'province_url' => Helpers::rawTiengVietUrl($province),
+                            'district_url' => Helpers::rawTiengVietUrl($district),
+                            'ward_url' => Helpers::rawTiengVietUrl($ward),
+                            'street_url' => Helpers::rawTiengVietUrl($street),
+                            'point' => -1,
+                        ];
+                        $result = SyncArticleForBuyModel::create($article);
+                        $gallery_image = [];
+                        if(isset($data_imgs_content[3])) {
+                            foreach ($data_imgs_content[3] as $itemImgs) {
+                                $nameImg = $result->id . '-' . substr($itemImgs, strrpos($itemImgs, '/') + 1);
+                                $gallery_image[] = $nameImg;
+                                // thumnail
+                                $contentImg = file_get_contents($itemImgs);
+                                Storage::disk('public')->put(Helpers::file_path($result->id, SOURCE_DATA_SYNC_ARTICLE_BUY, true) . THUMBNAIL_PATH . $nameImg, $contentImg);
+                                $contentImg = file_get_contents(str_replace('200x200', '745x510', $itemImgs));
+                                // fullsize
+                                Storage::disk('public')->put(Helpers::file_path($result->id, SOURCE_DATA_SYNC_ARTICLE_BUY, true) . $nameImg, $contentImg);
+                            }
+                            $result->gallery_image = $gallery_image ? json_encode($gallery_image) : null;
+                        }
+                        $result->save();
                     }
                 }
             }

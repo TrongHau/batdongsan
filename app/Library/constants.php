@@ -29,6 +29,8 @@ define('PUBLIC_THUMBNAIL', '/storage/temp/thumbnail/');
 define('THUMBNAIL_PATH', 'thumbnail/');
 // article for lease
 define('SOURCE_DATA_ARTICLE_LEASE', 'article_lease/');
+define('SOURCE_DATA_SYNC_ARTICLE_LEASE', 'sync_article_lease/');
+define('SOURCE_DATA_SYNC_ARTICLE_BUY', 'sync_article_buy/');
 define('SOURCE_DATA_ARTICLE_LEASE_THUMBNAIL', 'article_lease/thumbnail/');
 define('PUBLIC_ARTICLE_LEASE', '/storage/article_lease/');
 // article for buy
