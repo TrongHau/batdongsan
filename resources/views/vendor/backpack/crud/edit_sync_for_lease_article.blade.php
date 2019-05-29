@@ -64,7 +64,7 @@
                         <div id="saveActions" class="form-group">
 
                             <input type="hidden" name="save_action" value="{{ $saveAction['active']['value'] }}">
-                            <a href="/admin/sync_article/approval/{{$fields['id']['value']}}" class="btn btn-warning" style="background-color: #000000; border-color: #171615;"><span class="fa fa-check-square-o"></span> &nbsp;Duyệt tin này</a>
+                            <a href="/admin/sync_article_for_lease/approval/{{$fields['id']['value']}}" class="btn btn-warning" style="background-color: #000000; border-color: #171615;"><span class="fa fa-check-square-o"></span> &nbsp;Duyệt tin này</a>
                             <div class="btn-group">
 
                                 <button type="submit" class="btn btn-success">

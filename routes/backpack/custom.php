@@ -28,7 +28,11 @@ Route::group([
 
     CRUD::resource('sync_article_for_lease', 'SyncArticleForLeaseController');
 
+    Route::get('sync_article_for_buy/sync_article_for_buy', 'SyncArticleForBuyController@getSyncArticle');
+    Route::get('sync_article_for_buy/approval/{id}', 'SyncArticleForBuyController@approvalSyncArticle');
+    Route::post('sync_article_for_buy/sync_post_article', 'SyncArticleForBuyController@storeSyncArticle');
 
+    CRUD::resource('sync_article_for_buy', 'SyncArticleForBuyController');
 
 
 }); // this should be the absolute last line of this file
