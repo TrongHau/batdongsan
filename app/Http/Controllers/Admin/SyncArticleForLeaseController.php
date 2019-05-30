@@ -40,7 +40,8 @@ class SyncArticleForLeaseController extends CrudController
         $this->crud->setRoute(config('backpack.base.route_prefix', 'admin').'/sync_article_for_lease');
         $this->crud->setEntityNameStrings('article', 'Lấy rao bán - cho thuê');
         $this->crud->orderBy('id', 'desc');
-
+        $this->crud->enableBulkActions();
+        $this->crud->addBulkDeleteButton();
         $this->crud->addFilter([ // daterange filter
             'type' => 'date_range',
             'name' => 'from_to',
@@ -467,7 +468,7 @@ class SyncArticleForLeaseController extends CrudController
                             'street' => $street,
                             'address' => $address,
                             'project' => $project,
-                            'area' => isset($are[1][0]) ? str_replace('m²', '', $are[1][0]) : null,
+                            'area' => (isset($are[1][0]) && is_numeric($are[1][0])) ? str_replace('m²', '', $are[1][0]) : null,
                             'price' => $price_,
                             'ddlPriceType' => $ddlPriceType,
                             'price_real' => $price_ * Helpers::convertCurrency($price[2][0] ?? null),

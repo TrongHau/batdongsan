@@ -40,7 +40,8 @@ class SyncArticleForBuyController extends CrudController
         $this->crud->setRoute(config('backpack.base.route_prefix', 'admin').'/sync_article_for_buy');
         $this->crud->setEntityNameStrings('article', 'Lấy rao mua - cần thuê');
         $this->crud->orderBy('id', 'desc');
-
+        $this->crud->enableBulkActions();
+        $this->crud->addBulkDeleteButton();
         $this->crud->addFilter([ // daterange filter
             'type' => 'date_range',
             'name' => 'from_to',
