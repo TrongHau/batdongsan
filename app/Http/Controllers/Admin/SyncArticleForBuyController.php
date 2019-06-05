@@ -39,7 +39,7 @@ class SyncArticleForBuyController extends CrudController
         $this->crud->setModel("App\Models\SyncArticleForBuyModel");
         $this->crud->setRoute(config('backpack.base.route_prefix', 'admin').'/sync_article_for_buy');
         $this->crud->setEntityNameStrings('article', 'Lấy rao mua - cần thuê');
-        $this->crud->orderBy('id', 'desc');
+        $this->crud->orderBy('date_sync', 'desc');
         $this->crud->enableBulkActions();
         $this->crud->addBulkDeleteButton();
         $this->crud->addFilter([ // daterange filter
@@ -104,12 +104,10 @@ class SyncArticleForBuyController extends CrudController
                 'type' => 'check',
             ]);
             $this->crud->addColumn([
-                'name' => 'created_at',
+                'name' => 'date_sync',
                 'label' => 'Ngày tạo',
-                'type' => 'closure',
-                'function' => function($entry) {
-                    return '<a href="/'.$entry->prefix_url.'-bds-'.$entry->id.'" target="_blank">'.date_format(date_create($entry->created_at),"d-m-Y").'</a>';
-                },
+                'type' => 'date',
+                'format' => 'd/m/Y',
             ]);
             $this->crud->addColumn([
                 'name' => 'type_article',
@@ -129,6 +127,10 @@ class SyncArticleForBuyController extends CrudController
                 'name' => 'title',
                 'label' => 'Tiêu đề',
             ]);
+            $this->crud->addColumn([
+                'name' => 'build_from',
+                'label' => 'Lấy từ',
+            ]);
         } else {
             $this->crud->addColumn([
                 'name'  => 'id',
@@ -139,12 +141,10 @@ class SyncArticleForBuyController extends CrudController
                 },
             ]);
             $this->crud->addColumn([
-                'name' => 'created_at',
+                'name' => 'date_sync',
                 'label' => 'Ngày tạo',
-                'type' => 'closure',
-                'function' => function($entry) {
-                    return '<a href="/'.$entry->prefix_url.'-bds-'.$entry->id.'" target="_blank">'.date_format(date_create($entry->created_at),"d-m-Y").'</a>';
-                },
+                'type' => 'date',
+                'format' => 'd/m/Y',
             ]);
 
             $this->crud->addColumn([
@@ -164,7 +164,10 @@ class SyncArticleForBuyController extends CrudController
 
 
 
-
+        $this->crud->addColumn([
+            'name' => 'build_from',
+            'label' => 'Lấy từ',
+        ]);
         $this->crud->addColumn([
             'name' => 'views',
             'label' => 'Lượt xem',
@@ -343,15 +346,15 @@ class SyncArticleForBuyController extends CrudController
         $dateEnd = strtotime(str_replace('T', ' ', $request->end_date));
 
         if($request->type == 'bds.com.vn') {
-            $this->getArticleBDS('nha-dat-can-mua', 'Nhà đất cần mua', $dateStart, $dateEnd);
+            $this->getArticleBDS($request->type, 'nha-dat-can-mua', 'Nhà đất cần mua', $dateStart, $dateEnd);
         }
         if($request->type == 'bds.com.vn') {
-            $this->getArticleBDS('nha-dat-can-thue', 'Nhà đất cần thuê', $dateStart, $dateEnd);
+            $this->getArticleBDS($request->type, 'nha-dat-can-thue', 'Nhà đất cần thuê', $dateStart, $dateEnd);
         }
         \Alert::success('Đã lấy tin tức mới thành công')->flash();
         return \Redirect::to($this->crud->route);
     }
-    function getArticleBDS($refixNews, $nameRefixNews, $dateStart, $dateEnd) {
+    function getArticleBDS($typeReq, $refixNews, $nameRefixNews, $dateStart, $dateEnd) {
         $refixUrl = 'https://batdongsan.com.vn';
         for($i = 1; $i <= ($request->page ?? 1); $i++) {
             $file = $this->get_fcontent($refixUrl . '/' . $refixNews . '/p' . $i);
@@ -449,6 +452,8 @@ class SyncArticleForBuyController extends CrudController
                             'ward_url' => Helpers::rawTiengVietUrl($ward),
                             'street_url' => Helpers::rawTiengVietUrl($street),
                             'point' => -1,
+                            'date_sync' => $dateStart,
+                            'build_from' => $typeReq,
                         ];
                         $result = SyncArticleForBuyModel::create($article);
                         $gallery_image = [];

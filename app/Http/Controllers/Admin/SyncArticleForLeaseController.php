@@ -39,7 +39,7 @@ class SyncArticleForLeaseController extends CrudController
         $this->crud->setModel("App\Models\SyncArticleForLeaseModel");
         $this->crud->setRoute(config('backpack.base.route_prefix', 'admin').'/sync_article_for_lease');
         $this->crud->setEntityNameStrings('article', 'Lấy rao bán - cho thuê');
-        $this->crud->orderBy('id', 'desc');
+        $this->crud->orderBy('date_sync', 'desc');
         $this->crud->enableBulkActions();
         $this->crud->addBulkDeleteButton();
         $this->crud->addFilter([ // daterange filter
@@ -104,12 +104,10 @@ class SyncArticleForLeaseController extends CrudController
                 'type' => 'check',
             ]);
             $this->crud->addColumn([
-                'name' => 'created_at',
+                'name' => 'date_sync',
                 'label' => 'Ngày tạo',
-                'type' => 'closure',
-                'function' => function($entry) {
-                    return '<a href="/'.$entry->prefix_url.'-bds-'.$entry->id.'" target="_blank">'.date_format(date_create($entry->created_at),"d-m-Y").'</a>';
-                },
+                'type' => 'date',
+                'format' => 'd/m/Y',
             ]);
             $this->crud->addColumn([
                 'name' => 'type_article',
@@ -129,6 +127,10 @@ class SyncArticleForLeaseController extends CrudController
                 'name' => 'title',
                 'label' => 'Tiêu đề',
             ]);
+            $this->crud->addColumn([
+                'name' => 'build_from',
+                'label' => 'Lấy từ',
+            ]);
         } else {
             $this->crud->addColumn([
                 'name'  => 'id',
@@ -139,12 +141,10 @@ class SyncArticleForLeaseController extends CrudController
                 },
             ]);
             $this->crud->addColumn([
-                'name' => 'created_at',
+                'name' => 'date_sync',
                 'label' => 'Ngày tạo',
-                'type' => 'closure',
-                'function' => function($entry) {
-                    return '<a href="/'.$entry->prefix_url.'-bds-'.$entry->id.'" target="_blank">'.date_format(date_create($entry->created_at),"d-m-Y").'</a>';
-                },
+                'type' => 'date',
+                'format' => 'd/m/Y',
             ]);
 
             $this->crud->addColumn([
@@ -161,10 +161,10 @@ class SyncArticleForLeaseController extends CrudController
                 'label' => 'Thể loại',
             ]);
         }
-
-
-
-
+        $this->crud->addColumn([
+            'name' => 'build_from',
+            'label' => 'Lấy từ',
+        ]);
         $this->crud->addColumn([
             'name' => 'views',
             'label' => 'Lượt xem',
@@ -343,15 +343,15 @@ class SyncArticleForLeaseController extends CrudController
         $dateEnd = strtotime(str_replace('T', ' ', $request->end_date));
 
         if($request->type == 'bds.com.vn') {
-            $this->getArticleBDS('nha-dat-ban', 'Nhà đất bán', $dateStart, $dateEnd);
+            $this->getArticleBDS($request->type, 'nha-dat-ban', 'Nhà đất bán', $dateStart, $dateEnd);
         }
         if($request->type == 'bds.com.vn') {
-            $this->getArticleBDS('nha-dat-cho-thue', 'Nhà đất cho thuê', $dateStart, $dateEnd);
+            $this->getArticleBDS($request->type, 'nha-dat-cho-thue', 'Nhà đất cho thuê', $dateStart, $dateEnd);
         }
         \Alert::success('Đã lấy tin tức mới thành công')->flash();
         return \Redirect::to($this->crud->route);
     }
-    function getArticleBDS($refixNews, $nameRefixNews, $dateStart, $dateEnd) {
+    function getArticleBDS($typeReq, $refixNews, $nameRefixNews, $dateStart, $dateEnd) {
         $refixUrl = 'https://batdongsan.com.vn';
         for($i = 1; $i <= ($request->page ?? 1); $i++) {
             $file = $this->get_fcontent($refixUrl . '/' . $refixNews . '/p' . $i);
@@ -468,7 +468,7 @@ class SyncArticleForLeaseController extends CrudController
                             'street' => $street,
                             'address' => $address,
                             'project' => $project,
-                            'area' => (isset($are[1][0]) && is_numeric($are[1][0])) ? str_replace('m²', '', $are[1][0]) : null,
+                            'area' => (isset($are[1][0]) ? is_numeric(str_replace('m²', '', $are[1][0])) ? str_replace('m²', '', $are[1][0]) : null : null),
                             'price' => $price_,
                             'ddlPriceType' => $ddlPriceType,
                             'price_real' => $price_ * Helpers::convertCurrency($price[2][0] ?? null),
@@ -498,6 +498,8 @@ class SyncArticleForLeaseController extends CrudController
                             'ward_url' => Helpers::rawTiengVietUrl($ward),
                             'street_url' => Helpers::rawTiengVietUrl($street),
                             'point' => -1,
+                            'date_sync' => $dateStart,
+                            'build_from' => $typeReq,
                         ];
                         $result = SyncArticleForLeaseModel::create($article);
                         $gallery_image = [];
