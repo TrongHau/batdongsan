@@ -358,7 +358,7 @@ class SyncArticleForLeaseChototController extends CrudController
                 if($dateArticle >= $dateStart && $dateArticle <= $dateEnd) {
                     $title = html_entity_decode(str_replace('\n', ' ', strip_tags($data_url[2][$key])));
                     if(!SyncArticleForLeaseModel::where('title', $title)->first() && !ArticleForLeaseModel::where('title', $title)->first()) {
-                        $fileContent = $this->get_fcontent($refixUrl . $data_url[1][$key]);
+                        $fileContent = $this->get_fcontent($data_url[1][$key]);
                         preg_match_all('@<div class="pm-desc">\r\n(.*?)\r\n</div>@si', $fileContent[0], $data_content);
                         preg_match_all('@<img itemprop="image"(.*?)src=\'(.*?)\'@si', $fileContent[0], $data_imgs_content);
                         preg_match_all('@Giá:</b>\r\n<strong>\r\n(.*?) (.*?)&nbsp;@si', $fileContent[0], $price);
