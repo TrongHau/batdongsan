@@ -40,7 +40,7 @@ Route::group([
 
     Route::get('sync_article_for_lease_chotot/sync_article_for_lease_chotot', 'SyncArticleForLeaseChototController@getSyncArticle');
     Route::get('sync_article_for_lease_chotot/approval/{id}', 'SyncArticleForLeaseChototController@approvalSyncArticle');
-    Route::post('sync_article_for_lease_chotot/sync_post_article_chotot', 'SyncArticleForLeaseChototController@storeSyncArticle');
+    Route::post('sync_article_for_lease_chotot/sync_post_article', 'SyncArticleForLeaseChototController@storeSyncArticle');
 
     CRUD::resource('sync_article_for_lease_chotot', 'SyncArticleForLeaseChototController');
 

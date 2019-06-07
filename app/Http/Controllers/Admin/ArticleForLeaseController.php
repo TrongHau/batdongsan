@@ -316,6 +316,7 @@ class ArticleForLeaseController extends CrudController
         if($article->gallery_image) {
             foreach (json_decode($article->gallery_image) as $item) {
                 Storage::delete('public/' . Helpers::file_path($id, SOURCE_DATA_ARTICLE_LEASE, true) . $item);
+                Storage::delete('public/' . Helpers::file_path($id, SOURCE_DATA_ARTICLE_LEASE, true) . THUMBNAIL_PATH . $item);
             }
         }
         return $this->crud->delete($id);

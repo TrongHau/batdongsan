@@ -285,6 +285,13 @@ class SyncArticleForBuyController extends CrudController
         // get entry ID from Request (makes sure its the last ID for nested resources)
         Artisan::call('schedule:run');
         $id = $this->crud->getCurrentEntryId() ?? $id;
+        $article = SyncArticleForBuyModel::where('id', $id)->first();
+        if($article->gallery_image) {
+            foreach (json_decode($article->gallery_image) as $item) {
+                Storage::delete('public/' . Helpers::file_path($id, SOURCE_DATA_SYNC_ARTICLE_BUY, true) . $item);
+                Storage::delete('public/' . Helpers::file_path($id, SOURCE_DATA_SYNC_ARTICLE_BUY, true) . THUMBNAIL_PATH . $item);
+            }
+        }
         return $this->crud->delete($id);
     }
 
