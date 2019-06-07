@@ -334,7 +334,7 @@ class SyncArticleForLeaseChototController extends CrudController
         return \Redirect::to($this->crud->route);
     }
     public function getSyncArticle() {
-        return view('vendor.backpack.article.sync_article_for_lease');
+        return view('vendor.backpack.article.sync_article_for_lease_chotot');
     }
     public function storeSyncArticle(Request $request) {
         $url = '';
@@ -342,19 +342,14 @@ class SyncArticleForLeaseChototController extends CrudController
         $dateStart = strtotime(str_replace('T', ' ', $request->start_date));
         $dateEnd = strtotime(str_replace('T', ' ', $request->end_date));
 
-        if($request->type == 'bds.com.vn') {
-            $this->getArticleBDS($request->type, 'nha-dat-ban', 'Nhà đất bán', $dateStart, $dateEnd);
-        }
-        if($request->type == 'bds.com.vn') {
-            $this->getArticleBDS($request->type, 'nha-dat-cho-thue', 'Nhà đất cho thuê', $dateStart, $dateEnd);
-        }
+        $this->getArticleChotot($request->type, $dateStart, $dateEnd);
         \Alert::success('Đã lấy tin tức mới thành công')->flash();
         return \Redirect::to($this->crud->route);
     }
-    function getArticleBDS($typeReq, $refixNews, $nameRefixNews, $dateStart, $dateEnd) {
-        $refixUrl = 'https://batdongsan.com.vn';
+    function getArticleChotot($typeReq, $dateStart, $dateEnd) {
         for($i = 1; $i <= ($request->page ?? 1); $i++) {
-            $file = $this->get_fcontent($refixUrl . '/' . $refixNews . '/p' . $i);
+            $file = $this->get_fcontent($typeReq . '&page=' . $i);
+            dd($file);
             preg_match_all('@<div class="Main">(.*?)<div class="mt5">@si', $file[0], $content);
             preg_match_all('@<a href=\'(.*?)\' title=\'(.*?)\' style="text-rendering: optimizelegibility;">\r\n(.*?)\r\n</a>@si', $content[0][0], $data_url);
             preg_match_all('@<div class=\'floatright mar-right-10\'>\r\n(.*?)</span>\r\n</div>@si', $content[0][0], $data_url_date);
