@@ -448,7 +448,7 @@ class SyncArticleForLeaseController extends CrudController
                             $ddlPriceType = 'Thỏa thuận';
                         }else{
                             $price_ = $price[1][0];
-                            $ddlPriceType = ucfirst($price[2][0] ?? null);
+                            $ddlPriceType = str_replace('m²', 'm2', ucfirst($price[2][0] ?? null));
                         }
                         $type = $type[1][0] ?? null;
                         if(($strPostype = strpos($type, '(')) != false) {
