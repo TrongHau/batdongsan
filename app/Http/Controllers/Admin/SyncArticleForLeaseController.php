@@ -66,6 +66,7 @@ class SyncArticleForLeaseController extends CrudController
                 $this->crud->addClause('where', 'method_article', $values);
             }
         });
+        $this->crud->addClause('where', 'build_from', 'bds.com.vn');
 
         $this->crud->addFilter([ // select2_multiple filter
             'name' => 'type_article',
@@ -507,6 +508,7 @@ class SyncArticleForLeaseController extends CrudController
                             'point' => -1,
                             'date_sync' => $dateStart,
                             'build_from' => $typeReq,
+                            'url_from' => $refixUrl . $data_url[1][$key]
                         ];
                         $result = SyncArticleForLeaseModel::create($article);
                         $gallery_image = [];

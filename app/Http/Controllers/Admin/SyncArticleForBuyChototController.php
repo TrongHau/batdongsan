@@ -14,15 +14,15 @@ use Jenssegers\Agent\Agent;
 use Illuminate\Support\Facades\Auth;
 use App\Library\Helpers;
 use App\Models\CategoryModel;
-use App\Models\SyncArticleForLeaseModel;
-use App\Models\ArticleForLeaseModel;
+use App\Models\SyncArticleForBuyModel;
+use App\Models\ArticleForBuyModel;
 use App\Models\ArticleModel;
 use App\Models\DistrictModel;
 use App\Models\ProvinceModel;
 use App\Models\WardModel;
 use App\Models\StreetModel;
 
-class SyncArticleForLeaseChototController extends CrudController
+class SyncArticleForBuyChototController extends CrudController
 {
     public function __construct()
     {
@@ -36,9 +36,9 @@ class SyncArticleForLeaseChototController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel("App\Models\SyncArticleForLeaseModel");
-        $this->crud->setRoute(config('backpack.base.route_prefix', 'admin').'/sync_chotot_article_for_lease');
-        $this->crud->setEntityNameStrings('article', 'Lấy rao bán - cho thuê - chợ tốt');
+        $this->crud->setModel("App\Models\SyncArticleForBuyModel");
+        $this->crud->setRoute(config('backpack.base.route_prefix', 'admin').'/sync_chotot_article_for_buy');
+        $this->crud->setEntityNameStrings('article', 'Lấy rao mua - cần thuê');
         $this->crud->orderBy('date_sync', 'desc');
         $this->crud->enableBulkActions();
         $this->crud->addBulkDeleteButton();
@@ -66,7 +66,7 @@ class SyncArticleForLeaseChototController extends CrudController
                 $this->crud->addClause('where', 'method_article', $values);
             }
         });
-        $this->crud->addClause('where', 'build_from', 'chotot.com');
+
         $this->crud->addFilter([ // select2_multiple filter
             'name' => 'type_article',
             'type' => 'select2_multiple',
@@ -161,6 +161,9 @@ class SyncArticleForLeaseChototController extends CrudController
                 'label' => 'Thể loại',
             ]);
         }
+
+
+
         $this->crud->addColumn([
             'name' => 'build_from',
             'label' => 'Lấy từ',
@@ -242,8 +245,8 @@ class SyncArticleForLeaseChototController extends CrudController
         ]);
 
         $this->crud->enableAjaxTable();
-        $this->crud->setListView('crud::list_sync_chotot_article_for_lease');
-        $this->crud->setEditView('crud::edit_sync_chotot_for_lease_article');
+        $this->crud->setListView('crud::list_sync_chotot_article_for_buy');
+        $this->crud->setEditView('crud::edit_sync_chotot_for_buy_article');
     }
 
     public function store(StoreRequest $request)
@@ -282,6 +285,13 @@ class SyncArticleForLeaseChototController extends CrudController
         // get entry ID from Request (makes sure its the last ID for nested resources)
         Artisan::call('schedule:run');
         $id = $this->crud->getCurrentEntryId() ?? $id;
+        $article = SyncArticleForBuyModel::where('id', $id)->first();
+        if($article->gallery_image) {
+            foreach (json_decode($article->gallery_image) as $item) {
+                Storage::delete('public/' . Helpers::file_path($id, SOURCE_DATA_SYNC_ARTICLE_BUY, true) . $item);
+                Storage::delete('public/' . Helpers::file_path($id, SOURCE_DATA_SYNC_ARTICLE_BUY, true) . THUMBNAIL_PATH . $item);
+            }
+        }
         return $this->crud->delete($id);
     }
 
@@ -315,16 +325,15 @@ class SyncArticleForLeaseChototController extends CrudController
         return $this->performSaveAction($item->getKey());
     }
     public function approvalSyncArticle(Request $request, $id) {
-        $article = SyncArticleForLeaseModel::find($id);
-        $article->content_article = nl2br($article->content_article);
-        $result = ArticleForLeaseModel::create($article->toArray());
+        $article = SyncArticleForBuyModel::find($id);
+        $result = ArticleForBuyModel::create($article->toArray());
         if($article->gallery_image) {
             $imgs = json_decode($article->gallery_image);
             $gallery_image = [];
             foreach ($imgs as $item) {
                 $fileName = $result->id.'-'.$item;
-                Storage::disk('public')->move(Helpers::file_path($article->id, SOURCE_DATA_SYNC_ARTICLE_LEASE, true).$item, Helpers::file_path($result->id, SOURCE_DATA_ARTICLE_LEASE, true).$fileName);
-                Storage::disk('public')->move(Helpers::file_path($article->id, SOURCE_DATA_SYNC_ARTICLE_LEASE, true).THUMBNAIL_PATH.$item, Helpers::file_path($result->id, SOURCE_DATA_ARTICLE_LEASE, true).THUMBNAIL_PATH.$fileName);
+                Storage::disk('public')->move(Helpers::file_path($article->id, SOURCE_DATA_SYNC_ARTICLE_BUY, true).$item, Helpers::file_path($result->id, SOURCE_DATA_ARTICLE_LEASE, true).$fileName);
+                Storage::disk('public')->move(Helpers::file_path($article->id, SOURCE_DATA_SYNC_ARTICLE_BUY, true).THUMBNAIL_PATH.$item, Helpers::file_path($result->id, SOURCE_DATA_ARTICLE_LEASE, true).THUMBNAIL_PATH.$fileName);
                 $gallery_image[] = $fileName;
             }
             $result->gallery_image = json_encode($gallery_image);
@@ -335,25 +344,27 @@ class SyncArticleForLeaseChototController extends CrudController
         return \Redirect::to($this->crud->route);
     }
     public function getSyncArticle() {
-        return view('vendor.backpack.article.sync_article_for_lease_chotot');
+        return view('vendor.backpack.article.sync_article_for_buy_chotot');
     }
     public function storeSyncArticle(Request $request) {
         $url = '';
         $dataNews = [];
-        $this->getArticleChotot(($request->type_article == 'Nhà đất cho thuê' ? (str_replace('Bán', 'Cho Thuê', $request->method_article)): $request->method_article), $request->type_article, $request->str_html);
+        $dateStart = strtotime(str_replace('T', ' ', $request->start_date));
+        $dateEnd = strtotime(str_replace('T', ' ', $request->end_date));
+
+        $this->getArticleChotot(($request->type_article == 'Nhà đất cần thuê' ? (str_replace('Mua', 'Cần thuê', $request->method_article)): $request->method_article), $request->type_article, $request->str_html);
+
         \Alert::success('Đã lấy tin tức mới thành công')->flash();
         return \Redirect::to($this->crud->route);
     }
     function getArticleChotot($method, $type, $strHtml) {
         preg_match_all('@<div class="pgjTolSNq4-L--tpQ7Xp5">(.*?)</ul>@si', $strHtml, $content);
-        preg_match_all('@<h3 class="ctAdListingTitle">(.*?)</h3>@si', $strHtml, $data_title);
-        preg_match_all('@<a rel="nofollow" class="ctAdListingItem" action="push" href="(.*?)">@si', $content[1][0], $data_url);
-        preg_match_all('@<h3 class="_3ygwQow5YdDcI2nenz6_nu(.*?)">(.*?)</h3>@si', $strHtml, $data_title2);
-        preg_match_all('@<a class="_3JMKvS6hucA6KaM9tX3Qb1" href="(.*?)">@si', $content[1][0], $data_url2);
-        $data_url = array_merge($data_url[1], $data_url2[1]);
-        $data_title = array_merge($data_title[1], $data_title2[2]);
+        preg_match_all('@<h3 class="_3ygwQow5YdDcI2nenz6_nu(.*?)">(.*?)</h3>@si', $content[1][0], $data_title);
+        preg_match_all('@<a class="_3JMKvS6hucA6KaM9tX3Qb1" href="(.*?)">@si', $content[1][0], $data_url);
+        $data_title = $data_title[2];
+        $data_url = $data_url[1];
         foreach ($data_title as $key => $item) {
-            if(!SyncArticleForLeaseModel::where('title', $item)->first() && !SyncArticleForLeaseModel::where('title', $item)->first()) {
+            if(!SyncArticleForBuyModel::where('title', $item)->first() && !SyncArticleForBuyModel::where('title', $item)->first()) {
                 $url = 'https://nha.chotot.com' . $data_url[$key];
                 if(strpos($data_url[$key],"#") !== false) {
                     $url = 'https://nha.chotot.com' . substr($data_url[$key],0, strpos($data_url[$key],"#"));
@@ -410,11 +421,14 @@ class SyncArticleForLeaseChototController extends CrudController
                         $street_id = $streetData->id ?? null;
                     }
 
-                    $price_= $price[1][0] / 1000000;
-                    $ddlPriceType = 'Triệu';
-                    if(strlen($price[1][0]) > 9) {
+                    $price_= $price[1][0] / 1000;
+                    $ddlPriceType = 'Nghìn/tháng';
+                    if(strlen($price[1][0]) > 6) {
+                        $price_ = $price[1][0] / 1000000;
+                        $ddlPriceType = 'Triệu/tháng';
+                    }elseif(strlen($price[1][0]) > 9) {
                         $price_ = $price[1][0] / 1000000000;
-                        $ddlPriceType = 'Tỷ';
+                        $ddlPriceType = 'Tỷ/tháng';
                     }
                     $article = [
                         'title' => $item,
@@ -430,20 +444,14 @@ class SyncArticleForLeaseChototController extends CrudController
                         'street' => $street,
                         'address' => $address[1][0],
                         'project' => '',
-                        'area' => $area[2][0],
-                        'price' => $price_,
+                        'area_from' => $area[2][0],
+                        'area_to' => null,
+                        'price_from' => $price_,
+                        'price_to' => null,
                         'ddlPriceType' => $ddlPriceType,
-                        'price_real' => $price[1][0],
+                        'price_real' => $price_,
+                        'unit' => '',
                         'content_article' => str_replace('\u002F', '/', str_replace('\n', '<br />', $body[1][0])),
-                        'facade' => null,
-                        'land_width' => null,
-                        'ddlHomeDirection' => null,
-                        'ddlBaconDirection' => null,
-                        'floor' => null,
-                        'bed_room' => null,
-                        'toilet' => $toilet[1][0] ?? null,
-                        'gallery_image' => null,
-                        'furniture' => null,
                         'contact_name' => $contact_name[1][0] ?? null,
                         'contact_address' => null,
                         'contact_phone' => $contact_phone[1][0] ?? null,
@@ -464,7 +472,7 @@ class SyncArticleForLeaseChototController extends CrudController
                         'build_from' => 'chotot.com',
                         'url_from' => $url,
                     ];
-                    $result = SyncArticleForLeaseModel::create($article);
+                    $result = SyncArticleForBuyModel::create($article);
 //                $gallery_image = [];
 //                if($data_imgs_content) {
 //                    foreach ($data_imgs_content as $itemImgs) {

@@ -36,19 +36,22 @@ Route::group([
 
     CRUD::resource('sync_article_for_buy', 'SyncArticleForBuyController');
 
-    // lấy tin chotot.com
+    // lấy tin mua chotot.com
 
-    Route::get('sync_article_for_lease_chotot/sync_article_for_lease_chotot', 'SyncArticleForLeaseChototController@getSyncArticle');
-    Route::get('sync_article_for_lease_chotot/approval/{id}', 'SyncArticleForLeaseChototController@approvalSyncArticle');
-    Route::post('sync_article_for_lease_chotot/sync_post_article', 'SyncArticleForLeaseChototController@storeSyncArticle');
+    Route::get('sync_chotot_article_for_lease/sync_article_for_lease', 'SyncArticleForLeaseChototController@getSyncArticle');
+    Route::get('sync_chotot_article_for_lease/approval/{id}', 'SyncArticleForLeaseChototController@approvalSyncArticle');
+    Route::post('sync_chotot_article_for_lease/sync_post_article', 'SyncArticleForLeaseChototController@storeSyncArticle');
 
-    CRUD::resource('sync_article_for_lease_chotot', 'SyncArticleForLeaseChototController');
+    CRUD::resource('sync_chotot_article_for_lease', 'SyncArticleForLeaseChototController');
 
-    Route::get('sync_article_for_buy_chotot/sync_article_for_buy_chotot', 'SyncArticleForBuyChototController@getSyncArticle');
-    Route::get('sync_article_for_buy_chotot/approval/{id}', 'SyncArticleForBuyChototController@approvalSyncArticle');
-    Route::post('sync_article_for_buy_chotot/sync_post_article_chotot', 'SyncArticleForBuyChototController@storeSyncArticle');
 
-    CRUD::resource('sync_article_for_buy_chotot', 'SyncArticleForBuyController');
+    // lấy tin ban chotot.com
+
+    Route::get('sync_chotot_article_for_buy/sync_article_for_buy', 'SyncArticleForBuyChototController@getSyncArticle');
+    Route::get('sync_chotot_article_for_buy/approval/{id}', 'SyncArticleForBuyChototController@approvalSyncArticle');
+    Route::post('sync_chotot_article_for_buy/sync_post_article', 'SyncArticleForBuyChototController@storeSyncArticle');
+
+    CRUD::resource('sync_chotot_article_for_buy', 'SyncArticleForBuyChototController');
 
 
 }); // this should be the absolute last line of this file

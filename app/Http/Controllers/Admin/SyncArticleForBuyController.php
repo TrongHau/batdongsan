@@ -461,6 +461,7 @@ class SyncArticleForBuyController extends CrudController
                             'point' => -1,
                             'date_sync' => $dateStart,
                             'build_from' => $typeReq,
+                            'url_from' => $refixUrl . $data_url[1][$key]
                         ];
                         $result = SyncArticleForBuyModel::create($article);
                         $gallery_image = [];
