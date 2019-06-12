@@ -352,17 +352,18 @@ class SyncArticleForBuyChototController extends CrudController
         $dateStart = strtotime(str_replace('T', ' ', $request->start_date));
         $dateEnd = strtotime(str_replace('T', ' ', $request->end_date));
 
-        $this->getArticleChotot(($request->type_article == 'Nhà đất cần thuê' ? (str_replace('Mua', 'Cần thuê', $request->method_article)): $request->method_article), $request->type_article, $request->str_html);
+        $this->getArticleChotot($request->method_article, $request->str_html);
 
         \Alert::success('Đã lấy tin tức mới thành công')->flash();
         return \Redirect::to($this->crud->route);
     }
-    function getArticleChotot($method, $type, $strHtml) {
-        preg_match_all('@<div class="pgjTolSNq4-L--tpQ7Xp5">(.*?)</ul>@si', $strHtml, $content);
-        preg_match_all('@<h3 class="_3ygwQow5YdDcI2nenz6_nu(.*?)">(.*?)</h3>@si', $content[1][0], $data_title);
-        preg_match_all('@<a class="_3JMKvS6hucA6KaM9tX3Qb1" href="(.*?)">@si', $content[1][0], $data_url);
-        $data_title = $data_title[2];
-        $data_url = $data_url[1];
+    function getArticleChotot($method, $strHtml) {
+        preg_match_all('@<h3 class="ctAdListingTitle(.*?)">(.*?)</h3>@si', $strHtml, $data_title);
+        preg_match_all('@<a rel="nofollow" class="ctAdListingItem" action="push" href="(.*?)">@si', $strHtml, $data_url);
+        preg_match_all('@<h3 class="_3ygwQow5YdDcI2nenz6_nu(.*?)">(.*?)</h3>@si', $strHtml, $data_title2);
+        preg_match_all('@<a class="_3JMKvS6hucA6KaM9tX3Qb1" href="(.*?)">@si',$strHtml, $data_url2);
+        $data_url = array_merge($data_url[1], $data_url2[1]);
+        $data_title = array_merge($data_title[2], $data_title2[2]);
         foreach ($data_title as $key => $item) {
             if(!SyncArticleForBuyModel::where('title', $item)->first() && !SyncArticleForBuyModel::where('title', $item)->first()) {
                 $url = 'https://nha.chotot.com' . $data_url[$key];
@@ -420,16 +421,20 @@ class SyncArticleForBuyChototController extends CrudController
                         $streetData = StreetModel::where([['_name', $street], ['_prefix', $street_]])->where([['_province_id', $province_id], ['_district_id', $district_id]])->first();
                         $street_id = $streetData->id ?? null;
                     }
-
-                    $price_= $price[1][0] / 1000;
-                    $ddlPriceType = 'Nghìn/tháng';
-                    if(strlen($price[1][0]) > 6) {
-                        $price_ = $price[1][0] / 1000000;
-                        $ddlPriceType = 'Triệu/tháng';
-                    }elseif(strlen($price[1][0]) > 9) {
-                        $price_ = $price[1][0] / 1000000000;
-                        $ddlPriceType = 'Tỷ/tháng';
+                    $price_ = 0;
+                    $ddlPriceType = 'thỏa thuận';
+                    if(isset($price[1][0])) {
+                        $price_= $price[1][0] / 1000;
+                        $ddlPriceType = 'Nghìn/tháng';
+                        if(strlen($price[1][0]) > 6) {
+                            $price_ = $price[1][0] / 1000000;
+                            $ddlPriceType = 'Triệu/tháng';
+                        }elseif(strlen($price[1][0]) > 9) {
+                            $price_ = $price[1][0] / 1000000000;
+                            $ddlPriceType = 'Tỷ/tháng';
+                        }
                     }
+                    $type = $this->get_Type_Article($method, explode('/', $data_url[$key])[2]);
                     $article = [
                         'title' => $item,
                         'method_article' => $method,
@@ -442,14 +447,14 @@ class SyncArticleForBuyChototController extends CrudController
                         'ward' => $ward,
                         'street_id' => $street_id,
                         'street' => $street,
-                        'address' => $address[1][0],
+                        'address' => $address[1][0] ?? null,
                         'project' => '',
-                        'area_from' => $area[2][0],
-                        'area_to' => null,
+                        'area_from' => $area[2][0] ?? 0,
+                        'area_to' => 0,
                         'price_from' => $price_,
-                        'price_to' => null,
+                        'price_to' => 0,
                         'ddlPriceType' => $ddlPriceType,
-                        'price_real' => $price_,
+                        'price_real' => $price_ ? $price_ : 0,
                         'unit' => '',
                         'content_article' => str_replace('\u002F', '/', str_replace('\n', '<br />', $body[1][0])),
                         'contact_name' => $contact_name[1][0] ?? null,
@@ -457,7 +462,7 @@ class SyncArticleForBuyChototController extends CrudController
                         'contact_phone' => $contact_phone[1][0] ?? null,
                         'contact_email' => null,
                         'status' => PUBLISHED_ARTICLE,
-                        'prefix_url' =>  strtolower(Helpers::rawTiengVietUrl($type .'-'.$street).'/'.Helpers::rawTiengVietUrl($item)),
+                        'prefix_url' =>  strtolower(Helpers::rawTiengVietUrl($type .'-'.($street ? $street : ($ward ? $ward : $district))).'/'.Helpers::rawTiengVietUrl($item)),
                         'user_id' => Auth::user()->id,
                         'aprroval' => APPROVAL_ARTICLE_PUBLIC,
                         'start_news' => time(),
@@ -527,5 +532,29 @@ class SyncArticleForBuyChototController extends CrudController
         } else {
             return array( $content, $response );
         }
+    }
+    function get_Type_Article($method, $urlPath) {
+        if($method == 'Nhà đất cần mua') {
+            if($urlPath == 'mua-ban-can-ho-chung-cu') {
+                $result = 'Mua căn hộ chung cư';
+            }elseif($urlPath == 'mua-ban-nha-dat') {
+                $result = 'Mua nhà riêng';
+            }elseif($urlPath == 'mua-ban-dat') {
+                $result = 'Mua đất';
+            }else {
+                $result = 'Mua loại bất động sản khác';
+            }
+        }else{
+            if($urlPath == 'thue-ban-can-ho-chung-cu') {
+                $result = 'Cần Thuê căn hộ chung cư';
+            }elseif($urlPath == 'thue-ban-nha-dat') {
+                $result = 'Cần Thuê nhà riêng';
+            }elseif($urlPath == 'thue-ban-dat') {
+                $result = 'Cần Thuê đất';
+            }else {
+                $result = 'Cần Thuê loại bất động sản khác';
+            }
+        }
+        return $result;
     }
 }

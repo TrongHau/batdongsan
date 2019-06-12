@@ -40,15 +40,6 @@
                                     <option value="Nhà đất cần thuê">Nhà đất cần thuê</option>
                                 </select>
                             </div>
-                            <div class="form-group col-xs-4">
-                                <label>Danh Mục</label>
-                                <select name="type_article" class="form-control">
-                                    <option value="Mua căn hộ chung cư">Mua căn hộ chung cư</option>
-                                    <option value="Mua nhà riêng">Nhà ở</option>
-                                    <option value="Mua đất">Đất</option>
-                                    <option value="Mua loại bất động sản khác">Văn phòng, Mặt bằng kinh doanh</option>
-                                </select>
-                            </div>
                             <div class="form-group col-xs-12">
                                 <label>Nhập mã code tin rao mua chotot</label>
                                 <textarea name="str_html" class="form-control" rows="15"></textarea>

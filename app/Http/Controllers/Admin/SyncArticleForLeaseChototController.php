@@ -340,18 +340,17 @@ class SyncArticleForLeaseChototController extends CrudController
     public function storeSyncArticle(Request $request) {
         $url = '';
         $dataNews = [];
-        $this->getArticleChotot(($request->type_article == 'Nhà đất cho thuê' ? (str_replace('Bán', 'Cho Thuê', $request->method_article)): $request->method_article), $request->type_article, $request->str_html);
+        $this->getArticleChotot($request->method_article, $request->str_html);
         \Alert::success('Đã lấy tin tức mới thành công')->flash();
         return \Redirect::to($this->crud->route);
     }
-    function getArticleChotot($method, $type, $strHtml) {
-        preg_match_all('@<div class="pgjTolSNq4-L--tpQ7Xp5">(.*?)</ul>@si', $strHtml, $content);
-        preg_match_all('@<h3 class="ctAdListingTitle">(.*?)</h3>@si', $strHtml, $data_title);
-        preg_match_all('@<a rel="nofollow" class="ctAdListingItem" action="push" href="(.*?)">@si', $content[1][0], $data_url);
+    function getArticleChotot($method, $strHtml) {
+        preg_match_all('@<h3 class="ctAdListingTitle(.*?)">(.*?)</h3>@si', $strHtml, $data_title);
+        preg_match_all('@<a rel="nofollow" class="ctAdListingItem" action="push" href="(.*?)">@si', $strHtml, $data_url);
         preg_match_all('@<h3 class="_3ygwQow5YdDcI2nenz6_nu(.*?)">(.*?)</h3>@si', $strHtml, $data_title2);
-        preg_match_all('@<a class="_3JMKvS6hucA6KaM9tX3Qb1" href="(.*?)">@si', $content[1][0], $data_url2);
+        preg_match_all('@<a class="_3JMKvS6hucA6KaM9tX3Qb1" href="(.*?)">@si',$strHtml, $data_url2);
         $data_url = array_merge($data_url[1], $data_url2[1]);
-        $data_title = array_merge($data_title[1], $data_title2[2]);
+        $data_title = array_merge($data_title[2], $data_title2[2]);
         foreach ($data_title as $key => $item) {
             if(!SyncArticleForLeaseModel::where('title', $item)->first() && !SyncArticleForLeaseModel::where('title', $item)->first()) {
                 $url = 'https://nha.chotot.com' . $data_url[$key];
@@ -368,6 +367,7 @@ class SyncArticleForLeaseChototController extends CrudController
 //                preg_match_all('@reviewer_image":"(.*?)","reviewer_nickname":"(.*?)","images":\["(.*?)"]@si', $fileContent[0], $data_imgs_content);
 //                $data_imgs_content = $data_imgs_content[3][0] ? explode('","', $data_imgs_content[3][0]) : null;
                 if(isset($address[1][0])) {
+                    $address[1][0] = str_replace('\u002F', '\\', $address[1][0]);
                     $addressExp = explode(', ', $address[1][0]);
                     $province_id = null;
                     $district_id = null;
@@ -381,10 +381,10 @@ class SyncArticleForLeaseChototController extends CrudController
                     if($ward[0] == 'Phường' || $ward[0] == 'Xã'){
                         $ward_ = $ward[0];
                         unset($ward[0]);
-                        $ward = implode(' ', $ward);
                     }else{
                         $ward_ = '';
                     }
+                    $ward = implode(' ', $ward);
                     $street_pos = strpos($street , 'Đường');
                     if($street_pos == false)
                         $street_pos = strpos($street, 'Phố');
@@ -409,13 +409,17 @@ class SyncArticleForLeaseChototController extends CrudController
                         $streetData = StreetModel::where([['_name', $street], ['_prefix', $street_]])->where([['_province_id', $province_id], ['_district_id', $district_id]])->first();
                         $street_id = $streetData->id ?? null;
                     }
-
-                    $price_= $price[1][0] / 1000000;
-                    $ddlPriceType = 'Triệu';
-                    if(strlen($price[1][0]) > 9) {
-                        $price_ = $price[1][0] / 1000000000;
-                        $ddlPriceType = 'Tỷ';
+                    $price_ = 0;
+                    $ddlPriceType = 'Thỏa Thuận';
+                    if(isset($price[1][0])) {
+                        $price_= $price[1][0] / 1000000;
+                        $ddlPriceType = 'Triệu';
+                        if(strlen($price[1][0]) > 9) {
+                            $price_ = $price[1][0] / 1000000000;
+                            $ddlPriceType = 'Tỷ';
+                        }
                     }
+                    $type = $this->get_Type_Article($method, explode('/', $data_url[$key])[2]);
                     $article = [
                         'title' => $item,
                         'method_article' => $method,
@@ -430,10 +434,10 @@ class SyncArticleForLeaseChototController extends CrudController
                         'street' => $street,
                         'address' => $address[1][0],
                         'project' => '',
-                        'area' => $area[2][0],
+                        'area' => $area[2][0] ?? null,
                         'price' => $price_,
                         'ddlPriceType' => $ddlPriceType,
-                        'price_real' => $price[1][0],
+                        'price_real' => $price[1][0] ?? 0,
                         'content_article' => str_replace('\u002F', '/', str_replace('\n', '<br />', $body[1][0])),
                         'facade' => null,
                         'land_width' => null,
@@ -449,7 +453,7 @@ class SyncArticleForLeaseChototController extends CrudController
                         'contact_phone' => $contact_phone[1][0] ?? null,
                         'contact_email' => null,
                         'status' => PUBLISHED_ARTICLE,
-                        'prefix_url' =>  strtolower(Helpers::rawTiengVietUrl($type .'-'.$street).'/'.Helpers::rawTiengVietUrl($item)),
+                        'prefix_url' =>  strtolower(Helpers::rawTiengVietUrl($type .'-'.($street ? $street : ($ward ? $ward : $district))).'/'.Helpers::rawTiengVietUrl($item)),
                         'user_id' => Auth::user()->id,
                         'aprroval' => APPROVAL_ARTICLE_PUBLIC,
                         'start_news' => time(),
@@ -519,5 +523,29 @@ class SyncArticleForLeaseChototController extends CrudController
         } else {
             return array( $content, $response );
         }
+    }
+    function get_Type_Article($method, $urlPath) {
+        if($method == 'Nhà đất bán') {
+            if($urlPath == 'mua-ban-can-ho-chung-cu') {
+                $result = 'Bán căn hộ chung cư';
+            }elseif($urlPath == 'mua-ban-nha-dat') {
+                $result = 'Bán nhà riêng';
+            }elseif($urlPath == 'mua-ban-dat') {
+                $result = 'Bán đất';
+            }else {
+                $result = 'Bán loại bất động sản khác';
+            }
+        }else{
+            if($urlPath == 'thue-ban-can-ho-chung-cu') {
+                $result = 'Cho Thuê căn hộ chung cư';
+            }elseif($urlPath == 'thue-ban-nha-dat') {
+                $result = 'Cho Thuê nhà riêng';
+            }elseif($urlPath == 'thue-ban-dat') {
+                $result = 'Cho Thuê đất';
+            }else {
+                $result = 'Cho Thuê loại bất động sản khác';
+            }
+        }
+        return $result;
     }
 }

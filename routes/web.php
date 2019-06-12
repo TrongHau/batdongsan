@@ -186,7 +186,7 @@ Route::get('/mua-dat-nen-du-an-{position}/{title}bds-{id}', 'DetailController@ar
 Route::get('/mua-dat-{position}/{title}bds-{id}', 'DetailController@articleForBuyDetail');
 Route::get('/mua-trang-trai-khu-nghi-duong-{position}/{title}bds-{id}', 'DetailController@articleForBuyDetail');
 Route::get('/mua-kho-nha-xuong-{position}/{title}bds-{id}', 'DetailController@articleForBuyDetail');
-Route::get('/mua-cac-loai-bat-dong-san-khac-{position}/{title}bds-{id}', 'DetailController@articleForBuyDetail');
+Route::get('/mua-loai-bat-dong-san-khac-{position}/{title}bds-{id}', 'DetailController@articleForBuyDetail');
 
 Route::get('/nha-dat-can-thue-{position}/{title}bds-{id}', 'DetailController@articleForBuyDetail');
 Route::get('/can-thue-can-ho-chung-cu-{position}/{title}bds-{id}', 'DetailController@articleForBuyDetail');
