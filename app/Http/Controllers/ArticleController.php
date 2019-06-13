@@ -244,7 +244,11 @@ class ArticleController extends Controller
                 $typeAuthGuest = 'guest.';
             }
         }else{
-            Input::merge(['contact_phone' => Auth::user()->phone]);
+            if(!$request->id) {
+                Input::merge(['contact_phone' => Auth::user()->phone]);
+            }else{
+                unset($excep['contact_phone']);
+            }
         }
         $this->validate($request, $excep);
 
@@ -291,6 +295,7 @@ class ArticleController extends Controller
         $article[ 'street_url'] = Helpers::rawTiengVietUrl($article['street']);
         $olDataImgs = [];
         if($request->id) {
+            unset($article['contact_phone']);
             if(Auth::user()->rolesBDSRoleName() == ROLE_NAME_ADMIN) {
                 // kiểm tra admin truy cập trực tiếp
                 $result = ArticleForLeaseModel::where('id', $request->id)->first();

@@ -438,7 +438,7 @@ class SyncArticleForLeaseChototController extends CrudController
                         'price' => $price_,
                         'ddlPriceType' => $ddlPriceType,
                         'price_real' => $price[1][0] ?? 0,
-                        'content_article' => str_replace('\u002F', '/', str_replace('\n', '<br />', $body[1][0])),
+                        'content_article' => json_decode('"'.str_replace('\n', '<br />', $body[1][0]).'"'),
                         'facade' => null,
                         'land_width' => null,
                         'ddlHomeDirection' => null,

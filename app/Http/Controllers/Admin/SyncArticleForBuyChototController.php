@@ -456,7 +456,7 @@ class SyncArticleForBuyChototController extends CrudController
                         'ddlPriceType' => $ddlPriceType,
                         'price_real' => $price_ ? $price_ : 0,
                         'unit' => '',
-                        'content_article' => str_replace('\u002F', '/', str_replace('\n', '<br />', $body[1][0])),
+                        'content_article' => json_decode('"'.str_replace('\n', '<br />', $body[1][0]).'"'),
                         'contact_name' => $contact_name[1][0] ?? null,
                         'contact_address' => null,
                         'contact_phone' => $contact_phone[1][0] ?? null,
