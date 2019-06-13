@@ -9,7 +9,7 @@
     <div class="header-top-right">
         <div id="TopBanner">
             <a href="{{env("APP_URL")}}/nha-dat-ban" target="_blank" title="" rel="nofollow">
-                <img src="/imgs/bdscompany_cover.png" style="max-width: 100%; height:96px;" />
+                <img src="/imgs/bdscompany_cover.png" style="width: 100%; height:96px;" />
             </a>
         </div>
         <div class="header-middle-right">
