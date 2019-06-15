@@ -8,9 +8,44 @@
     </div>
     <div class="header-top-right">
         <div id="TopBanner">
-            <a href="{{env("APP_URL")}}/nha-dat-ban" target="_blank" title="" rel="nofollow">
-                <img src="/imgs/bdscompany_cover.png" style="width: 100%; height:96px;" />
-            </a>
+            <div id="slideshow">
+                <div>
+                    <a href="{{env("APP_URL")}}/nha-dat-ban" target="_blank" title="" rel="nofollow">
+                        <img src="/imgs/bdscompany_cover.png" style="width: 100%; height:96px;">
+                    </a>
+                </div>
+                <div>
+                    <a href="{{env("APP_URL")}}/nha-dat-ban" target="_blank" title="" rel="nofollow">
+                        <img src="/imgs/bdscompany_cover - Copy.png" style="width: 100%; height:96px;">
+                    </a>
+                </div>
+            </div>
+            <style>
+                #slideshow {
+                    position: relative;
+                    margin-top: -10px;
+                }
+
+                #slideshow > div {
+                    position: absolute;
+                    top: 10px;
+                    left: 10px;
+                    right: 10px;
+                    bottom: 10px;
+                }
+            </style>
+            <script>
+                $("#slideshow > div:gt(0)").hide();
+
+                setInterval(function() {
+                    $('#slideshow > div:first')
+                        .fadeOut(1000)
+                        .next()
+                        .fadeIn(1000)
+                        .end()
+                        .appendTo('#slideshow');
+                },  3000);
+            </script>
         </div>
         <div class="header-middle-right">
 
