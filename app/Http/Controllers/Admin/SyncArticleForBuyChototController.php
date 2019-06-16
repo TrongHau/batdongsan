@@ -349,8 +349,8 @@ class SyncArticleForBuyChototController extends CrudController
     public function storeSyncArticle(Request $request) {
         $url = '';
         $dataNews = [];
-        $dateStart = strtotime(str_replace('T', ' ', $request->start_date));
-        $dateEnd = strtotime(str_replace('T', ' ', $request->end_date));
+        $dateStart = strtotime($request->start_date . ' 00:00');
+        $dateEnd = strtotime($request->end_date . ' 23:59');
 
         $this->getArticleChotot($request->method_article, $request->str_html);
 

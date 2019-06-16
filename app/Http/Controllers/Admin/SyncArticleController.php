@@ -28,7 +28,7 @@ class SyncArticleController extends CrudController
         |--------------------------------------------------------------------------
         */
         $this->crud->setModel("App\Models\SyncArticleModel");
-        $this->crud->setRoute(config('backpack.base.route_prefix', 'admin').'/sync_article');
+        $this->crud->setRoute(config('backpack.base.route_prefix', 'admin').'/sync_article_new');
         $this->crud->setEntityNameStrings('article', 'Lấy Tin Tức');
         $this->crud->orderBy('id', 'desc');
 
@@ -257,8 +257,8 @@ class SyncArticleController extends CrudController
     public function storeSyncArticle(Request $request) {
         $url = '';
         $dataNews = [];
-        $dateStart = strtotime(str_replace('T', ' ', $request->start_date));
-        $dateEnd = strtotime(str_replace('T', ' ', $request->end_date));
+        $dateStart = strtotime($request->start_date . ' 00:00');
+        $dateEnd = strtotime($request->end_date . ' 23:59');
 
         if($request->type == 'bds.com.vn') {
             $this->getArticleBDS(5, 'tin-thi-truong', $dateStart, $dateEnd);

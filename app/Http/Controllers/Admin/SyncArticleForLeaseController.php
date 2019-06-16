@@ -347,8 +347,8 @@ class SyncArticleForLeaseController extends CrudController
     public function storeSyncArticle(Request $request) {
         $url = '';
         $dataNews = [];
-        $dateStart = strtotime(str_replace('T', ' ', $request->start_date));
-        $dateEnd = strtotime(str_replace('T', ' ', $request->end_date));
+        $dateStart = strtotime($request->start_date . ' 00:00');
+        $dateEnd = strtotime($request->end_date . ' 23:59');
 
         if($request->type == 'bds.com.vn') {
             $this->getArticleBDS($request->type, 'nha-dat-ban', 'Nhà đất bán', $dateStart, $dateEnd);
@@ -392,6 +392,10 @@ class SyncArticleForLeaseController extends CrudController
                         preg_match_all('@Địa chỉ\r\n</div>\r\n<div class="right" style="text-transform:capitalize;">\r\n(.*?)\r\n</div>@si', $fileContent[0], $contact_address);
                         $province_ = explode(',', $province[1][0]);
                         $address = $province[1][0];
+                        $province = null;
+                        $ward = null;
+                        $street = null;
+                        $district = null;
                         if(count($province_) == 5) {
                             $province = trim($province_[4]);
                             $district = trim($province_[3]);
