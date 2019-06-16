@@ -113,28 +113,32 @@ class SearchController extends Controller
             $article = $article->where('street_id', $street_id);
         }
         if($area >= 0) {
+            $where_area = 'area';
+            if($article->getModel()->getTable() == 'articles_for_buy') {
+                $where_area = 'area_from';
+            }
             if($area == 0) {
-                $article = $article->where('area', 0);
+                $article = $article->where($where_area, 0);
             }elseif ($area == 1) {
-                $article = $article->where('area', '<=', '30')->where('area', '!=',0);
+                $article = $article->where($where_area, '<=', '30')->where($where_area, '!=',0);
             }elseif ($area == 2) {
-                $article = $article->where('area', '>=', '30')->where('price_real', '<=', '50');
+                $article = $article->where($where_area, '>=', '30')->where($where_area, '<=', '50');
             }elseif ($area == 3) {
-                $article = $article->where('area', '>=', '50')->where('price_real', '<=', '80');
+                $article = $article->where($where_area, '>=', '50')->where($where_area, '<=', '80');
             }elseif ($area == 4) {
-                $article = $article->where('area', '>=', '80')->where('price_real', '<=', '100');
+                $article = $article->where($where_area, '>=', '80')->where($where_area, '<=', '100');
             }elseif ($area == 5) {
-                $article = $article->where('area', '>=', '100')->where('price_real', '<=', '150');
+                $article = $article->where($where_area, '>=', '100')->where($where_area, '<=', '150');
             }elseif ($area == 6) {
-                $article = $article->where('area', '>=', '150')->where('price_real', '<=', '200');
+                $article = $article->where($where_area, '>=', '150')->where($where_area, '<=', '200');
             }elseif ($area == 7) {
-                $article = $article->where('area', '>=', '200')->where('price_real', '<=', '250');
+                $article = $article->where($where_area, '>=', '200')->where($where_area, '<=', '250');
             }elseif ($area == 8) {
-                $article = $article->where('area', '>=', '250')->where('price_real', '<=', '300');
+                $article = $article->where($where_area, '>=', '250')->where($where_area, '<=', '300');
             }elseif ($area == 9) {
-                $article = $article->where('area', '>=', '300')->where('price_real', '<=', '500');
+                $article = $article->where($where_area, '>=', '300')->where($where_area, '<=', '500');
             }elseif ($area == 10) {
-                $article = $article->where('area', '>=', '500');
+                $article = $article->where($where_area, '>=', '500');
             }
         }
         if($price >= 0) {

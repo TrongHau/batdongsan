@@ -274,6 +274,7 @@ global $province;
                                                     <div id="divStreet" class="comboboxs advance-select-box pad0">
                                                         <select id="ddlPriceType" name="ddlPriceType" class="advance-options select-ddlPriceType" style="min-width: 220px;border: 1px solid #CCC;">
                                                             <option value="Triệu/tháng" class="advance-options" style="min-width: 168px;">Triệu/tháng</option>
+                                                            <option value="Triệu" class="advance-options" style="min-width: 168px;">Triệu</option>
                                                         </select>
                                                         @if ($errors->has('ddlPriceType'))
                                                             <div class="errorMessage" style="display: block;"><p style="color: red">{{ str_replace('ddlPriceType', 'đơn vị', $errors->first('ddlPriceType')) }}</p></div>
@@ -623,6 +624,7 @@ global $province;
 
                 document.getElementById('ddlPriceType').options[1]=new Option("Nghìn/tháng", "Nghìn/tháng", false, false);
                 document.getElementById('ddlPriceType').options[2]=new Option("Triệu/tháng", "Triệu/tháng", false, false);
+                document.getElementById('ddlPriceType').options[2]=new Option("Triệu", "Triệu", false, false);
                 document.getElementById('ddlPriceType').options[3]=new Option("Nghìn/m2/tháng", "Nghìn/m2/tháng", false, false);
                 document.getElementById('ddlPriceType').options[4]=new Option("Triệu/m2/tháng", "Triệu/m2/tháng", false, false);
                 document.getElementById('ddlPriceType').options[5]=new Option("Nghìn/m2/tháng", "Nghìn/m2/tháng", false, false);
