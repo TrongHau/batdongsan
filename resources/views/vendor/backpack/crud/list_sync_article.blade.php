@@ -22,7 +22,7 @@
         <div class="col-md-12">
             <div class="box">
                 <div class="box-header hidden-print {{ $crud->hasAccess('create')?'with-border':'' }}">
-                    <a href="/admin/sync_article/sync_article" class="btn btn-primary ladda-button" data-style="zoom-in">
+                    <a href="/admin/sync_article_new/sync_article" class="btn btn-primary ladda-button" data-style="zoom-in">
                         <span class="ladda-label"><i class="fa fa-plus"></i> Lấy Tin</span>
                     </a>
                     <div id="datatable_button_stack" class="pull-right text-right hidden-xs"></div>

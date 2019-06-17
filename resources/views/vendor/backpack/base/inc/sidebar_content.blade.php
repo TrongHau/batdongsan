@@ -25,7 +25,7 @@
 <li class="treeview">
     <a href="#"><i class="fa fa-cloud-download"></i> <span>Lấy tin BĐS</span> <i class="fa fa-angle-left pull-right"></i></a>
     <ul class="treeview-menu">
-        <li><a href="{{ backpack_url('sync_article') }}"><i class="fa fa-file-o"></i> <span>Lấy tin tức BĐS</span></a></li>
+        <li><a href="{{ backpack_url('sync_article_new') }}"><i class="fa fa-file-o"></i> <span>Lấy tin tức BĐS</span></a></li>
         <li><a href="{{ backpack_url('sync_article_for_lease') }}"><i class="fa fa-btc"></i> <span>Lấy rao bán - cho thuê BĐS</span></a></li>
         <li><a href="{{ backpack_url('sync_article_for_buy') }}"><i class="fa fa-handshake-o"></i> <span>Lấy rao mua - cần thuê BĐS</span></a></li>
     </ul>

@@ -16,11 +16,11 @@ Route::group([
     CRUD::resource('phone', 'PhoneController');
     CRUD::resource('report', 'ReportController');
 
-    Route::get('sync_article/sync_article', 'SyncArticleController@getSyncArticle');
-    Route::get('sync_article/approval/{id}', 'SyncArticleController@approvalSyncArticle');
-    Route::post('sync_article/sync_post_article', 'SyncArticleController@storeSyncArticle');
+    Route::get('sync_article_new/sync_article', 'SyncArticleController@getSyncArticle');
+    Route::get('sync_article_new/approval/{id}', 'SyncArticleController@approvalSyncArticle');
+    Route::post('sync_article_new/sync_post_article', 'SyncArticleController@storeSyncArticle');
 
-    CRUD::resource('sync_article', 'SyncArticleController');
+    CRUD::resource('sync_article_new', 'SyncArticleController');
 
     // lấy tin batdongsan.com.vn
 

@@ -7,7 +7,7 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="http://batdongsan.localhost/admin/dashboard">Admin</a></li>
-            <li><a href="http://batdongsan.localhost/admin/sync_article" class="text-capitalize">Lấy Tin Tức</a></li>
+            <li><a href="http://batdongsan.localhost/admin/sync_article_new" class="text-capitalize">Lấy Tin Tức</a></li>
         </ol>
     </section>
 @endsection
@@ -21,7 +21,7 @@
                 <a href="/admin/sync_article" class="hidden-print"><i class="fa fa-angle-double-left"></i> Back to all  <span>Lấy Tin Tức</span></a><br><br>
 
 
-                <form method="post" action="/admin/sync_article/sync_post_article">
+                <form method="post" action="/admin/sync_article_new/sync_post_article">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="box">
 
@@ -45,13 +45,13 @@
                             </div>
                             <div class="form-group col-xs-4">
                                 <label>Bắt đầu đăng tin</label>
-                                <input type="datetime-local" id="meeting-time" class="form-control"
-                                       name="start_date" value="{{date('Y-m-d', strtotime('-1 day'))}}T{{date('H:i')}}">
+                                <input type="date" id="meeting-time" class="form-control"
+                                       name="start_date" value="{{date('Y-m-d', strtotime('-1 day'))}}">
                             </div>
                             <div class="form-group col-xs-4">
                                 <label>Kết thúc tin đăng</label>
-                                <input type="datetime-local" id="meeting-time" class="form-control"
-                                       name="end_date" value="{{date('Y-m-d')}}T{{date('H:i')}}">
+                                <input type="date" id="meeting-time" class="form-control"
+                                       name="end_date" value="{{date('Y-m-d')}}">
                             </div>
                         </div>
                         <div class="box-footer">
@@ -59,7 +59,7 @@
                             <div id="saveActions" class="form-group">
 
                                 <button type="submit" class="btn btn-success" value="" ><span class="fa fa-cloud-download"></span> &nbsp;Bắt đầu lấy tin</button>
-                                <a href="/admin/sync_article" class="btn btn-default"><span class="fa fa-ban"></span> &nbsp;Cancel</a>
+                                <a href="/admin/sync_article_new" class="btn btn-default"><span class="fa fa-ban"></span> &nbsp;Cancel</a>
                             </div>
 
                         </div><!-- /.box-footer-->
