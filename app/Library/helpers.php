@@ -61,6 +61,8 @@ class Helpers
 
     public static function rawTiengVietUrl($str, $spaceReplace = '-')
     {
+        if(!$str)
+            return '';
         return preg_replace(array('/[^a-zA-Z0-9 -]/', '/[ -]+/', '/^-|-$/'), array('-', $spaceReplace, '-'), self::khongdau($str));
     }
     public static function convertCurrency($text) {

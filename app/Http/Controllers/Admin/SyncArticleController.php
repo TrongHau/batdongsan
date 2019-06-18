@@ -330,6 +330,7 @@ class SyncArticleController extends CrudController
                         $fileContent = $this->get_fcontent($refixUrl . $data_url[1][$key]);
                         preg_match_all('@<h2 id="ctl23_ctl00_divSummary" class="summary">(.*?)</h2>@si', $fileContent[0], $data_short_content);
                         preg_match_all('@<div id="divContents" class="detailsView-contents-style detail-article-content">(.*?)</div>\r\n<div id="ctl23_ctl00_divSourceNews"@si', $fileContent[0], $data_content);
+                        preg_match_all('@<div id="ctl23_ctl00_divSourceNews" class="detailsView-contents-style soucenews" style="padding: 10px"><em>(.*?)</em>@si', $fileContent[0], $source);
                         $urlImage = $data_img[1][$key];
                         $contents = file_get_contents($urlImage);
                         $name = substr($urlImage, strrpos($urlImage, '/') + 1);
@@ -349,7 +350,7 @@ class SyncArticleController extends CrudController
                             'category_id' => $cat_id,
                             'title' => $title,
                             'short_content' => $data_short_content[1][0] ?? '',
-                            'content' => $data_content[1][0] ?? '',
+                            'content' => ($data_content[1][0] ?? '') . (isset($source[1][0]) && $source[1][0] ? '<div id="ctl23_ctl00_divSourceNews" class="detailsView-contents-style soucenews" style="padding: 10px"><em>'.$source[1][0].'</em> <br> &nbsp;</div>' : ''),
                             'image' => 'uploads/sync/cover/' . $refixNews . '/' . $name,
                         ]);
                     }

@@ -425,13 +425,13 @@ class SyncArticleForBuyChototController extends CrudController
                     $ddlPriceType = 'thỏa thuận';
                     if(isset($price[1][0])) {
                         $price_= $price[1][0] / 1000;
-                        $ddlPriceType = 'Nghìn/tháng';
-                        if(strlen($price[1][0]) > 6) {
-                            $price_ = $price[1][0] / 1000000;
-                            $ddlPriceType = 'Triệu/tháng';
-                        }elseif(strlen($price[1][0]) > 9) {
+                        $ddlPriceType = 'Triệu';
+                        if(strlen($price[1][0]) > 9) {
                             $price_ = $price[1][0] / 1000000000;
-                            $ddlPriceType = 'Tỷ/tháng';
+                            $ddlPriceType = 'Tỷ';
+                        }elseif(strlen($price[1][0]) > 6) {
+                            $price_ = $price[1][0] / 1000000;
+                            $ddlPriceType = 'Triệu';
                         }
                     }
                     $type = $this->get_Type_Article($method, explode('/', $data_url[$key])[2]);

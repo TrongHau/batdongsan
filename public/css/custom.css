@@ -1029,3 +1029,8 @@ table td[class*=col-], table th[class*=col-] {
 button:disabled {
     background: #dddddd;
 }
+#divContents img {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
