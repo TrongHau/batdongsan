@@ -390,6 +390,13 @@ class SyncArticleForBuyController extends CrudController
                         $province = trim(last($province__));
                         array_pop($province__);
                         $district = trim(last($province__));
+                        $district = explode(' ', $district);
+                        if($district[0] == 'Quận' || $district[0] == 'Huyện'){
+                            $district_ = $district[0];
+                            unset($district[0]);
+                        }else{
+                            $district_ = '';
+                        }
                         $province_id = null;
                         $district_id = null;
                         $ward_id = null;
@@ -398,9 +405,14 @@ class SyncArticleForBuyController extends CrudController
                         $street = null;
                         $provinceData = ProvinceModel::where('_name', $province)->first();
                         if($provinceData) {
-                            $districtData = DistrictModel::where('_name', $district)->where('_province_id', $provinceData->id)->first();
+                            $districtData = DistrictModel::where(function($q) use ($district, $district_) {
+                                $q->where('_name', $district);
+                                if($district_)
+                                    $q->orWhere('_name', $district_ . ' ' .$district);
+                            })->where('_province_id', $provinceData->id)->first();
                             $province_id = $provinceData->id;
                             $district_id = $districtData->id ?? null;
+                            $district = $districtData->_name ?? null;
                         }
                         $project = $project[2][0] ?? null;
                         if(!is_numeric($price[1][0])) {

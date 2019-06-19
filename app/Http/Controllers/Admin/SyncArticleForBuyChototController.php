@@ -385,18 +385,32 @@ class SyncArticleForBuyChototController extends CrudController
                     $district_id = null;
                     $ward_id = null;
                     $street_id = null;
+
+                    $province = null;
+                    $district = null;
+                    $ward = null;
+                    $street = null;
+
                     $province = str_replace('Tp ', '', array_pop($addressExp));
                     $district = array_pop($addressExp);
+                    $district = explode(' ', $district);
+                    if($district[0] == 'Quận' || $district[0] == 'Huyện'){
+                        $district_ = $district[0];
+                        unset($district[0]);
+                    }else{
+                        $district_ = '';
+                    }
+                    $district = implode(' ', $district);
                     $ward = array_pop($addressExp);
                     $street = array_pop($addressExp);
                     $ward = explode(' ', $ward);
                     if($ward[0] == 'Phường' || $ward[0] == 'Xã'){
                         $ward_ = $ward[0];
                         unset($ward[0]);
-                        $ward = implode(' ', $ward);
                     }else{
                         $ward_ = '';
                     }
+                    $ward = implode(' ', $ward);
                     $street_pos = strpos($street , 'Đường');
                     if($street_pos == false)
                         $street_pos = strpos($street, 'Phố');
@@ -409,9 +423,14 @@ class SyncArticleForBuyChototController extends CrudController
                     $street = implode(' ', $street);
                     $provinceData = ProvinceModel::where('_name', $province)->first();
                     if($provinceData) {
-                        $districtData = DistrictModel::where('_name', $district)->where('_province_id', $provinceData->id)->first();
+                        $districtData = DistrictModel::where(function($q) use ($district, $district_) {
+                            $q->where('_name', $district);
+                            if($district_)
+                                $q->orWhere('_name', $district_ . ' ' .$district);
+                        })->where('_province_id', $provinceData->id)->first();
                         $province_id = $provinceData->id;
                         $district_id = $districtData->id ?? null;
+                        $district = $districtData->_name ?? null;
                     }
                     if($province_id && $district_id) {
                         $wardData = WardModel::where([['_name', $ward], ['_prefix', $ward_]])->where([['_province_id', $province_id], ['_district_id', $district_id]])->first();
@@ -534,6 +553,7 @@ class SyncArticleForBuyChototController extends CrudController
         }
     }
     function get_Type_Article($method, $urlPath) {
+        $result = '';
         if($method == 'Nhà đất cần mua') {
             if($urlPath == 'mua-ban-can-ho-chung-cu') {
                 $result = 'Mua căn hộ chung cư';

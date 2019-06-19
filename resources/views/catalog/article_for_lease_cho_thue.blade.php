@@ -88,7 +88,7 @@ $Agent = new Agent();
                                                 ?>
                                                 <div class="floatleft">
                                                     Giá:
-                                                    <span class="product-price">{{$item['price_real'] == 0 ? 'Thỏa thuận' : $item['price_from'] .' - '. $item['price_to'] . ' '.$item['ddlPriceType']}}</span>&nbsp;
+                                                    <span class="product-price">{{$item['price_real'] == 0 ? 'Thỏa thuận' : ($item['price_to'] ? ($item['price_from'] .' - '. $item['price_to']) : $item['price_from']) . ' '.$item['ddlPriceType']}}</span>&nbsp;
                                                     Diện tích:
                                                     <span class="product-area">{{($item['area_from'] && $item['area_to']) ? $item['area_from'] .' - '. $item['area_to'] .' m²' : 'Chưa xác định'}}</span>&nbsp;
                                                     Quận/Huyện:

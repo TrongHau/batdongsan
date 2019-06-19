@@ -373,8 +373,21 @@ class SyncArticleForLeaseChototController extends CrudController
                     $district_id = null;
                     $ward_id = null;
                     $street_id = null;
+
+                    $province = null;
+                    $district = null;
+                    $ward = null;
+                    $street = null;
+
                     $province = str_replace('Tp ', '', array_pop($addressExp));
                     $district = array_pop($addressExp);
+                    $district = explode(' ', $district);
+                    if($district[0] == 'Quận' || $district[0] == 'Huyện'){
+                        $district_ = $district[0];
+                        unset($district[0]);
+                    }else{
+                        $district_ = '';
+                    }
                     $ward = array_pop($addressExp);
                     $street = array_pop($addressExp);
                     $ward = explode(' ', $ward);
@@ -397,9 +410,14 @@ class SyncArticleForLeaseChototController extends CrudController
                     $street = implode(' ', $street);
                     $provinceData = ProvinceModel::where('_name', $province)->first();
                     if($provinceData) {
-                        $districtData = DistrictModel::where('_name', $district)->where('_province_id', $provinceData->id)->first();
+                        $districtData = DistrictModel::where(function($q) use ($district, $district_) {
+                            $q->where('_name', $district);
+                            if($district_)
+                                $q->orWhere('_name', $district_ . ' ' .$district);
+                        })->where('_province_id', $provinceData->id)->first();
                         $province_id = $provinceData->id;
                         $district_id = $districtData->id ?? null;
+                        $district = $districtData->_name ?? null;
                     }
                     if($province_id && $district_id) {
                         $wardData = WardModel::where([['_name', $ward], ['_prefix', $ward_]])->where([['_province_id', $province_id], ['_district_id', $district_id]])->first();
@@ -525,6 +543,7 @@ class SyncArticleForLeaseChototController extends CrudController
         }
     }
     function get_Type_Article($method, $urlPath) {
+        $result = '';
         if($method == 'Nhà đất bán') {
             if($urlPath == 'mua-ban-can-ho-chung-cu') {
                 $result = 'Bán căn hộ chung cư';
