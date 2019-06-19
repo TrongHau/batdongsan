@@ -341,6 +341,7 @@ class SyncArticleController extends CrudController
                             preg_match_all('@src="(.*?)"@si', $data_imgs_content[0][0], $data_imgs_content);
                             foreach ($data_imgs_content[1] as $itemImgs) {
                                 $contentImg = file_get_contents($itemImgs);
+                                $contentImg = str_replace('216x152', '600x315', $contentImg);
                                 $nameImg = substr($itemImgs, strrpos($itemImgs, '/') + 1);
                                 Storage::disk('public_uploads')->put('sync/content/'.$refixNews.'/' . $nameImg, $contentImg);
                                 $contentData = str_replace($contentData, $itemImgs, $nameImg);
