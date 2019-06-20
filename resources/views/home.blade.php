@@ -18,9 +18,9 @@ $Agent = new Agent();
     <meta name="description" content="Nhà đất bán, Bán căn hộ chung cư, Bán nhà biệt thự, liền kề, Bán nhà mặt phố, Bán đất nền dự án, Bán đất, Nhà đất cho thuê, Cho thuê căn hộ chung cư,
         Cho thuê nhà riêng, Cho thuê nhà mặt phố, Cho thuê nhà trọ, phòng trọ, Cho thuê văn phòng, Cho thuê kho, nhà xưởng, đất, Mua nhà riêng, Cần thuê kho, nhà xưởng, đất, Cần thuê nhà trọ, phòng trọ, Tất cả các loại đất bán">
     <link rel="canonical" href="{{url()->current()}}" />
-    <link rel="image_src" href="{{env('APP_URL') . THUMBNAIL_DEFAULT}}" />
+    <link rel="image_src" href="{{env('APP_URL') . THUMBNAIL_DEFAULT_META}}" />
     <meta name="title" content="Bất Động Sản Company" />
-    <meta property="og:image" content="{{env('APP_URL') . THUMBNAIL_DEFAULT}}" />
+    <meta property="og:image" content="{{env('APP_URL') . THUMBNAIL_DEFAULT_META}}" />
     <meta property="og:url" content="{{url()->current()}}" />
     <meta property="og:title" content="Bất Động Sản Company" />
     <meta property="og:description" content="batdongsan; rao ban bat dong san; bds; bat dong san Ho Chi Minh; bat dong san Ha Noi; cap nhat bat dong san; thu bat dong san; mua dat; thue dat; can thue nha; can thue dat">

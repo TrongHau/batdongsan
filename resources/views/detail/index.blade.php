@@ -392,7 +392,7 @@ $Agent = new Agent();
                                                                  <span> Quận/huyện:
                                                                 <strong class="product-city-dist">
                                                                 @if($item['district'])
-                                                                    {{$item['district']}}, 
+                                                                    {{$item['district']}},
                                                                 @endif
                                                                 @if($item['province'])
                                                                     {{$item['province']}}
