@@ -149,7 +149,7 @@ $Agent = new Agent();
                                                         <div class="left">Giá:</div><div class="right_m">&nbsp;{{($item->price_from != null && $item->price_to != null) ? ($item->price_to ? ($item->price_from. ' - ' .$item->price_to) : $item->price_from).' '.$item->ddlPriceType : ($item->price_real == 0 ? 'Thỏa thuận' : $item->price.' '.$item->ddlPriceType)}}</div>
                                                     </div>
                                                     <div>
-                                                        <div class="left">Diện tích:</div><div class="right_m">&nbsp;{{($item->area_from != null && $item->area_to != null) ? ($item->area_to ? ($item->area_from. ' - ' .$item->area_to.' m²') : $item->area_from) : ($item->area ? $item->area.' m²' : 'Chưa xác định')}}</div>
+                                                        <div class="left">Diện tích:</div><div class="right_m">&nbsp;{{($item->area_from != null && $item->area_to != null) ? ($item->area_to ? ($item->area_from. ' - ' .$item->area_to) : $item->area_from).' m²' : ($item->area ? $item->area.' m²' : 'Chưa xác định')}}</div>
                                                     </div>
                                                     <div>
                                                         <?php
