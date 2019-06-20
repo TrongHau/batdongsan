@@ -90,7 +90,7 @@ $Agent = new Agent();
                                                     Giá:
                                                     <span class="product-price">{{$item['price_real'] == 0 ? 'Thỏa thuận' : ($item['price_to'] ? ($item['price_from'] .' - '. $item['price_to']) : $item['price_from']) . ' '.$item['ddlPriceType']}}</span>&nbsp;
                                                     Diện tích:
-                                                    <span class="product-area">{{($item['area_from'] && $item['area_to']) ? $item['area_from'] .' - '. $item['area_to'] .' m²' : 'Chưa xác định'}}</span>&nbsp;
+                                                    <span class="product-area">{{($item['area_from'] && $item['area_to']) ? ($item['area_to'] ? ($item['area_from'] .' - '. $item['area_to']) : $item['area_from']) .' m²' : 'Chưa xác định'}}</span>&nbsp;
                                                     Quận/Huyện:
                                                     <span class="product-city-dist"><a href="/tim-kiem-nang-cao/{{$searchMethod}}/{{$item['province_id']}}/{{$item['district_id']}}/-1/-1/-1/-1/-1/-1/-1">{{$item['district']}}</a>,
                                                             <a href="/tim-kiem-nang-cao/{{$searchMethod}}/{{$item['province_id']}}/-1/-1/-1/-1/-1/-1/-1/-1">{{$item['province']}}</a></span>

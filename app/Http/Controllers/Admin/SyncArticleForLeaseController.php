@@ -447,8 +447,7 @@ class SyncArticleForLeaseController extends CrudController
                         }else{
                             $district_ = '';
                         }
-
-
+                        $district = implode(' ', $district);
                         $provinceData = ProvinceModel::where('_name', $province)->first();
                         if($provinceData) {
                             $districtData = DistrictModel::where(function($q) use ($district, $district_) {

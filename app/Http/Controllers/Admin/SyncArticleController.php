@@ -332,26 +332,31 @@ class SyncArticleController extends CrudController
                         preg_match_all('@<div id="divContents" class="detailsView-contents-style detail-article-content">(.*?)</div>\r\n<div id="ctl23_ctl00_divSourceNews"@si', $fileContent[0], $data_content);
                         preg_match_all('@<div id="ctl23_ctl00_divSourceNews" class="detailsView-contents-style soucenews" style="padding: 10px"><em>(.*?)</em>@si', $fileContent[0], $source);
                         $urlImage = $data_img[1][$key];
+                        $urlImage = str_replace('216x152', '600x315', $urlImage);
+                        $urlImage = str_replace('132x100', '600x315', $urlImage);
                         $contents = file_get_contents($urlImage);
                         $name = substr($urlImage, strrpos($urlImage, '/') + 1);
                         Storage::disk('public_uploads')->put('sync/cover/'.$refixNews.'/' . $name, $contents);
                         $contentData = $data_content[1][0] ?? '';
                         preg_match_all('@<img(.*?)>@si', $contentData, $data_imgs_content);
                         if(isset($data_imgs_content[0][0])) {
-                            preg_match_all('@src="(.*?)"@si', $data_imgs_content[0][0], $data_imgs_content);
-                            foreach ($data_imgs_content[1] as $itemImgs) {
-                                $contentImg = file_get_contents($itemImgs);
-                                $contentImg = str_replace('216x152', '600x315', $contentImg);
-                                $nameImg = substr($itemImgs, strrpos($itemImgs, '/') + 1);
-                                Storage::disk('public_uploads')->put('sync/content/'.$refixNews.'/' . $nameImg, $contentImg);
-                                $contentData = str_replace($contentData, $itemImgs, $nameImg);
+                            foreach ($data_imgs_content[0] as $item) {
+                                preg_match_all('@src="(.*?)"@si', $item, $data_imgs_content_ch);
+                                if(isset($data_imgs_content_ch[1][0])) {
+                                    $contentImg = file_get_contents($data_imgs_content_ch[1][0]);
+                                    $nameImg = substr($data_imgs_content_ch[1][0], strrpos($data_imgs_content_ch[1][0], '/') + 1);
+                                    Storage::disk('public_uploads')->put('sync/content/'.$refixNews.'/' . $nameImg, $contentImg);
+                                    $contentData = str_replace($data_imgs_content_ch[1][0], '/uploads/sync/content/'.$refixNews.'/' . $nameImg, $contentData);
+                                }
+
                             }
+
                         }
                         SyncArticleModel::create([
                             'category_id' => $cat_id,
                             'title' => $title,
                             'short_content' => $data_short_content[1][0] ?? '',
-                            'content' => ($data_content[1][0] ?? '') . (isset($source[1][0]) && $source[1][0] ? '<div id="ctl23_ctl00_divSourceNews" class="detailsView-contents-style soucenews" style="padding: 10px"><em>'.$source[1][0].'</em> <br> &nbsp;</div>' : ''),
+                            'content' => ($contentData ?? '') . (isset($source[1][0]) && $source[1][0] ? '<div id="ctl23_ctl00_divSourceNews" class="detailsView-contents-style soucenews" style="padding: 10px"><em>'.$source[1][0].'</em> <br> &nbsp;</div>' : ''),
                             'image' => 'uploads/sync/cover/' . $refixNews . '/' . $name,
                         ]);
                     }
