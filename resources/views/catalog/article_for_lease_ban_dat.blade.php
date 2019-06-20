@@ -92,8 +92,14 @@ $Agent = new Agent();
                                                             $searchMethod = 'nha-dat-cho-thue';
                                                         }
                                                         ?>
-                                                        <span class="product-city-dist"><a href="/tim-kiem-nang-cao/{{$searchMethod}}/{{$item['province_id']}}/{{$item['district_id']}}/-1/-1/-1/-1/-1/-1/-1">{{$item['district']}}</a>,
-                                                            <a href="/tim-kiem-nang-cao/{{$searchMethod}}/{{$item['province_id']}}/-1/-1/-1/-1/-1/-1/-1/-1">{{$item['province']}}</a></span>
+                                                        <span class="product-city-dist">
+                                                            @if($item['district'])
+                                                            <a href="/tim-kiem-nang-cao/{{$searchMethod}}/{{$item['province_id']}}/{{$item['district_id']}}/-1/-1/-1/-1/-1/-1/-1">{{$item['district']}}</a>,
+                                                            @endif
+                                                            @if($item['province'])
+                                                            <a href="/tim-kiem-nang-cao/{{$searchMethod}}/{{$item['province_id']}}/-1/-1/-1/-1/-1/-1/-1/-1">{{$item['province']}}</a>
+                                                            @endif
+                                                        </span>
                                                     </div>
                                                     <div class="floatright mar-right-10">{{date('d/m/Y', strtotime($item['created_at']))}}</div>
                                                     <div class="clear"></div>

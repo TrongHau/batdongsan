@@ -391,7 +391,12 @@ $Agent = new Agent();
                                                                 <strong class="product-area">{{$item['area'] ? $item['area'].' m²' : 'Chưa xác định'}}</strong></span>
                                                                  <span> Quận/huyện:
                                                                 <strong class="product-city-dist">
-                                                                {{$item['district']}}, {{$item['province']}}
+                                                                @if($item['district'])
+                                                                    {{$item['district']}}, 
+                                                                @endif
+                                                                @if($item['province'])
+                                                                    {{$item['province']}}
+                                                                @endif
                                                                 </strong></span>
                                                             </div>
                                                             <div class="floatright mar-right-10">

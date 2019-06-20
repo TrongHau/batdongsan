@@ -92,8 +92,14 @@ $Agent = new Agent();
                                                     Diện tích:
                                                     <span class="product-area">{{($item['area_from'] && $item['area_to']) ? ($item['area_to'] ? ($item['area_from'] .' - '. $item['area_to']) : $item['area_from']) .' m²' : 'Chưa xác định'}}</span>&nbsp;
                                                     Quận/Huyện:
-                                                    <span class="product-city-dist"><a href="/tim-kiem-nang-cao/{{$searchMethod}}/{{$item['province_id']}}/{{$item['district_id']}}/-1/-1/-1/-1/-1/-1/-1">{{$item['district']}}</a>,
-                                                            <a href="/tim-kiem-nang-cao/{{$searchMethod}}/{{$item['province_id']}}/-1/-1/-1/-1/-1/-1/-1/-1">{{$item['province']}}</a></span>
+                                                    <span class="product-city-dist">
+                                                        @if($item['district'])
+                                                        <a href="/tim-kiem-nang-cao/{{$searchMethod}}/{{$item['province_id']}}/{{$item['district_id']}}/-1/-1/-1/-1/-1/-1/-1">{{$item['district']}}</a>,
+                                                        @endif
+                                                        @if($item['province'])
+                                                        <a href="/tim-kiem-nang-cao/{{$searchMethod}}/{{$item['province_id']}}/-1/-1/-1/-1/-1/-1/-1/-1">{{$item['province']}}</a>
+                                                        @endif
+                                                    </span>
                                                 </div>
                                                 <div class="floatright mar-right-10">{{date('d/m/Y', strtotime($item['created_at']))}}</div>
                                                 <div class="clear"></div>

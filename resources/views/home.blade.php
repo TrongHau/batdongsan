@@ -165,12 +165,17 @@ $Agent = new Agent();
                                                         ?>
                                                         <div class="fleft">
                                                             <div class="left">Quận/huyện:</div>
-                                                            &nbsp;<a class="link_blue"
+                                                                @if($item->district)
+                                                            &nbsp;       <a class="link_blue"
                                                                       href="/tim-kiem-nang-cao/{{$searchMethod}}/{{$item->province_id}}/{{$item->district_id}}/-1/-1/-1/-1/-1/-1/-1"
-                                                                      title="Bán nhà riêng tại {{$item->district}}">{{$item->district}}</a>, <a
+                                                                      title="Bán nhà riêng tại {{$item->district}}">{{$item->district}}</a>,
+                                                                @endif
+                                                                @if($item->province)
+                                                                    <a
                                                                     class="link_blue"
                                                                     href="/tim-kiem-nang-cao/{{$searchMethod}}/{{$item->province_id}}/-1/-1/-1/-1/-1/-1/-1/-1"
                                                                     title="Bán nhà riêng tại {{$item->province}}">{{$item->province}}</a>
+                                                                @endif
                                                         </div>
                                                         <div class="p-bottom-right font09">{{date('d/m/Y', strtotime($item->created_at))}}</div>
                                                         <div class="clear"></div>
