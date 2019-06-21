@@ -388,7 +388,7 @@ class SyncArticleForLeaseChototController extends CrudController
                     }else{
                         $district_ = '';
                     }
-                    $district = explode(' ', $district);
+                    $district = implode(' ', $district);
                     $ward = array_pop($addressExp);
                     $street = array_pop($addressExp);
                     $ward = explode(' ', $ward);
