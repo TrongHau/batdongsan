@@ -397,6 +397,7 @@ class SyncArticleForBuyController extends CrudController
                         }else{
                             $district_ = '';
                         }
+                        $district = implode(' ', $district);
                         $province_id = null;
                         $district_id = null;
                         $ward_id = null;
@@ -483,13 +484,15 @@ class SyncArticleForBuyController extends CrudController
                         if(isset($data_imgs_content[3])) {
                             foreach ($data_imgs_content[3] as $itemImgs) {
                                 $nameImg = $result->id . '-' . substr($itemImgs, strrpos($itemImgs, '/') + 1);
-                                $gallery_image[] = $nameImg;
-                                // thumnail
-                                $contentImg = file_get_contents($itemImgs);
-                                Storage::disk('public')->put(Helpers::file_path($result->id, SOURCE_DATA_SYNC_ARTICLE_BUY, true) . THUMBNAIL_PATH . $nameImg, $contentImg);
-                                $contentImg = file_get_contents(str_replace('200x200', '745x510', $itemImgs));
-                                // fullsize
-                                Storage::disk('public')->put(Helpers::file_path($result->id, SOURCE_DATA_SYNC_ARTICLE_BUY, true) . $nameImg, $contentImg);
+                                if($nameImg) {
+                                    $gallery_image[] = $nameImg;
+                                    // thumnail
+                                    $contentImg = file_get_contents($itemImgs);
+                                    Storage::disk('public')->put(Helpers::file_path($result->id, SOURCE_DATA_SYNC_ARTICLE_BUY, true) . THUMBNAIL_PATH . $nameImg, $contentImg);
+                                    $contentImg = file_get_contents(str_replace('200x200', '745x510', $itemImgs));
+                                    // fullsize
+                                    Storage::disk('public')->put(Helpers::file_path($result->id, SOURCE_DATA_SYNC_ARTICLE_BUY, true) . $nameImg, $contentImg);
+                                }
                             }
                             $result->gallery_image = $gallery_image ? json_encode($gallery_image) : null;
                         }
