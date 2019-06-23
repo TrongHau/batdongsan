@@ -532,8 +532,7 @@ class SyncArticleForLeaseController extends CrudController
                         if(isset($data_imgs_content[2])) {
                             foreach ($data_imgs_content[2] as $itemImgs) {
                                 $nameImg = $result->id . '-' . substr($itemImgs, strrpos($itemImgs, '/') + 1);
-                                if($nameImg) {
-                                    $gallery_image[] = $nameImg;
+                                try {
                                     // thumnail
                                     $contentImg = file_get_contents($itemImgs);
                                     Storage::disk('public')->put(Helpers::file_path($result->id, SOURCE_DATA_SYNC_ARTICLE_LEASE, true) . THUMBNAIL_PATH . $nameImg, $contentImg);
@@ -541,6 +540,9 @@ class SyncArticleForLeaseController extends CrudController
                                     // fullsize
                                     Storage::disk('public')->put(Helpers::file_path($result->id, SOURCE_DATA_SYNC_ARTICLE_LEASE, true) . $nameImg, $contentImg);
                                 }
+                                catch (Exception $e) {
+                                }
+                                $gallery_image[] = $nameImg;
                             }
                             $result->gallery_image = $gallery_image ? json_encode($gallery_image) : null;
                         }

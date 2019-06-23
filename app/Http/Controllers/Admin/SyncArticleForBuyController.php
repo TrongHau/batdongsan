@@ -484,16 +484,18 @@ class SyncArticleForBuyController extends CrudController
                         if(isset($data_imgs_content[3])) {
                             foreach ($data_imgs_content[3] as $itemImgs) {
                                 $nameImg = $result->id . '-' . substr($itemImgs, strrpos($itemImgs, '/') + 1);
-                                if($nameImg) {
-                                    $gallery_image[] = $nameImg;
-                                    // thumnail
-                                    $contentImg = file_get_contents($itemImgs);
-                                    Storage::disk('public')->put(Helpers::file_path($result->id, SOURCE_DATA_SYNC_ARTICLE_BUY, true) . THUMBNAIL_PATH . $nameImg, $contentImg);
-                                    $contentImg = file_get_contents(str_replace('200x200', '745x510', $itemImgs));
-                                    // fullsize
-                                    Storage::disk('public')->put(Helpers::file_path($result->id, SOURCE_DATA_SYNC_ARTICLE_BUY, true) . $nameImg, $contentImg);
+                                    try {
+                                        $gallery_image[] = $nameImg;
+                                        // thumnail
+                                        $contentImg = file_get_contents($itemImgs);
+                                        Storage::disk('public')->put(Helpers::file_path($result->id, SOURCE_DATA_SYNC_ARTICLE_BUY, true) . THUMBNAIL_PATH . $nameImg, $contentImg);
+                                        $contentImg = file_get_contents(str_replace('200x200', '745x510', $itemImgs));
+                                        // fullsize
+                                        Storage::disk('public')->put(Helpers::file_path($result->id, SOURCE_DATA_SYNC_ARTICLE_BUY, true) . $nameImg, $contentImg);
+                                    }
+                                    catch (Exception $e) {
+                                    }
                                 }
-                            }
                             $result->gallery_image = $gallery_image ? json_encode($gallery_image) : null;
                         }
                         $result->save();
