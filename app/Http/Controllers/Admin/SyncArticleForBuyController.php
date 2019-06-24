@@ -479,23 +479,22 @@ class SyncArticleForBuyController extends CrudController
                             'build_from' => $typeReq,
                             'url_from' => $refixUrl . $data_url[1][$key]
                         ];
+
                         $result = SyncArticleForBuyModel::create($article);
                         $gallery_image = [];
                         if(isset($data_imgs_content[3])) {
                             foreach ($data_imgs_content[3] as $itemImgs) {
-                                $nameImg = $result->id . '-' . substr($itemImgs, strrpos($itemImgs, '/') + 1);
-                                    try {
-                                        $gallery_image[] = $nameImg;
-                                        // thumnail
-                                        $contentImg = file_get_contents($itemImgs);
-                                        Storage::disk('public')->put(Helpers::file_path($result->id, SOURCE_DATA_SYNC_ARTICLE_BUY, true) . THUMBNAIL_PATH . $nameImg, $contentImg);
-                                        $contentImg = file_get_contents(str_replace('200x200', '745x510', $itemImgs));
-                                        // fullsize
-                                        Storage::disk('public')->put(Helpers::file_path($result->id, SOURCE_DATA_SYNC_ARTICLE_BUY, true) . $nameImg, $contentImg);
-                                    }
-                                    catch (Exception $e) {
-                                    }
+                                if($itemImgs) {
+                                    $nameImg = $result->id . '-' . substr($itemImgs, strrpos($itemImgs, '/') + 1);
+                                    $gallery_image[] = $nameImg;
+                                    // thumnail
+                                    $contentImg = file_get_contents($itemImgs);
+                                    Storage::disk('public')->put(Helpers::file_path($result->id, SOURCE_DATA_SYNC_ARTICLE_BUY, true) . THUMBNAIL_PATH . $nameImg, $contentImg);
+                                    $contentImg = file_get_contents(str_replace('200x200', '745x510', $itemImgs));
+                                    // fullsize
+                                    Storage::disk('public')->put(Helpers::file_path($result->id, SOURCE_DATA_SYNC_ARTICLE_BUY, true) . $nameImg, $contentImg);
                                 }
+                            }
                             $result->gallery_image = $gallery_image ? json_encode($gallery_image) : null;
                         }
                         $result->save();
