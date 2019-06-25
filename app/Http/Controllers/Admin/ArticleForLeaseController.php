@@ -35,8 +35,8 @@ class ArticleForLeaseController extends CrudController
         $this->crud->orderBy('id', 'desc');
 
         $this->crud->denyAccess(['create']);
-        $this->crud->enableBulkActions();
-        $this->crud->addBulkDeleteButton();
+//        $this->crud->enableBulkActions();
+//        $this->crud->addBulkDeleteButton();
 
         $this->crud->addFilter([ // daterange filter
             'type' => 'date_range',

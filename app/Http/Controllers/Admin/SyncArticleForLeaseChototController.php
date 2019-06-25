@@ -360,13 +360,13 @@ class SyncArticleForLeaseChototController extends CrudController
                 $fileContent = $this->get_fcontent($url);
                 preg_match_all('@"price":(.*?),@si', $fileContent[0], $price);
                 preg_match_all('@adParams(.*?)"size","value":"(.*?) m²","label":"Diện tích@si', $fileContent[0], $area);
-                preg_match_all('@"body":"(.*?)"@si', $fileContent[0], $body);
+                preg_match_all('@"body":"(.*?)","@si', $fileContent[0], $body);
                 preg_match_all('@"address","value":"(.*?)","label":"Địa chỉ"@si', $fileContent[0], $address);
                 preg_match_all('@"account_name":"(.*?)"@si', $fileContent[0], $contact_name);
                 preg_match_all('@"phone":"(.*?)"@si', $fileContent[0], $contact_phone);
 //                preg_match_all('@reviewer_image":"(.*?)","reviewer_nickname":"(.*?)","images":\["(.*?)"]@si', $fileContent[0], $data_imgs_content);
 //                $data_imgs_content = $data_imgs_content[3][0] ? explode('","', $data_imgs_content[3][0]) : null;
-                if(isset($address[1][0])) {
+                if(isset($address[1][0]) && isset($body[1][0])) {
                     $address[1][0] = str_replace('\u002F', '\\', $address[1][0]);
                     $addressExp = explode(', ', $address[1][0]);
                     $province_id = null;
