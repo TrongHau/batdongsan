@@ -1034,3 +1034,7 @@ button:disabled {
     margin-right: auto;
     display: block;
 }
+#divContents em {
+    display: block;
+    text-align: center;
+}
