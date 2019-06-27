@@ -81,10 +81,11 @@ class ArticleCrudController extends CrudController
             'value' => date('Y-m-d'),
         ], 'create');
         $this->crud->addField([    // TEXT
-            'name' => 'date',
-            'label' => 'Date',
-            'type' => 'date',
-        ], 'update');
+            'name' => 'short_content',
+            'label' => 'Nội dung ngắn',
+            'type' => 'textarea',
+            'placeholder' => 'Your title here',
+        ]);
 
         $this->crud->addField([    // WYSIWYG
             'name' => 'content',
