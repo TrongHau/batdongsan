@@ -93,17 +93,19 @@ $Agent = new Agent();
                                                     <span class="product-price">{{$item['price_real'] == 0 ? 'Thỏa thuận' : ($item['price_to'] ? ($item['price_from'] .' - '. $item['price_to']) : $item['price_from']) . ' '.$item['ddlPriceType']}}</span>&nbsp;
                                                     Diện tích:
                                                     <span class="product-area">{{($item['area_from'] && $item['area_to']) ? ($item['area_to'] ? ($item['area_from'] .' - '. $item['area_to']) : $item['area_from']) .' m²' : 'Chưa xác định'}}</span>&nbsp;
-                                                    Quận/Huyện:
-                                                    <span class="product-city-dist">
+                                                    <div class="content_ward">
+                                                        Quận/Huyện:
+                                                        <span class="product-city-dist">
                                                         @if($item['district'])
-                                                        <a href="/tim-kiem-nang-cao/{{$searchMethod}}/{{$item['province_id']}}/{{$item['district_id']}}/-1/-1/-1/-1/-1/-1/-1">{{$item['district']}}</a>,
-                                                        @endif
-                                                        @if($item['province'])
-                                                        <a href="/tim-kiem-nang-cao/{{$searchMethod}}/{{$item['province_id']}}/-1/-1/-1/-1/-1/-1/-1/-1">{{$item['province']}}</a>
-                                                        @endif
+                                                                <a href="/tim-kiem-nang-cao/{{$searchMethod}}/{{$item['province_id']}}/{{$item['district_id']}}/-1/-1/-1/-1/-1/-1/-1">{{$item['district']}}</a>,
+                                                            @endif
+                                                            @if($item['province'])
+                                                                <a href="/tim-kiem-nang-cao/{{$searchMethod}}/{{$item['province_id']}}/-1/-1/-1/-1/-1/-1/-1/-1">{{$item['province']}}</a>
+                                                            @endif
                                                     </span>
+                                                    </div>
                                                 </div>
-                                                <div class="floatright mar-right-10">{{date('d/m/Y', strtotime($item['created_at']))}}</div>
+                                                <div class="floatright mar-right-10 content_product_date">{{date('d/m/Y', strtotime($item['created_at']))}}</div>
                                                 <div class="clear"></div>
                                             </div>
                                         </div>
