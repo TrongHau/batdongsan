@@ -1038,3 +1038,10 @@ button:disabled {
     display: block;
     text-align: center;
 }
+.color-red-price {
+    color: #d0021b;
+    font-weight: 700;
+}
+.content_ward {
+    display: contents;
+}

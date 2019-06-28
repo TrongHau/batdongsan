@@ -6,6 +6,7 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 // VALIDATION: change the requests to match your own file names if you need form validation
 use Backpack\NewsCRUD\app\Http\Requests\ArticleRequest as StoreRequest;
 use Backpack\NewsCRUD\app\Http\Requests\ArticleRequest as UpdateRequest;
+use App\Models\CategoryModel;
 
 class ArticleCrudController extends CrudController
 {
@@ -29,6 +30,19 @@ class ArticleCrudController extends CrudController
         | COLUMNS AND FIELDS
         |--------------------------------------------------------------------------
         */
+        $this->crud->addFilter([ // select2_multiple filter
+            'name' => 'type_article',
+            'type' => 'select2_multiple',
+            'label'=> 'Danh mục',
+            'placeholder' => 'Tìm Danh mục tin tức'
+        ], function () {
+            return CategoryModel::orderBy('name')->pluck('name', 'id')->toArray();
+        }, function ($values) {
+            $values = json_decode(htmlspecialchars_decode($values, ENT_QUOTES));
+            if (!empty($values)) {
+                $this->crud->addClause('whereIn', 'category_id', $values);
+            }
+        });
         $this->crud->denyAccess(['create']);
 //        $this->crud->enableBulkActions();
 //        $this->crud->addBulkDeleteButton();

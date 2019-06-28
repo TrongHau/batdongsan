@@ -107,7 +107,12 @@ a.link_blue:link {
 .tin-danh-cho-ban .p-content, .tin-danh-cho-ban .p-bottom-crop {
     width: 485px;
     overflow: hidden;
-    height: 100px;
+    height: 80px;
+}
+.p-top-crop{
+    width: 485px!important;
+    overflow: hidden!important;
+    height: 100px!important;
 }
 .p-bottom-crop {
     /*position: absolute;*/
@@ -124,4 +129,11 @@ a.link_blue:link {
 }
 .body-left {
     width: 715px;
+}
+.content_ward {
+    display: block;
+}
+
+.content_product_date {
+    margin-top: 15px;
 }
