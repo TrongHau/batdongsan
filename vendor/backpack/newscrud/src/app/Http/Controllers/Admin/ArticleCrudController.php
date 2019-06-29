@@ -43,7 +43,7 @@ class ArticleCrudController extends CrudController
                 $this->crud->addClause('whereIn', 'category_id', $values);
             }
         });
-        $this->crud->denyAccess(['create']);
+//        $this->crud->denyAccess(['create']);
 //        $this->crud->enableBulkActions();
 //        $this->crud->addBulkDeleteButton();
         // ------ CRUD COLUMNS
