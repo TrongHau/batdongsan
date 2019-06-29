@@ -137,3 +137,10 @@ a.link_blue:link {
 .content_product_date {
     margin-top: 15px;
 }
+.group-news-border-backgroup {
+    width: 96%;
+}
+.Main .p-main-text {
+    height: 117px;
+    overflow: hidden;
+}

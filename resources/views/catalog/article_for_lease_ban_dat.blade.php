@@ -95,7 +95,7 @@ $Agent = new Agent();
                                                             }
                                                             ?>
                                                             <span class="product-city-dist">
-                                                            @if($item['district'])
+                                                            @if($item['district'])m
                                                                     <a href="/tim-kiem-nang-cao/{{$searchMethod}}/{{$item['province_id']}}/{{$item['district_id']}}/-1/-1/-1/-1/-1/-1/-1">{{$item['district']}}</a>,
                                                                 @endif
                                                                 @if($item['province'])

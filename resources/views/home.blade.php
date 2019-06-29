@@ -166,7 +166,7 @@ $Agent = new Agent();
                                                         <div class="fleft">
                                                             <div class="left">Quận/huyện:</div>
                                                                 @if($item->district)
-                                                            &nbsp;       <a class="link_blue"
+                                                                <a class="link_blue"
                                                                       href="/tim-kiem-nang-cao/{{$searchMethod}}/{{$item->province_id}}/{{$item->district_id}}/-1/-1/-1/-1/-1/-1/-1"
                                                                       title="Bán nhà riêng tại {{$item->district}}">{{$item->district}}</a>,
                                                                 @endif
