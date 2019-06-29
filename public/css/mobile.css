@@ -144,3 +144,6 @@ a.link_blue:link {
     height: 117px;
     overflow: hidden;
 }
+.tt-thumb-cnt {
+    width: 480px;
+}
