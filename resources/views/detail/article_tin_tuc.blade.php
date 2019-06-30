@@ -34,23 +34,24 @@ $Agent = new Agent();
                 <div id="ctl23_BodyContainer">
                     <div id="ctl23_ctl00_panelNewsDetails" class="contentDetail">
                         <h1 id="ctl23_ctl00_divArticleTitle" class="detailsView-title-style">{{$article->title}}</h1>
-                        <div id="ctl23_ctl00_divDate" class="date-first">{{date('d-m-Y', strtotime($article->created_at))}}</div>
-                        <div id="ctl23_ctl00_palSubject">
-                            @if($articleRelate)
-                            <div>
-                                <div class="subinart">
-                                    @foreach($articleRelate as $item)
-                                    <div class="artlist">
-                                        <a href="/{{$item->category->slug}}/{{$item->slug}}" class="line">{{$item->title}}</a>
+                        @if($article->category_id != 26)
+                            <div id="ctl23_ctl00_divDate" class="date-first">{{date('d-m-Y', strtotime($article->created_at))}}</div>
+                            <div id="ctl23_ctl00_palSubject">
+                                @if($articleRelate)
+                                    <div>
+                                        <div class="subinart">
+                                            @foreach($articleRelate as $item)
+                                                <div class="artlist">
+                                                    <a href="/{{$item->category->slug}}/{{$item->slug}}" class="line">{{$item->title}}</a>
+                                                </div>
+                                            @endforeach
+                                        </div>
                                     </div>
-                                    @endforeach
-                                </div>
+                                @endif
                             </div>
-                            @endif
-                        </div>
-                        <div id="divContents" class="detailsView-contents-style detail-article-content"><p>
+                        @endif
+                        <div id="divContents" class="detailsView-contents-style detail-article-content">
                             <?php echo $article->content ?>
-
                         </div>
                         <div class="stat detail-tools" ct="1" ac="2" cid="97296">
                             <a id="facebook" target="_blank" rel="nofollow" href="https://www.facebook.com/sharer/sharer.php?u={{url()->current()}}&amp;t={{$article->title}}">
