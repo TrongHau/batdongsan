@@ -43,7 +43,7 @@ $Agent = new Agent();
                 <div>
                     <div class="product-list product-list-page" pagekey="afgYRJI2uSWSXQ70P/5TjQ==">
                         <div id="product-detail">
-                            <div class="pm-title">
+                            <class="color-red-price"div class="pm-title">
                                 <h1 itemprop="name">
                                     {{$article->title}}
                                 </h1>
@@ -54,12 +54,12 @@ $Agent = new Agent();
                                 <span style="display: inline-block;"><span class="gia-title mar-right-15">
                                 <b>
                                     @if($typeOf == 'lease')
-                                        Giá: </b><strong>{{($article->ddlPriceType == 'thỏa thuận' || !$article->price) ? 'Thỏa thuận' : ($article->price.' '.$article->ddlPriceType)}}&nbsp;</strong>
+                                        Giá: </b><strong class="color-red-price detail-article-for">{{($article->ddlPriceType == 'thỏa thuận' || !$article->price) ? 'Thỏa thuận' : ($article->price.' '.$article->ddlPriceType)}}&nbsp;</strong>
                                         </span>
                                         <span class="gia-title">
                                         <b>
                                         Diện tích:</b>
-                                        <strong>{{$article->area ? $article->area.' m²' : 'Chưa xác định'}}</strong>
+                                        <strong class="color-red-price detail-article-for">{{$article->area ? $article->area.' m²' : 'Chưa xác định'}}</strong>
                                     @else
                                         Giá: </b><strong>{{($article->price_from && $article->price_to) ? $article->price_from .' - '. $article->price_to . ' '.$article->ddlPriceType : ($article->price_from ? $article->price_from . ' ' . $article->ddlPriceType : 'Thỏa thuận')}}</strong>
                                         </span>
@@ -386,9 +386,9 @@ $Agent = new Agent();
                                                         </div></div>
                                                         <div class="p-bottom-crop" style=" width: 100%; display: contents;">
                                                             <div class="floatleft">
-                                                                <span> Giá: <strong class="product-price">{{$item['price_real'] == 0 ? 'Thỏa thuận' : $item['price'].' '.$item['ddlPriceType']}}</strong></span>
+                                                                <span> Giá: <strong class="product-price color-red-price">{{$item['price_real'] == 0 ? 'Thỏa thuận' : $item['price'].' '.$item['ddlPriceType']}}</strong></span>
                                                                 <span> Diện tích:
-                                                                <strong class="product-area">{{$item['area'] ? $item['area'].' m²' : 'Chưa xác định'}}</strong></span>
+                                                                <strong class="product-area color-red-price">{{$item['area'] ? $item['area'].' m²' : 'Chưa xác định'}}</strong></span>
                                                                  <span> Quận/huyện:
                                                                 <strong class="product-city-dist">
                                                                 @if($item['district'])

@@ -1039,9 +1039,15 @@ button:disabled {
     text-align: center;
 }
 .color-red-price {
-    color: #d0021b;
-    font-weight: 700;
+    color: #d0021b!important;
+    font-weight: 700!important;
 }
 .content_ward {
     display: contents;
+}
+#ctl23_ctl00_divSourceNews em {
+    text-align: left!important;
+}
+.detail-article-for {
+    font-size: 18px;
 }
