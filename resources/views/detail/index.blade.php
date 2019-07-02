@@ -43,7 +43,7 @@ $Agent = new Agent();
                 <div>
                     <div class="product-list product-list-page" pagekey="afgYRJI2uSWSXQ70P/5TjQ==">
                         <div id="product-detail">
-                            <class="color-red-price"div class="pm-title">
+                            <div class="pm-title">
                                 <h1 itemprop="name">
                                     {{$article->title}}
                                 </h1>
