@@ -61,12 +61,12 @@ $Agent = new Agent();
                                         Diện tích:</b>
                                         <strong class="color-red-price detail-article-for">{{$article->area ? $article->area.' m²' : 'Chưa xác định'}}</strong>
                                     @else
-                                        Giá: </b><strong>{{($article->price_from && $article->price_to) ? $article->price_from .' - '. $article->price_to . ' '.$article->ddlPriceType : ($article->price_from ? $article->price_from . ' ' . $article->ddlPriceType : 'Thỏa thuận')}}</strong>
+                                        Giá: </b><strong class="color-red-price detail-article-for">{{($article->price_from && $article->price_to) ? $article->price_from .' - '. $article->price_to . ' '.$article->ddlPriceType : ($article->price_from ? $article->price_from . ' ' . $article->ddlPriceType : 'Thỏa thuận')}}</strong>
                                         </span>
                                         <span class="gia-title">
                                         <b>
                                         Diện tích:</b>
-                                        <strong>{{($article->area_from && $article->area_to) ? $article->area_from .' - '. $article->area_to .' m²' : ($article->area_from ? $article->area_from . ' m²' : 'Chưa xác định')}}</strong>
+                                        <strong class="color-red-price detail-article-for">{{($article->area_from && $article->area_to) ? $article->area_from .' - '. $article->area_to .' m²' : ($article->area_from ? $article->area_from . ' m²' : 'Chưa xác định')}}</strong>
                                     @endif
 
                                 </span>
