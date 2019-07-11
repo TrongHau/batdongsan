@@ -368,6 +368,10 @@ class SyncArticleForBuyController extends CrudController
             preg_match_all('@<div class="Main">(.*?)<div class="separable">@si', $file[0], $content);
             preg_match_all('@<div class=\'p-title\'>\r\n<a href=\'(.*?)\' title=\'(.*?)\'>@si', $content[0][0], $data_url);
             preg_match_all('@<div class=\'floatright mar-right-10 bot-right-abs\'>\r\n(.*?)</div>@si', $content[0][0], $data_url_date);
+            if(!$data_url_date[1]) {
+                preg_match_all('@<span class="uptime">(.*?)</span>@si', $content[0][0], $data_url_date);
+
+            }
             foreach ($data_url_date[1] as $key => $item) {
                 $dateArticle = strtotime(str_replace('/', '-', substr($item, -10)));
                 if($dateArticle >= $dateStart && $dateArticle <= $dateEnd) {

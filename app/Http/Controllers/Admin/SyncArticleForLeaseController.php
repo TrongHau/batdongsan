@@ -366,6 +366,10 @@ class SyncArticleForLeaseController extends CrudController
             preg_match_all('@<div class="Main">(.*?)<div class="mt5">@si', $file[0], $content);
             preg_match_all('@<a href=\'(.*?)\' title=\'(.*?)\' style="text-rendering: optimizelegibility;">\r\n(.*?)\r\n</a>@si', $content[0][0], $data_url);
             preg_match_all('@<div class=\'floatright mar-right-10\'>\r\n(.*?)</span>\r\n</div>@si', $content[0][0], $data_url_date);
+            if(!$data_url_date[1]) {
+                preg_match_all('@<span class="uptime">(.*?)</span>@si', $content[0][0], $data_url_date);
+
+            }
             foreach ($data_url_date[1] as $key => $item) {
                 $dateArticle = strtotime(str_replace('/', '-', substr($item, -10)));
                 if($dateArticle >= $dateStart && $dateArticle <= $dateEnd) {
