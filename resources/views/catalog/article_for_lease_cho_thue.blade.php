@@ -73,7 +73,7 @@ $Agent = new Agent();
                                             </div>
                                             <div class="p-content">
                                                 <div class="p-main-text" style="text-rendering: optimizelegibility;">
-                                                    <?php echo preg_replace("/(\r?\n){2,}/", "<br/>", mb_substr($item['content_article'], 0, LIMIT_SHORT_CONTENT, "utf-8").'...', '<br>');?>
+                                                    <?php echo strip_tags(preg_replace("/(\r?\n){2,}/", "<br/>", mb_substr($item['content_article'], 0, LIMIT_SHORT_CONTENT, "utf-8").'...'), '<br>'); ?>
                                                 </div>
                                             </div>
                                             <div class="p-bottom-crop fix-p-bottom-crop">
