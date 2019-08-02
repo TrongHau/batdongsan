@@ -79,7 +79,7 @@ $Agent = new Agent();
                                                     <div class="floatleft">
                                                         Giá:
                                                         <span class="product-price">{{$item['price_real'] == 0 ? 'Thỏa thuận' : $item['price'].' '.$item['ddlPriceType']}}</span>&nbsp;
-                                                        Diện tích:
+                                     F                   Diện tích:
                                                         <span class="product-area">{{$item['area'] ? $item['area'].' m²' : 'Chưa xác định'}}</span>&nbsp;
                                                         <div class="content_ward">
                                                             Quận/Huyện:
@@ -95,7 +95,7 @@ $Agent = new Agent();
                                                             }
                                                             ?>
                                                             <span class="product-city-dist">
-                                                            @if($item['district'])m
+                                                            @if($item['district'])
                                                                     <a href="/tim-kiem-nang-cao/{{$searchMethod}}/{{$item['province_id']}}/{{$item['district_id']}}/-1/-1/-1/-1/-1/-1/-1">{{$item['district']}}</a>,
                                                                 @endif
                                                                 @if($item['province'])
