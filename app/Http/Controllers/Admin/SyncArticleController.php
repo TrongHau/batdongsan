@@ -319,10 +319,11 @@ class SyncArticleController extends CrudController
         for($i = 1; $i <= ($request->page ?? 1); $i++) {
             $file = $this->get_fcontent($refixUrl . '/' . $refixNews . '/p' . $i);
             preg_match_all('@id="ctl23_BodyContainer"(.*?)id="RightMainContent"@si', $file[0], $content);
-            preg_match_all('@<a class="link_blue" href=\'(.*?)\' title=\'(.*?)\'>\r\n(.*?)</a>@si', $content[0][0], $data_url);
-            preg_match_all('@<div class="datetime">\r\n(.*?)\r\n</div>@si', $content[0][0], $data_url_date);
-            preg_match_all('@src=\'(.*?)\'@si', $content[0][0], $data_img);
+            preg_match_all('@<a class="link_blue" href="(.*?)" title="(.*?)">\n(.*?)</a>@si', $content[0][0], $data_url);
+            preg_match_all('@<div class="datetime">\n(.*?)</div>@si', $content[0][0], $data_url_date);
+            preg_match_all('@src="(.*?)"@si', $content[0][0], $data_img);
             foreach ($data_url_date[1] as $key => $item) {
+                $item = trim(str_replace('/n', '', $item));
                 $dateArticle = strtotime(str_replace('/', '-', substr($item, 6). ' '. substr($item, 0, 5)));
                 if($dateArticle >= $dateStart && $dateArticle <= $dateEnd) {
                     $title = str_replace('\r\n', '', strip_tags($data_url[3][$key]));
