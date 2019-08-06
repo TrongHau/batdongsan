@@ -359,7 +359,7 @@ class SyncArticleController extends CrudController
                             'category_id' => $cat_id,
                             'title' => $title,
                             'short_content' => html_entity_decode(trim($data_short_content[1][$key])) ?? '',
-                            'content' => ($contentData ?? '') . (isset($source[1][0]) && $source[1][0] ? '<div id="ctl23_ctl00_divSourceNews" class="detailsView-contents-style soucenews" style="padding: 10px"><em>'.$source.'</em> <br> &nbsp;</div>' : ''),
+                            'content' => ($contentData ?? '') . ($source ? '<div id="ctl23_ctl00_divSourceNews" class="detailsView-contents-style soucenews" style="padding: 10px"><em>'.$source.'</em> <br> &nbsp;</div>' : ''),
                             'image' => 'uploads/sync/cover/' . $refixNews . '/' . $name,
                         ]);
                     }
