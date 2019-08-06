@@ -322,16 +322,18 @@ class SyncArticleController extends CrudController
             preg_match_all('@<a class="link_blue" href="(.*?)" title="(.*?)">\n(.*?)</a>@si', $content[0][0], $data_url);
             preg_match_all('@<div class="datetime">\n(.*?)</div>@si', $content[0][0], $data_url_date);
             preg_match_all('@src="(.*?)"@si', $content[0][0], $data_img);
+            preg_match_all('@<p style="text-rendering:geometricPrecision;">\n(.*?)</p>@si', $content[0][0], $data_short_content);
             foreach ($data_url_date[1] as $key => $item) {
                 $item = trim(str_replace('/n', '', $item));
                 $dateArticle = strtotime(str_replace('/', '-', substr($item, 6). ' '. substr($item, 0, 5)));
                 if($dateArticle >= $dateStart && $dateArticle <= $dateEnd) {
-                    $title = str_replace('\n', '', strip_tags($data_url[3][$key]));
+                    $title = str_replace("\n", '', strip_tags($data_url[3][$key]));
                     if(!SyncArticleModel::where('title', $title)->first() && !ArticleModel::where('title', $title)->first()) {
                         $fileContent = $this->get_fcontent($refixUrl . $data_url[1][$key]);
-                        preg_match_all('@<h2 id="ctl23_ctl00_divSummary" class="summary">(.*?)</h2>@si', $fileContent[0], $data_short_content);
+//                        preg_match_all('@<h2 id="ctl23_ctl00_divSummary" class="summary">(.*?)</h2>@si', $fileContent[0], $data_short_content);
                         preg_match_all('@<div id="divContents" class="detailsView-contents-style detail-article-content">(.*?)</div@si', $fileContent[0], $data_content);
-                        preg_match_all('@<div id="ctl23_ctl00_divSourceNews" class="detailsView-contents-style soucenews" style="padding: 10px"><em>(.*?)</em>@si', $fileContent[0], $source);
+                        preg_match_all('@<div class="detailsView-contents-style soucenews" style="padding: 10px">(.*?)</em>@si', $fileContent[0], $source);
+                        $source = str_replace('<em>', '',str_replace("\n", '', trim($source[1][0])));
                         $urlImage = $data_img[1][$key];
                         $urlImage = str_replace('216x152', '600x315', $urlImage);
                         $urlImage = str_replace('132x100', '600x315', $urlImage);
@@ -356,7 +358,7 @@ class SyncArticleController extends CrudController
                         SyncArticleModel::create([
                             'category_id' => $cat_id,
                             'title' => $title,
-                            'short_content' => $data_short_content[1][0] ?? '',
+                            'short_content' => html_entity_decode(trim($data_short_content[1][$key])) ?? '',
                             'content' => ($contentData ?? '') . (isset($source[1][0]) && $source[1][0] ? '<div id="ctl23_ctl00_divSourceNews" class="detailsView-contents-style soucenews" style="padding: 10px"><em>'.$source[1][0].'</em> <br> &nbsp;</div>' : ''),
                             'image' => 'uploads/sync/cover/' . $refixNews . '/' . $name,
                         ]);
