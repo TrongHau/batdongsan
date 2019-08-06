@@ -333,7 +333,7 @@ class SyncArticleController extends CrudController
 //                        preg_match_all('@<h2 id="ctl23_ctl00_divSummary" class="summary">(.*?)</h2>@si', $fileContent[0], $data_short_content);
                         preg_match_all('@<div id="divContents" class="detailsView-contents-style detail-article-content">(.*?)</div@si', $fileContent[0], $data_content);
                         preg_match_all('@<div class="detailsView-contents-style soucenews" style="padding: 10px">(.*?)</em>@si', $fileContent[0], $source);
-                        $source = str_replace('<em>', '',str_replace("\n", '', trim($source[1][0])));
+                        $source = str_replace('<em>', '',str_replace("\n", '', trim($source[1][0] ?? '')));
                         $urlImage = $data_img[1][$key];
                         $urlImage = str_replace('216x152', '600x315', $urlImage);
                         $urlImage = str_replace('132x100', '600x315', $urlImage);
@@ -359,7 +359,7 @@ class SyncArticleController extends CrudController
                             'category_id' => $cat_id,
                             'title' => $title,
                             'short_content' => html_entity_decode(trim($data_short_content[1][$key])) ?? '',
-                            'content' => ($contentData ?? '') . (isset($source[1][0]) && $source[1][0] ? '<div id="ctl23_ctl00_divSourceNews" class="detailsView-contents-style soucenews" style="padding: 10px"><em>'.$source[1][0].'</em> <br> &nbsp;</div>' : ''),
+                            'content' => ($contentData ?? '') . (isset($source[1][0]) && $source[1][0] ? '<div id="ctl23_ctl00_divSourceNews" class="detailsView-contents-style soucenews" style="padding: 10px"><em>'.$source.'</em> <br> &nbsp;</div>' : ''),
                             'image' => 'uploads/sync/cover/' . $refixNews . '/' . $name,
                         ]);
                     }
