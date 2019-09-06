@@ -361,8 +361,8 @@ class SyncArticleForBuyChototController extends CrudController
         preg_match_all('@<h3 class="ctAdListingTitle(.*?)">(.*?)</h3>@si', $strHtml, $data_title);
         preg_match_all('@<a rel="nofollow" class="ctAdListingItem" action="push" href="(.*?)">@si', $strHtml, $data_url);
         preg_match_all('@<h3 class="_3ygwQow5YdDcI2nenz6_nu(.*?)">(.*?)</h3>@si', $strHtml, $data_title2);
-        preg_match_all('@<a class="_3JMKvS6hucA6KaM9tX3Qb1" href="(.*?)">@si',$strHtml, $data_url2);
-        $data_url = array_merge($data_url[1], $data_url2[1]);
+        preg_match_all('@<a class="_3JMKvS6hucA6KaM9tX3Qb1"(.*?)href="(.*?)">@si',$strHtml, $data_url2);
+        $data_url = array_merge($data_url[1], $data_url2[2]);
         $data_title = array_merge($data_title[2], $data_title2[2]);
         foreach ($data_title as $key => $item) {
             if(!SyncArticleForBuyModel::where('title', $item)->first() && !SyncArticleForBuyModel::where('title', $item)->first()) {
