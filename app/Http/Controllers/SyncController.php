@@ -71,43 +71,34 @@ $province = ' . var_export($province, true) . ';
         }
 
         // lời khuyên
-        $category = Category::whereIn('id', [16, 17, 18, 19, 20, 21])->get();
         $loikhuyen = [];
         $i = 0;
-        foreach($category as $item) {
-            $article = Article::select('category_id', 'title', 'slug', 'views', 'image')->where('status', PUBLISHED_ARTICLE)->where('category_id', $item->id)->orderBy('id', 'desc')->limit(8)->get();
-            foreach($article as $key => $item2) {
-                $loikhuyen[$i] = $item2->toArray();
-                $loikhuyen[$i]['slug_category'] = $item->slug;
-                $loikhuyen[$i]['category_parent_id'] = $item->parent_id;
-                $i++;
-            }
+        $article = Article::select('category_id', 'title', 'slug', 'views', 'image')->where('status', PUBLISHED_ARTICLE)->whereIn('category_id', [16, 17, 18, 19, 20, 21])->orderBy('id', 'desc')->limit(8)->get();
+        foreach($article as $key => $item2) {
+            $loikhuyen[$i] = $item2->toArray();
+            $loikhuyen[$i]['slug_category'] = $item->slug;
+            $loikhuyen[$i]['category_parent_id'] = $item->parent_id;
+            $i++;
         }
         // tư vấn luật
-        $category = Category::whereIn('id', [9, 10, 11, 12, 13, 14, 15])->get();
         $tuvanluat = [];
         $i = 0;
-        foreach($category as $item) {
-            $article = Article::select('category_id', 'title', 'slug', 'views', 'image')->where('status', PUBLISHED_ARTICLE)->where('category_id', $item->id)->orderBy('id', 'desc')->limit(8)->get();
-            foreach($article as $key => $item2) {
-                $tuvanluat[$key] = $item2->toArray();
-                $tuvanluat[$key]['slug_category'] = $item->slug;
-                $tuvanluat[$key]['category_parent_id'] = $item->parent_id;
-                $i++;
-            }
+        $article = Article::select('category_id', 'title', 'slug', 'views', 'image')->where('status', PUBLISHED_ARTICLE)->whereIn('category_id', [9, 10, 11, 12, 13, 14, 15])->orderBy('id', 'desc')->limit(8)->get();
+        foreach($article as $key => $item2) {
+            $tuvanluat[$key] = $item2->toArray();
+            $tuvanluat[$key]['slug_category'] = $item->slug;
+            $tuvanluat[$key]['category_parent_id'] = $item->parent_id;
+            $i++;
         }
         // tất cả tin mới
-        $category = Category::whereIn('id', [4, 5, 6, 7, 8])->get();
         $all_tin_tuc_moi = [];
         $i = 0;
-        foreach($category as $item) {
-            $article = Article::select('category_id', 'title', 'slug', 'views', 'image')->where('status', PUBLISHED_ARTICLE)->where('category_id', $item->id)->orderBy('id', 'desc')->limit(8)->get();
-            foreach($article as $key => $item2) {
-                $all_tin_tuc_moi[$key] = $item2->toArray();
-                $all_tin_tuc_moi[$key]['slug_category'] = $item->slug;
-                $all_tin_tuc_moi[$key]['category_parent_id'] = $item->parent_id;
-                $i++;
-            }
+        $article = Article::select('category_id', 'title', 'slug', 'views', 'image')->where('status', PUBLISHED_ARTICLE)->whereIn('category_id', [4, 5, 6, 7, 8])->orderBy('id', 'desc')->limit(8)->get();
+        foreach($article as $key => $item2) {
+            $all_tin_tuc_moi[$key] = $item2->toArray();
+            $all_tin_tuc_moi[$key]['slug_category'] = $item->slug;
+            $all_tin_tuc_moi[$key]['category_parent_id'] = $item->parent_id;
+            $i++;
         }
         // tin nỗi bật
         $noibat = [];
