@@ -61,7 +61,7 @@ $Agent = new Agent();
                                 $article = $article->toArray();
                                 ?>
                                     @foreach($article['data'] as $item)
-                                     <div class="vip3 search-productItem">
+                                     <div class="vip3 search-productItem {{$item['featured'] ? 'vipaddon' : ''}}">
                                             <div class="p-title">
                                                 <h3><a href="/{{$item['prefix_url'].'-bds-'.$item['id']}}" title="{{$item['title']}}" style="text-rendering: optimizelegibility;">{{$item['title']}}</a></h3>
                                             </div>

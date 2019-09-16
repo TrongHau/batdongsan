@@ -1051,3 +1051,11 @@ button:disabled {
 .detail-article-for {
     font-size: 20px;
 }
+.vipaddon .p-main-image-crop:before {
+    content: url(../imgs/hot-red.png);
+    width: 81px;
+    height: 30px;
+    position: absolute;
+    top: -2px;
+    left: -8px;
+}

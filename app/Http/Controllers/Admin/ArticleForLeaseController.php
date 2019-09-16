@@ -153,6 +153,11 @@ class ArticleForLeaseController extends CrudController
                 'type' => 'check',
             ]);
             $this->crud->addColumn([
+                'name' => 'featured',
+                'label' => 'Nỗi bật',
+                'type' => 'check',
+            ]);
+            $this->crud->addColumn([
                 'name' => 'type_article',
                 'label' => 'Thể loại',
             ]);
@@ -236,7 +241,11 @@ class ArticleForLeaseController extends CrudController
             'label' => 'Tình trạng',
             'type' => 'checkbox',
         ]);
-
+        $this->crud->addField([    // CHECKBOX
+            'name' => 'featured',
+            'label' => 'Nỗi bật',
+            'type' => 'checkbox',
+        ]);
         $this->crud->enableAjaxTable();
     }
 

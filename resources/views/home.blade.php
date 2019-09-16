@@ -124,7 +124,7 @@ $Agent = new Agent();
                     <div id="ctl31_BodyContainer">
                         <div class="product-list tin-danh-cho-ban">
                             @foreach($articleForLease as $item)
-                                <div class="article_for_lease vip5">
+                                <div class="article_for_lease vip5 {{$item->featured ? 'vipaddon' : ''}}">
                                     <div class="p-main">
                                         <div class="p-main-image-crop">
                                             <a class="product-avatar"
@@ -136,6 +136,7 @@ $Agent = new Agent();
                                             </a>
                                         </div>
                                         <div class="right-content-home">
+                                            Tin rao dành cho bạn
                                             <div class="p-content p-top-crop">
                                                 <div class="p-title">
                                                     <h3><a id="ctl31_ctl00_rpListProduct_lnkTitle_0"

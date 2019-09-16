@@ -367,7 +367,7 @@ $Agent = new Agent();
                                                 </div>
                                             </div>
                                             @foreach($relateArticle as $item)
-                                                <div class="vip5 search-productItem">
+                                                <div class="vip5 search-productItem {{$item['featured'] ? 'vipaddon' : ''}}">
                                                     <div class="p-title" style="padding-left: 7px;">
                                                         <h3>
                                                             <a href="/{{$item['prefix_url'].'-bds-'.$item['id']}}" title="{{$item['title']}}" style="text-rendering: optimizelegibility;">
