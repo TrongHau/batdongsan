@@ -136,7 +136,6 @@ $Agent = new Agent();
                                             </a>
                                         </div>
                                         <div class="right-content-home">
-                                            Tin rao dành cho bạn
                                             <div class="p-content p-top-crop">
                                                 <div class="p-title">
                                                     <h3><a id="ctl31_ctl00_rpListProduct_lnkTitle_0"
