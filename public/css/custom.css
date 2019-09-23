@@ -1046,7 +1046,7 @@ button:disabled {
     display: contents;
 }
 #ctl23_ctl00_divSourceNews em {
-    text-align: left!important;
+    text-align: right!important;
 }
 .detail-article-for {
     font-size: 20px;

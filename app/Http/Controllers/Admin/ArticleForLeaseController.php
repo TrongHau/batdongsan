@@ -330,4 +330,12 @@ class ArticleForLeaseController extends CrudController
         }
         return $this->crud->delete($id);
     }
+    public function upArticle($id) {
+        $article = \App\Models\ArticleForLeaseModel::find($id);
+        $article->created_at = date("Y-m-d H:i:s");
+        $article->save();
+        \Alert::success(trans('backpack::crud.update_success'))->flash();
+        $this->setSaveAction();
+        return $this->performSaveAction($id);
+    }
 }

@@ -7,6 +7,7 @@ global $province;
 @section('contentCSS')
     <link rel="stylesheet" type="text/css" href="/css/dang-tin.css">
     <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src="//cdn.ckeditor.com/4.5.5/standard/ckeditor.js"></script>
     {{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">--}}
     <style>
         .fileinput-button {
@@ -306,8 +307,8 @@ global $province;
                                                 (<span class="redfont">*</span>)<span class="grayfont">Tối đa chỉ 3000 ký tự</span>
                                             </p>
                                             <textarea name="content_article" id="content_article" style="height: 170px; width: 483px; max-width: 483px; float: left;" class="text-field countTypeLength required mt10" rows="50" cols="100" minlength="30" maxlength="3000">{{old('content_article') ?? $article->content_article ?? ''}}</textarea>
-
-                                            <div style="float: left; margin-top: 5px; padding-left: 5px; text-align: justify; width: 220px;">
+                                            <script> CKEDITOR.replace( 'content_article' );</script>
+                                            <div style="float: left; margin-top: 5px; padding-left: 5px; text-align: justify;">
                                                 <div class="text">
                                                     @if ($errors->has('content_article'))
                                                         <div class="errorMessage" style="display: block;"><p style="color: red">{{ str_replace('content article', 'mô tả', $errors->first('content_article')) }}</p></div>

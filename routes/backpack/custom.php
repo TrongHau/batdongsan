@@ -53,5 +53,8 @@ Route::group([
 
     CRUD::resource('sync_chotot_article_for_buy', 'SyncArticleForBuyChototController');
 
+    Route::get('article_lease_up/{id}', 'ArticleForLeaseController@upArticle');
+    Route::get('article_buy_up/{id}', 'ArticleForBuyController@upArticle');
+
 
 }); // this should be the absolute last line of this file

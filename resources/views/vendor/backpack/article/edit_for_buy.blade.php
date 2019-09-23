@@ -65,6 +65,7 @@
 
 					<input type="hidden" name="save_action" value="{{ $saveAction['active']['value'] }}">
 					<a href="/quan-ly-tin/dang-tin-can-mua-can-thue/{{$fields['id']['value']}}" target="_blank" class="btn btn-warning"><span class="fa fa-align-center"></span> &nbsp;Chỉnh sửa trực tiếp</a>
+					<a href="/admin/article_buy_up/{{$fields['id']['value']}}" class="btn btn-primary"><span class="fa fa fa-upload"></span> &nbsp;Up tin tức</a>
 					<div class="btn-group">
 						<button type="submit" class="btn btn-success">
 							<span class="fa fa-save" role="presentation" aria-hidden="true"></span> &nbsp;
