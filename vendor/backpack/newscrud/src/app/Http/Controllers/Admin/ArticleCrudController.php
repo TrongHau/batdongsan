@@ -97,7 +97,7 @@ class ArticleCrudController extends CrudController
         $this->crud->addField([    // TEXT
             'name' => 'short_content',
             'label' => 'Nội dung ngắn',
-            'type' => 'textarea',
+            'type' => 'ckeditor',
             'placeholder' => 'Your title here',
         ]);
 

@@ -233,7 +233,7 @@ class ArticleController extends Controller
             'price' => 'max:999999',
             'bed_room' => 'max:99',
             'toilet' => 'max:99',
-//            'g-recaptcha-response' => 'required',
+            'g-recaptcha-response' => 'required',
         ];
         session_start();
         if(!Auth::check()) {
@@ -251,7 +251,6 @@ class ArticleController extends Controller
             }
         }
         $this->validate($request, $excep);
-
         $article = [
             'title' => $request->title,
             'method_article' => $request->method_article,
@@ -295,7 +294,9 @@ class ArticleController extends Controller
         $article[ 'street_url'] = Helpers::rawTiengVietUrl($article['street']);
         $olDataImgs = [];
         if($request->id) {
-            unset($article['contact_phone']);
+            if(!backpack_user()->hasRole('admin')) {
+                unset($article['contact_phone']);
+            }
             if(Auth::user()->rolesBDSRoleName() == ROLE_NAME_ADMIN) {
                 // kiểm tra admin truy cập trực tiếp
                 $result = ArticleForLeaseModel::where('id', $request->id)->first();
@@ -393,7 +394,7 @@ class ArticleController extends Controller
             'price' => 'max:999999',
             'bed_room' => 'max:99',
             'toilet' => 'max:99',
-//            'g-recaptcha-response' => 'required',
+            'g-recaptcha-response' => 'required',
         ];
         if(!Auth::check()) {
             if(!isset($_SESSION['verify_phone']) || !$_SESSION['verify_phone']) {
@@ -403,21 +404,13 @@ class ArticleController extends Controller
                 $typeAuthGuest = 'guest.';
             }
         }else{
-            Input::merge(['contact_phone' => Auth::user()->phone]);
+            if(!$request->id) {
+                Input::merge(['contact_phone' => Auth::user()->phone]);
+            }else{
+                unset($excep['contact_phone']);
+            }
         }
-        $this->validate($request, [
-            'title' => 'required|max:99',
-            'method_article' => 'required',
-            'type_article' => 'required',
-            'province_id' => 'required',
-            'district_id' => 'required',
-            'content_article' => 'required',
-            'address' => 'required',
-            'contact_phone' => 'required',
-            'price_to' => 'max:999999',
-            'price_from' => 'max:999999',
-//            'g-recaptcha-response' => 'required',
-        ]);
+        $this->validate($request, $excep);
         $mes = '';
         $article = [
             'title' => $request->title,
@@ -442,7 +435,7 @@ class ArticleController extends Controller
             'content_article' => $request->content_article,
             'contact_name' => $request->contact_name,
             'contact_address' => $request->contact_address,
-//            'contact_phone' => $request->contact_phone,
+            'contact_phone' => $request->contact_phone,
             'contact_email' => $request->contact_email,
             'status' => $request->submit_type == 'draf' ? DRAFT_ARTICLE : PUBLISHED_ARTICLE,
             'prefix_url' =>  strtolower(Helpers::rawTiengVietUrl($request->type_article.($request->project ? '-du-an-'.$request->project : '').'-'.explode(',', $request->address)[0]).'/'.Helpers::rawTiengVietUrl($request->title))
@@ -455,6 +448,9 @@ class ArticleController extends Controller
         $article[ 'street_url'] = Helpers::rawTiengVietUrl($article['street']);
         $olDataImgs = [];
         if($request->id) {
+            if(!backpack_user()->hasRole('admin')) {
+                unset($article['contact_phone']);
+            }
             if(Auth::user()->rolesBDSRoleName() == ROLE_NAME_ADMIN) {
                 // kiểm tra admin truy cập trực tiếp
                 $result = ArticleForBuyModel::where('id', $request->id)->first();

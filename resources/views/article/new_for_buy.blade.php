@@ -407,7 +407,7 @@ global $province;
                                                 </div>
                                                 <div class="base5" style="position: relative;">
                                                     <div id="divBrMobile" class="comboboxs advance-select-box" style="margin: 0px;height: 25px;position: relative;">
-                                                        <input type="text" name="contact_phone" disabled class="select-text-content required" value="{{old('contact_phone') ?? $article->contact_phone ?? $mySelf->phone}}" placeholder="" style="width: 175px;">
+                                                        <input type="text" name="contact_phone" {{backpack_user()->hasRole('admin') ? '' : 'disabled'}} class="select-text-content required" value="{{old('contact_phone') ?? $article->contact_phone ?? $mySelf->phone}}" placeholder="" style="width: 175px;">
                                                         @if ($errors->has('contact_phone'))
                                                             <div class="errorMessage" style="display: block;"><p style="color: red">{{ str_replace('contact phone', 'di động', $errors->first('contact_phone'))}}</p></div>
                                                         @endif

@@ -22,12 +22,12 @@ class Article extends Model
     protected $primaryKey = 'id';
     public $timestamps = true;
     // protected $guarded = ['id'];
-    protected $fillable = ['slug', 'title', 'content', 'short_content', 'image', 'status', 'category_id', 'featured', 'views'];
+    protected $fillable = ['slug', 'title', 'content', 'image', 'status', 'category_id', 'featured', 'date', 'short_content'];
     // protected $hidden = [];
     // protected $dates = [];
     protected $casts = [
         'featured'  => 'boolean',
-//        'date'      => 'date',
+        'date'      => 'date',
     ];
 
     /**
@@ -75,8 +75,8 @@ class Article extends Model
     public function scopePublished($query)
     {
         return $query->where('status', 'PUBLISHED')
-//                    ->where('date', '<=', date('Y-m-d'))
-                    ->orderBy('id', 'DESC');
+                    ->where('date', '<=', date('Y-m-d'))
+                    ->orderBy('date', 'DESC');
     }
 
     /*

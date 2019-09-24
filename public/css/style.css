@@ -1317,7 +1317,7 @@ strong, b {
 
 
 .product-list strong {
-    color: #055699;
+    /*color: #055699;*/
 }
 
 .product-list a:visited {
@@ -2727,7 +2727,7 @@ input.select-text-content {
             line-height: 180%;
         }
 
-    #product-detail .gia, .pcc-detail .gia {
+    #product-detail .gia, .pcc-detail .gia {#product-detail .pm-content .pm-desc, #product-detail .pm-content .pm-desc *
         text-align: center;
         font-size: 14px;
         margin: 10px 0px;
