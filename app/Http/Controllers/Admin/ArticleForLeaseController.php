@@ -272,8 +272,7 @@ class ArticleForLeaseController extends CrudController
 
         // update the row in the db
         $dataArticle = ArticleForLeaseModel::where('id', $request->id)->first();
-
-        if($dataArticle->aprroval == 0 && $request->aprroval && $dataArticle->email_contact) {
+        if($dataArticle->aprroval == 0 && $request->aprroval && $dataArticle->contact_email) {
             $data = [
                 'article' => $dataArticle,
                 'prefix_admin_edit' => 'article_for_lease',
