@@ -1038,6 +1038,10 @@ button:disabled {
     display: block;
     text-align: center;
 }
+#divContents p:last-child, #ctl23_ctl00_divSourceNews  {
+    display: block;
+    text-align: right;
+}
 .color-red-price {
     color: #d0021b!important;
     font-weight: 700!important;
