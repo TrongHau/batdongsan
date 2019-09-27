@@ -25,7 +25,7 @@ use App\Library\Helpers;
                                                     <p>Chúc mừng bạn! Tin rao của bạn đã được đăng thành công!</p>
                                                     Xem tin tại: <a href="{{env('APP_URL') . '/'.$article->prefix_url.'-bds-'.$article->id}}" style="text-decoration:none;color:#055699" target="_blank" >{{$article->title}}</a>
                                                     <p>Thân mến,</p>
-                                                    <p>Batdongsan.company</p>
+                                                    <p>Batdongsan.ooo</p>
                                                 </td>
                                             </tr>
                                             </tbody>

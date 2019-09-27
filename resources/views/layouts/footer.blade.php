@@ -50,7 +50,7 @@
         </div>
         <div class="footer-bottom-end">
             <div class="footer-bottom-end-row1" style="color: #555754; position: relative;">
-                © 2019 - Bản quyền của website Batdongsan.company
+                © 2019 - Bản quyền của website Batdongsan.ooo
                 <br/>
                 Địa chỉ: {{ENV('ADDRESS_CONTACT')}}
                 <br/>

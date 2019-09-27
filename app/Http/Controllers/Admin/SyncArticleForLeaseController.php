@@ -363,19 +363,16 @@ class SyncArticleForLeaseController extends CrudController
         $refixUrl = 'https://batdongsan.com.vn';
         for($i = 1; $i <= ($request->page ?? 1); $i++) {
             $file = $this->get_fcontent($refixUrl . '/' . $refixNews . '/p' . $i);
-            preg_match_all('@<div class="Main">(.*?)<div class="mt5">@si', $file[0], $content);
-            preg_match_all('@<a href=\'(.*?)\' title=\'(.*?)\' style="text-rendering: optimizelegibility;">\r\n(.*?)\r\n</a>@si', $content[0][0], $data_url);
-            preg_match_all('@<div class=\'floatright mar-right-10\'>\r\n(.*?)</span>\r\n</div>@si', $content[0][0], $data_url_date);
-            if(!$data_url_date[1]) {
-                preg_match_all('@<span class="uptime">(.*?)</span>@si', $content[0][0], $data_url_date);
-
-            }
+            preg_match_all('@<div class="Main">(.*?)<div class="separable">@si', $file[0], $content);
+            preg_match_all('@<div class=\'p-title\'>(.*?)href=\'(.*?)\' title=\'(.*?)\'@si', $content[0][0], $data_url);
+            preg_match_all('@<span class="uptime">(.*?)</span>@si', $content[0][0], $data_url_date);
             foreach ($data_url_date[1] as $key => $item) {
+                $item = trim(str_replace('\n', '', $item));
                 $dateArticle = strtotime(str_replace('/', '-', substr($item, -10)));
                 if($dateArticle >= $dateStart && $dateArticle <= $dateEnd) {
-                    $title = html_entity_decode(str_replace('\n', ' ', strip_tags($data_url[2][$key])));
+                    $title = html_entity_decode($data_url[3][$key]);
                     if(!SyncArticleForLeaseModel::where('title', $title)->first() && !ArticleForLeaseModel::where('title', $title)->first()) {
-                        $fileContent = $this->get_fcontent($refixUrl . $data_url[1][$key]);
+                        $fileContent = $this->get_fcontent($refixUrl . $data_url[2][$key]);
                         preg_match_all('@<div class="pm-desc">\r\n(.*?)\r\n</div>@si', $fileContent[0], $data_content);
                         preg_match_all('@<img itemprop="image"(.*?)src=\'(.*?)\'@si', $fileContent[0], $data_imgs_content);
                         preg_match_all('@Giá:</b>\r\n<strong>\r\n(.*?) (.*?)&nbsp;@si', $fileContent[0], $price);
@@ -529,7 +526,7 @@ class SyncArticleForLeaseController extends CrudController
                             'point' => -1,
                             'date_sync' => $dateStart,
                             'build_from' => $typeReq,
-                            'url_from' => $refixUrl . $data_url[1][$key]
+                            'url_from' => $refixUrl . $data_url[2][$key]
                         ];
                         $result = SyncArticleForLeaseModel::create($article);
                         $gallery_image = [];

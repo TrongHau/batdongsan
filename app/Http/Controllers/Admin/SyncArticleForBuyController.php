@@ -366,29 +366,28 @@ class SyncArticleForBuyController extends CrudController
         for($i = 1; $i <= ($request->page ?? 1); $i++) {
             $file = $this->get_fcontent($refixUrl . '/' . $refixNews . '/p' . $i);
             preg_match_all('@<div class="Main">(.*?)<div class="separable">@si', $file[0], $content);
-            preg_match_all('@<div class=\'p-title\'>\r\n<a href=\'(.*?)\' title=\'(.*?)\'>@si', $content[0][0], $data_url);
-            preg_match_all('@<div class=\'floatright mar-right-10 bot-right-abs\'>\r\n(.*?)</div>@si', $content[0][0], $data_url_date);
-            if(!$data_url_date[1]) {
-                preg_match_all('@<span class="uptime">(.*?)</span>@si', $content[0][0], $data_url_date);
-
-            }
+            preg_match_all('@<div class="p-title">(.*?)</div>@si', $content[0][0], $data_url);
+            preg_match_all('@<div class="floatright mar-right-10 bot-right-abs">\n(.*?)</div>@si', $content[0][0], $data_url_date);
             foreach ($data_url_date[1] as $key => $item) {
+                $item = trim(str_replace('\n', '', $item));
                 $dateArticle = strtotime(str_replace('/', '-', substr($item, -10)));
                 if($dateArticle >= $dateStart && $dateArticle <= $dateEnd) {
-                    $title = html_entity_decode(str_replace('\n', ' ', strip_tags($data_url[2][$key])));
+                    preg_match_all('@<a href="(.*?)" title="(.*?)">(.*?)</a>@si', $data_url[1][$key], $data_url_);
+                    $title = html_entity_decode($data_url_[2][0]);
                     if(!SyncArticleForBuyModel::where('title', $title)->first() && !ArticleForBuyModel::where('title', $title)->first()) {
-                        $fileContent = $this->get_fcontent($refixUrl . $data_url[1][$key]);
-                        preg_match_all('@<div class="pm-desc">\r\n(.*?)\r\n</div>@si', $fileContent[0], $data_content);
-                        preg_match_all('@<img onmouseover="this.style.cursor=\'pointer\'" alt="(.*?)" title=\'(.*?)\' src=\'(.*?)\' />@si', $fileContent[0], $data_imgs_content);
-                        preg_match_all('@Giá:</b>\r\n<strong>\r\n(.*?) (.*?) - (.*?) (.*?)&nbsp;@si', $fileContent[0], $price);
-                        preg_match_all('@Diện tích:</b>\r\n<strong>\r\n(.*?)</strong>@si', $fileContent[0], $area);
-                        preg_match_all('@Loại tin rao\r\n</div>\r\n<div class="right">\r\n(.*?)\r\n</div>@si', $fileContent[0], $type);
-                        preg_match_all('@Thuộc dự án\r\n</div>\r\n<div class="right">\r\n<a href=\'(.*?)\'>(.*?)</a>\r\n@si', $fileContent[0], $project);
-                        preg_match_all('@Địa chỉ\r\n</div>\r\n<div class="right">\r\n(.*?)\r\n</div>@si', $fileContent[0], $province);
-                        preg_match_all('@Tên liên lạc\r\n</div>\r\n<div class="right">\r\n(.*?)\r\n</div>@si', $fileContent[0], $contact_name);
-                        preg_match_all('@Mobile\r\n</div>\r\n<div class="right">\r\n(.*?)\r\n</div>@si', $fileContent[0], $contact_phone);
-                        preg_match_all('@Địa chỉ\r\n</div>\r\n<div class="right">\r\n(.*?)\r\n</div>@si', $fileContent[0], $contact_address);
-                        $province_ = explode(',', $province[1][0]);
+                        $fileContent = $this->get_fcontent($refixUrl . $data_url_[1][0]);
+                        $fileContent[0] = str_replace("\n", '', $fileContent[0]);
+                        preg_match_all('@<div class="pm-desc">(.*?)</div>@si', $fileContent[0], $data_content);
+                        preg_match_all('@<img alt="(.*?)" title="(.*?)" src="(.*?)" />(.*?)</li>@si', $fileContent[0], $data_imgs_content);
+                        preg_match_all('@Giá: </b><strong>(.*?)</strong>@si', $fileContent[0], $price);
+                        preg_match_all('@Diện tích: </b><strong>(.*?)</strong>@si', $fileContent[0], $area);
+                        preg_match_all('@Loại tin rao(.*?)</div>(.*?)<div class="right">(.*?)</div>@si', $fileContent[0], $type);
+                        preg_match_all('@Thuộc dự án(.*?)</div>(.*?)<div class="right">(.*?)<a href="(.*?)">(.*?)</a>@si', $fileContent[0], $project);
+                        preg_match_all('@Địa chỉ(.*?)</div>(.*?)<div class="right">(.*?)</div>@si', $fileContent[0], $province);
+                        preg_match_all('@Tên liên lạc(.*?)</div>(.*?)<div class="right">(.*?)</div>@si', $fileContent[0], $contact_name);
+                        preg_match_all('@Mobile(.*?)</div>(.*?)<div class="right">(.*?)</div>@si', $fileContent[0], $contact_phone);
+                        preg_match_all('@Địa chỉ(.*?)</div>(.*?)<div class="right">(.*?)</div>@si', $fileContent[0], $contact_address);
+                        $province_ = explode(',', trim(html_entity_decode($province[3][0] ?? null)));
                         $address = $province[1][0];
                         $province__ = explode(' - ', last($province_));
                         $province = trim(last($province__));
@@ -419,27 +418,29 @@ class SyncArticleForBuyController extends CrudController
                             $district_id = $districtData->id ?? null;
                             $district = $districtData->_name ?? null;
                         }
-                        $project = $project[2][0] ?? null;
-                        if(!is_numeric($price[1][0])) {
-                            $price_ = 0;
-                            $ddlPriceType = 'Thỏa thuận';
-                            $price[1][0] = null;
-                            $price[3][0] = null;
+                        $project = trim(html_entity_decode($project[5][0] ?? null));
+                        $price_from = 0;
+                        $price_to = 0;
+                        $price = explode(' ', $price[1][0]);
+                        if($price[0] == "Dưới" || $price[0] == "Trên") {
+                            $price_from = $price[1];
+                            $ddlPriceType = $price[2];
+                        }elseif(is_numeric($price[0])) {
+                            $price_from = $price[0];
+                            $price_to = $price[3];
+                            $ddlPriceType = $price[1];
                         }else{
-                            $price_ = $price[1][0];
-                            $ddlPriceType = str_replace('m²', 'm2', ucfirst($price[4][0] ?? null));
-                            if(!$ddlPriceType) {
-                                $ddlPriceType = str_replace('m²', 'm2', ucfirst($price[2][0] ?? null));
-                            }
+                            $ddlPriceType = 'Thỏa thuận';
+
                         }
-                        $type = $type[1][0] ?? null;
+                        $type = trim(html_entity_decode($type[3][0] ?? null));
                         if(($strPostype = strpos($type, '(')) != false) {
                             $type = substr($type, 0, $strPostype - 1);
                         }
                         $area = isset($area[1][0]) ? str_replace('m²', '', $area[1][0]) : null;
                         $area = $area == 'Không xác định' ? null : $area;
-                        $area_from = $area ? ((explode(' - ', $area)[0]) ?? null) : null;
-                        $area_to = $area ? (explode(' - ', $area)[1] ?? null) : null;
+                        $area_from = $area ? trim((explode(' - ', $area)[0]) ?? null) : null;
+                        $area_to = $area ? trim(explode(' - ', $area)[1] ?? null) : null;
                         $article = [
                             'title' => $title,
                             'method_article' => $nameRefixNews,
@@ -456,16 +457,16 @@ class SyncArticleForBuyController extends CrudController
                             'project' => $project,
                             'area_from' => is_numeric($area_from) ? $area_from : null,
                             'area_to' => is_numeric($area_to) ? $area_to : null,
-                            'price_from' => $price[1][0] ?? null,
-                            'price_to' => $price[3][0] ?? null,
+                            'price_from' => $price_from,
+                            'price_to' => $price_to,
                             'unit' => '',
-                            'ddlPriceType' => $ddlPriceType,
-                            'price_real' => $price_ * Helpers::convertCurrency($price[2][0] ?? null),
-                            'content_article' => $data_content[1][0] ?? null,
+                            'ddlPriceType' => ucfirst($ddlPriceType),
+                            'price_real' => $price_from * Helpers::convertCurrency(ucfirst($ddlPriceType) ?? null),
+                            'content_article' => trim($data_content[1][0] ?? null),
                             'gallery_image' => null,
-                            'contact_name' => $contact_name[1][0] ?? null,
-                            'contact_address' => $contact_address[1][0] ?? null,
-                            'contact_phone' => $contact_phone[1][0] ?? null,
+                            'contact_name' => trim(html_entity_decode($contact_name[3][0] ?? null)),
+                            'contact_address' => trim(html_entity_decode($contact_address[3][0] ?? null)),
+                            'contact_phone' => trim(html_entity_decode($contact_phone[3][0] ?? null)),
                             'contact_email' => null,
                             'status' => PUBLISHED_ARTICLE,
                             'prefix_url' =>  strtolower(Helpers::rawTiengVietUrl($type .'-'.explode(',', $address)[0]).'/'.Helpers::rawTiengVietUrl($title)),
@@ -481,9 +482,8 @@ class SyncArticleForBuyController extends CrudController
                             'point' => -1,
                             'date_sync' => $dateStart,
                             'build_from' => $typeReq,
-                            'url_from' => $refixUrl . $data_url[1][$key]
+                            'url_from' => $refixUrl . $data_url_[1][0]
                         ];
-
                         $result = SyncArticleForBuyModel::create($article);
                         $gallery_image = [];
                         if(isset($data_imgs_content[3])) {
