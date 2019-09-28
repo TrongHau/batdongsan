@@ -56,7 +56,7 @@ class UserController extends Controller
         ]);
         $profile = [
             'name' => $request->name,
-            'nick_name' => $request->nick_name,
+//            'nick_name' => $request->nick_name,
             'birth_day' => date("Y/m/d", strtotime($request->input('birth_day'))),
             'province_id' => $request->province_id,
             'province' => $request->province_id ? ProvinceModel::find($request->province_id)->_name : '',
@@ -68,11 +68,11 @@ class UserController extends Controller
             'street' => ($request->street_id && $request->district_id && $request->province_id) ? StreetModel::where('id', $request->street_id)->where('_province_id', $request->province_id)->where('_district_id', $request->district_id)->first()->_name : '',
             'address' => $request->address,
 //            'phone' => $request->phone,
-            'tax_code' => $request->tax_code,
-            'skype' => $request->skype,
-            'zalo' => $request->zalo,
-            'viber' => $request->viber,
-            'facebook' => $request->facebook,
+//            'tax_code' => $request->tax_code,
+//            'skype' => $request->skype,
+//            'zalo' => $request->zalo,
+//            'viber' => $request->viber,
+//            'facebook' => $request->facebook,
 
         ];
         $result = User::where('id', Auth::user()->id)->update($profile);
