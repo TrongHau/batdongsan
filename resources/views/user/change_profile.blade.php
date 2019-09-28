@@ -60,17 +60,17 @@ $mySelf = Auth::user();
                                                         @endif
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <td>
-                                                        <span id="MainContent__userPage_ctl00_lblManualName">Tên thường gọi</span>
-                                                    </td>
-                                                    <td>
-                                                        <input name="nick_name" type="text" value="{{old('nick_name') ?? $mySelf->nick_name}}" maxlength="50" id="txtManualName" class="keycode" style="width:50%;">
-                                                        @if ($errors->has('nick_name'))
-                                                            <span style="color: red;" id="errorFullName">{{ str_replace('nick name', 'tên thường gọi', $errors->first('nick_name')) }}</span>
-                                                        @endif
-                                                    </td>
-                                                </tr>
+                                                {{--<tr>--}}
+                                                    {{--<td>--}}
+                                                        {{--<span id="MainContent__userPage_ctl00_lblManualName">Tên thường gọi</span>--}}
+                                                    {{--</td>--}}
+                                                    {{--<td>--}}
+                                                        {{--<input name="nick_name" type="text" value="{{old('nick_name') ?? $mySelf->nick_name}}" maxlength="50" id="txtManualName" class="keycode" style="width:50%;">--}}
+                                                        {{--@if ($errors->has('nick_name'))--}}
+                                                            {{--<span style="color: red;" id="errorFullName">{{ str_replace('nick name', 'tên thường gọi', $errors->first('nick_name')) }}</span>--}}
+                                                        {{--@endif--}}
+                                                    {{--</td>--}}
+                                                {{--</tr>--}}
                                                 <tr>
                                                     <td>
                                                         <span id="MainContent__userPage_ctl00_lblBirthDate">Ngày sinh</span>
