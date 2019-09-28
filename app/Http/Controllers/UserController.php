@@ -51,8 +51,8 @@ class UserController extends Controller
         $this->validate($request, [
             'name' => 'required|max:50',
 //            'phone' => 'required|unique:users',
-            'province_id' => 'required',
-            'district_id' => 'required',
+//            'province_id' => 'required',
+//            'district_id' => 'required',
         ]);
         $profile = [
             'name' => $request->name,

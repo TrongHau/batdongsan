@@ -96,6 +96,9 @@ global $province;
                                                 <div>
                                                     (Quý vị nhập thông tin nhà đất cần bán hoặc cho thuê vào các mục dưới đây)
                                                 </div>
+                                                @if ($errors->has('g-recaptcha-response'))
+                                                    <p style="color: red">{{ str_replace('g-recaptcha-response', 'mã an toàn', $errors->first('g-recaptcha-response'))}}</p>
+                                                @endif
                                             </div>
                                             <div class="rowHeader">
                                                 <h2>Thông tin cơ bản</h2>
@@ -460,53 +463,58 @@ global $province;
                                             </div>
                                             <div class="rowContent">
                                                 <div id="fileupload">
-                                                    <!-- Redirect browsers with JavaScript disabled to the origin page -->
-                                                    <noscript><input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>
-                                                    <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
-                                                    <div class="row fileupload-buttonbar">
-                                                        <div class="col-lg-10">
-                                                            <!-- The fileinput-button span is used to style the file input field as button -->
-                                                            <span class="btn btn-success fileinput-button">
-                                                        <i class="glyphicon glyphicon-plus"></i>
-                                                        <span>Thêm nhiều hình ảnh...</span>
-                                                        <input type="file" name="files[]" multiple>
-                                                    </span>
-                                                            <div style="padding: 10px 20px 0 30px;display: contents;">
-                                                                (hình ảnh đầu tiên sẽ được đặc làm ảnh đại điện cho tin của bạn)
+                                                    @if(old('html_img'))
+                                                        <?php echo old('html_img'); ?>
+                                                    @else
+                                                        <!-- Redirect browsers with JavaScript disabled to the origin page -->
+                                                        <noscript><input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>
+                                                        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+                                                        <div class="row fileupload-buttonbar">
+                                                            <div class="col-lg-10">
+                                                                <!-- The fileinput-button span is used to style the file input field as button -->
+                                                                <span class="btn btn-success fileinput-button">
+                                                            <i class="glyphicon glyphicon-plus"></i>
+                                                            <span>Thêm nhiều hình ảnh...</span>
+                                                            <input type="file" name="files[]" multiple>
+                                                        </span>
+                                                                <div style="padding: 10px 20px 0 30px;display: contents;">
+                                                                    (hình ảnh đầu tiên sẽ được đặc làm ảnh đại điện cho tin của bạn)
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <!-- The table listing the files available for upload/download -->
-                                                    <table role="presentation" class="table table-striped">
-                                                        <tbody class="files">
-                                                        @if(isset($article->gallery_image) && $article->gallery_image)
-                                                            @foreach(json_decode($article->gallery_image) as $item)
-                                                                <tr class="template-download fade in">
-                                                                    <td>
-                                                            <span class="preview">
-                                                                    <a href="{{ Helpers::file_path($article->id, PUBLIC_ARTICLE_LEASE, true).$item}}"
-                                                                       title="{{$item}}" download="{{$item}}" data-gallery=""><img width="120"
-                                                                                                                                   src="{{ Helpers::file_path($article->id, PUBLIC_ARTICLE_LEASE, true).THUMBNAIL_PATH.$item}}"></a>
-                                                            </span>
-                                                                    </td>
-                                                                    <td>
-                                                                        <p class="name">
-                                                                            <a href="{{ Helpers::file_path($article->id, PUBLIC_ARTICLE_LEASE, true).$item}}"
-                                                                               title="{{$item}}"
-                                                                               download="{{$item}}" data-gallery="">{{$item}}</a>
-                                                                        </p>
-                                                                        <input hidden="" type="text" name="upload_images[]" value="{{$item}}">
-                                                                    </td>
-                                                                    <td>
-                                                                        <button onclick="remove_exists_img('{{$item}}')" class="btn btn-danger delete">
-                                                                            <i class="glyphicon glyphicon-trash"></i>
-                                                                            <span>Delete</span>
-                                                                        </button>
-                                                                    </td>
-                                                                </tr>
-                                                            @endforeach
-                                                        @endif
-                                                        </tbody></table>
+                                                        <!-- The table listing the files available for upload/download -->
+                                                        <table role="presentation" class="table table-striped">
+                                                            <tbody class="files">
+                                                            @if(isset($article->gallery_image) && $article->gallery_image)
+                                                                @foreach(json_decode($article->gallery_image) as $item)
+                                                                    <tr class="template-download fade in">
+                                                                        <td>
+                                                                <span class="preview">
+                                                                        <a href="{{ Helpers::file_path($article->id, PUBLIC_ARTICLE_LEASE, true).$item}}"
+                                                                           title="{{$item}}" download="{{$item}}" data-gallery=""><img width="120"
+                                                                                                                                       src="{{ Helpers::file_path($article->id, PUBLIC_ARTICLE_LEASE, true).THUMBNAIL_PATH.$item}}"></a>
+                                                                </span>
+                                                                        </td>
+                                                                        <td>
+                                                                            <p class="name">
+                                                                                <a href="{{ Helpers::file_path($article->id, PUBLIC_ARTICLE_LEASE, true).$item}}"
+                                                                                   title="{{$item}}"
+                                                                                   download="{{$item}}" data-gallery="">{{$item}}</a>
+                                                                            </p>
+                                                                            <input hidden="" type="text" name="upload_images[]" value="{{$item}}">
+                                                                        </td>
+                                                                        <td>
+                                                                            <button onclick="remove_exists_img('{{$item}}')" class="btn btn-danger delete">
+                                                                                <i class="glyphicon glyphicon-trash"></i>
+                                                                                <span>Delete</span>
+                                                                            </button>
+                                                                        </td>
+                                                                    </tr>
+                                                                @endforeach
+                                                            @endif
+                                                            </tbody>
+                                                        </table>
+                                                    @endif
                                                 </div>
                                             </div>
                                             <div class="rowHeader">
@@ -630,7 +638,6 @@ global $province;
                                                     </tbody></table>
                                             </div>
                                             <div id="finalError" style="color: #f00;"></div>
-
                                             <div id="MainContent__userPage_ctl00_divButton" class="rowPost" style="text-align: center; padding: 20px; width: 300px; margin: 0 auto;">
                                                 <table style="border-collapse: collapse; width: 150px; margin: 0px auto;" border="0">
                                                     <tbody><tr>
@@ -652,6 +659,7 @@ global $province;
                                                         <td>
                                                             <input id="btnCancel" type="button" value="Lưu Nháp" name="btnCancel" class="orangebutton" onclick="DirectDraft()">
                                                         </td>
+                                                        <input type="hidden" name="html_img" id="html_img" value="">
                                                     </tr>
                                                     </tbody></table>
                                             </div>
@@ -702,6 +710,9 @@ global $province;
 @section('contentJS')
 
     <script>
+        $('#btnSave').click(function() {
+            $('#html_img').val($('#fileupload').html());
+        })
         function DirectDraft() {
             $('.submit_type').val('draf');
             $('#btnSave').click();

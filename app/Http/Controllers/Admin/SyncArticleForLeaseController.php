@@ -498,7 +498,7 @@ class SyncArticleForLeaseController extends CrudController
                             'price' => $price_,
                             'ddlPriceType' => $ddlPriceType,
                             'price_real' => $price_ * Helpers::convertCurrency($price[2][0] ?? null),
-                            'content_article' => $data_content[1][0] ?? null,
+                            'content_article' => str_replace("\r", '', $data_content[1][0] ?? null),
                             'facade' => $facade[1][0] ?? null,
                             'land_width' => $land_width[1][0] ?? null,
                             'ddlHomeDirection' => $ddlHomeDirection[1][0] ?? null,

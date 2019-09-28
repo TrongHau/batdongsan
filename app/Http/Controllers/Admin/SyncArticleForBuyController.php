@@ -462,7 +462,7 @@ class SyncArticleForBuyController extends CrudController
                             'unit' => '',
                             'ddlPriceType' => ucfirst($ddlPriceType),
                             'price_real' => $price_from * Helpers::convertCurrency(ucfirst($ddlPriceType) ?? null),
-                            'content_article' => trim($data_content[1][0] ?? null),
+                            'content_article' => trim(str_replace("\r", '', $data_content[1][0] ?? null)),
                             'gallery_image' => null,
                             'contact_name' => trim(html_entity_decode($contact_name[3][0] ?? null)),
                             'contact_address' => trim(html_entity_decode($contact_address[3][0] ?? null)),

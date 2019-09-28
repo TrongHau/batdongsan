@@ -96,6 +96,9 @@ global $province;
                                         <div>
                                             (Quý vị nhập thông tin nhà đất cần mua hoặc cần thuê vào các mục dưới đây)
                                         </div>
+                                        @if ($errors->has('g-recaptcha-response'))
+                                            <p style="color: red">{{ str_replace('g-recaptcha-response', 'mã an toàn', $errors->first('g-recaptcha-response'))}}</p>
+                                        @endif
                                     </div>
                                     <div class="rowHeader">
                                         <h2>Thông tin cơ bản</h2>

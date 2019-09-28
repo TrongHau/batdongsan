@@ -273,7 +273,7 @@ $Agent = new Agent();
                                                title="{{$newsFooter[0]['title']}}">{{$newsFooter[0]['title']}}
                                             </a></h4>
                                     </div>
-                                    <div class="group-news-summary"><?php echo substr($newsFooter[0]['short_content'], 0, 100) ?>...</div>
+                                    <div class="group-news-summary"><?php echo mb_substr($newsFooter[0]['short_content'], 0, 100) ?>...</div>
                                 </div>
                                 <div class="group-news-border-backgroup">
                                     <a href="/{{$newsFooter[1]['slug_category']}}/{{$newsFooter[1]['slug']}}">
@@ -287,7 +287,7 @@ $Agent = new Agent();
                                                title="{{$newsFooter[1]['title']}}">{{$newsFooter[1]['title']}}
                                             </a></h4>
                                     </div>
-                                    <div class="group-news-summary"><?php echo substr($newsFooter[1]['short_content'], 0, 100) ?>...</div>
+                                    <div class="group-news-summary"><?php echo mb_substr($newsFooter[1]['short_content'], 0, 100) ?>...</div>
                                 </div>
                                 <div class="clear"></div>
                                 <div class="group-news-border-backgroup">
@@ -302,7 +302,7 @@ $Agent = new Agent();
                                                title="{{$newsFooter[2]['title']}}">{{$newsFooter[2]['title']}}
                                             </a></h4>
                                     </div>
-                                    <div class="group-news-summary"><?php echo substr($newsFooter[2]['short_content'], 0, 100) ?>...</div>
+                                    <div class="group-news-summary"><?php echo mb_substr($newsFooter[2]['short_content'], 0, 100) ?>...</div>
                                 </div>
                                 <div class="group-news-border-backgroup">
                                     <a href="/{{$newsFooter[3]['slug_category']}}/{{$newsFooter[3]['slug']}}">
@@ -316,7 +316,7 @@ $Agent = new Agent();
                                                title="{{$newsFooter[3]['title']}}">{{$newsFooter[3]['title']}}
                                             </a></h4>
                                     </div>
-                                    <div class="group-news-summary"><?php echo substr($newsFooter[3]['short_content'], 0, 100) ?>...</div>
+                                    <div class="group-news-summary"><?php echo mb_substr($newsFooter[3]['short_content'], 0, 100) ?>...</div>
                                 </div>
                                 <div class="clear"></div>
                                 <div style="clear: both">

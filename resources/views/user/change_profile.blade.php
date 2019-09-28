@@ -99,9 +99,13 @@ $mySelf = Auth::user();
                                                         <table style="width: 70%" class="changeInfo">
                                                             <tbody><tr>
                                                                 <td>
-                                                                    <span id="MainContent__userPage_ctl00_lblCities">Tỉnh/Thành phố</span><font color="red">(*)</font></td>
+                                                                    <span id="MainContent__userPage_ctl00_lblCities">Tỉnh/Thành phố</span>
+                                                                    {{--<font color="red">(*)</font>--}}
+                                                                </td>
                                                                 <td>
-                                                                    <span id="MainContent__userPage_ctl00_lblDistricts">Quận/Huyện</span><font color="red">(*)</font></td>
+                                                                    <span id="MainContent__userPage_ctl00_lblDistricts">Quận/Huyện</span>
+                                                                    {{--<font color="red">(*)</font>--}}
+                                                                </td>
                                                                 <td>
                                                                     <span id="MainContent__userPage_ctl00_lblWards">Phường/Xã</span></td>
                                                             </tr>

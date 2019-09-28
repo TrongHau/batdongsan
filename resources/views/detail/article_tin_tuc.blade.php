@@ -72,6 +72,6 @@ $Agent = new Agent();
 @endsection
 @section('contentJS')
     <script>
-        $('#divContents p').last().css( "text-align", "right" );
+        $('#divContents p').last().find('em').css( "text-align", "right" );
     </script>
 @endsection
