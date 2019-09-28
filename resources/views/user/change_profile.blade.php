@@ -208,50 +208,50 @@ $mySelf = Auth::user();
                                                         <span id="lblEmailError" style="color:Red;"></span>
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <td>
-                                                        <span id="MainContent__userPage_ctl00_lblTax">Mã số thuế</span>
-                                                    </td>
-                                                    <td>
-                                                        <input name="tax_code" value="{{old('tax_code') ?? $mySelf->tax_code}}" type="text" maxlength="128" id="txtTaxCode" class="keycode" style="width:50%;">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <span id="MainContent__userPage_ctl00_lblSkypeIM">Facebook</span>:
-                                                    </td>
-                                                    <td>
-                                                        <input name="facebook" type="text" maxlength="50" value="{{old('facebook') ?? $mySelf->facebook}}" id="txtSkypeIM" class="keycode" style="width:50%;">
-                                                        &nbsp;
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <span id="MainContent__userPage_ctl00_lblSkypeIM">Skype IM</span>:
-                                                    </td>
-                                                    <td>
-                                                        <input name="skype" type="text" maxlength="50" value="{{old('skype') ?? $mySelf->skype}}" id="txtSkypeIM" class="keycode" style="width:50%;">
-                                                        &nbsp;
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Zalo:
-                                                    </td>
-                                                    <td>
-                                                        <input name="zalo" type="text" value="{{old('zalo') ?? $mySelf->zalo}}" maxlength="12" id="txtZalo" class="keycode" onkeypress="return isNumberKey(event);" style="width:50%;">
-                                                        &nbsp;
-                                                        <span>(Số điện thoại đăng ký Zalo)</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Viber:
-                                                    </td>
-                                                    <td>
-                                                        <input name="viber" value="{{old('viber') ?? $mySelf->viber}}" type="text" maxlength="12" id="txtViber" class="keycode" onkeypress="return isNumberKey(event);" style="width:50%;">
-                                                        &nbsp;
-                                                        <span>(Số điện thoại đăng ký Viber)</span>
-                                                    </td>
-                                                </tr>
+                                                {{--<tr>--}}
+                                                    {{--<td>--}}
+                                                        {{--<span id="MainContent__userPage_ctl00_lblTax">Mã số thuế</span>--}}
+                                                    {{--</td>--}}
+                                                    {{--<td>--}}
+                                                        {{--<input name="tax_code" value="{{old('tax_code') ?? $mySelf->tax_code}}" type="text" maxlength="128" id="txtTaxCode" class="keycode" style="width:50%;">--}}
+                                                    {{--</td>--}}
+                                                {{--</tr>--}}
+                                                {{--<tr>--}}
+                                                    {{--<td>--}}
+                                                        {{--<span id="MainContent__userPage_ctl00_lblSkypeIM">Facebook</span>:--}}
+                                                    {{--</td>--}}
+                                                    {{--<td>--}}
+                                                        {{--<input name="facebook" type="text" maxlength="50" value="{{old('facebook') ?? $mySelf->facebook}}" id="txtSkypeIM" class="keycode" style="width:50%;">--}}
+                                                        {{--&nbsp;--}}
+                                                    {{--</td>--}}
+                                                {{--</tr>--}}
+                                                {{--<tr>--}}
+                                                    {{--<td>--}}
+                                                        {{--<span id="MainContent__userPage_ctl00_lblSkypeIM">Skype IM</span>:--}}
+                                                    {{--</td>--}}
+                                                    {{--<td>--}}
+                                                        {{--<input name="skype" type="text" maxlength="50" value="{{old('skype') ?? $mySelf->skype}}" id="txtSkypeIM" class="keycode" style="width:50%;">--}}
+                                                        {{--&nbsp;--}}
+                                                    {{--</td>--}}
+                                                {{--</tr>--}}
+                                                {{--<tr>--}}
+                                                    {{--<td>Zalo:--}}
+                                                    {{--</td>--}}
+                                                    {{--<td>--}}
+                                                        {{--<input name="zalo" type="text" value="{{old('zalo') ?? $mySelf->zalo}}" maxlength="12" id="txtZalo" class="keycode" onkeypress="return isNumberKey(event);" style="width:50%;">--}}
+                                                        {{--&nbsp;--}}
+                                                        {{--<span>(Số điện thoại đăng ký Zalo)</span>--}}
+                                                    {{--</td>--}}
+                                                {{--</tr>--}}
+                                                {{--<tr>--}}
+                                                    {{--<td>Viber:--}}
+                                                    {{--</td>--}}
+                                                    {{--<td>--}}
+                                                        {{--<input name="viber" value="{{old('viber') ?? $mySelf->viber}}" type="text" maxlength="12" id="txtViber" class="keycode" onkeypress="return isNumberKey(event);" style="width:50%;">--}}
+                                                        {{--&nbsp;--}}
+                                                        {{--<span>(Số điện thoại đăng ký Viber)</span>--}}
+                                                    {{--</td>--}}
+                                                {{--</tr>--}}
                                                 </tbody></table>
                                         </td>
                                     </tr>
