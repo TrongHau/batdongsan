@@ -86,7 +86,7 @@ class RegisterController extends Controller
         Mail::send('emails.register', $data, function($message) use ($user)
         {
             $message->from(env('MAIL_USERNAME'), env('MAIL_FROM_NAME'));
-            $message->to($user->email, $user->name)->subject('Chúc mừng bạn đăng ký thành công batdongsan.company');
+            $message->to($user->email, $user->name)->subject('Chúc mừng bạn đăng ký thành công batdongsan.ooo');
         });
         Session::flash('success', 'BẠN ĐÃ ĐĂNG KÝ THÀNH CÔNG. VUI LÒNG ĐĂNG KÝ SỐ ĐIỆN THOẠI ĐỂ ĐĂNG TIN');
         return $user;

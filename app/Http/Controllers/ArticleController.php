@@ -309,7 +309,7 @@ class ArticleController extends Controller
             if($article['status'] != DRAFT_ARTICLE) {
                 $user = Auth::user();
                 if($user->point_current < POINT_NEW_ARTICLE_FOR_LEASE) {
-                    $mes = 'Số điểm hiện tại không đủ để đăng tin, tin của bạn sẽ được lưu vào tin nháp. Vui lòng liên hệ bộ phận hotro@batdongsan.company để tiếp tục đăng tin, cảm ơn';
+                    $mes = 'Số điểm hiện tại không đủ để đăng tin, tin của bạn sẽ được lưu vào tin nháp. Vui lòng liên hệ bộ phận hotro@batdongsan.ooo để tiếp tục đăng tin, cảm ơn';
                     $article['status'] = DRAFT_ARTICLE;
                 }else {
                     if($result->point < 0) {
@@ -328,7 +328,7 @@ class ArticleController extends Controller
             if($article['status'] != DRAFT_ARTICLE && Auth::check()) {
                 $user = Auth::user();
                 if($user->point_current < POINT_NEW_ARTICLE_FOR_LEASE) {
-                    $mes = 'Số điểm hiện tại không đủ để đăng tin, tin của bạn sẽ được lưu vào tin nháp. Vui lòng liên hệ bộ phận hotro@batdongsan.company để tiếp tục đăng tin, cảm ơn';
+                    $mes = 'Số điểm hiện tại không đủ để đăng tin, tin của bạn sẽ được lưu vào tin nháp. Vui lòng liên hệ bộ phận hotro@batdongsan.ooo để tiếp tục đăng tin, cảm ơn';
                     $article['status'] = DRAFT_ARTICLE;
                 }else {
                     $user->aritcle_lease_total = $user->aritcle_lease_total + 1;
@@ -463,7 +463,7 @@ class ArticleController extends Controller
             if($article['status'] != DRAFT_ARTICLE) {
                 $user = Auth::user();
                 if($user->point_current < POINT_NEW_ARTICLE_FOR_LEASE) {
-                    $mes = 'Số điểm hiện tại không đủ để đăng tin, tin của bạn sẽ được lưu vào tin nháp. Vui lòng liên hệ bộ phận hotro@batdongsan.company để tiếp tục đăng tin, cảm ơn';
+                    $mes = 'Số điểm hiện tại không đủ để đăng tin, tin của bạn sẽ được lưu vào tin nháp. Vui lòng liên hệ bộ phận hotro@batdongsan.ooo để tiếp tục đăng tin, cảm ơn';
                     $article['status'] = DRAFT_ARTICLE;
                 }else {
                     if($result->point < 0) {
@@ -482,7 +482,7 @@ class ArticleController extends Controller
             if($article['status'] != DRAFT_ARTICLE && Auth::check()) {
                 $user = Auth::user();
                 if($user->point_current < POINT_NEW_ARTICLE_FOR_BUY) {
-                    $mes = 'Số điểm hiện tại không đủ để đăng tin, tin của bạn sẽ được lưu vào tin nháp. Vui lòng liên hệ bộ phận hotro@batdongsan.company để tiếp tục đăng tin, cảm ơn';
+                    $mes = 'Số điểm hiện tại không đủ để đăng tin, tin của bạn sẽ được lưu vào tin nháp. Vui lòng liên hệ bộ phận hotro@batdongsan.ooo để tiếp tục đăng tin, cảm ơn';
                     $article['status'] = DRAFT_ARTICLE;
                 }else {
                     $user->aritcle_buy_total = $user->aritcle_buy_total + 1;
