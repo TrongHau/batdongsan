@@ -217,7 +217,7 @@ class UserController extends Controller
                 $existOtp->delete();
                 session_start();
                 $_SESSION['verify_phone'] = $existOtp->phone;
-                return Helpers::ajaxResult(true, 'Xác thực số điện thoại '.$existOtp->phone.' thành công!', ['phone' => $existOtp->phone]);
+                return Helpers::ajaxResult(true, 'Chúc mừng Bạn đã hoàn tất đăng ký Thành viên. Vui lòng chọn "Đăng tin rao" để đăng tin', ['phone' => $existOtp->phone]);
             }else{
                 return Helpers::ajaxResult(false, 'Mã xác thực đã hết hạn, vui lòng gửi lại mã xác thực', null);
             }

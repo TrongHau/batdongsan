@@ -319,6 +319,10 @@ class SyncArticleController extends CrudController
         for($i = 1; $i <= ($request->page ?? 1); $i++) {
             $file = $this->get_fcontent($refixUrl . '/' . $refixNews . '/p' . $i);
             preg_match_all('@id="ctl23_BodyContainer"(.*?)id="RightMainContent"@si', $file[0], $content);
+            if(!isset($content[0][0])) {
+                \Alert::error('Tin tức chưa được lấy, vui lòng thử lại')->flash();
+                return \Redirect::to($this->crud->route);
+            }
             preg_match_all('@<a class="link_blue" href="(.*?)" title="(.*?)">\n(.*?)</a>@si', $content[0][0], $data_url);
             preg_match_all('@<div class="datetime">\n(.*?)</div>@si', $content[0][0], $data_url_date);
             preg_match_all('@src="(.*?)"@si', $content[0][0], $data_img);
@@ -327,7 +331,7 @@ class SyncArticleController extends CrudController
                 $item = trim(str_replace('/n', '', $item));
                 $dateArticle = strtotime(str_replace('/', '-', substr($item, 6). ' '. substr($item, 0, 5)));
                 if($dateArticle >= $dateStart && $dateArticle <= $dateEnd) {
-                    $title = str_replace("\n", '', strip_tags($data_url[3][$key]));
+                    $title = trim(str_replace("\n", '', strip_tags($data_url[3][$key])));
                     if(!SyncArticleModel::where('title', $title)->first() && !ArticleModel::where('title', $title)->first()) {
                         $fileContent = $this->get_fcontent($refixUrl . $data_url[1][$key]);
 //                        preg_match_all('@<h2 id="ctl23_ctl00_divSummary" class="summary">(.*?)</h2>@si', $fileContent[0], $data_short_content);

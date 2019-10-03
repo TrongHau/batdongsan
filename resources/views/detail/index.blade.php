@@ -389,6 +389,9 @@ $Agent = new Agent();
                                                                 <span> Giá: <strong class="product-price color-red-price">{{$item['price_real'] == 0 ? 'Thỏa thuận' : $item['price'].' '.$item['ddlPriceType']}}</strong></span>
                                                                 <span> Diện tích:
                                                                 <strong class="product-area color-red-price">{{$item['area'] ? $item['area'].' m²' : 'Chưa xác định'}}</strong></span>
+                                                                @if($Agent->isMobile())
+                                                                    <br />
+                                                                @endif
                                                                  <span> Quận/huyện:
                                                                 <strong class="product-city-dist">
                                                                 @if($item['district'])
