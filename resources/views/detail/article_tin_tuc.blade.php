@@ -26,6 +26,9 @@ $Agent = new Agent();
 @extends('layouts.app')
 @section('content')
     @include('layouts.top_search')
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=5da5441cc9a34b001206bb92&product=inline-share-buttons" async="async"></script>
+    <script src="https://sp.zalo.me/plugins/sdk.js"></script>
     <div class="div_2col">
         <div class="body-left">
             <div style="clear: both;">
@@ -52,13 +55,14 @@ $Agent = new Agent();
                         @endif
                         <div id="divContents" class="detailsView-contents-style detail-article-content">
                             <?php echo $article->content ?>
+                            <div style="display: inline-flex;">
+                                <a style="margin-top: 5px;" id="facebook" target="_blank" rel="nofollow" href="https://www.facebook.com/sharer/sharer.php?u={{url()->current()}}&amp;t={{$article->title}}">
+                                    <img style="height: 32px;" src="/imgs/btn-share-facebook.png"></a>
+                                <div style="margin-top: 5px; margin-left: 8px" class="sharethis-inline-share-buttons"></div>
+                                <div style="margin-left: 5px;" class="zalo-share-button" data-href="" data-oaid="579745863508352884" data-layout="4" data-color="white" data-customize=true><a class="zalo-share-button" href="javascript:void(0)" title="Chia sẻ {{$article->music_title}}"></a></div>
+                            </div>
                         </div>
-                        <div class="stat detail-tools" ct="1" ac="2" cid="97296">
-                            <a id="facebook" target="_blank" rel="nofollow" href="https://www.facebook.com/sharer/sharer.php?u={{url()->current()}}&amp;t={{$article->title}}">
-                                <img src="/imgs/btn-share-facebook.png"></a>
-                            <a id="googleBookmark" target="_blank" rel="nofollow" href="https://plus.google.com/share?url={{url()->current()}}">
-                                <img src="/imgs/btn-share-gplus.png"></a>
-                        </div>
+
                     </div>
                     <div class="clear" style="margin-bottom: 10px;">
                     </div>

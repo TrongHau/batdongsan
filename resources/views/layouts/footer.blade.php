@@ -68,6 +68,13 @@
     </div>
 </div>
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-132872367-2"></script>
+<?php
+use Jenssegers\Agent\Agent;
+$Agent = new Agent();
+?>
+@if($Agent->isMobile())
+    <script type="text/javascript" src="/js/custom-mobile.js"></script>
+@endif
 <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
