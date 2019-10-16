@@ -26,9 +26,7 @@ $Agent = new Agent();
                         </div>
                         <div class="stat detail-tools" ct="1" ac="2" cid="97296">
                             <a id="facebook" target="_blank" rel="nofollow" href="https://www.facebook.com/sharer/sharer.php?u={{url()->current()}}&amp;t={{$page->title}}">
-                                <img src="/imgs/btn-share-facebook.png"></a>
-                            <a id="googleBookmark" target="_blank" rel="nofollow" href="https://plus.google.com/share?url={{url()->current()}}">
-                                <img src="/imgs/btn-share-gplus.png"></a>
+                                <img style="height: 28px;" src="/imgs/btn-share-facebook.png"></a>
                         </div>
                     </div>
                     <div class="clear" style="margin-bottom: 10px;">

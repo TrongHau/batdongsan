@@ -27,7 +27,6 @@ $Agent = new Agent();
 @endsection
 @section('contentCSS')
     <script src='https://www.google.com/recaptcha/api.js'></script>
-    <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=5da5441cc9a34b001206bb92&product=inline-share-buttons" async="async"></script>
     <script src="https://sp.zalo.me/plugins/sdk.js"></script>
     @if($Agent->isMobile())
     <link rel="stylesheet" type="text/css" href="/css/mobile.css">
@@ -333,12 +332,16 @@ $Agent = new Agent();
                                     <span class="normalblue">Ngày đăng:</span>
                                     {{date('d-m-Y', strtotime($article->created_at))}}
                                 </div>
-                                <div style="display: inline-flex;">
-                                    <a style="margin-top: 5px;" id="facebook" target="_blank" rel="nofollow" href="https://www.facebook.com/sharer/sharer.php?u={{url()->current()}}&amp;t={{$article->title}}">
-                                        <img style="height: 32px;" src="/imgs/btn-share-facebook.png"></a>
-                                    <div style="margin-top: 5px; margin-left: 8px" class="sharethis-inline-share-buttons"></div>
-                                    <div style="margin-left: 5px;" class="zalo-share-button" data-href="" data-oaid="579745863508352884" data-layout="4" data-color="white" data-customize=true><a class="zalo-share-button" href="javascript:void(0)" title="Chia sẻ {{$article->music_title}}"></a></div>
-                                </div>
+                                <div style="margin-top: 15px;">Chia sẻ tin đăng này cho bạn bè:</div>
+                                <div style="display: inline-flex; margin-top: 5px; position: absolute; margin-left: 10px;">
+                                        <a style="margin-top: 5px;" id="facebook" target="_blank" rel="nofollow" href="https://www.facebook.com/sharer/sharer.php?u={{url()->current()}}&amp;t={{$article->title}}">
+                                            <img style="height: 28px;" src="/imgs/btn-share-facebook.png"></a>
+                                        <div style="margin-top: 5px; margin-left: 8px" class="sharethis-inline-share-buttons"></div>
+                                        <a href="https://twitter.com/share?url={{url()->current()}}&amp;text=Bất%20Động%20Sản%20OOO&amp;hashtags=batdongsan" target="_blank">
+                                            <img style="width: 28px; margin-top: 6px;" src="https://simplesharebuttons.com/images/somacro/twitter.png" alt="Twitter" />
+                                        </a>
+                                        <div class="zalo-share-button" data-href="" data-oaid="579745863508352884" data-layout="4" data-color="white" data-customize=true><a class="zalo-share-button" href="javascript:void(0)" title="Chia sẻ {{$article->music_title}}"></a></div>
+                                   </div>
 
                             </div>
                             <div class="clear"></div>
