@@ -55,18 +55,6 @@ $Agent = new Agent();
                         <div id="divContents" class="detailsView-contents-style detail-article-content">
                             <?php echo $article->content ?>
                             <div class="prd-more-info">
-                                <div style="width: 170px">
-                                    <span class="normalblue">Mã tin đăng: </span>
-                                    {{$article->id}}
-                                </div>
-                                <div style="width: 220px">
-                                    <span class="normalblue">Loại hình tin đăng:</span>
-                                    Tin thường
-                                </div>
-                                <div style="width: 175px">
-                                    <span class="normalblue">Ngày đăng:</span>
-                                    {{date('d-m-Y', strtotime($article->created_at))}}
-                                </div>
                                 <div style="margin-top: 15px;">Chia sẻ tin đăng này cho bạn bè:</div>
                                 <div style="display: inline-flex; margin-top: 5px; position: absolute; margin-left: 10px;">
                                     <a style="margin-top: 5px;" id="facebook" target="_blank" rel="nofollow" href="https://www.facebook.com/sharer/sharer.php?u={{url()->current()}}&amp;t={{$article->title}}">
