@@ -65,7 +65,8 @@ $Agent = new Agent();
                                             <div class="tc-img list-news-image-title">
                                                 <a href="/{{$category->slug}}/{{$item['slug']}}">
                                                     <img class="bor_img" style="width: 132px; height: 100px;" alt="{{$item['title']}}" src="{{$item['image'] ? '/'.$item['image'] : PATH_LOGO_DEFAULT}}">
-                                                </a>&nbsp;&nbsp;</div>
+                                                </a>
+                                            </div>
                                             <h3>
                                                 <a class="link_blue" href="/{{$category->slug}}/{{$item['slug']}}" title="{{$item['title']}}">
                                                     {{$item['title']}}
