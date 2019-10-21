@@ -19,7 +19,7 @@ $Agent = new Agent();
     <meta property="og:image" content="{{env('APP_URL') . ($article->image ? '/'.$article->image : PATH_LOGO_DEFAULT)}}" />
     <meta property="og:url" content="{{url()->current()}}" />
     <meta property="og:title" content="{{$article->title}}" />
-    <meta property="og:description" content="{{$article->short_content}}" />
+    <meta property="og:description" content="{{strip_tags($article->short_content)}}" />
     <meta property="og:type" content="website" />
     <meta property="og:updated_time" content="{{time()}}" />
 @endsection
