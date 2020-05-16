@@ -570,7 +570,7 @@ global $location_article_lease;
                                                                 <div class="agent-top">
                                                                     <div class="agent-thumbnail">
                                                                         <a href="{{$link_url}}">
-                                                                            <img width="263" height="260"
+                                                                            <img style="width: 263px ;height: 175px;" width="263" height="260"
                                                                                  src="{{$img_}}"
                                                                                  class="attachment-full size-full wp-post-image"
                                                                                  alt=""
