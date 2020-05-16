@@ -184,6 +184,7 @@
         <ul class="nav nav-tabs">
             <li id="customer_login" class="active"><a data-toggle="tab" href="#login-register-login">Đăng Nhập</a></li>
             <li id="customer_register"><a data-toggle="tab" href="#login-register-register">Đăng Ký</a></li>
+            <li id="customer_forgot"><a data-toggle="tab" href="#login-register-forgot">Tìm Lại Mật Khẩu</a></li>
         </ul>
         <div class="tab-content">
             <div id="login-register-login" class="tab-pane fade in active">
@@ -199,6 +200,9 @@
                             <label>
                                 <input type="checkbox" id="remember" name="remember"> Ghi nhớ đăng nhập
                             </label>
+                            <a class="btn btn-link" href="http://batdongsan.localhost/password/reset" style="font-size: 13px">
+                                Tìm lại mật khẩu?
+                            </a>
                             <button onclick="authLogin()" name="login_form" class="button btn btn-block btn-font-normal btn-theme">Đăng Nhập</button>
                         </div>
                     </div>
@@ -256,6 +260,36 @@
                                     <a class="btn btn-google btn-block" href="/auth/google">
                                         <i class="fa fa-google" aria-hidden="true"></i>
                                         Đăng ký qua Google</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="login-register-forgot" class="tab-pane fade in">
+                <div class="row no-margin visibled-table">
+                    <div class="visibled-cell no-padding col-sm-7">
+                        <div class="register-form forgot-form">
+                            <div class="form-group">
+                                <input id="login-form-username-XjcVX" placeholder="Địa chỉ E-Mail" type="email" name="email" class="form-control email" required="required">
+                            </div>
+                            <button onclick="authForgot()" name="login_form" class="button btn btn-block btn-font-normal btn-theme">Gửi Liên Kết Đặt Lại Mật Khẩu</button>
+                        </div>
+                    </div>
+                    <div class="visibled-cell no-padding col-sm-5 left-social">
+                        <div class="social-connect">
+                            <div class="desc">
+                                Bạn có thể sử dụng đăng nhập facebook và google </div>
+                            <ul class='login-social'>
+                                <li>
+                                    <a class="btn btn-facebook btn-block" href="/auth/facebook">
+                                        <i class="fa fa-facebook" aria-hidden="true"></i>
+                                        Đăng nhập qua Facebook</a>
+                                </li>
+                                <li>
+                                    <a class="btn btn-google btn-block" href="/auth/google">
+                                        <i class="fa fa-google" aria-hidden="true"></i>
+                                        Đăng nhập qua Google</a>
                                 </li>
                             </ul>
                         </div>
@@ -414,6 +448,33 @@
                 },
                 success: function(response) {
                     location.reload();
+                }
+            });
+        }
+        function authForgot() {
+            resetInputLogin();
+            const email = $('.forgot-form').find('.email');
+            if(!email.val()) {
+                return addErrorInput(email, 'Địa chỉ E-mail không được để trống');
+            }
+            $.ajax({
+                url: window.location.origin + '/password/email',
+                type: "POST",
+                dataType: "json",
+                data: {
+                    email: email.val(),
+                },
+                beforeSend: function () {
+                },
+                error: function (data) {
+                    var errors = data.responseJSON;
+                    $.each(errors.errors, function( key, value ) {
+                        addErrorInput($('.forgot-form').find('.' + key), value);
+                    });
+                },
+                success: function(response) {
+                    var status = response.status.email;
+                    email.before('<div class="alert alert-success">' + status + ' </div>');
                 }
             });
         }

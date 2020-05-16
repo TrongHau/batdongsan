@@ -29,4 +29,16 @@ class ForgotPasswordController extends Controller
     {
         $this->middleware('guest');
     }
+    protected function sendResetLinkFailedResponse(Request $request, $response)
+    {
+        return response()->json(['errors' => [
+            'email' => trans($response)
+        ]], 422);
+    }
+    protected function sendResetLinkResponse($response)
+    {
+        return response()->json(['status' => [
+            'email' => 'Kiểm tra hộp thư email của bạn.'
+        ]], 200);
+    }
 }
