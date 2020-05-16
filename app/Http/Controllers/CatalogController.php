@@ -20,6 +20,7 @@ use App\Models\TypeModel;
 use App\Models\ArticleModel;
 use Backpack\NewsCRUD\app\Models\Article;
 use App\Models\ArticleTagModel;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class CatalogController extends Controller
 {
@@ -154,6 +155,22 @@ class CatalogController extends Controller
             $article = ArticleModel::select('title', 'slug', 'short_content', 'image', 'status', 'featured', 'views', 'created_at', 'category_id')->where('status', PUBLISHED_ARTICLE)->whereIn('category_id', $arrCat)->orderBy('created_at', 'desc')->paginate(PAGING_LIST_ARTICLE_CATALOG);
             return view('catalog.article_tin_tuc', compact('category', 'article'));
         }
+
+    }
+    public function ArticleFeature(Request $request) {
+        $page = $request->get('page', 1);
+        $paginate = PAGING_LIST_ARTICLE_CATALOG;
+        $articleFeature= ArticleForLeaseModel::selectRaw('id, method_article, featured, prefix_url, title, views, created_at, status, aprroval, gallery_image, note, updated_at, project, province_id, province, district_id, district, address, ddlPriceType, price_real, price, area, null as price_from, null as price_to, null as area_from, null as area_to, created_time_vip')
+            ->where([['status', PUBLISHED_ARTICLE], ['aprroval', APPROVAL_ARTICLE_PUBLIC]])->where('featured', 1);
+        $articleFeature2 = ArticleForBuyModel::selectRaw('id, method_article, featured, prefix_url, title, views, created_at, status, aprroval, gallery_image, note, updated_at, project, province_id, province, district_id, district, address, ddlPriceType, price_real, null as price, null as area, price_from, price_to, area_from, area_to, created_time_vip')
+            ->where([['status', PUBLISHED_ARTICLE], ['aprroval', APPROVAL_ARTICLE_PUBLIC]])->where('featured', 1);
+        $articleFeature->union($articleFeature2)->orderBy('created_at', 'desc');
+        $articleFeature = $articleFeature->get();
+        $slice = array_slice($articleFeature->toArray(), $paginate * ($page - 1), $paginate);
+        $article = new LengthAwarePaginator($slice, count($articleFeature), $paginate, null, ['path' => '/doanh-nghiep']);
+        $titleArticle = 'Dự Án Nỗi Bật';
+        $key = '';
+        return view('catalog.article_for_lease_cho_thue', compact('titleArticle', 'article', 'key'));
 
     }
 }

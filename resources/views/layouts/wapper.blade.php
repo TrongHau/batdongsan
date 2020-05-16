@@ -137,39 +137,30 @@
         <ul class="dropdown-navigative-menu">
             <li class="lv0"><a href="{{env("APP_URL")}}/nha-dat-ban" class="haslink ">Nhà đất bán</a>
                 <ul>
-                    <li class="lv1"><a href="{{env("APP_URL")}}/ban-can-ho-chung-cu" class="haslink ">Bán
-                            căn hộ chung cư</a></li>
-                    <li class="lv1"><a href="{{env("APP_URL")}}/ban-nha-rieng" class="haslink ">Bán nhà
-                            riêng</a></li>
+                    <li class="lv1"><a href="{{env("APP_URL")}}/ban-can-ho-chung-cu" class="haslink ">Bán căn hộ chung cư</a></li>
+                    <li class="lv1"><a href="{{env("APP_URL")}}/ban-nha-rieng" class="haslink ">Bán nhà riêng</a></li>
                     <li class="lv1"><a href="{{env("APP_URL")}}/ban-biet-thu-lien-ke"
                                        class="haslink ">Bán biệt thự, liền kề</a></li>
-                    <li class="lv1"><a href="{{env("APP_URL")}}/ban-nha-mat-pho" class="haslink ">Bán nhà
-                            mặt phố</a></li>
-                    <li class="lv1"><a href="{{env("APP_URL")}}/ban-dat-nen-du-an" class="haslink ">Bán
-                            đất nền dự án</a></li>
+                    <li class="lv1"><a href="{{env("APP_URL")}}/ban-nha-mat-pho" class="haslink ">Bán nhà mặt phố</a></li>
+                    <li class="lv1"><a href="{{env("APP_URL")}}/ban-dat-nen-du-an" class="haslink ">Bán đất nền dự án</a></li>
                     <li class="lv1"><a href="{{env("APP_URL")}}/ban-dat" class="haslink ">Bán đất</a>
                     </li>
                     <li class="lv1"><a href="{{env("APP_URL")}}/ban-trang-trai-khu-nghi-duong"
                                        class="haslink ">Bán trang trại, khu nghỉ dưỡng</a></li>
-                    <li class="lv1"><a href="{{env("APP_URL")}}/ban-kho-nha-xuong" class="haslink ">Bán
-                            kho, nhà xưởng</a></li>
+                    <li class="lv1"><a href="{{env("APP_URL")}}/ban-kho-nha-xuong" class="haslink ">Bán kho, nhà xưởng</a></li>
                     <li class="lv1"><a href="{{env("APP_URL")}}/ban-loai-bat-dong-san-khac"
                                        class="haslink ">Bán loại bất động sản khác</a></li>
                 </ul>
             </li>
-            <li class="lv0"><a href="{{env("APP_URL")}}/nha-dat-cho-thue" class="haslink ">Nhà đất cho
-                    thuê</a>
+            <li class="lv0"><a href="{{env("APP_URL")}}/nha-dat-cho-thue" class="haslink ">Nhà đất cho thuê</a>
                 <ul>
                     <li class="lv1"><a href="{{env("APP_URL")}}/cho-thue-can-ho-chung-cu"
                                        class="haslink ">Cho thuê căn hộ chung cư</a></li>
-                    <li class="lv1"><a href="{{env("APP_URL")}}/cho-thue-nha-rieng" class="haslink ">Cho
-                            thuê nhà riêng</a></li>
-                    <li class="lv1"><a href="{{env("APP_URL")}}/cho-thue-nha-mat-pho" class="haslink ">Cho
-                            thuê nhà mặt phố</a></li>
+                    <li class="lv1"><a href="{{env("APP_URL")}}/cho-thue-nha-rieng" class="haslink ">Cho thuê nhà riêng</a></li>
+                    <li class="lv1"><a href="{{env("APP_URL")}}/cho-thue-nha-mat-pho" class="haslink ">Cho thuê nhà mặt phố</a></li>
                     <li class="lv1"><a href="{{env("APP_URL")}}/cho-thue-nha-tro-phong-tro"
                                        class="haslink ">Cho thuê nhà trọ, phòng trọ</a></li>
-                    <li class="lv1"><a href="{{env("APP_URL")}}/cho-thue-van-phong" class="haslink ">Cho
-                            thuê văn phòng</a></li>
+                    <li class="lv1"><a href="{{env("APP_URL")}}/cho-thue-van-phong" class="haslink ">Cho thuê văn phòng</a></li>
                     <li class="lv1"><a href="{{env("APP_URL")}}/cho-thue-cua-hang-ki-ot"
                                        class="haslink ">Cho thuê cửa hàng - ki ốt</a></li>
                     <li class="lv1"><a href="{{env("APP_URL")}}/cho-thue-kho-nha-xuong-dat"
@@ -178,21 +169,18 @@
                                        class="haslink ">Cho thuê loại bất động sản khác</a></li>
                 </ul>
             </li>
-            <li class="lv0"><a href="{{env("APP_URL")}}/nha-dat-can-mua" class="haslink">Nhà
-                    đất cần mua</a>
+            <li class="lv0"><a href="{{env("APP_URL")}}/nha-dat-can-mua" class="haslink">Nhà đất cần mua</a>
                 <ul>
                     <li class="lv1"><a href="{{env("APP_URL")}}/mua-can-ho-chung-cu"
                                        class="haslink ">Mua căn hộ chung cư</a></li>
-                    <li class="lv1"><a href="{{env("APP_URL")}}/mua-nha-rieng" class="haslink ">Mua
-                            nhà riêng</a></li>
+                    <li class="lv1"><a href="{{env("APP_URL")}}/mua-nha-rieng" class="haslink ">Mua nhà riêng</a></li>
                     <li class="lv1"><a href="{{env("APP_URL")}}/mua-nha-biet-thu-lien-ke"
                                        class="haslink ">Mua nhà biệt thự, liền kề</a></li>
                     <li class="lv1"><a href="{{env("APP_URL")}}/mua-nha-mat-pho"
                                        class="haslink ">Mua nhà mặt phố</a></li>
                     <li class="lv1"><a href="{{env("APP_URL")}}/mua-dat-nen-du-an"
                                        class="haslink ">Mua đất nền dự án</a></li>
-                    <li class="lv1"><a href="{{env("APP_URL")}}/mua-dat" class="haslink ">Mua
-                            đất</a></li>
+                    <li class="lv1"><a href="{{env("APP_URL")}}/mua-dat" class="haslink ">Mua đất</a></li>
                     <li class="lv1"><a href="{{env("APP_URL")}}/mua-trang-trai-khu-nghi-duong"
                                        class="haslink ">Mua trang trại, khu nghỉ dưỡng</a></li>
                     <li class="lv1"><a href="{{env("APP_URL")}}/mua-kho-nha-xuong"
@@ -201,8 +189,7 @@
                                        class="haslink ">Mua loại bất động sản khác</a></li>
                 </ul>
             </li>
-            <li class="lv0"><a href="{{env("APP_URL")}}/nha-dat-can-thue" class="haslink">Nhà
-                    đất cần thuê</a>
+            <li class="lv0"><a href="{{env("APP_URL")}}/nha-dat-can-thue" class="haslink">Nhà đất cần thuê</a>
                 <ul>
                     <li class="lv1"><a href="{{env("APP_URL")}}/can-thue-can-ho-chung-cu"
                                        class="haslink ">Cần thuê căn hộ chung cư</a></li>
@@ -251,8 +238,7 @@
                                                class="haslink ">Các vấn đề có yếu tố nước ngoài</a></li>
                         </ul>
                     </li>
-                    <li class="lv1"><a href="{{env("APP_URL")}}/loi-khuyen" class="haslink indent">Lời
-                            khuyên</a>
+                    <li class="lv1"><a href="{{env("APP_URL")}}/loi-khuyen" class="haslink indent">Lời khuyên</a>
                         <ul>
                             <li class="lv2"><a href="{{env("APP_URL")}}/loi-khuyen-cho-nguoi-mua"
                                                class="haslink ">Lời khuyên cho người mua</a></li>

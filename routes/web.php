@@ -23,10 +23,12 @@ Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 Route::post('/get_district', ['as' => 'get.district', 'uses' => 'HomeController@getDistrict']);
 Route::post('/get_ward', ['as' => 'get.ward', 'uses' => 'HomeController@getWard']);
 Route::get('/demo', ['as' => 'get.ward1', 'uses' => 'ArticleController@demo']);
+Route::get('/demo2', ['as' => 'get.articleProvince', 'uses' => 'SyncController@articleLeaseProvince']);
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/home_article_ajax_vip', 'HomeController@ajaxArticleHome')->name('home_ajax');
 
 Auth::routes();
 Route::get('/logout', 'UserController@logout');
@@ -95,6 +97,7 @@ Route::get('/nhung-cau-hoi-thuong-gap', 'DetailController@aboutDetail');
 Route::get('/lien-he', 'DetailController@aboutDetail');
 Route::get('/chinh-sach-bao-mat-thong-tin', 'DetailController@aboutDetail');
 
+Route::get('/du-an-noi-bat', 'CatalogController@ArticleFeature');
 
 // catalog bán nhà đất
 Route::get('/nha-dat-ban/{key?}', 'CatalogController@ArticleForLease_ban_dat');

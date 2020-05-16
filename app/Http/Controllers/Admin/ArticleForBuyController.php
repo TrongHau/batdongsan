@@ -160,6 +160,20 @@ class ArticleForBuyController extends CrudController
                 'type' => 'check',
             ]);
             $this->crud->addColumn([
+                'name'  => 'expired_vip',
+                'label' => 'Tình Trạng Vip',
+                'type' => 'closure',
+                'function' => function($entry) {
+                    if($entry->expired_vip == null || $entry->expired_vip == 0) {
+                        return '<span class="label label-default">Tin Thường</span>';
+                    }elseif($entry->expired_vip < time()) {
+                        return '<span class="label label-warning">Hết hạn</span>';
+                    }elseif($entry->expired_vip >= time()){
+                        return '<span class="label label-primary">Còn thời hạn</span>';
+                    }
+                },
+            ]);
+            $this->crud->addColumn([
                 'name' => 'type_article',
                 'label' => 'Thể loại',
             ]);
@@ -245,6 +259,27 @@ class ArticleForBuyController extends CrudController
             'label' => 'Nỗi bật',
             'type' => 'checkbox',
         ]);
+        $this->crud->addField([    // CHECKBOX
+            'name' => 'expired_vip',
+            'label' => 'Thời hạn tin VIP',
+            'type' => "date_timespan",
+            'default' => 'Chưa có VIP',
+            'attributes' => ['disabled' => 'disabled'],
+            'wrapperAttributes' => [
+                'class' => 'form-group col-md-6',
+            ],
+        ]);
+        $this->crud->addField([
+            'label' => 'Gia Hạn VIP',
+            'type' => 'select_from_array',
+            'name' => 'expired_vip_input',
+            'options' => [0 => 'Thêm Hạn Tin VIP', 1 => '1 Ngày', 3 => '3 Ngày', 7 => '7 Ngày', 14 => '14 Ngày', 30 => '30 Ngày', -1 => 'Dừng tin VIP'],
+            'allows_null' => false,
+            'default' => 0,
+            'wrapperAttributes' => [
+                'class' => 'form-group col-md-6',
+            ],
+        ]);
         $this->crud->enableAjaxTable();
     }
 
@@ -288,6 +323,18 @@ class ArticleForBuyController extends CrudController
         $item = $this->crud->update($request->get($this->crud->model->getKeyName()),
             $request->except('save_action', '_token', '_method', 'current_tab'));
         $this->data['entry'] = $this->crud->entry = $item;
+
+        if($request->expired_vip_input == -1) {
+            $item->type_vip = -1;
+            $item->save();
+        }else{
+            if($request->expired_vip_input > 0) {
+                $item->created_time_vip = time();
+                $item->expired_vip = strtotime("+" . $request->expired_vip_input . " day");
+                $item->type_vip = 1;
+                $item->save();
+            }
+        }
 
         // show a success message
         \Alert::success(trans('backpack::crud.update_success'))->flash();

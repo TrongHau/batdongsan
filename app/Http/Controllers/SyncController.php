@@ -20,6 +20,7 @@ use Backpack\NewsCRUD\app\Models\Article;
 use Backpack\NewsCRUD\app\Models\Category;
 use Storage;
 use Illuminate\Filesystem\Filesystem;
+use DB;
 
 class SyncController extends Controller
 {
@@ -156,5 +157,24 @@ $all_tin_tuc_moi = ' . var_export($noibat, true) . ';
                 Storage::delete($item);
             }
         }
+    }
+    public function articleLeaseProvince() {
+        $articleForLease = ArticleForLeaseModel::select('province', 'province_id', DB::raw('count(*) as total'))
+            ->where([['status', PUBLISHED_ARTICLE], ['aprroval', APPROVAL_ARTICLE_PUBLIC]])
+            ->groupBy('province', 'province_id')->orderBy('total', 'desc')
+            ->limit(4)->get()->toArray();
+        file_put_contents(resource_path().'/views/cache/location_article_lease.blade.php',
+            '<?php 
+if ( !ENV(\'IN_PHPBB\') )
+{
+    die(\'Hacking attempt\');
+    exit;
+}
+global $location_article_lease;
+$location_article_lease = ' . var_export($articleForLease, true) . ';
+?>');
+
+        return response(['Ok']);
+
     }
 }

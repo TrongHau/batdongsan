@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+use Session;
 
 class LoginController extends Controller
 {
@@ -37,5 +40,34 @@ class LoginController extends Controller
         session_start();
         $_SESSION['verify_phone'] = '';
         $this->middleware('guest')->except('logout');
+    }
+    protected function sendLoginResponse(Request $request)
+    {
+        $request->session()->regenerate();
+
+        $this->clearLoginAttempts($request);
+        if($request->ajax()) {
+            return response()->json(['success' => true], 200);
+        }else{
+            return redirect('/');
+        }
+    }
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        $user = Auth::getUser();
+        $errors = [];
+        if($user) {
+            if($user->user_active == BANNED_USER) {
+                $errors = ['email' => 'Tài Khoản của bạn đang bị khóa'];
+            }
+        }else{
+            $errors = ['password' => 'Mật khẩu không chính xác.'];
+        }
+        if ($request->expectsJson()) {
+            return response()->json(['errors' => $errors], 422);
+        }
+        return redirect()->back()
+            ->withInput($request->only($this->username(), 'remember'))
+            ->withErrors($errors);
     }
 }

@@ -1,0 +1,57 @@
+.property-box-slider-content {
+    max-width: 100%!important;
+    background: none!important;
+}
+.header-v1 .header-middle {
+    padding: 10px 0 15px 0!important;
+}
+.image-lazy-loading .image-wrapper.image-loaded img {
+    opacity: 0.7;
+}
+.btn {
+    text-transform: none!important;
+}
+.btn-search {
+    font-family: sans-serif!important;
+    font-weight: 700;
+    font-size: 18px!important;
+}
+.widget .widget-title, .widget .widgettitle, .widget .widget-heading {
+    font-family: sans-serif!important;
+    font-weight: 700;
+    font-size: 28px;
+}
+.widget-text-heading .title {
+    font-family: sans-serif!important;
+    font-weight: 700;
+    font-size: 28px;
+}
+.title_home_ellipsis {
+    height: 46px;
+    overflow: hidden;
+}
+.title_home_ellipsis_feature {
+    height: 50px;
+    overflow: hidden;
+}
+.widget-location-banner .properties {
+    font-family: sans-serif!important;
+}
+.owl-carousel .owl-controls .owl-nav .owl-prev, .owl-carousel .owl-controls .owl-nav .owl-next {
+    top: 35%;
+}
+.apus-header .profile_login {
+    margin-top: 14px;
+}
+.profile_login {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.profile_login li {
+    display: inline-block;
+    margin-right: 20px;
+}
+.dang_tin {
+    margin-top: 0px!important;
+}
