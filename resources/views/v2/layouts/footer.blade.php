@@ -1,3 +1,17 @@
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>Some text in the modal.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+        </div>
+
+    </div>
+</div>
 <footer id="apus-footer" class="apus-footer" role="contentinfo">
     <div class="container">
         <div class="footer-builder-wrapper lighting footer-1">
@@ -192,10 +206,10 @@
                     <div class="visibled-cell no-padding col-sm-7">
                         <div class="login-form">
                             <div class="form-group">
-                                <input id="login-form-username-XjcVX" placeholder="Địa chỉ E-Mail" type="email" name="email" class="form-control email" required="required">
+                                <input placeholder="Địa chỉ E-Mail" type="email" name="email" class="form-control email" required="required">
                             </div>
                             <div class="form-group">
-                                <input id="login-form-password-XjcVX" placeholder="Mật khẩu" type="password" name="password" class="form-control password" required="required">
+                                <input placeholder="Mật khẩu" type="password" name="password" class="form-control password" required="required">
                             </div>
                             <label>
                                 <input type="checkbox" id="remember" name="remember"> Ghi nhớ đăng nhập

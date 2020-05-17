@@ -1,11 +1,36 @@
 <?php
 use App\Library\Helpers;
+use Jenssegers\Agent\Agent;
+$Agent = new Agent();
 global $location_article_lease;
 ?>
 @include('cache.location_article_lease')
 @extends('v2.layouts.app')
+@section('meta')
+    <base href="{{env('APP_URL')}}">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <meta name="author" content="Bat Dong San OOO">
+    <meta name="copyright" content="{{env('APP_DOMAIN')}}" />
+    <meta name="revisit-after" content="7 Days">
+    <meta name="keywords" content="batdongsan; rao ban bat dong san; bds; bat dong san Ho Chi Minh; bat dong san Ha Noi; cap nhat bat dong san; thu bat dong san; mua dat; thue dat; can thue nha; can thue dat">
+    <meta name="description" content="Nhà đất bán, Bán căn hộ chung cư, Bán nhà biệt thự, liền kề, Bán nhà mặt phố, Bán đất nền dự án, Bán đất, Nhà đất cho thuê, Cho thuê căn hộ chung cư,
+        Cho thuê nhà riêng, Cho thuê nhà mặt phố, Cho thuê nhà trọ, phòng trọ, Cho thuê văn phòng, Cho thuê kho, nhà xưởng, đất, Mua nhà riêng, Cần thuê kho, nhà xưởng, đất, Cần thuê nhà trọ, phòng trọ, Tất cả các loại đất bán">
+    <link rel="canonical" href="{{url()->current()}}" />
+    <link rel="image_src" href="{{env('APP_URL') . THUMBNAIL_DEFAULT_META}}" />
+    <meta name="title" content="Bất Động Sản OOO" />
+    <meta property="og:image" content="{{env('APP_URL') . THUMBNAIL_DEFAULT_META}}" />
+    <meta property="og:url" content="{{url()->current()}}" />
+    <meta property="og:title" content="Bất Động Sản OOO" />
+    <meta property="og:description" content="batdongsan; rao ban bat dong san; bds; bat dong san Ho Chi Minh; bat dong san Ha Noi; cap nhat bat dong san; thu bat dong san; mua dat; thue dat; can thue nha; can thue dat">
+    <meta name="description" content="Nhà đất bán, Bán căn hộ chung cư, Bán nhà biệt thự, liền kề, Bán nhà mặt phố, Bán đất nền dự án, Bán đất, Nhà đất cho thuê, Cho thuê căn hộ chung cư,
+        Cho thuê nhà riêng, Cho thuê nhà mặt phố, Cho thuê nhà trọ, phòng trọ, Cho thuê văn phòng, Cho thuê kho, nhà xưởng, đất, Mua nhà riêng, Cần thuê kho, nhà xưởng, đất, Cần thuê nhà trọ, phòng trọ, Tất cả các loại đất bán" />
+    <meta property="og:type" content="website" />
+    <meta property="og:updated_time" content="{{time()}}" />
+@endsection
 @section('content')
-<div class="apus-page-loading">
+<body class="home page-template-default page page-id-5 header-transparent apus-body-loading image-lazy-loading wpb-js-composer js-comp-ver-5.1.1 vc_responsive">
+    <div class="apus-page-loading">
     <div class="spinner">
         <div class="rect1"></div>
         <div class="rect2"></div>
@@ -14,7 +39,7 @@ global $location_article_lease;
         <div class="rect5"></div>
     </div>
 </div>
-<div id="wrapper-container" class="wrapper-container">
+    <div id="wrapper-container" class="wrapper-container">
     @include('v2.layouts.header_logo')
     <div id="apus-main-content">
         <section id="main-container" class="container inner">
@@ -209,8 +234,6 @@ global $location_article_lease;
                                                                         </select>
                                                                     </div>
                                                                 </div>
-
-
                                                                 <div class="col-sm-3">
                                                                     <div class="form-group group-select">
                                                                         <select id="search-advance-bed_room" class="form-control">
@@ -224,7 +247,6 @@ global $location_article_lease;
                                                                         </select>
                                                                     </div>
                                                                 </div>
-
                                                                 <div class="col-sm-3">
                                                                     <div class="form-group group-select">
                                                                         <select id="search-advance-toilet" class="form-control">
@@ -266,15 +288,6 @@ global $location_article_lease;
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <script>
-                                                            function searchAdvance() {
-                                                                if($('#search-advance-method').val() == -1) {
-                                                                    alertModal('Vui lòng chọn loại nhà đất tìm kiếm');
-                                                                    return false;
-                                                                }
-                                                                window.location.href = window.location.origin + '/tim-kiem-nang-cao/' + $('#search-advance-method').val()+ '/' + ($('.select-province').val() ?  $('.select-province').val() : -1) + '/' + ($('.select-district').val() ? $('.select-district').val() : -1) + '/' + ($('.select-ward').val() ? $('.select-ward').val() : -1) + '/' + ($('.select-street').val() ? $('.select-street').val() : -1) + '/' + $('#search-advance-area').val() + '/' + $('#search-advance-price').val() + '/' + $('#search-advance-bed_room').val() + '/' + $('#search-advance-toilet').val() + '/' + $('#search-advance-ddlHomeDirection').val();
-                                                            }
-                                                        </script>
                                                     </div>
                                                 </div>
                                             </div>
@@ -376,7 +389,7 @@ global $location_article_lease;
                                                                     <a href="/{{$link_url}}"
                                                                        class="property-box-image-inner">
                                                                         <div class="image-wrapper">
-                                                                            <img src="{{$img_}}" data-src="{{$img_}}" width="480" height="310" alt="{{$item['title']}}" class="attachment-homesweet-standard-size unveil-image"/>
+                                                                            <img src="{{$img_}}" data-src="{{$img_}}" style="{{$Agent->isMobile() ? '' : 'width: 262px; height: 175px'}}" width="480" height="310" alt="{{$item['title']}}" class="attachment-homesweet-standard-size unveil-image"/>
                                                                         </div>
                                                                     </a>
                                                                 </div>
@@ -641,4 +654,6 @@ global $location_article_lease;
         </section>
     </div>
 </div>
+    @include('v2.layouts.footer')
+</body>
 @endsection

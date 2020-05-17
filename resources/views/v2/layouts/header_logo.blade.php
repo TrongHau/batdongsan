@@ -211,6 +211,15 @@ use App\Library\Helpers;
                             <li><a href="#customer_register">Đăng Ký</a></li>
                         </ul>
                     </div>
+                    @else
+                        <button class="btn btn-setting dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icon-ap_settings" aria-hidden="true"></i></button>
+                        <div class="user-menu dropdown-menu dropdown-menu-right dropdown-theme">
+                            <ul class="nav navbar-nav menu profile_login">
+                                <li><a href="/thong-tin-ca-nhan"><img src="/imgs/user.png" style="display: block; float: left; margin-top: 1px; margin-right: 5px;">{{Auth::user()->name}}</a></li>
+                                <li><a href="/logout" class="line_user_name" rel="nofollow">Thoát</a></li>
+                            </ul>
+                        </div>
+
                     @endif
                 </div>
             </div>

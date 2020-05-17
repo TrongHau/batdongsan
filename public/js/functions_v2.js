@@ -77,10 +77,18 @@ function getWard(district_id, ward_id = '', street_id = '') {
     });
 }
 function alertModal(content) {
-    $("#myModal .modal-body").html('<i class="material-icons modal_icon_csn">error_outline</i><div class="modal_content_csn">' + content + '</div>');
+    $("#myModal .modal-body").html('<div class="modal_content_csn">' + content + '</div>');
     $("#myModal").modal();
 }
 function successModal(content) {
-    $("#myModal .modal-body").html('<i class="material-icons modal_icon_csn">check_circle_outline</i><div class="modal_content_csn">' + content + '</div>');
+    $("#myModal .modal-body").html('<div class="modal_content_csn">' + content + '</div>');
     $("#myModal").modal();
+}
+function searchAdvance() {
+    if($('#search-advance-method').val() == -1) {
+        alertModal('Vui lòng chọn loại nhà đất tìm kiếm');
+        return false;
+    }
+    window.location.href = window.location.origin + '/tim-kiem-nang-cao/' + $('#search-advance-method').val()+ '/' + ($('.select-province').val() ?  $('.select-province').val() : -1) + '/' + ($('.select-district').val() ? $('.select-district').val() : -1) + '/' + ($('.select-ward').val() ? $('.select-ward').val() : -1) + '/' + ($('.select-street').val() ? $('.select-street').val() : -1) + '/' + $('#search-advance-area').val() + '/' + $('#search-advance-price').val() + '/' + $('#search-advance-bed_room').val() + '/' + $('#search-advance-toilet').val() + '/' + $('#search-advance-ddlHomeDirection').val()+ '?key=' + $('#tu-khoa').val();
+
 }
