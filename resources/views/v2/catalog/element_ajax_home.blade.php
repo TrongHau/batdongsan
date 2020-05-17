@@ -7,6 +7,7 @@ $allCount = count($articleForLease);
         $img_ = $item['gallery_image'] ? Helpers::file_path($item['id'], PUBLIC_ARTICLE_LEASE, true).THUMBNAIL_PATH.json_decode($item['gallery_image'])[0] : THUMBNAIL_DEFAULT;
         $link_url = $item->prefix_url.'-bds-'.$item->id;
         $price = ($item->price_from != null && $item->price_to != null) ? ($item->price_to ? ($item->price_from. ' - ' .$item->price_to) : $item->price_from).' '.$item->ddlPriceType : ($item->price_real == 0 ? 'Thỏa thuận' : $item->price.' '.$item->ddlPriceType);
+        $area = ($item->area_from != null && $item->area_to != null) ? ($item->area_to ? ($item->area_from. ' - ' .$item->area_to) : $item->area_from).' m²' : ($item->area ? $item->area.' m²' : 'Chưa xác định');
         if($item->method_article == 'Nhà đất cần mua') {
             $searchMethod = 'nha-dat-can-mua';
         }elseif($item->method_article == 'Nhà đất cần thuê') {
@@ -92,6 +93,14 @@ $allCount = count($articleForLease);
                                 @endif
                             </div>
                             <div class="property-box-price text-theme">{{$price}}</div>
+                        </div>
+                    </div>
+                    <div class="property-box-field">
+                        <div class="property-box-meta">
+                            <div class="field-item">
+                                Diện Tích <span>{{$area}} </span> </div>
+                            <div class="field-item">
+                                Ngày đăng <span>{{date('d/m/Y', strtotime($item['created_at']))}}</span> </div>
                         </div>
                     </div>
                 </div>

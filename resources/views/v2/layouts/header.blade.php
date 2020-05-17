@@ -36,24 +36,24 @@
     </style>
 
     <link rel='stylesheet' id='homesweet-theme-fonts-css' href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Dosis:300,400,500,600,700,800&amp;subset=latin%2Clatin-ext' type='text/css' media='all' />
-    <link rel='stylesheet' id='js_composer_front-css' href='wp-content/uploads/js_composer/js_composer_front_custom3c21.css?ver=5.1.1' type='text/css' media='all' />
-    <link rel='stylesheet' id='awesome-css' href='wp-content/themes/homesweet/css/awesome1849.css?ver=4.7.0' type='text/css' media='all' />
-    <link rel='stylesheet' id='font-ionicons-css' href='wp-content/themes/homesweet/css/ioniconsf427.css?ver=v2.0.0' type='text/css' media='all' />
-    <link rel='stylesheet' id='apus-font-css' href='wp-content/themes/homesweet/css/apus-font8a54.css?ver=1.0.0' type='text/css' media='all' />
-    <link rel='stylesheet' id='material-design-iconic-font-css' href='wp-content/themes/homesweet/css/material-design-iconic-font3601.css?ver=2.2.0' type='text/css' media='all' />
-    <link rel='stylesheet' id='animate-css' href='wp-content/themes/homesweet/css/animate3b71.css?ver=3.5.0' type='text/css' media='all' />
-    <link rel='stylesheet' id='bootstrap-css' href='wp-content/themes/homesweet/css/bootstrap55a0.css?ver=3.2.0' type='text/css' media='all' />
-    <link rel='stylesheet' id='homesweet-template-css' href='wp-content/themes/homesweet/css/templatecf1b.css?ver=3.2' type='text/css' media='all' />
+    <link rel='stylesheet' id='js_composer_front-css' href='/wp-content/uploads/js_composer/js_composer_front_custom3c21.css?ver=5.1.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='awesome-css' href='/wp-content/themes/homesweet/css/awesome1849.css?ver=4.7.0' type='text/css' media='all' />
+    <link rel='stylesheet' id='font-ionicons-css' href='/wp-content/themes/homesweet/css/ioniconsf427.css?ver=v2.0.0' type='text/css' media='all' />
+    <link rel='stylesheet' id='apus-font-css' href='/wp-content/themes/homesweet/css/apus-font8a54.css?ver=1.0.0' type='text/css' media='all' />
+    <link rel='stylesheet' id='material-design-iconic-font-css' href='/wp-content/themes/homesweet/css/material-design-iconic-font3601.css?ver=2.2.0' type='text/css' media='all' />
+    <link rel='stylesheet' id='animate-css' href='/wp-content/themes/homesweet/css/animate3b71.css?ver=3.5.0' type='text/css' media='all' />
+    <link rel='stylesheet' id='bootstrap-css' href='/wp-content/themes/homesweet/css/bootstrap55a0.css?ver=3.2.0' type='text/css' media='all' />
+    <link rel='stylesheet' id='homesweet-template-css' href='/wp-content/themes/homesweet/css/templatecf1b.css?ver=3.2' type='text/css' media='all' />
     <style id='homesweet-template-inline-css' type='text/css'>
         .vc_custom_1502157337810{padding-top: 40px !important;padding-bottom: 40px !important;background-color: #13293d !important;}
         /* check main color *//* check second color *//* Typo *//* seting background main */body, p{}/* seting background main */h1,h2,h3,h4,h5,h6,.widget-title,.widgettitle{}/* Custom CSS */
     </style>
-    <link rel='stylesheet' id='homesweet-style-css' href='wp-content/themes/homesweet/stylecf1b.css?ver=3.2' type='text/css' media='all' />
-    <link rel='stylesheet' id='magnific-popup-css' href='wp-content/themes/homesweet/js/magnific/magnific-popupf488.css?ver=1.1.0' type='text/css' media='all' />
-    <link rel='stylesheet' id='colorbox-css' href='wp-content/themes/homesweet/js/colorbox/colorboxf488.css?ver=1.1.0' type='text/css' media='all' />
+    <link rel='stylesheet' id='homesweet-style-css' href='/wp-content/themes/homesweet/stylecf1b.css?ver=3.2' type='text/css' media='all' />
+    <link rel='stylesheet' id='magnific-popup-css' href='/wp-content/themes/homesweet/js/magnific/magnific-popupf488.css?ver=1.1.0' type='text/css' media='all' />
+    <link rel='stylesheet' id='colorbox-css' href='/wp-content/themes/homesweet/js/colorbox/colorboxf488.css?ver=1.1.0' type='text/css' media='all' />
     <link rel='stylesheet' id='perfect-scrollbar-css' href='wp-content/themes/homesweet/css/perfect-scrollbard0c7.css?ver=0.6.12' type='text/css' media='all' />
-    <script type='text/javascript' src='wp-includes/js/jquery/jqueryb8ff.js?ver=1.12.4'></script>
-    <script type='text/javascript' src='wp-includes/js/jquery/jquery-migrate.min330a.js?ver=1.4.1'></script>
+    <script type='text/javascript' src='/wp-includes/js/jquery/jqueryb8ff.js?ver=1.12.4'></script>
+    <script type='text/javascript' src='/wp-includes/js/jquery/jquery-migrate.min330a.js?ver=1.4.1'></script>
     <script type='text/javascript'>
         /* <![CDATA[ */
         var dsidxAjaxHandler = {"ajaxurl":"https:\/\/demoapus.com\/homesweet\/wp-admin\/admin-ajax.php"};

@@ -232,7 +232,7 @@ use App\Library\Helpers;
             <div class="pull-left">
                 <div class="logo-in-theme ">
                     <div class="logo logo-theme">
-                        <a href="index.html">
+                        <a href="/">
                             <img src="/imgs/logo@3x.png" alt="BatDongSan.ooo" style="width: 160px; height: 77px;">
                         </a>
                     </div>

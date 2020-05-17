@@ -34,7 +34,7 @@ class SearchController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function advance(Request $request, $method = -1, $province_id = -1, $district_id = -1, $ward_id = -1, $street_id = -1, $area = -1, $price = -1, $bed_room = -1, $toilet = -1, $ddlHomeDirection = -1) {
+    public function advance(Request $request, $method = -1, $province_id = -1, $district_id = -1, $ward_id = -1, $street_id = -1, $area = -1, $price = -1, $bed_room = -1, $toilet = -1, $ddlHomeDirection = -1, $key = '') {
         session_start();
         $titleArticle = TypeModel::where('url', $method)->first();
         if(!$titleArticle)
@@ -201,6 +201,12 @@ class SearchController extends Controller
         if($ddlHomeDirection != -1) {
             $article = $article->where('ddl_bacon_direction', $ddlHomeDirection);
         }
+        if($key) {
+            $article = $article->where(function ($query) use ($key) {
+                $query->where('title', 'like', '%'.$key.'%')
+                    ->orWhere('id', 'like', $key);
+            });
+        }
         if($request->sort)
             $_SESSION['order_page_lease'] = $request->sort;
         if(isset($_SESSION['order_page_lease'])) {
@@ -208,9 +214,9 @@ class SearchController extends Controller
                 $article = $article->where('price_real', '!=', 0)->orderByRaw('CAST(price_real as unsigned) asc');
             }elseif ($_SESSION['order_page_lease'] == 'price_desc') {
                 $article = $article->orderByRaw('CAST(price_real as unsigned) desc');
-            }elseif ($_SESSION['order_page_lease'] == 'area_asc') {
+            }elseif ($_SESSION['order_page_lease'] == 'area_asc' && $article->getModel()->getTable() == 'articles_for_lease') {
                 $article = $article->where('area', '!=', 0)->orderBy('area', 'asc');
-            }elseif ($_SESSION['order_page_lease'] == 'area_desc') {
+            }elseif ($_SESSION['order_page_lease'] == 'area_desc' && $article->getModel()->getTable() == 'articles_for_lease') {
                 $article = $article->orderBy('area', 'desc');
             }else{
                 $article = $article->orderBy('created_at', 'desc');
@@ -219,7 +225,6 @@ class SearchController extends Controller
             $article = $article->orderBy('created_at', 'desc');
         }
         $article = $article->paginate(PAGING_LIST_ARTICLE_CATALOG);
-        $key = '';
-        return view('catalog.article_for_lease_'.$type, compact('titleArticle', 'article', 'key', 'method', 'province_id', 'district_id', 'ward_id', 'street_id', 'area', 'price', 'bed_room', 'toilet', 'ddlHomeDirection', 'local'));
+        return view('v2.catalog.article_for_lease_'.$type, compact('titleArticle', 'article', 'key', 'method', 'province_id', 'district_id', 'ward_id', 'street_id', 'area', 'price', 'bed_room', 'toilet', 'ddlHomeDirection', 'local'));
     }
 }

@@ -107,7 +107,7 @@ class CatalogController extends Controller
             $article = $article->orderBy('created_at', 'desc');
         }
         $article = $article->paginate(PAGING_LIST_ARTICLE_CATALOG);
-        return view('catalog.article_for_lease_cho_thue', compact('titleArticle', 'article', 'key'));
+        return view('v2.catalog.article_for_lease_cho_thue', compact('titleArticle', 'article', 'key'));
     }
 
     public function Article(Request $request, $prefix = null) {

@@ -204,7 +204,7 @@ Route::get('/can-thue-kho-nha-xuong-dat-{position}/{title}bds-{id}', 'DetailCont
 Route::get('/can-thue-loai-bat-dong-san-khac-{position}/{title}bds-{id}', 'DetailController@articleForBuyDetail');
 
 // tim kiem nang cao
-Route::get('/tim-kiem-nang-cao/{method}/{province_d}/{district_id}/{ward_id}/{street_id}/{area}/{price}/{bed_room}/{toilet}/{ddlHomeDirection}/', 'SearchController@advance');
+Route::get('/tim-kiem-nang-cao/{method}/{province_d}/{district_id}/{ward_id}/{street_id}/{area}/{price}/{bed_room}/{toilet}/{ddlHomeDirection}/{key?}', 'SearchController@advance');
 
 
 // tin tuc
