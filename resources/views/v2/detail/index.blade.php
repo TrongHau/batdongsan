@@ -88,69 +88,65 @@ global $location_district_article_lease;
                                                                 <h3>Thông tin mô tả</h3>
                                                                 <p><?php echo str_replace("\r\n", '<br/>', $article->content_article) ?></p>
                                                             </div>
-
-                                                            <div id="property-section-stats_graph" class="property-section property-page_views">
-                                                                <h3>Hình ảnh</h3>
+                                                            @if($article->gallery_image)
+                                                            <div id="property-section-stats_graph" class="property-section property-page_views" style="padding-bottom: 100px;">
+                                                                <h3>Thông tin hình ảnh</h3>
                                                                 <div class="page_views-wrapper">
-                                                                    @if($article->gallery_image)
-                                                                        <div class="pm-mota">
-                                                                            Thông tin hình ảnh
-                                                                        </div>
-                                                                        <div class="slideshow-container">
-                                                                            <?php
-                                                                            $preFixImage = $typeOf == 'lease' ? PUBLIC_ARTICLE_LEASE : PUBLIC_ARTICLE_BUY;
-                                                                            $gallery = json_decode($article->gallery_image);
-                                                                            $MaxImgs = count($gallery);
-                                                                            ?>
-                                                                            @foreach($gallery as $key => $item)
-                                                                                <div class="mySlides fade">
-                                                                                    <div class="numbertext">{{++$key}} / {{$MaxImgs}}</div>
-                                                                                    <img height="502px" src="{{Helpers::file_path($article->id, $preFixImage, true).$item}}" style="width:100%">
-                                                                                </div>
-                                                                            @endforeach
-                                                                            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                                                                            <a class="next" onclick="plusSlides(1)">&#10095;</a>
-                                                                        </div>
-                                                                        <br>
+                                                                    <div class="slideshow-container">
+                                                                        <?php
+                                                                        $preFixImage = $typeOf == 'lease' ? PUBLIC_ARTICLE_LEASE : PUBLIC_ARTICLE_BUY;
+                                                                        $gallery = json_decode($article->gallery_image);
+                                                                        $MaxImgs = count($gallery);
+                                                                        ?>
+                                                                        @foreach($gallery as $key => $item)
+                                                                            <div class="mySlides fade">
+                                                                                <div class="numbertext">{{++$key}} / {{$MaxImgs}}</div>
+                                                                                <img src="{{Helpers::file_path($article->id, $preFixImage, true).$item}}" style="width:100%; height: 502px;">
+                                                                            </div>
+                                                                        @endforeach
+                                                                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                                                                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                                                                    </div>
+                                                                    <br>
 
-                                                                        <div style="text-align:left">
-                                                                            @foreach(json_decode($article->gallery_image) as $key => $item)
-                                                                                <div class="dot" onclick="currentSlide({{++$key}})">
-                                                                                    <img src="{{Helpers::file_path($article->id, $preFixImage, true).THUMBNAIL_PATH.$item}}" />
-                                                                                </div>
-                                                                            @endforeach
-                                                                        </div>
-                                                                        <script>
-                                                                            var slideIndex = 1;
-                                                                            showSlides(slideIndex);
+                                                                    <div style="text-align:left">
+                                                                        @foreach(json_decode($article->gallery_image) as $key => $item)
+                                                                            <div class="dot" onclick="currentSlide({{++$key}})">
+                                                                                <img src="{{Helpers::file_path($article->id, $preFixImage, true).THUMBNAIL_PATH.$item}}" />
+                                                                            </div>
+                                                                        @endforeach
+                                                                    </div>
+                                                                    <script>
+                                                                        var slideIndex = 1;
+                                                                        showSlides(slideIndex);
 
-                                                                            function plusSlides(n) {
-                                                                                showSlides(slideIndex += n);
+                                                                        function plusSlides(n) {
+                                                                            showSlides(slideIndex += n);
+                                                                        }
+
+                                                                        function currentSlide(n) {
+                                                                            showSlides(slideIndex = n);
+                                                                        }
+
+                                                                        function showSlides(n) {
+                                                                            var i;
+                                                                            var slides = document.getElementsByClassName("mySlides");
+                                                                            var dots = document.getElementsByClassName("dot");
+                                                                            if (n > slides.length) {slideIndex = 1}
+                                                                            if (n < 1) {slideIndex = slides.length}
+                                                                            for (i = 0; i < slides.length; i++) {
+                                                                                slides[i].style.display = "none";
                                                                             }
-
-                                                                            function currentSlide(n) {
-                                                                                showSlides(slideIndex = n);
+                                                                            for (i = 0; i < dots.length; i++) {
+                                                                                dots[i].className = dots[i].className.replace(" active", "");
                                                                             }
-
-                                                                            function showSlides(n) {
-                                                                                var i;
-                                                                                var slides = document.getElementsByClassName("mySlides");
-                                                                                var dots = document.getElementsByClassName("dot");
-                                                                                if (n > slides.length) {slideIndex = 1}
-                                                                                if (n < 1) {slideIndex = slides.length}
-                                                                                for (i = 0; i < slides.length; i++) {
-                                                                                    slides[i].style.display = "none";
-                                                                                }
-                                                                                for (i = 0; i < dots.length; i++) {
-                                                                                    dots[i].className = dots[i].className.replace(" active", "");
-                                                                                }
-                                                                                slides[slideIndex-1].style.display = "block";
-                                                                                dots[slideIndex-1].className += " active";
-                                                                            }
-                                                                        </script>
-                                                                    @endif
+                                                                            slides[slideIndex-1].style.display = "block";
+                                                                            dots[slideIndex-1].className += " active";
+                                                                        }
+                                                                    </script>
                                                                 </div>
                                                             </div>
+                                                            @endif
                                                             <div id="property-section-facilities" class="property-section property-public-facilities">
                                                                 <h3>Đặc điểm bất động sản</h3>
                                                                 <div class="property-section-detail">
@@ -469,6 +465,11 @@ global $location_district_article_lease;
 
         </div>
     </div>
+    <style>
+        .fade {
+            opacity: 1;
+        }
+    </style>
     @include('v2.layouts.footer')
     </body>
 @endsection
