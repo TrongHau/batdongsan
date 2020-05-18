@@ -314,54 +314,53 @@
     </div>
 </div>
 @endif
-@section('contentJS')
-    <script type='text/javascript'>
-        /* <![CDATA[ */
-        var wpcf7 = {"apiSettings":{"root":"https:\/\/demoapus.com\/homesweet\/wp-json\/contact-form-7\/v1","namespace":"contact-form-7\/v1"},"recaptcha":{"messages":{"empty":"Please verify that you are not a robot."}}};
-        /* ]]> */
-    </script>
-    <script type='text/javascript' src='/wp-content/plugins/contact-form-7/includes/js/scripts33a6.js?ver=4.9'></script>
-    <script type='text/javascript' src='/wp-content/themes/homesweet/js/gmap36a41.js?ver=20131022'></script>
-    <script type='text/javascript' src='/wp-content/themes/homesweet/js/skip-link-focus-fixd01e.js?ver=20141010'></script>
-    <script type='text/javascript' src='/wp-content/themes/homesweet/js/bootstrap.min8337.js?ver=20150330'></script>
-    <script type='text/javascript' src='/wp-content/themes/homesweet/js/owl.carousel.min77e6.js?ver=2.2.1'></script>
-    <script type='text/javascript' src='/wp-content/themes/homesweet/js/magnific/jquery.magnific-popup.minf488.js?ver=1.1.0'></script>
-    <script type='text/javascript' src='/wp-content/themes/homesweet/js/colorbox/jquery.colorboxf488.js?ver=1.1.0'></script>
-    <script type='text/javascript' src='/wp-content/themes/homesweet/js/sticky-kitf488.js?ver=1.1.0'></script>
-    <script type='text/javascript' src='/wp-content/themes/homesweet/js/jquery.unveilf488.js?ver=1.1.0'></script>
-    <script type='text/javascript' src='/wp-content/themes/homesweet/js/perfect-scrollbar.jquery.mind0c7.js?ver=0.6.12'></script>
-    <script type='text/javascript' src='/wp-includes/js/jquery/ui/core.mine899.js?ver=1.11.4'></script>
-    <script type='text/javascript' src='/wp-includes/js/jquery/ui/widget.mine899.js?ver=1.11.4'></script>
-    <script type='text/javascript' src='/wp-includes/js/jquery/ui/mouse.mine899.js?ver=1.11.4'></script>
-    <script type='text/javascript' src='/wp-includes/js/jquery/ui/slider.mine899.js?ver=1.11.4'></script>
-    <script type='text/javascript'>
-        /* <![CDATA[ */
-        var homesweet_ajax = {"ajaxurl":"/home_article_ajax_vip","dec_point":".","thousands_separator":",","comapre_text":"Compare","comapre_text_added":"Added Compare","currency":"$","monthly_text":"Monthly Payment: ","transparent_marker":"\/wp-content\/themes\/homesweet\/images\/transparent-marker-image.png"};
-        /* ]]> */
-    </script>
-    <script type='text/javascript' src='/wp-content/themes/homesweet/js/functions8337.js?ver=20150330'></script>
-    <script type='text/javascript'>
-        (function(html){html.className = html.className.replace(/\bno-js\b/,'js')})(document.documentElement);
-    </script>
-    <script type='text/javascript' src='/wp-includes/js/wp-embed.minbf11.js?ver=4.8.13'></script>
-    <script type='text/javascript' src='/wp-includes/js/jquery/ui/position.mine899.js?ver=1.11.4'></script>
-    <script type='text/javascript' src='/wp-includes/js/jquery/ui/menu.mine899.js?ver=1.11.4'></script>
-    <script type='text/javascript' src='/wp-includes/js/wp-a11y.minbf11.js?ver=4.8.13'></script>
-    <script type='text/javascript'>
-        /* <![CDATA[ */
-        var uiAutocompleteL10n = {"noResults":"No results found.","oneResult":"1 result found. Use up and down arrow keys to navigate.","manyResults":"%d results found. Use up and down arrow keys to navigate.","itemSelected":"Item selected."};
-        /* ]]> */
-    </script>
-    <script type='text/javascript' src='/wp-includes/js/jquery/ui/autocomplete.mine899.js?ver=1.11.4'></script>
-    <script type='text/javascript' src='/wp-content/plugins/dsidxpress/js/autocomplete8066.js?ver=2.4.1'></script>
-    <script type='text/javascript' src='/wp-content/plugins/js_composer/assets/js/dist/js_composer_front.min3c21.js?ver=5.1.1'></script>
-    <script type='text/javascript' src='/wp-content/themes/homesweet/js/isotope.pkgd.minbf11.js?ver=4.8.13'></script>
-    <script type='text/javascript' src='/wp-content/plugins/js_composer/assets/lib/bower/skrollr/dist/skrollr.min3c21.js?ver=5.1.1'></script>
+<script type='text/javascript'>
+    /* <![CDATA[ */
+    var wpcf7 = {"apiSettings":{"root":"https:\/\/demoapus.com\/homesweet\/wp-json\/contact-form-7\/v1","namespace":"contact-form-7\/v1"},"recaptcha":{"messages":{"empty":"Please verify that you are not a robot."}}};
+    /* ]]> */
+</script>
+<script type='text/javascript' src='/wp-content/plugins/contact-form-7/includes/js/scripts33a6.js?ver=4.9'></script>
+<script type='text/javascript' src='/wp-content/themes/homesweet/js/gmap36a41.js?ver=20131022'></script>
+<script type='text/javascript' src='/wp-content/themes/homesweet/js/skip-link-focus-fixd01e.js?ver=20141010'></script>
+<script type='text/javascript' src='/wp-content/themes/homesweet/js/bootstrap.min8337.js?ver=20150330'></script>
+<script type='text/javascript' src='/wp-content/themes/homesweet/js/owl.carousel.min77e6.js?ver=2.2.1'></script>
+<script type='text/javascript' src='/wp-content/themes/homesweet/js/magnific/jquery.magnific-popup.minf488.js?ver=1.1.0'></script>
+<script type='text/javascript' src='/wp-content/themes/homesweet/js/colorbox/jquery.colorboxf488.js?ver=1.1.0'></script>
+<script type='text/javascript' src='/wp-content/themes/homesweet/js/sticky-kitf488.js?ver=1.1.0'></script>
+<script type='text/javascript' src='/wp-content/themes/homesweet/js/jquery.unveilf488.js?ver=1.1.0'></script>
+<script type='text/javascript' src='/wp-content/themes/homesweet/js/perfect-scrollbar.jquery.mind0c7.js?ver=0.6.12'></script>
+<script type='text/javascript' src='/wp-includes/js/jquery/ui/core.mine899.js?ver=1.11.4'></script>
+<script type='text/javascript' src='/wp-includes/js/jquery/ui/widget.mine899.js?ver=1.11.4'></script>
+<script type='text/javascript' src='/wp-includes/js/jquery/ui/mouse.mine899.js?ver=1.11.4'></script>
+<script type='text/javascript' src='/wp-includes/js/jquery/ui/slider.mine899.js?ver=1.11.4'></script>
+<script type='text/javascript'>
+    /* <![CDATA[ */
+    var homesweet_ajax = {"ajaxurl":"/home_article_ajax_vip","dec_point":".","thousands_separator":",","comapre_text":"Compare","comapre_text_added":"Added Compare","currency":"$","monthly_text":"Monthly Payment: ","transparent_marker":"\/wp-content\/themes\/homesweet\/images\/transparent-marker-image.png"};
+    /* ]]> */
+</script>
+<script type='text/javascript' src='/wp-content/themes/homesweet/js/functions8337.js?ver=20150330'></script>
+<script type='text/javascript'>
+    (function(html){html.className = html.className.replace(/\bno-js\b/,'js')})(document.documentElement);
+</script>
+<script type='text/javascript' src='/wp-includes/js/wp-embed.minbf11.js?ver=4.8.13'></script>
+<script type='text/javascript' src='/wp-includes/js/jquery/ui/position.mine899.js?ver=1.11.4'></script>
+<script type='text/javascript' src='/wp-includes/js/jquery/ui/menu.mine899.js?ver=1.11.4'></script>
+<script type='text/javascript' src='/wp-includes/js/wp-a11y.minbf11.js?ver=4.8.13'></script>
+<script type='text/javascript'>
+    /* <![CDATA[ */
+    var uiAutocompleteL10n = {"noResults":"No results found.","oneResult":"1 result found. Use up and down arrow keys to navigate.","manyResults":"%d results found. Use up and down arrow keys to navigate.","itemSelected":"Item selected."};
+    /* ]]> */
+</script>
+<script type='text/javascript' src='/wp-includes/js/jquery/ui/autocomplete.mine899.js?ver=1.11.4'></script>
+<script type='text/javascript' src='/wp-content/plugins/dsidxpress/js/autocomplete8066.js?ver=2.4.1'></script>
+<script type='text/javascript' src='/wp-content/plugins/js_composer/assets/js/dist/js_composer_front.min3c21.js?ver=5.1.1'></script>
+<script type='text/javascript' src='/wp-content/themes/homesweet/js/isotope.pkgd.minbf11.js?ver=4.8.13'></script>
+<script type='text/javascript' src='/wp-content/plugins/js_composer/assets/lib/bower/skrollr/dist/skrollr.min3c21.js?ver=5.1.1'></script>
 
 
 
 
-    @if(!Auth::check())
+@if(!Auth::check())
     <script>
         function resetInputLogin() {
             $('.login-register').find('.help-block').remove();
@@ -493,6 +492,4 @@
             });
         }
     </script>
-    @endif
-@endsection
-
+@endif

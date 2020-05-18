@@ -2,9 +2,9 @@
 use App\Library\Helpers;
 use Jenssegers\Agent\Agent;
 $Agent = new Agent();
-global $location_article_lease;
+global $location_province_article_lease;
 ?>
-@include('cache.location_article_lease')
+@include('cache.location_province_article_lease')
 @extends('v2.layouts.app')
 @section('meta')
     <base href="{{env('APP_URL')}}">
@@ -464,16 +464,16 @@ global $location_article_lease;
                                 <div class="vc_column-inner ">
                                     <div class="wpb_wrapper">
                                         <div class="widget widget-location-banner ">
-                                            <a href="/tim-kiem-nang-cao/nha-dat-ban/{{$location_article_lease[0]['province_id']}}/-1/-1/-1/-1/-1/-1/-1/-1" class="widget-content">
+                                            <a href="/tim-kiem-nang-cao/nha-dat-ban/{{$location_province_article_lease[0]['province_id']}}/-1/-1/-1/-1/-1/-1/-1/-1" class="widget-content">
                                                 <div class="image-wrapper">
                                                     <img src="wp-content/themes/homesweet/images/placeholder/l1-1.jpg"
                                                          data-src="wp-content/themes/homesweet/images/placeholder/l1-1.jpg"
                                                          alt="" class="unveil-image">
                                                 </div>
                                                 <div class="content-meta">
-                                                    <h3 class="title">{{$location_article_lease[0]['province']}}</h3>
+                                                    <h3 class="title">{{$location_province_article_lease[0]['province']}}</h3>
                                                     <div class="properties">
-                                                        {{$location_article_lease[0]['total']}} Dự án
+                                                        {{$location_province_article_lease[0]['total']}} Dự án
                                                     </div>
                                                 </div>
                                             </a>
@@ -485,16 +485,16 @@ global $location_article_lease;
                                 <div class="vc_column-inner ">
                                     <div class="wpb_wrapper">
                                         <div class="widget widget-location-banner ">
-                                            <a href="/tim-kiem-nang-cao/nha-dat-ban/{{$location_article_lease[1]['province_id']}}/-1/-1/-1/-1/-1/-1/-1/-1" class="widget-content">
+                                            <a href="/tim-kiem-nang-cao/nha-dat-ban/{{$location_province_article_lease[1]['province_id']}}/-1/-1/-1/-1/-1/-1/-1/-1" class="widget-content">
                                                 <div class="image-wrapper">
                                                     <img src="wp-content/themes/homesweet/images/placeholder/l2.jpg"
                                                          data-src="wp-content/themes/homesweet/images/placeholder/l2.jpg"
                                                          alt="" class="unveil-image">
                                                 </div>
                                                 <div class="content-meta">
-                                                    <h3 class="title">{{$location_article_lease[1]['province']}}</h3>
+                                                    <h3 class="title">{{$location_province_article_lease[1]['province']}}</h3>
                                                     <div class="properties">
-                                                        {{$location_article_lease[1]['total']}} Dự án
+                                                        {{$location_province_article_lease[1]['total']}} Dự án
                                                     </div>
                                                 </div>
                                             </a>
@@ -504,7 +504,7 @@ global $location_article_lease;
                                                 <div class="vc_column-inner ">
                                                     <div class="wpb_wrapper">
                                                         <div class="widget widget-location-banner ">
-                                                            <a href="/tim-kiem-nang-cao/nha-dat-ban/{{$location_article_lease[2]['province_id']}}/-1/-1/-1/-1/-1/-1/-1/-1"
+                                                            <a href="/tim-kiem-nang-cao/nha-dat-ban/{{$location_province_article_lease[2]['province_id']}}/-1/-1/-1/-1/-1/-1/-1/-1"
                                                                class="widget-content">
                                                                 <div class="image-wrapper">
                                                                     <img src="wp-content/themes/homesweet/images/placeholder/l3.jpg"
@@ -512,9 +512,9 @@ global $location_article_lease;
                                                                          alt="" class="unveil-image">
                                                                 </div>
                                                                 <div class="content-meta">
-                                                                    <h3 class="title">{{$location_article_lease[2]['province']}}</h3>
+                                                                    <h3 class="title">{{$location_province_article_lease[2]['province']}}</h3>
                                                                     <div class="properties">
-                                                                        {{$location_article_lease[2]['total']}} Dự án
+                                                                        {{$location_province_article_lease[2]['total']}} Dự án
                                                                     </div>
                                                                 </div>
                                                             </a>
@@ -526,7 +526,7 @@ global $location_article_lease;
                                                 <div class="vc_column-inner ">
                                                     <div class="wpb_wrapper">
                                                         <div class="widget widget-location-banner ">
-                                                            <a href="/tim-kiem-nang-cao/nha-dat-ban/{{$location_article_lease[3]['province_id']}}/-1/-1/-1/-1/-1/-1/-1/-1"
+                                                            <a href="/tim-kiem-nang-cao/nha-dat-ban/{{$location_province_article_lease[3]['province_id']}}/-1/-1/-1/-1/-1/-1/-1/-1"
                                                                class="widget-content">
                                                                 <div class="image-wrapper">
                                                                     <img src="wp-content/themes/homesweet/images/placeholder/l4.jpg"
@@ -534,9 +534,9 @@ global $location_article_lease;
                                                                          alt="" class="unveil-image">
                                                                 </div>
                                                                 <div class="content-meta">
-                                                                    <h3 class="title">{{$location_article_lease[3]['province']}}</h3>
+                                                                    <h3 class="title">{{$location_province_article_lease[3]['province']}}</h3>
                                                                     <div class="properties">
-                                                                        {{$location_article_lease[3]['total']}} Dự án
+                                                                        {{$location_province_article_lease[3]['total']}} Dự án
                                                                     </div>
                                                                 </div>
                                                             </a>

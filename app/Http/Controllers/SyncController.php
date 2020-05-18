@@ -161,17 +161,44 @@ $all_tin_tuc_moi = ' . var_export($noibat, true) . ';
     public function articleLeaseProvince() {
         $articleForLease = ArticleForLeaseModel::select('province', 'province_id', DB::raw('count(*) as total'))
             ->where([['status', PUBLISHED_ARTICLE], ['aprroval', APPROVAL_ARTICLE_PUBLIC]])
+            ->where('province_id', '>', 0)
             ->groupBy('province', 'province_id')->orderBy('total', 'desc')
-            ->limit(4)->get()->toArray();
-        file_put_contents(resource_path().'/views/cache/location_article_lease.blade.php',
+            ->limit(20)->get()->toArray();
+        file_put_contents(resource_path().'/views/cache/location_province_article_lease.blade.php',
             '<?php 
 if ( !ENV(\'IN_PHPBB\') )
 {
     die(\'Hacking attempt\');
     exit;
 }
-global $location_article_lease;
-$location_article_lease = ' . var_export($articleForLease, true) . ';
+global $location_province_article_lease;
+$location_province_article_lease = ' . var_export($articleForLease, true) . ';
+?>');
+
+        $articleForLease = ArticleForLeaseModel::select('province_id', 'district', 'district_id', DB::raw('count(*) as total'))
+            ->where([['status', PUBLISHED_ARTICLE], ['aprroval', APPROVAL_ARTICLE_PUBLIC]])
+            ->where('district_id', '>', 0)
+            ->groupBy('province_id', 'district', 'district_id')->orderBy('total', 'desc')
+            ->get()->toArray();
+        $articleForLease_ = [];
+        foreach ($articleForLease as $item) {
+            $articleForLease_[$item['province_id']][] = [
+                'district' => $item['district'],
+                'district_id' => $item['district_id'],
+                'total' => $item['total'],
+            ];
+        }
+
+
+        file_put_contents(resource_path().'/views/cache/location_district_article_lease.blade.php',
+            '<?php 
+if ( !ENV(\'IN_PHPBB\') )
+{
+    die(\'Hacking attempt\');
+    exit;
+}
+global $location_district_article_lease;
+$location_district_article_lease = ' . var_export($articleForLease_, true) . ';
 ?>');
 
         return response(['Ok']);

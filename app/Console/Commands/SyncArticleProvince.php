@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Http\Controllers\SyncController;
 
-class DeleteTemp extends Command
+class SyncArticleProvince extends Command
 {
     /**
      * The name and signature of the console command.
