@@ -466,9 +466,13 @@ global $location_district_article_lease;
         </div>
     </div>
     <style>
-        .fade {
+        .page_views-wrapper .fade {
             opacity: 1;
         }
+        .active, .dot:hover {
+            background-color: white!important;
+        }
+
     </style>
     @include('v2.layouts.footer')
     </body>
