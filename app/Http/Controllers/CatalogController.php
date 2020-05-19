@@ -119,22 +119,26 @@ class CatalogController extends Controller
             $tags = ArticleTagModel::where('article_id', $article->id)->get();
             $articleRelate = [];
             $tagRelate = '';
-            if(count($tags)) {
-                foreach ($tags as $item) {
-                    $articleTags[] = $item->tag_id;
-                    $tagRelate = $tagRelate . ';' .$item->name;
-                }
-                $tagArticleExsits = ArticleTagModel::whereIn('tag_id', $articleTags)->where('article_id', '!=', $article->id)->limit(2)->get();
-                $arrArticleIds = [];
-                if($tagArticleExsits) {
-                    foreach ($tagArticleExsits as $item) {
-                        $arrArticleIds[] = $item->article_id;
-                    }
-                }
-                $articleRelate = Article::whereIn('id', $arrArticleIds)->where('status', PUBLISHED_ARTICLE)->get();
-            }
+//            if(count($tags)) {
+//                foreach ($tags as $item) {
+//                    $articleTags[] = $item->tag_id;
+//                    $tagRelate = $tagRelate . ';' .$item->name;
+//                }
+//                $tagArticleExsits = ArticleTagModel::whereIn('tag_id', $articleTags)->where('article_id', '!=', $article->id)->limit(2)->get();
+//                $arrArticleIds = [];
+//                if($tagArticleExsits) {
+//                    foreach ($tagArticleExsits as $item) {
+//                        $arrArticleIds[] = $item->article_id;
+//                    }
+//                }
+//                $articleRelate = Article::whereIn('id', $arrArticleIds)->where('status', PUBLISHED_ARTICLE)->get();
+//            }
+
+            $category = CategoryModel::where('id', $article->category_id)->first();
+            $articleRelate = Article::where('category_id', $article->category_id)->where('id', '!=', $article->id)->where('status', PUBLISHED_ARTICLE)->select('id', 'title', 'slug', 'image')->limit(5)->orderBy('id', 'desc')->get();
             $article->where('id', $article->id)->increment('views');
-            return view('detail.article_tin_tuc', compact('article', 'articleRelate', 'tagRelate'));
+
+            return view('v2.detail.article_tin_tuc', compact('article', 'articleRelate', 'tagRelate', 'category'));
         } else {
             $category = CategoryModel::where('slug', $prefix ?? $request->path())->first();
             if($category->slug == 'tin-tuc')
@@ -153,7 +157,7 @@ class CatalogController extends Controller
                 }
             }
             $article = ArticleModel::select('title', 'slug', 'short_content', 'image', 'status', 'featured', 'views', 'created_at', 'category_id')->where('status', PUBLISHED_ARTICLE)->whereIn('category_id', $arrCat)->orderBy('created_at', 'desc')->paginate(PAGING_LIST_ARTICLE_CATALOG);
-            return view('catalog.article_tin_tuc', compact('category', 'article'));
+            return view('v2.catalog.article_tin_tuc', compact('category', 'article'));
         }
 
     }
@@ -167,10 +171,10 @@ class CatalogController extends Controller
         $articleFeature->union($articleFeature2)->orderBy('created_at', 'desc');
         $articleFeature = $articleFeature->get();
         $slice = array_slice($articleFeature->toArray(), $paginate * ($page - 1), $paginate);
-        $article = new LengthAwarePaginator($slice, count($articleFeature), $paginate, null, ['path' => '/doanh-nghiep']);
+        $article = new LengthAwarePaginator($slice, count($articleFeature), $paginate, null, ['path' => '/du-an-noi-bat']);
         $titleArticle = 'Dự Án Nỗi Bật';
         $key = '';
-        return view('catalog.article_for_lease_cho_thue', compact('titleArticle', 'article', 'key'));
+        return view('v2.catalog.article_feature', compact('titleArticle', 'article', 'key'));
 
     }
 }

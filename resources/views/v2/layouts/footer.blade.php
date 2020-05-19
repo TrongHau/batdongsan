@@ -26,20 +26,18 @@
                             <div class="vc_empty_space" style="height: 40px"><span class="vc_empty_space_inner"></span>
                             </div>
                             <div class="vc_row wpb_row vc_inner vc_row-fluid">
-                                <div class="wpb_column vc_column_container vc_col-sm-12 vc_col-lg-4 vc_col-md-4">
+                                <div class="wpb_column vc_column_container vc_col-sm-12 vc_col-lg-5 vc_col-md-4">
                                     <div class="vc_column-inner ">
                                         <div class="wpb_wrapper">
                                             <div class="wpb_text_column wpb_content_element ">
                                                 <div class="wpb_wrapper">
-                                                    <div class="widget widget-address">
+                                                    <div class="widget widget-address" style="margin-bottom: 10px">
                                                         <a href="/">
                                                             <img src="/imgs/logo_footer.png" alt="BatDongSan.ooo" style="width: 160px; height: 77px;">
                                                         </a>
                                                         <br/>
                                                         <br/>
                                                         <p>Công ty TNHH RICHMOND LAND</p>
-                                                        <p>Copyright © 2020 Batdongsan.ooo
-                                                            Ghi rõ nguồn "Batdongsan.ooo" khi phát hành lại thông tin từ website này.</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -73,6 +71,7 @@
                                                             <div class="media-body media-middle">hotro@batdongsan.ooo
                                                             </div>
                                                         </div>
+                                                        <p>Copyright © 2020 Batdongsan.ooo Ghi rõ nguồn "Batdongsan.ooo" khi phát hành lại thông tin từ website này.</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -134,17 +133,17 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="wpb_column vc_column_container vc_col-sm-12 vc_col-lg-4 vc_col-md-4">
+                                <div class="wpb_column vc_column_container vc_col-sm-12 vc_col-lg-3 vc_col-md-4">
                                     <div class="vc_column-inner ">
                                         <div class="wpb_wrapper">
                                             <div class="apus_custom_menu wpb_content_element ">
                                                 <div class="widget widget_nav_menu">
                                                     <h2 class="widgettitle" style="font-size: 25px">LIÊN KẾT</h2>
                                                     <div style="display: inline-flex; ">
-                                                        <a style="margin-top: 5px;" id="facebook" target="_blank" rel="nofollow" href="https://www.facebook.com/sharer/sharer.php?u=http://batdongsan.localhost/mua-loai-bat-dong-san-khac-nguye-n-thie-n-thua-t/can-mua-can-ho-tecco-central-home-94m2-3pn-bds-180&amp;t=Cần mua căn hộ Tecco Central Home 94m2 3PN">
+                                                        <a style="margin-top: 5px;" id="facebook" target="_blank" rel="nofollow" href="https://www.facebook.com/sharer/sharer.php?u=http://batdongsan.ooo/">
                                                             <img style="height: 28px;" src="/imgs/btn-share-facebook.png"></a>
                                                         <div style="margin-top: 5px; margin-left: 8px" class="sharethis-inline-share-buttons"></div>
-                                                        <a href="https://twitter.com/share?url=http://batdongsan.localhost/mua-loai-bat-dong-san-khac-nguye-n-thie-n-thua-t/can-mua-can-ho-tecco-central-home-94m2-3pn-bds-180&amp;text=Bất%20Động%20Sản%20OOO&amp;hashtags=batdongsan" target="_blank">
+                                                        <a href="https://twitter.com/share?url=http://batdongsan.ooo&amp;text=Bất%20Động%20Sản%20OOO&amp;hashtags=batdongsan" target="_blank">
                                                             <img style="width: 28px; margin-top: 6px;" src="https://simplesharebuttons.com/images/somacro/twitter.png" alt="Twitter">
                                                         </a>
                                                         <div class="zalo-share-button" data-href="" data-oaid="579745863508352884" data-layout="4" data-color="white" data-customize="true"><a class="zalo-share-button" href="javascript:void(0)" title="Chia sẻ "></a><iframe frameborder="0" allowfullscreen="" scrolling="no" width="0px" height="0px" src="https://sp.zalo.me/plugins/share?dev=null&amp;color=white&amp;oaid=579745863508352884&amp;href=http%3A%2F%2Fbatdongsan.localhost%2Fmua-loai-bat-dong-san-khac-nguye-n-thie-n-thua-t%2Fcan-mua-can-ho-tecco-central-home-94m2-3pn-bds-180&amp;layout=4&amp;customize=true&amp;callback=null&amp;id=f74b001f-8ade-4829-ae86-8d55d0b7ae3e&amp;domain=batdongsan.localhost&amp;android=false&amp;ios=false" style="position: absolute;"></iframe></div>
