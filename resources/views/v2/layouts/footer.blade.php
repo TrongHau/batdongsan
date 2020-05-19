@@ -33,13 +33,16 @@
                                                 <div class="wpb_wrapper">
                                                     <div class="widget widget-address">
                                                         <a href="/">
-                                                            <img src="/imgs/logo@3x.png" alt="BatDongSan.ooo" style="width: 160px; height: 77px;">
+                                                            <img src="/imgs/logo_footer.png" alt="BatDongSan.ooo" style="width: 160px; height: 77px;">
                                                         </a>
+                                                        <br/>
+                                                        <br/>
+                                                        <p>Công ty TNHH RICHMOND LAND</p>
+                                                        <p>Copyright © 2020 Batdongsan.ooo
+                                                            Ghi rõ nguồn "Batdongsan.ooo" khi phát hành lại thông tin từ website này.</p>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="vc_empty_space" style="height: 8px"><span
-                                                        class="vc_empty_space_inner"></span></div>
                                             <div class="wpb_text_column wpb_content_element ">
                                                 <div class="wpb_wrapper">
                                                     <div class="information-footer">
@@ -81,43 +84,36 @@
                                 <div class="wpb_column vc_column_container vc_col-sm-6 vc_col-lg-2 vc_col-md-2">
                                     <div class="vc_column-inner ">
                                         <div class="wpb_wrapper">
-                                            <div class="vc_empty_space  hidden-sm hidden-xs" style="height: 37px"><span
-                                                        class="vc_empty_space_inner"></span></div>
-                                            <div class="vc_empty_space  hidden-sm hidden-xs" style="height: 30px"><span
-                                                        class="vc_empty_space_inner"></span></div>
                                             <div class="apus_custom_menu wpb_content_element ">
                                                 <div class="widget widget_nav_menu">
-                                                    <div class="menu-sub-link-container">
-                                                        <ul id="menu-sub-link" class="menu">
-                                                            <li id="menu-item-2507"
-                                                                class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2507">
-                                                                <a href="#">Hướng dẫn</a></li>
-                                                            <li id="menu-item-2508"
-                                                                class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2508">
-                                                                <a href="/bao-gia-ho-tro" rel="nofollow">Báo giá &amp; hỗ trợ</a></li>
-                                                            <li id="menu-item-2510"
-                                                                class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2510">
-                                                                <a href="/nhung-cau-hoi-thuong-gap" rel="nofollow">Những câu hỏi thường gặp</a></li>
-                                                            <li id="menu-item-2511"
-                                                                class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2511">
-                                                                <a href="/lien-he" rel="nofollow">Liên hệ</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                                    <h2 class="widgettitle" style="font-size: 25px">HƯỚNG DẪN</h2>
+                                                    <div class="menu-quick-link-container">
+                                            <ul id="menu-quick-link" class="menu">
+                                                <li id="menu-item-2507"
+                                                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2507">
+                                                    <a href="ho-tro">Hỗ trợ</a></li><li id="menu-item-2507"
+                                                                                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2507">
+                                                    <a href="#">Hướng dẫn</a></li>
+                                                <li id="menu-item-2508"
+                                                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2508">
+                                                    <a href="/bao-gia-ho-tro" rel="nofollow">Báo giá &amp; hỗ trợ</a></li>
+                                                <li id="menu-item-2510"
+                                                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2510">
+                                                    <a href="/nhung-cau-hoi-thuong-gap" rel="nofollow">Những câu hỏi thường gặp</a></li>
+                                                <li id="menu-item-2511"
+                                                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2511">
+                                                    <a href="/lien-he" rel="nofollow">Liên hệ</a></li>
+                                            </ul></div></div></div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="wpb_column vc_column_container vc_col-sm-6 vc_col-lg-2 vc_col-md-2">
                                     <div class="vc_column-inner ">
                                         <div class="wpb_wrapper">
-                                            <div class="vc_empty_space  hidden-sm hidden-xs" style="height: 37px"><span
-                                                        class="vc_empty_space_inner"></span></div>
-                                            <div class="vc_empty_space  hidden-sm hidden-xs" style="height: 30px"><span
-                                                        class="vc_empty_space_inner"></span></div>
                                             <div class="apus_custom_menu wpb_content_element ">
                                                 <div class="widget widget_nav_menu">
-                                                    <div class="menu-sub-link-container">
+                                                    <h2 class="widgettitle" style="font-size: 25px">QUY ĐỊNH</h2>
+                                                    <div class="menu-quick-link-container">
                                                         <ul id="menu-sub-link" class="menu">
                                                             <li id="menu-item-2507"
                                                                 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2507">
@@ -134,31 +130,27 @@
                                                             <li id="menu-item-2511"
                                                                 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2511">
                                                                 <a href="#">Giải quyết khiếu nại</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                                        </ul></div></div></div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="wpb_column vc_column_container vc_col-sm-12 vc_col-lg-4 vc_col-md-4">
                                     <div class="vc_column-inner ">
                                         <div class="wpb_wrapper">
-                                            <div id="widget-propertiesFvuQp"
-                                                 class="widget widget-properties  layout-list-small">
-                                                <div class="clearfix">
-                                                    <h3 class="widget-title">
-                                                        <span>BỘ CÔNG THƯƠNG</span>
-                                                    </h3>
-                                                </div>
-                                                <div class="widget-content">
-                                                    <div class="properties-list-small">
-                                                        <div class="item">
-                                                            <div class="property-box property-box-list-small clearfix" data-markerid="marker-3076">
-
-                                                            </div>
-                                                        </div>
+                                            <div class="apus_custom_menu wpb_content_element ">
+                                                <div class="widget widget_nav_menu">
+                                                    <h2 class="widgettitle" style="font-size: 25px">LIÊN KẾT</h2>
+                                                    <div style="display: inline-flex; ">
+                                                        <a style="margin-top: 5px;" id="facebook" target="_blank" rel="nofollow" href="https://www.facebook.com/sharer/sharer.php?u=http://batdongsan.localhost/mua-loai-bat-dong-san-khac-nguye-n-thie-n-thua-t/can-mua-can-ho-tecco-central-home-94m2-3pn-bds-180&amp;t=Cần mua căn hộ Tecco Central Home 94m2 3PN">
+                                                            <img style="height: 28px;" src="/imgs/btn-share-facebook.png"></a>
+                                                        <div style="margin-top: 5px; margin-left: 8px" class="sharethis-inline-share-buttons"></div>
+                                                        <a href="https://twitter.com/share?url=http://batdongsan.localhost/mua-loai-bat-dong-san-khac-nguye-n-thie-n-thua-t/can-mua-can-ho-tecco-central-home-94m2-3pn-bds-180&amp;text=Bất%20Động%20Sản%20OOO&amp;hashtags=batdongsan" target="_blank">
+                                                            <img style="width: 28px; margin-top: 6px;" src="https://simplesharebuttons.com/images/somacro/twitter.png" alt="Twitter">
+                                                        </a>
+                                                        <div class="zalo-share-button" data-href="" data-oaid="579745863508352884" data-layout="4" data-color="white" data-customize="true"><a class="zalo-share-button" href="javascript:void(0)" title="Chia sẻ "></a><iframe frameborder="0" allowfullscreen="" scrolling="no" width="0px" height="0px" src="https://sp.zalo.me/plugins/share?dev=null&amp;color=white&amp;oaid=579745863508352884&amp;href=http%3A%2F%2Fbatdongsan.localhost%2Fmua-loai-bat-dong-san-khac-nguye-n-thie-n-thua-t%2Fcan-mua-can-ho-tecco-central-home-94m2-3pn-bds-180&amp;layout=4&amp;customize=true&amp;callback=null&amp;id=f74b001f-8ade-4829-ae86-8d55d0b7ae3e&amp;domain=batdongsan.localhost&amp;android=false&amp;ios=false" style="position: absolute;"></iframe></div>
                                                     </div>
+                                                    <br/>
+                                                    <h2 class="widgettitle" style="font-size: 25px; margin-top: 15px;">CHỨNG NHẬN</h2>
                                                 </div>
                                             </div>
                                         </div>

@@ -139,24 +139,7 @@ use App\Library\Helpers;
                 </ul>
                 <ul id="main-mobile-menu" class="nav navbar-nav">
                     <li id="menu-item-2490" class="has-submenu active menu-item-2490">
-                        <a href="{{env("APP_URL")}}/loi-khuyen">Lời khuyên</a> <span class="icon-toggle"><i class="fa fa-plus"></i></span>
-                        <ul class="sub-menu">
-                            <li class="menu-item-2797">
-                                <a href="{{env("APP_URL")}}/loi-khuyen-cho-nguoi-mua">Lời khuyên cho người mua</a>
-                            </li>
-                            <li class="menu-item-2797">
-                                <a href="{{env("APP_URL")}}/loi-khuyen-cho-nguoi-ban">Lời khuyên cho người bán</a>
-                            </li>
-                            <li class="menu-item-2797">
-                                <a href="{{env("APP_URL")}}/loi-khuyen-cho-nha-dau-tu">Lời khuyên cho nhà đầu tư</a>
-                            </li>
-                            <li class="menu-item-2797">
-                                <a href="{{env("APP_URL")}}/loi-khuyen-cho-nguoi-thue">Lời khuyên cho người thuê</a>
-                            </li>
-                            <li class="menu-item-2797">
-                                <a href="{{env("APP_URL")}}/loi-khuyen-cho-nguoi-cho-thue">Lời khuyên cho người cho thuê</a>
-                            </li>
-                        </ul>
+                        <a href="{{env("APP_URL")}}/du-an">Dự Án</a>
                     </li>
                 </ul>
                 <ul id="main-mobile-menu" class="nav navbar-nav">
@@ -174,14 +157,10 @@ use App\Library\Helpers;
                 </ul>
                 <ul id="main-mobile-menu" class="nav navbar-nav">
                     <li id="menu-item-2490" class="has-submenu active menu-item-2490">
-                        <a href="{{env("APP_URL")}}/du-an">Dự Án</a>
+                        <a href="{{env("APP_URL")}}/doanh-nghiep">Doanh Nghiệp</a>
                     </li>
                 </ul>
-                <ul id="main-mobile-menu" class="nav navbar-nav">
-                    <li id="menu-item-2490" class="has-submenu active menu-item-2490">
-                        <a href="{{env("APP_URL")}}/ho-tro">Hỗ trợ</a>
-                    </li>
-                </ul>
+
             </div>
         </nav>
     </div>
@@ -320,7 +299,7 @@ use App\Library\Helpers;
                                         </li>
 
                                         <li class="dropdown menu-item-2809 aligned-left">
-                                            <a href="{{env("APP_URL")}}/nha-dat-cho-thue"class="dropdown-toggle" data-hover="dropdown"data-toggle="dropdown">Đất cho thuê<b class="caret"></b></a>
+                                            <a href="{{env("APP_URL")}}/nha-dat-cho-thue"class="dropdown-toggle" data-hover="dropdown"data-toggle="dropdown">Nhà Đất cho thuê<b class="caret"></b></a>
                                             <ul class="dropdown-menu">
                                                 <li class="menu-item-2934 aligned-">
                                                     <a href="{{env("APP_URL")}}/cho-thue-can-ho-chung-cu">Cho thuê căn hộ chung cư</a>
@@ -350,7 +329,7 @@ use App\Library\Helpers;
                                         </li>
 
                                         <li class="dropdown menu-item-2809 aligned-left">
-                                            <a href="{{env("APP_URL")}}/nha-dat-can-mua"class="dropdown-toggle" data-hover="dropdown"data-toggle="dropdown">Đất cần mua<b class="caret"></b></a>
+                                            <a href="{{env("APP_URL")}}/nha-dat-can-mua"class="dropdown-toggle" data-hover="dropdown"data-toggle="dropdown">Nhà Đất cần mua<b class="caret"></b></a>
                                             <ul class="dropdown-menu">
                                                 <li class="menu-item-2934 aligned-">
                                                     <a href="{{env("APP_URL")}}/mua-nha-rieng">Mua nhà riêng</a>
@@ -379,7 +358,7 @@ use App\Library\Helpers;
                                             </ul>
                                         </li>
                                         <li class="dropdown menu-item-2809 aligned-left">
-                                            <a href="{{env("APP_URL")}}/nha-dat-can-thue"class="dropdown-toggle" data-hover="dropdown"data-toggle="dropdown">Đất cần thuê<b class="caret"></b></a>
+                                            <a href="{{env("APP_URL")}}/nha-dat-can-thue"class="dropdown-toggle" data-hover="dropdown"data-toggle="dropdown">Nhà Đất cần thuê<b class="caret"></b></a>
                                             <ul class="dropdown-menu">
                                                 <li class="menu-item-2934 aligned-">
                                                     <a href="{{env("APP_URL")}}/can-thue-can-ho-chung-cu">Cần thuê căn hộ chung cư</a>
@@ -407,27 +386,8 @@ use App\Library\Helpers;
                                                 </li>
                                             </ul>
                                         </li>
-
                                         <li class="dropdown menu-item-2809 aligned-left">
-                                            <a href="{{env("APP_URL")}}/loi-khuyen"class="dropdown-toggle" data-hover="dropdown"data-toggle="dropdown">Lời khuyên<b class="caret"></b></a>
-                                            <ul class="dropdown-menu">
-                                                <li class="menu-item-2934 aligned-">
-                                                    <a href="{{env("APP_URL")}}/loi-khuyen-cho-nguoi-mua">Lời khuyên cho người mua</a>
-                                                </li>
-                                                <li class="menu-item-2934 aligned-">
-                                                    <a href="{{env("APP_URL")}}/loi-khuyen-cho-nguoi-ban">Lời khuyên cho người bán</a>
-                                                </li>
-                                                <li class="menu-item-2934 aligned-">
-                                                    <a href="{{env("APP_URL")}}/loi-khuyen-cho-nha-dau-tu">Lời khuyên cho nhà đầu tư</a>
-                                                </li>
-                                                <li class="menu-item-2934 aligned-">
-                                                    <a href="{{env("APP_URL")}}/loi-khuyen-cho-nguoi-thue">Lời khuyên cho người thuê</a>
-                                                </li>
-                                                <li class="menu-item-2934 aligned-">
-                                                    <a href="{{env("APP_URL")}}/loi-khuyen-cho-nguoi-cho-thue">Lời khuyên cho người cho thuê</a>
-                                                </li>
-
-                                            </ul>
+                                            <a href="{{env("APP_URL")}}/du-an"class="dropdown-toggle" data-hover="dropdown"data-toggle="dropdown">Dự Án</a>
                                         </li>
                                         <li class="dropdown menu-item-2809 aligned-left">
                                             <a href="javascript:void(0)"class="dropdown-toggle" data-hover="dropdown"data-toggle="dropdown">Nhà môi giới<b class="caret"></b></a>
@@ -441,10 +401,7 @@ use App\Library\Helpers;
                                             </ul>
                                         </li>
                                         <li class="dropdown menu-item-2809 aligned-left">
-                                            <a href="{{env("APP_URL")}}/du-an"class="dropdown-toggle" data-hover="dropdown"data-toggle="dropdown">Dự Án</a>
-                                        </li>
-                                        <li class="dropdown menu-item-2809 aligned-left">
-                                            <a href="{{env("APP_URL")}}/ho-tro"class="dropdown-toggle" data-hover="dropdown"data-toggle="dropdown">Hỗ trợ</a>
+                                            <a href="{{env("APP_URL")}}/doanh-nghiep"class="dropdown-toggle" data-hover="dropdown"data-toggle="dropdown">Doanh Nghiệp</a>
                                         </li>
                                     </ul>
                                 </div>

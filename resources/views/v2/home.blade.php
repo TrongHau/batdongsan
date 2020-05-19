@@ -168,7 +168,7 @@ global $location_province_article_lease;
                                                                         </select>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-sm-3 hidden">
+                                                                <div class="col-sm-3">
                                                                     <div class="form-group group-select">
                                                                         <select class="form-control select-street">
                                                                             <option value="-1" class="advance-options">-- Chọn Đường/Phố --</option>
@@ -247,19 +247,6 @@ global $location_province_article_lease;
                                                                         </select>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-sm-3">
-                                                                    <div class="form-group group-select">
-                                                                        <select id="search-advance-toilet" class="form-control">
-                                                                            <option value="-1" class="advance-options">-- Chọn số toilet --</option>
-                                                                            <option value="0" class="advance-options">Không xác định </option>
-                                                                            <option value="1" class="advance-options">1+</option>
-                                                                            <option value="2" class="advance-options">2+</option>
-                                                                            <option value="3" class="advance-options">3+</option>
-                                                                            <option value="4" class="advance-options">4+</option>
-                                                                            <option value="5" class="advance-options">5+</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
 
                                                                 <div class="col-sm-3 hidden">
                                                                     <div class="form-group group-select">
@@ -279,7 +266,7 @@ global $location_province_article_lease;
                                                                 </div>
                                                                 <div class="col-sm-3">
                                                                     <div class="visiable-line pull-right">
-                                                                        <button onclick="searchAdvance()" class="button btn btn-purple btn-search">Tìm Kiếm</button>
+                                                                        <button onclick="searchAdvance()" class="button btn btn-purple btn-search"><i class="fa fa-search"></i> Tìm Kiếm</button>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -309,8 +296,6 @@ global $location_province_article_lease;
                                         <div id="widget-propertiesKPBhx"
                                              class="widget widget-properties  layout-mansory">
                                             <div class="clearfix">
-                                                <h3 class="widget-title">
-                                                    <span>TIN RAO </span> CHO BẠN </h3>
                                                 {{--<div class="contract-filter">--}}
                                                     {{--<ul class="isotope-filter"--}}
                                                         {{--data-related-grid="isotope-items-KPBhx">--}}
@@ -320,6 +305,12 @@ global $location_province_article_lease;
                                                     {{--</ul>--}}
                                                 {{--</div>--}}
                                             </div>
+
+                                            <div class="widget-text-heading default">
+                                                <h3 class="title"><span>TIN RAO</span> CHO BẠN <div class="pull-right"><a class="link-text-heading" href="/nha-dat-ban">Nhà Đất Bán</a> <span class="link-text-heading">/</span> <a class="link-text-heading" href="/nha-dat-cho-thue"> Nhà Đất Cho Thuê</a></div></h3>
+                                            </div>
+
+
                                             <div class="widget-content">
                                                 <div class="properties-grid">
                                                     <div id="isotope-items-KPBhx" class="isotope-items row" data-isotope-duration="400">
@@ -485,16 +476,16 @@ global $location_province_article_lease;
                                 <div class="vc_column-inner ">
                                     <div class="wpb_wrapper">
                                         <div class="widget widget-location-banner ">
-                                            <a href="/tim-kiem-nang-cao/nha-dat-ban/{{$location_province_article_lease[1]['province_id']}}/-1/-1/-1/-1/-1/-1/-1/-1" class="widget-content">
+                                            <a href="/tim-kiem-nang-cao/nha-dat-ban/{{$location_province_article_lease[2]['province_id']}}/-1/-1/-1/-1/-1/-1/-1/-1" class="widget-content">
                                                 <div class="image-wrapper">
                                                     <img src="wp-content/themes/homesweet/images/placeholder/l2.jpg"
                                                          data-src="wp-content/themes/homesweet/images/placeholder/l2.jpg"
                                                          alt="" class="unveil-image">
                                                 </div>
                                                 <div class="content-meta">
-                                                    <h3 class="title">{{$location_province_article_lease[1]['province']}}</h3>
+                                                    <h3 class="title">{{$location_province_article_lease[2]['province']}}</h3>
                                                     <div class="properties">
-                                                        {{$location_province_article_lease[1]['total']}} Dự án
+                                                        {{$location_province_article_lease[2]['total']}} Dự án
                                                     </div>
                                                 </div>
                                             </a>
@@ -504,7 +495,7 @@ global $location_province_article_lease;
                                                 <div class="vc_column-inner ">
                                                     <div class="wpb_wrapper">
                                                         <div class="widget widget-location-banner ">
-                                                            <a href="/tim-kiem-nang-cao/nha-dat-ban/{{$location_province_article_lease[2]['province_id']}}/-1/-1/-1/-1/-1/-1/-1/-1"
+                                                            <a href="/tim-kiem-nang-cao/nha-dat-ban/{{$location_province_article_lease[1]['province_id']}}/-1/-1/-1/-1/-1/-1/-1/-1"
                                                                class="widget-content">
                                                                 <div class="image-wrapper">
                                                                     <img src="wp-content/themes/homesweet/images/placeholder/l3.jpg"
@@ -512,9 +503,9 @@ global $location_province_article_lease;
                                                                          alt="" class="unveil-image">
                                                                 </div>
                                                                 <div class="content-meta">
-                                                                    <h3 class="title">{{$location_province_article_lease[2]['province']}}</h3>
+                                                                    <h3 class="title">{{$location_province_article_lease[1]['province']}}</h3>
                                                                     <div class="properties">
-                                                                        {{$location_province_article_lease[2]['total']}} Dự án
+                                                                        {{$location_province_article_lease[1]['total']}} Dự án
                                                                     </div>
                                                                 </div>
                                                             </a>
@@ -565,7 +556,7 @@ global $location_province_article_lease;
                                 <div class="vc_column-inner ">
                                     <div class="wpb_wrapper">
                                         <div class="widget-text-heading default">
-                                            <h3 class="title"><span>DỰ ÁN</span> NỖI BẬT<div class="pull-right"><a href="/du-an-noi-bat" style="color: #4c58a4;font-size: 13px;font-weight: 400;font-family: open sans,Helvetica,Arial,sans-serif;">Xem thêm</a></div></h3>
+                                            <h3 class="title"><span>DỰ ÁN</span> NỖI BẬT<div class="pull-right"><a href="/du-an-noi-bat" class="link-text-heading">Xem thêm</a></div></h3>
                                         </div>
                                         <div class="vc_empty_space" style="height: 20px"><span class="vc_empty_space_inner"></span></div>
                                         <div class="widget widget-agents carousel">
@@ -629,7 +620,7 @@ global $location_province_article_lease;
                                         <div class="vc_empty_space  hidden-sm hidden-xs" style="height: 30px"><span class="vc_empty_space_inner"></span></div>
                                         <div class="vc_empty_space" style="height: 30px"><span class="vc_empty_space_inner"></span></div>
                                         <div class="widget-text-heading  default">
-                                            <h3 class="title"> <span>DOANH NGHIỆP</span><div class="pull-right"><a href="/doanh-nghiep" style="color: #4c58a4;font-size: 13px;font-weight: 400;font-family: open sans,Helvetica,Arial,sans-serif;">Xem thêm</a></div></h3>
+                                            <h3 class="title"> <span>DOANH NGHIỆP</span><div class="pull-right"><a href="/doanh-nghiep" class="link-text-heading">Xem thêm</a></div></h3>
 
                                         </div>
                                         <div class="vc_empty_space" style="height: 15px"><span

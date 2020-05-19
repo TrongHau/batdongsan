@@ -27,7 +27,7 @@
     font-size: 28px;
 }
 .title_home_ellipsis {
-    height: 46px;
+    height: 64px;
     overflow: hidden;
 }
 .title_home_ellipsis_feature {
@@ -133,4 +133,20 @@
 
 .verifyPopup .verifyPopupContent div {
     color: #f60
+}
+.home1 .row {
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.home1 .btn {
+    min-width: 100%!important;
+}
+.home1 .group-select>select {
+    width: 100%;
+    -webkit-appearance: none;
+}
+
+.widget-text-heading .link-text-heading{
+    color: #4c58a4;font-size: 13px;font-weight: 400;font-family: open sans,Helvetica,Arial,sans-serif;
 }
