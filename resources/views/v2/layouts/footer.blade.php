@@ -51,7 +51,7 @@
                                                                                 class="hidden">hidden</span></i></div>
                                                             </div>
                                                             <div class="media-body media-middle">
-                                                                197/42/15 Đường TL15, Thạnh Lộc, Quận 12, HCM
+                                                                154 Phạm Văn Chiêu, Phường 9, Quận Gò Vấp, Tp.Hồ Chí Minh
                                                             </div>
                                                         </div>
                                                         <div class="media">
@@ -71,7 +71,6 @@
                                                             <div class="media-body media-middle">hotro@batdongsan.ooo
                                                             </div>
                                                         </div>
-                                                        <p>Copyright © 2020 Batdongsan.ooo Ghi rõ nguồn "Batdongsan.ooo" khi phát hành lại thông tin từ website này.</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -159,6 +158,20 @@
                             <div class="vc_empty_space  hidden-sm hidden-xs" style="height: 30px"><span
                                         class="vc_empty_space_inner"></span></div>
                             <div class="vc_empty_space" style="height: 30px"><span class="vc_empty_space_inner"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="vc_row-full-width vc_clearfix"></div>
+            <div data-vc-full-width="true" data-vc-full-width-init="true"
+                 class="vc_row wpb_row vc_row-fluid vc_custom_1502157337810 vc_row-has-fill"
+                 style="position: relative; left: -174.6px; box-sizing: border-box; width: 1519px; padding-left: 174.6px; padding-right: 174.4px;">
+                <div class="wpb_column vc_column_container vc_col-sm-12">
+                    <div class="vc_column-inner ">
+                        <div class="wpb_wrapper">
+                            <div style="font-size: 13px;color: #56ccf2;text-align: left"
+                                 class="vc_custom_heading small-text-center">Copyright © 2020 Batdongsan.ooo Ghi rõ nguồn "Batdongsan.ooo" khi phát hành lại thông tin từ website này.
                             </div>
                         </div>
                     </div>

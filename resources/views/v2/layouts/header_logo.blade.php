@@ -396,7 +396,7 @@ use App\Library\Helpers;
                                                     <a href="{{env("APP_URL")}}/cong-ty-moi-gioi">Công ty môi giới</a>
                                                 </li>
                                                 <li class="menu-item-2934 aligned-">
-                                                    <a href="{{env("APP_URL")}}/lca-nhan-moi-gioi">Cá nhân môi giới</a>
+                                                    <a href="{{env("APP_URL")}}/ca-nhan-moi-gioi">Cá nhân môi giới</a>
                                                 </li>
                                             </ul>
                                         </li>
