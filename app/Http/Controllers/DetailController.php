@@ -65,6 +65,6 @@ class DetailController extends Controller
         $page = Page::where('slug', $request->path())->first();
         if(!$page)
             return view('errors.404');
-        return view('detail.page', compact('page'));
+        return view('v2.detail.page', compact('page'));
     }
 }
