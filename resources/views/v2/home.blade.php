@@ -349,9 +349,8 @@ global $location_province_article_lease;
                                                                          data-markerid="marker-3076">
                                                                         <div class="property-map-content-wrapper hidden">
                                                                             <div class="property-map-content">
-                                                                                <div class="infobox"><a
-                                                                                            class="infobox-image"
-                                                                                            href="/{{$link_url}}"><img src="{{$img_}}"alt="{{$item['title']}}"/>
+                                                                                <div class="infobox">
+                                                                                    <a class="infobox-image" href="/{{$link_url}}"><img src="{{$img_}}" alt="{{$item['title']}}"/>
                                                                                         <div class="infobox-content-price">$
                                                                                             {{$price}}
                                                                                         </div>
@@ -386,7 +385,7 @@ global $location_province_article_lease;
                                                                         <div class="property-box-image ">
                                                                             <a href="/{{$link_url}}"
                                                                                class="property-box-image-inner">
-                                                                                <div class="image-wrapper">
+                                                                                <div>
                                                                                     <img src="{{$img_}}" data-src="{{$img_}}" style="{{$Agent->isMobile() ? '' : 'width: 262px; height: 175px'}}" alt="{{$item['title']}}"/>
                                                                                 </div>
                                                                             </a>
@@ -462,7 +461,7 @@ global $location_province_article_lease;
                                         <div class="wpb_wrapper">
                                             <div class="widget widget-location-banner ">
                                                 <a href="/tim-kiem-nang-cao/nha-dat-ban/{{$location_province_article_lease[0]['province_id']}}/-1/-1/-1/-1/-1/-1/-1/-1" class="widget-content">
-                                                    <div class="image-wrapper">
+                                                    <div>
                                                         <img src="wp-content/themes/homesweet/images/placeholder/l1-1.jpg"
                                                              data-src="wp-content/themes/homesweet/images/placeholder/l1-1.jpg"
                                                              alt="" class="unveil-image">
@@ -483,7 +482,7 @@ global $location_province_article_lease;
                                         <div class="wpb_wrapper">
                                             <div class="widget widget-location-banner ">
                                                 <a href="/tim-kiem-nang-cao/nha-dat-ban/{{$location_province_article_lease[2]['province_id']}}/-1/-1/-1/-1/-1/-1/-1/-1" class="widget-content">
-                                                    <div class="image-wrapper">
+                                                    <div>
                                                         <img src="wp-content/themes/homesweet/images/placeholder/l2.jpg"
                                                              data-src="wp-content/themes/homesweet/images/placeholder/l2.jpg"
                                                              alt="" class="unveil-image">
@@ -503,7 +502,7 @@ global $location_province_article_lease;
                                                             <div class="widget widget-location-banner ">
                                                                 <a href="/tim-kiem-nang-cao/nha-dat-ban/{{$location_province_article_lease[1]['province_id']}}/-1/-1/-1/-1/-1/-1/-1/-1"
                                                                    class="widget-content">
-                                                                    <div class="image-wrapper">
+                                                                    <div>
                                                                         <img src="wp-content/themes/homesweet/images/placeholder/l3.jpg"
                                                                              data-src="wp-content/themes/homesweet/images/placeholder/l3.jpg"
                                                                              alt="" class="unveil-image">
@@ -525,7 +524,7 @@ global $location_province_article_lease;
                                                             <div class="widget widget-location-banner ">
                                                                 <a href="/tim-kiem-nang-cao/nha-dat-ban/{{$location_province_article_lease[3]['province_id']}}/-1/-1/-1/-1/-1/-1/-1/-1"
                                                                    class="widget-content">
-                                                                    <div class="image-wrapper">
+                                                                    <div>
                                                                         <img src="wp-content/themes/homesweet/images/placeholder/l4.jpg"
                                                                              data-src="/wp-content/themes/homesweet/images/placeholder/l4.jpg"
                                                                              alt="" class="unveil-image">

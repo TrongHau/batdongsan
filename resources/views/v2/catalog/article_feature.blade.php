@@ -127,7 +127,7 @@ $Agent = new Agent();
                                                                         <div class="property-box-image ">
                                                                             <a href="/{{$link_url}}"
                                                                                class="property-box-image-inner">
-                                                                                <div class="image-wrapper">
+                                                                                <div>
                                                                                     <img src="{{$img_}}" style="{{$Agent->isMobile() ? '' : 'width: 262px; height: 175px'}}" data-src="{{$img_}}" width="480" height="310" alt="{{$item['title']}}" class="attachment-homesweet-standard-size unveil-image"/>
                                                                                 </div>
                                                                             </a>
