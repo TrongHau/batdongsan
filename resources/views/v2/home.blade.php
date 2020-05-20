@@ -531,10 +531,10 @@ global $location_province_article_lease;
                                                             <div class="widget widget-location-banner ">
                                                                 <a href="/tim-kiem-nang-cao/nha-dat-ban/{{$location_province_article_lease[3]['province_id']}}/-1/-1/-1/-1/-1/-1/-1/-1"
                                                                    class="widget-content">
-                                                                    <div class="image-wrapper">
+                                                                    <div class="">
                                                                         <img src="wp-content/themes/homesweet/images/placeholder/l4.jpg"
                                                                              data-src="/wp-content/themes/homesweet/images/placeholder/l4.jpg"
-                                                                             alt="" class="unveil-image">
+                                                                             alt="" class="">
                                                                     </div>
                                                                     <div class="content-meta">
                                                                         <h3 class="title">{{$location_province_article_lease[3]['province']}}</h3>
