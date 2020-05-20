@@ -351,7 +351,7 @@ global $location_province_article_lease;
                                                                             <div class="property-map-content">
                                                                                 <div class="infobox"><a
                                                                                             class="infobox-image"
-                                                                                            href="/{{$link_url}}"><img src="{{$img_}}" class="" alt="{{$item['title']}}"/>
+                                                                                            href="/{{$link_url}}"><img src="{{$img_}}"alt="{{$item['title']}}"/>
                                                                                         <div class="infobox-content-price">$
                                                                                             {{$price}}
                                                                                         </div>
@@ -387,7 +387,7 @@ global $location_province_article_lease;
                                                                             <a href="/{{$link_url}}"
                                                                                class="property-box-image-inner">
                                                                                 <div class="image-wrapper">
-                                                                                    <img src="{{$img_}}" data-src="{{$img_}}" style="{{$Agent->isMobile() ? '' : 'width: 262px; height: 175px'}}" width="480" height="310" alt="{{$item['title']}}" class="attachment-homesweet-standard-size unveil-image"/>
+                                                                                    <img src="{{$img_}}" data-src="{{$img_}}" style="{{$Agent->isMobile() ? '' : 'width: 262px; height: 175px'}}" alt="{{$item['title']}}"/>
                                                                                 </div>
                                                                             </a>
                                                                         </div>
@@ -589,12 +589,7 @@ global $location_province_article_lease;
                                                                         <div class="agent-top">
                                                                             <div class="agent-thumbnail">
                                                                                 <a href="{{$link_url}}">
-                                                                                    <img style="width: 263px ;height: 175px;" width="263" height="260"
-                                                                                         src="{{$img_}}"
-                                                                                         class="attachment-full size-full wp-post-image"
-                                                                                         alt=""
-                                                                                         srcset="{{$img_}} 263w, {{$img_}} 42w"
-                                                                                         sizes="(max-width: 263px) 100vw, 263px"/>
+                                                                                    <img style="width: 263px ;height: 175px;" src="{{$img_}}"/>
                                                                                 </a>
                                                                             </div>
                                                                         </div>
