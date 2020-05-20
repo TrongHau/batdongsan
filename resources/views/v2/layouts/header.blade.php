@@ -126,6 +126,13 @@
     </noscript>
     <script src="/js/jquery-1.11.1.js"></script>
     <link rel="stylesheet" type="text/css" href="/css/custom_v2.css">
+    <style>
+        .vc_custom_1502157337810 {
+            padding-top: 20px !important;
+            padding-bottom: 20px !important;
+            background-color: #13293d !important;
+        }
+    </style>
     <script>
         var csrfToken = "{{csrf_token()}}";
         var loaded = false;
