@@ -79,12 +79,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="wpb_column vc_column_container vc_col-sm-6 vc_col-lg-2 vc_col-md-2">
+                                <div class="wpb_column vc_column_container vc_col-sm-6 vc_col-lg-3 vc_col-md-2">
                                     <div class="vc_column-inner ">
                                         <div class="wpb_wrapper">
                                             <div class="apus_custom_menu wpb_content_element ">
                                                 <div class="widget widget_nav_menu">
-                                                    <h2 class="widgettitle" style="font-size: 25px">HƯỚNG DẪN</h2>
+                                                    <h2 class="widgettitle" style="font-size: 20px">HƯỚNG DẪN</h2>
                                                     <div class="menu-quick-link-container">
                                             <ul id="menu-quick-link" class="menu">
                                                 <li id="menu-item-2507"
@@ -110,7 +110,7 @@
                                         <div class="wpb_wrapper">
                                             <div class="apus_custom_menu wpb_content_element ">
                                                 <div class="widget widget_nav_menu">
-                                                    <h2 class="widgettitle" style="font-size: 25px">QUY ĐỊNH</h2>
+                                                    <h2 class="widgettitle" style="font-size: 20px">QUY ĐỊNH</h2>
                                                     <div class="menu-quick-link-container">
                                                         <ul id="menu-sub-link" class="menu">
                                                             <li id="menu-item-2507"
@@ -132,12 +132,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="wpb_column vc_column_container vc_col-sm-12 vc_col-lg-3 vc_col-md-4">
+                                <div class="wpb_column vc_column_container vc_col-sm-12 vc_col-lg-2 vc_col-md-4">
                                     <div class="vc_column-inner ">
                                         <div class="wpb_wrapper">
                                             <div class="apus_custom_menu wpb_content_element ">
                                                 <div class="widget widget_nav_menu">
-                                                    <h2 class="widgettitle" style="font-size: 25px">LIÊN KẾT</h2>
+                                                    <h2 class="widgettitle" style="font-size: 20px">LIÊN KẾT</h2>
                                                     <div style="display: inline-flex; ">
                                                         <a style="margin-top: 5px;" id="facebook" target="_blank" rel="nofollow" href="https://www.facebook.com/sharer/sharer.php?u=http://batdongsan.ooo/">
                                                             <img style="height: 28px;" src="/imgs/btn-share-facebook.png"></a>
@@ -148,7 +148,7 @@
                                                         <div class="zalo-share-button" data-href="" data-oaid="579745863508352884" data-layout="4" data-color="white" data-customize="true"><a class="zalo-share-button" href="javascript:void(0)" title="Chia sẻ "></a><iframe frameborder="0" allowfullscreen="" scrolling="no" width="0px" height="0px" src="https://sp.zalo.me/plugins/share?dev=null&amp;color=white&amp;oaid=579745863508352884&amp;href=http%3A%2F%2Fbatdongsan.localhost%2Fmua-loai-bat-dong-san-khac-nguye-n-thie-n-thua-t%2Fcan-mua-can-ho-tecco-central-home-94m2-3pn-bds-180&amp;layout=4&amp;customize=true&amp;callback=null&amp;id=f74b001f-8ade-4829-ae86-8d55d0b7ae3e&amp;domain=batdongsan.localhost&amp;android=false&amp;ios=false" style="position: absolute;"></iframe></div>
                                                     </div>
                                                     <br/>
-                                                    <h2 class="widgettitle" style="font-size: 25px; margin-top: 15px;">CHỨNG NHẬN</h2>
+                                                    <h2 class="widgettitle" style="font-size: 20px; margin-top: 15px;">CHỨNG NHẬN</h2>
                                                 </div>
                                             </div>
                                         </div>
