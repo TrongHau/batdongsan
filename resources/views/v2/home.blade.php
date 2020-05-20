@@ -351,13 +351,7 @@ global $location_province_article_lease;
                                                                             <div class="property-map-content">
                                                                                 <div class="infobox"><a
                                                                                             class="infobox-image"
-                                                                                            href="/{{$link_url}}"><img
-                                                                                                width="1920" height="800"
-                                                                                                src="{{$img_}}"
-                                                                                                class="attachment-property-thumbnail size-property-thumbnail wp-post-image"
-                                                                                                alt="{{$item['title']}}"
-                                                                                                srcset="{{$img_}} 1920w, {{$img_}} 300w, {{$img_}} 768w, {{$img_}} 1024w"
-                                                                                                sizes="(max-width: 1920px) 100vw, 1920px"/>
+                                                                                            href="/{{$link_url}}"><img src="{{$img_}}" class="attachment-property-thumbnail size-property-thumbnail wp-post-image" alt="{{$item['title']}}"/>
                                                                                         <div class="infobox-content-price">$
                                                                                             {{$price}}
                                                                                         </div>
@@ -531,10 +525,10 @@ global $location_province_article_lease;
                                                             <div class="widget widget-location-banner ">
                                                                 <a href="/tim-kiem-nang-cao/nha-dat-ban/{{$location_province_article_lease[3]['province_id']}}/-1/-1/-1/-1/-1/-1/-1/-1"
                                                                    class="widget-content">
-                                                                    <div class="">
+                                                                    <div class="image-wrapper">
                                                                         <img src="wp-content/themes/homesweet/images/placeholder/l4.jpg"
                                                                              data-src="/wp-content/themes/homesweet/images/placeholder/l4.jpg"
-                                                                             alt="" class="">
+                                                                             alt="" class="unveil-image">
                                                                     </div>
                                                                     <div class="content-meta">
                                                                         <h3 class="title">{{$location_province_article_lease[3]['province']}}</h3>
