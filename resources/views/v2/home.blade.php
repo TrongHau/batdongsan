@@ -351,7 +351,7 @@ global $location_province_article_lease;
                                                                             <div class="property-map-content">
                                                                                 <div class="infobox"><a
                                                                                             class="infobox-image"
-                                                                                            href="/{{$link_url}}"><img src="{{$img_}}" class="attachment-property-thumbnail size-property-thumbnail wp-post-image" alt="{{$item['title']}}"/>
+                                                                                            href="/{{$link_url}}"><img src="{{$img_}}" class="" alt="{{$item['title']}}"/>
                                                                                         <div class="infobox-content-price">$
                                                                                             {{$price}}
                                                                                         </div>
