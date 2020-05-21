@@ -1,4 +1,10 @@
 <?php
+use Jenssegers\Agent\Agent;
+$page_per = PAGING_LIST_FEATURE_HOME;
+$Agent = new Agent();
+if($Agent->isMobile()) {
+    $page_per = PAGING_LIST_FEATURE_HOME / 2;
+}
 $allCount = count($articleForLease);
 ?>
 @if($allCount > 0)
@@ -107,7 +113,7 @@ $allCount = count($articleForLease);
             </div>
         </div>
     @endforeach
-    @if($allCount < PAGING_LIST_ARTICLE_HOME)
+    @if($allCount < $page_per)
         <script>
             $('.view-more-property').remove();
         </script>
