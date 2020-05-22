@@ -91,4 +91,14 @@ class RegisterController extends Controller
         Session::flash('success', 'BẠN ĐÃ ĐĂNG KÝ THÀNH CÔNG. VUI LÒNG ĐĂNG KÝ SỐ ĐIỆN THOẠI ĐỂ ĐĂNG TIN');
         return $user;
     }
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+        event(new Registered($user = $this->create($request->all())));
+
+        $this->guard()->login($user);
+        return response()->json(['success' => true], 200);
+        return $this->registered($request, $user)
+            ?: redirect($this->redirectPath());
+    }
 }
