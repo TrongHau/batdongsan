@@ -130,7 +130,7 @@
         .vc_custom_1502157337810 {
             padding-top: 20px !important;
             padding-bottom: 20px !important;
-            background-color: #13293d !important;
+            background-color: #114a82!important;
         }
     </style>
     <script>
