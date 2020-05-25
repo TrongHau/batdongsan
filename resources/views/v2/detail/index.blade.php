@@ -180,7 +180,7 @@ global $location_district_article_lease;
                                                                             <li><span>Số tầng:</span> {{$article->floor}}</li>
                                                                         @endif
                                                                         <li><span>Mã tin đăng:</span> {{$article->id}}</li>
-                                                                        <li><span>Loại hình tin đăng:</span> {{($article->type_vip && $article->expired_vip > time()) ? 'Tin VIP' : 'Tin thường'}}</li>
+                                                                        <li><span>Loại hình tin đăng:</span> {{$article->type_vip == ARTICLE_VIP_DIAMOND ? 'Tin Vip Kim Cương' : ($article->type_vip == ARTICLE_VIP_GOLD ? 'Tin Vip Vàng' : ($article->type_vip == ARTICLE_VIP_SILVER ? 'Tin Vip Bạc' : ($article->type_vip == ARTICLE_VIP_NORMAL ? 'Tin Vip Thường' : 'Tin Thường')))}}</li>
                                                                         <li><span>Ngày đăng:</span> {{date('d-m-Y', strtotime($article->created_at))}}</li>
                                                                     </ul>
                                                                     <div style="margin-top: 5px;display: contents;"><b>Chia sẻ</b> tin đăng này cho bạn bè:</div>

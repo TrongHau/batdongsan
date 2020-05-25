@@ -342,7 +342,7 @@ global $location_province_article_lease;
                                                                     $searchMethod = 'nha-dat-cho-thue';
                                                                 }
                                                                 ?>
-                                                                <div class="isotope-item all SALE col-md-3 col-sm-4 {{$item->type_vip == ARTICLE_VIP_DIAMOND ? 'article_vip_diamond' : $item->type_vip == ARTICLE_VIP_GOLD ? 'article_vip_gold' : $item->type_vip == ARTICLE_VIP_SILVER ? 'article_vip_silver' : $item->type_vip == ARTICLE_VIP_NORMAL ? 'article_vip_normal' : ''}}" data-category="SALE">
+                                                                <div class="isotope-item all SALE col-md-3 col-sm-4 {{$item->type_vip == ARTICLE_VIP_DIAMOND ? 'article_vip_diamond' : ($item->type_vip == ARTICLE_VIP_GOLD ? 'article_vip_gold' : ($item->type_vip == ARTICLE_VIP_SILVER ? 'article_vip_silver' : ($item->type_vip == ARTICLE_VIP_NORMAL ? 'article_vip_normal' : '')))}}" data-category="SALE">
                                                                     <div class="property-box property-box-grid property-box-wrapper property_box_vip"
                                                                          data-latitude="40.5795317"
                                                                          data-longitude="-74.15020070000003"
@@ -546,7 +546,7 @@ global $location_province_article_lease;
                                                             $searchMethod = 'nha-dat-cho-thue';
                                                         }
                                                         ?>
-                                                        <article class="agent-row agen-box post-3056 agent type-agent status-publish has-post-thumbnail hentry {{$item->type_vip == ARTICLE_VIP_DIAMOND ? 'article_vip_diamond' : $item->type_vip == ARTICLE_VIP_GOLD ? 'article_vip_gold' : $item->type_vip == ARTICLE_VIP_SILVER ? 'article_vip_silver' : $item->type_vip == ARTICLE_VIP_NORMAL ? 'article_vip_normal' : ''}}">
+                                                        <article class="agent-row agen-box post-3056 agent type-agent status-publish has-post-thumbnail hentry {{$item->type_vip == ARTICLE_VIP_DIAMOND ? 'article_vip_diamond' : ($item->type_vip == ARTICLE_VIP_GOLD ? 'article_vip_gold' : ($item->type_vip == ARTICLE_VIP_SILVER ? 'article_vip_silver' : ($item->type_vip == ARTICLE_VIP_NORMAL ? 'article_vip_normal' : '')))}}">
                                                             <div class="agent-row-content agent-grid property_box_vip">
                                                                 <div class="agent-row-content-inner">
                                                                     <div class="agent-row-main">

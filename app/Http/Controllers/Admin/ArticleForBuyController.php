@@ -77,7 +77,23 @@ class ArticleForBuyController extends CrudController
                 $this->crud->addClause('whereIn', 'type_article', $values);
             }
         });
-
+        $this->crud->addFilter([ // select2_multiple filter
+            'name' => 'type_vip',
+            'type' => 'dropdown',
+            'label'=> 'Loại tin Vip',
+            'placeholder' => 'Tìm thể loại tin VIP'
+        ], [
+            0 => 'Tin thường',
+            1 => 'Tin vip thường',
+            2 => 'Tin vip bạc',
+            3 => 'Tin vip vàng',
+            4 => 'Tin vip kim cương',
+            -1 => 'Tin vip bị dừng',
+        ], function ($values) {
+            if (!empty($values)) {
+                $this->crud->addClause('where', 'type_vip', $values);
+            }
+        });
 
 
         /*
@@ -166,10 +182,22 @@ class ArticleForBuyController extends CrudController
                 'function' => function($entry) {
                     if($entry->expired_vip == null || $entry->expired_vip == 0) {
                         return '<span class="label label-default">Tin Thường</span>';
-                    }elseif($entry->expired_vip < time()) {
-                        return '<span class="label label-warning">Hết hạn</span>';
-                    }elseif($entry->expired_vip >= time()){
-                        return '<span class="label label-primary">Còn thời hạn</span>';
+                    }else{
+                        $timeHtml = '';
+                        if($entry->expired_vip < time()) {
+                            $timeHtml = '<span class="label label-warning">Hết hạn</span>';
+                        }
+                        if($entry->type_vip == 1) {
+                            return '<span class="label label-primary">Vip thường</span>' . $timeHtml;
+                        }elseif ($entry->type_vip == 2) {
+                            return '<span class="label label-primary">Vip bạc</span>' . $timeHtml;
+                        }elseif ($entry->type_vip == 3) {
+                            return '<span class="label label-primary">Vip vàng</span>' . $timeHtml;
+                        }elseif ($entry->type_vip == 4) {
+                            return '<span class="label label-primary">Vip kim cương</span>' . $timeHtml;
+                        }elseif ($entry->type_vip == -1) {
+                            return '<span class="label label-default">Vip bị dừng</span>' . $timeHtml;
+                        }
                     }
                 },
             ]);
@@ -266,18 +294,29 @@ class ArticleForBuyController extends CrudController
             'default' => 'Chưa có VIP',
             'attributes' => ['disabled' => 'disabled'],
             'wrapperAttributes' => [
-                'class' => 'form-group col-md-6',
+                'class' => 'form-group col-md-4',
             ],
         ]);
         $this->crud->addField([
             'label' => 'Gia Hạn VIP',
             'type' => 'select_from_array',
             'name' => 'expired_vip_input',
-            'options' => [0 => 'Thêm Hạn Tin VIP', 1 => '1 Ngày', 3 => '3 Ngày', 7 => '7 Ngày', 14 => '14 Ngày', 30 => '30 Ngày', -1 => 'Dừng tin VIP'],
+            'options' => [0 => 'Thêm Hạn Tin VIP', 1 => '1 Ngày', 3 => '3 Ngày', 7 => '7 Ngày', 14 => '14 Ngày', 30 => '30 Ngày'],
             'allows_null' => false,
             'default' => 0,
             'wrapperAttributes' => [
-                'class' => 'form-group col-md-6',
+                'class' => 'form-group col-md-4',
+            ],
+        ]);
+        $this->crud->addField([
+            'label' => 'Loại vip đã mua',
+            'type' => 'select_from_array',
+            'name' => 'type_vip',
+            'options' => [0 => 'Tin thường', 1 => 'Tin Vip thường', 2 => 'Tin Vip bạc', 3 => 'Tin Vip vàng', 4 => 'Tin Vip Kim Cương', -1 => 'Vip bị dừng'],
+            'allows_null' => false,
+            'default' => 0,
+            'wrapperAttributes' => [
+                'class' => 'form-group col-md-4',
             ],
         ]);
         $this->crud->enableAjaxTable();
@@ -302,6 +341,10 @@ class ArticleForBuyController extends CrudController
             if (empty($value) && $value !== '0') {
                 $request->request->set($key, null);
             }
+        }
+        if($request->expired_vip_input > 0) {
+            \Alert::error('Vui lòng chọn thể loại Vip tin tức')->flash();
+            return \Redirect::to($this->crud->route);
         }
 
         // update the row in the db
@@ -331,7 +374,6 @@ class ArticleForBuyController extends CrudController
             if($request->expired_vip_input > 0) {
                 $item->created_time_vip = time();
                 $item->expired_vip = strtotime("+" . $request->expired_vip_input . " day");
-                $item->type_vip = 1;
                 $item->save();
             }
         }

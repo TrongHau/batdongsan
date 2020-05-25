@@ -69,6 +69,7 @@ class CatalogController extends Controller
                 $article = $article->orderBy('created_at', 'desc');
             }
         }else{
+            $article = $article->orderBy('type_vip', 'desc');
             $article = $article->orderBy('created_at', 'desc');
         }
         $article = $article->paginate(PAGING_LIST_ARTICLE_CATALOG);
@@ -104,6 +105,7 @@ class CatalogController extends Controller
                 $article = $article->orderBy('created_at', 'desc');
             }
         }else{
+            $article = $article->orderBy('type_vip', 'desc');
             $article = $article->orderBy('created_at', 'desc');
         }
         $article = $article->paginate(PAGING_LIST_ARTICLE_CATALOG);
