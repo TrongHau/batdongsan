@@ -153,3 +153,38 @@
 .header-transparent .header-v1 .header-bottom .bottom-inner {
     background: #114a82!important;
 }
+.article_vip_diamond .title_home_vip a{
+    color: #B32626!important;
+    text-transform: uppercase!important;
+
+    text-decoration: none;
+    color: #B32626;
+    font-weight: bold;
+    padding-left: 20px;
+    background-image: url(../../imgs/vip-star.png);
+    background-repeat: no-repeat;
+}
+.article_vip_diamond .property_box_vip{
+    border: 1px solid red!important;
+}
+.article_vip_gold .title_home_vip a{
+    color: #B32626!important;
+    text-transform: uppercase!important;
+}
+.article_vip_gold .property_box_vip{
+    border: 1px solid red!important;
+}
+.article_vip_silver .title_home_vip a{
+    color: orange!important;
+    text-transform: uppercase!important;
+}
+.article_vip_silver .property_box_vip{
+    border: 1px solid orange!important;
+}
+.article_vip_normal .title_home_vip a{
+    color: #4c58a4!important;
+    text-transform: uppercase!important;
+}
+.article_vip_normal .property_box_vip{
+    border: 1px solid #4c58a4!important;
+}

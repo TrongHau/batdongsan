@@ -342,46 +342,11 @@ global $location_province_article_lease;
                                                                     $searchMethod = 'nha-dat-cho-thue';
                                                                 }
                                                                 ?>
-                                                                <div class="isotope-item all SALE col-md-3 col-sm-4" data-category="SALE">
-                                                                    <div class="property-box property-box-grid property-box-wrapper"
+                                                                <div class="isotope-item all SALE col-md-3 col-sm-4 {{$item->type_vip == ARTICLE_VIP_DIAMOND ? 'article_vip_diamond' : $item->type_vip == ARTICLE_VIP_GOLD ? 'article_vip_gold' : $item->type_vip == ARTICLE_VIP_SILVER ? 'article_vip_silver' : $item->type_vip == ARTICLE_VIP_NORMAL ? 'article_vip_normal' : ''}}" data-category="SALE">
+                                                                    <div class="property-box property-box-grid property-box-wrapper property_box_vip"
                                                                          data-latitude="40.5795317"
                                                                          data-longitude="-74.15020070000003"
                                                                          data-markerid="marker-3076">
-                                                                        <div class="property-map-content-wrapper hidden">
-                                                                            <div class="property-map-content">
-                                                                                <div class="infobox">
-                                                                                    <a class="infobox-image" href="/{{$link_url}}"><img src="{{$img_}}" alt="{{$item['title']}}"/>
-                                                                                        <div class="infobox-content-price">$
-                                                                                            {{$price}}
-                                                                                        </div>
-                                                                                    </a>
-                                                                                    <div class="infobox-content">
-                                                                                        <div class="infobox-content-title">
-                                                                                            <a href="/{{$link_url}}">{{$item['title']}}</a></div>
-                                                                                        <div class="infobox-content-body">
-                                                                                            <div class="infobox-content-body-location">
-                                                                                                @if($item->district)
-                                                                                                    <a class="link_blue"
-                                                                                                       href="/tim-kiem-nang-cao/{{$searchMethod}}/{{$item->province_id}}/{{$item->district_id}}/-1/-1/-1/-1/-1/-1/-1"
-                                                                                                       title="Bán nhà riêng tại {{$item->district}}">{{$item->district}}</a>,
-                                                                                                @endif
-                                                                                                @if($item->province)
-                                                                                                    <a
-                                                                                                            class="link_blue"
-                                                                                                            href="/tim-kiem-nang-cao/{{$searchMethod}}/{{$item->province_id}}/-1/-1/-1/-1/-1/-1/-1/-1"
-                                                                                                            title="Bán nhà riêng tại {{$item->province}}">{{$item->province}}</a>
-                                                                                                @endif
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="property-map-marker">
-                                                                                <div class="marker marker-3076">
-                                                                                    <div class="marker-inner"><img src="wp-content/uploads/2017/08/icon-home.png" alt=""></div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
                                                                         <div class="property-box-image ">
                                                                             <a href="/{{$link_url}}"
                                                                                class="property-box-image-inner">
@@ -393,7 +358,7 @@ global $location_province_article_lease;
                                                                         <div class="property-box-content">
                                                                             <div class="property-box-title-wrap">
                                                                                 <div class="property-box-title">
-                                                                                    <h3 class="entry-title title_home_ellipsis"><a href="/{{$link_url}}">{{$item['title']}}</a></h3>
+                                                                                    <h3 class="entry-title title_home_ellipsis title_home_vip"><a href="/{{$link_url}}">{{$item['title']}}</a></h3>
                                                                                     <div class="property-row-address">
                                                                                         <i class="icon-ap_pin"
                                                                                            aria-hidden="true"></i>
@@ -581,8 +546,8 @@ global $location_province_article_lease;
                                                             $searchMethod = 'nha-dat-cho-thue';
                                                         }
                                                         ?>
-                                                        <article class="agent-row agen-box post-3056 agent type-agent status-publish has-post-thumbnail hentry">
-                                                            <div class="agent-row-content agent-grid">
+                                                        <article class="agent-row agen-box post-3056 agent type-agent status-publish has-post-thumbnail hentry {{$item->type_vip == ARTICLE_VIP_DIAMOND ? 'article_vip_diamond' : $item->type_vip == ARTICLE_VIP_GOLD ? 'article_vip_gold' : $item->type_vip == ARTICLE_VIP_SILVER ? 'article_vip_silver' : $item->type_vip == ARTICLE_VIP_NORMAL ? 'article_vip_normal' : ''}}">
+                                                            <div class="agent-row-content agent-grid property_box_vip">
                                                                 <div class="agent-row-content-inner">
                                                                     <div class="agent-row-main">
                                                                         <div class="agent-top">
@@ -593,7 +558,7 @@ global $location_province_article_lease;
                                                                             </div>
                                                                         </div>
                                                                         <div class="agent-row-body">
-                                                                            <h2 class="entry-title title_home_ellipsis_feature">
+                                                                            <h2 class="entry-title title_home_ellipsis_feature title_home_vip">
                                                                                 <a href="{{$link_url}}">{{$item['title']}}</a>
                                                                             </h2>
                                                                             <div class="agencies">
