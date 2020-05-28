@@ -275,7 +275,7 @@ global $location_district_article_lease;
                                                         @foreach($relateArticle as $item)
                                                             <?php
                                                             $img_ = $item['gallery_image'] ? Helpers::file_path($item['id'], PUBLIC_ARTICLE_LEASE, true).THUMBNAIL_PATH.json_decode($item['gallery_image'])[0] : THUMBNAIL_DEFAULT;
-                                                            $link_url = '/'.$item->prefix_url.'-bds-'.$item->id;
+                                                            $link_url = $item->prefix_url.'-bds-'.$item->id;
                                                             $price = ($item->price_from != null && $item->price_to != null) ? ($item->price_to ? ($item->price_from. ' - ' .$item->price_to) : $item->price_from).' '.$item->ddlPriceType : ($item->price_real == 0 ? 'Thỏa thuận' : $item->price.' '.$item->ddlPriceType);
                                                             $area = ($item->area_from != null && $item->area_to != null) ? ($item->area_to ? ($item->area_from. ' - ' .$item->area_to) : $item->area_from).' m²' : ($item->area ? $item->area.' m²' : 'Chưa xác định');
                                                             if($item->method_article == 'Nhà đất cần mua') {
@@ -469,9 +469,7 @@ global $location_district_article_lease;
         .page_views-wrapper .fade {
             opacity: 1;
         }
-        .active, .dot:hover {
-            background-color: white!important;
-        }
+
 
     </style>
     @include('v2.layouts.footer')
