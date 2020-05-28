@@ -190,7 +190,7 @@
 .article_vip_normal .property_box_vip{
     border: 1px solid #4c58a4!important;
 }
-.btn-blue {
+.btn-blue, .btn-search {
     background: #13293d!important;
     border: 1px solid #13293d!important;
 }
