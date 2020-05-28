@@ -36,9 +36,9 @@ class HomeController extends Controller
     {
         $Agent = new Agent();
         $page_per = PAGING_LIST_FEATURE_HOME;
-        if($Agent->isMobile()) {
-            $page_per = PAGING_LIST_FEATURE_HOME / 2;
-        }
+//        if($Agent->isMobile()) {
+//            $page_per = PAGING_LIST_FEATURE_HOME / 2;
+//        }
 //        $articleForLease = ArticleForLeaseModel::select(['id', 'prefix_url', 'title', 'views', 'created_at', 'status', 'aprroval', 'gallery_image', 'note', 'updated_at', 'project', 'province_id', 'province', 'district_id', 'district', 'address', 'ddlPriceType', 'price_real', 'price', 'area'])
         $articleForLease = ArticleForLeaseModel::selectRaw('id, method_article, "lease" as method_table, featured, prefix_url, title, views, created_at, status, aprroval, gallery_image, note, updated_at, project, province_id, province, district_id, district, address, ddlPriceType, price_real, price, area, null as price_from, null as price_to, null as area_from, null as area_to, created_time_vip, type_vip')
             ->where([['status', PUBLISHED_ARTICLE], ['aprroval', APPROVAL_ARTICLE_PUBLIC]])->where('disabled_vip', '=', 0)->where('type_vip', '!=', 0)->where('expired_vip', '>=', date('Y/m/d', time()));
