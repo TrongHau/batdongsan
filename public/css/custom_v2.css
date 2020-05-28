@@ -191,6 +191,9 @@
     border: 1px solid #4c58a4!important;
 }
 .btn-blue, .btn-search {
-    background: #13293d!important;
-    border: 1px solid #13293d!important;
+    background: #114a82!important;
+    border: 1px solid #114a82!important;
+}
+.header-bottom {
+    background: #114a82!important;
 }
