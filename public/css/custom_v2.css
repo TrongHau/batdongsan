@@ -197,3 +197,6 @@
 .header-bottom {
     background: #114a82!important;
 }
+.widget-filter-form .btn_search_catalog {
+    padding: 0 45px!important;
+}

@@ -110,7 +110,7 @@
                                 <i class="icon-ap_settings"></i> <span>Mở rộng</span>
                             </a>
                             <div class="visiable-line">
-                                <button onclick="searchAdvance()" class="button btn btn-blue">Tìm Kiếm</button>
+                                <button onclick="searchAdvance()" class="button btn btn-blue btn_search_catalog"><i class="fa fa-search"></i> Tìm Kiếm</button>
                             </div>
                         </div>
                     </div>
