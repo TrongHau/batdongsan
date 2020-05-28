@@ -328,7 +328,7 @@ global $location_province_article_lease;
                                                         <div id="isotope-items-KPBhx" class="isotope-items row" data-isotope-duration="400">
                                                             @foreach($articleForLease as $item)
                                                                 <?php
-                                                                $img_ = $item['gallery_image'] ? Helpers::file_path($item['id'], PUBLIC_ARTICLE_LEASE, true).THUMBNAIL_PATH.json_decode($item['gallery_image'])[0] : THUMBNAIL_DEFAULT;
+                                                                $img_ = $item['gallery_image'] ? Helpers::file_path($item['id'], ($item['method_table']  == 'lease'? PUBLIC_ARTICLE_LEASE : PUBLIC_ARTICLE_BUY), true).THUMBNAIL_PATH.json_decode($item['gallery_image'])[0] : THUMBNAIL_DEFAULT;
                                                                 $link_url = $item->prefix_url.'-bds-'.$item->id;
                                                                 $price = ($item->price_from != null && $item->price_to != null) ? ($item->price_to ? ($item->price_from. ' - ' .$item->price_to) : $item->price_from).' '.$item->ddlPriceType : ($item->price_real == 0 ? 'Thỏa thuận' : $item->price.' '.$item->ddlPriceType);
                                                                 $area = ($item->area_from != null && $item->area_to != null) ? ($item->area_to ? ($item->area_from. ' - ' .$item->area_to) : $item->area_from).' m²' : ($item->area ? $item->area.' m²' : 'Chưa xác định');
@@ -533,7 +533,7 @@ global $location_province_article_lease;
                                                 <div class="owl-carousel " data-items="4" data-carousel="owl" data-smallmedium="2" data-extrasmall="1" data-pagination="false" data-nav="true">
                                                     @foreach($articleFeature as $item)
                                                         <?php
-                                                        $img_ = $item['gallery_image'] ? Helpers::file_path($item['id'], PUBLIC_ARTICLE_LEASE, true).THUMBNAIL_PATH.json_decode($item['gallery_image'])[0] : THUMBNAIL_DEFAULT;
+                                                        $img_ = $item['gallery_image'] ? Helpers::file_path($item['id'], ($item['method_table']  == 'lease'? PUBLIC_ARTICLE_LEASE : PUBLIC_ARTICLE_BUY), true).THUMBNAIL_PATH.json_decode($item['gallery_image'])[0] : THUMBNAIL_DEFAULT;
                                                         $link_url = $item->prefix_url.'-bds-'.$item->id;
                                                         $price = ($item->price_from != null && $item->price_to != null) ? ($item->price_to ? ($item->price_from. ' - ' .$item->price_to) : $item->price_from).' '.$item->ddlPriceType : ($item->price_real == 0 ? 'Thỏa thuận' : $item->price.' '.$item->ddlPriceType);
                                                         if($item->method_article == 'Nhà đất cần mua') {

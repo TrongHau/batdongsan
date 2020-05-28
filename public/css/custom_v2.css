@@ -146,7 +146,9 @@
     width: 100%;
     -webkit-appearance: none;
 }
-
+.property-box-wrapper {
+    border: 1px solid #f0f9fb;
+}
 .widget-text-heading .link-text-heading{
     color: #4c58a4;font-size: 13px;font-weight: 400;font-family: open sans,Helvetica,Arial,sans-serif;
 }
@@ -187,4 +189,8 @@
 }
 .article_vip_normal .property_box_vip{
     border: 1px solid #4c58a4!important;
+}
+.btn-blue {
+    background: #13293d!important;
+    border: 1px solid #13293d!important;
 }

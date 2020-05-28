@@ -62,7 +62,8 @@
 
             <div class="box-footer">
 				<div id="saveActions" class="form-group">
-
+					<input type="hidden" name="type_vip_old" value="{{$fields['type_vip']['value']}}" />
+					<input type="hidden" name="expired_vip_old" value="{{$fields['expired_vip']['value']}}" />
 					<input type="hidden" name="save_action" value="{{ $saveAction['active']['value'] }}">
 					<a href="/quan-ly-tin/dang-tin-can-mua-can-thue/{{$fields['id']['value']}}" target="_blank" class="btn btn-warning"><span class="fa fa-align-center"></span> &nbsp;Chỉnh sửa trực tiếp</a>
 					<a href="/admin/article_buy_up/{{$fields['id']['value']}}" class="btn btn-primary"><span class="fa fa fa-upload"></span> &nbsp;Up tin tức</a>

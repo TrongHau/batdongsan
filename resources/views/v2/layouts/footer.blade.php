@@ -170,7 +170,7 @@
                 <div class="wpb_column vc_column_container vc_col-sm-12">
                     <div class="vc_column-inner ">
                         <div class="wpb_wrapper">
-                            <div style="font-size: 13px;color: #56ccf2;text-align: left;border-top: 1px solid #015fae;padding-top: 10px;"
+                            <div style="font-size: 13px;color: #56ccf2;text-align: left;border-top: 1px solid #015fae66;padding-top: 10px;"
                                  class="vc_custom_heading small-text-center"><span style="color: white">Copyright © 2020 Batdongsan.ooo Ghi rõ nguồn "Batdongsan.ooo" khi phát hành lại thông tin từ website này.</span>
                             </div>
                         </div>

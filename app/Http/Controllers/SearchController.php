@@ -83,7 +83,6 @@ class SearchController extends Controller
             $article = ArticleForBuyModel::where('status', PUBLISHED_ARTICLE);
             $article = $article->where('method_article', 'Bán loại bất động sản khác');
         }
-
         // hiển thị tất cả các loại
         if($method == 'tat-ca-nha-ban') {
             $article = ArticleForLeaseModel::where('status', PUBLISHED_ARTICLE);
@@ -207,6 +206,7 @@ class SearchController extends Controller
                     ->orWhere('id', 'like', $key);
             });
         }
+        $article = $article->selectRaw('*, IF(type_vip = 0 || expired_vip <= unix_timestamp(now()) || disabled_vip = 1, 0, type_vip) as type_vip, IF(type_vip = 0 || expired_vip <= unix_timestamp(now()) || disabled_vip = 1, created_at, created_time_vip) as created_at');
         if($request->sort)
             $_SESSION['order_page_lease'] = $request->sort;
         if(isset($_SESSION['order_page_lease'])) {
@@ -222,6 +222,7 @@ class SearchController extends Controller
                 $article = $article->orderBy('created_at', 'desc');
             }
         }else{
+            $article = $article->orderBy('type_vip', 'desc');
             $article = $article->orderBy('created_at', 'desc');
         }
         $article = $article->paginate(PAGING_LIST_ARTICLE_CATALOG);

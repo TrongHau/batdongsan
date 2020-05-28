@@ -87,7 +87,6 @@ class ArticleForLeaseController extends CrudController
             2 => 'Tin vip bạc',
             3 => 'Tin vip vàng',
             4 => 'Tin vip kim cương',
-            -1 => 'Tin vip bị dừng',
         ], function ($values) {
             if (!empty($values)) {
                 $this->crud->addClause('where', 'type_vip', $values);
@@ -191,6 +190,9 @@ class ArticleForLeaseController extends CrudController
                         if($entry->expired_vip < time()) {
                             $timeHtml = '<span class="label label-warning">Hết hạn</span>';
                         }
+                        if ($entry->disabled_vip == 1) {
+                            $timeHtml = $timeHtml . '<span class="label label-default">Vip bị dừng</span>' . $timeHtml;
+                        }
                         if($entry->type_vip == 1) {
                             return '<span class="label label-primary">Vip thường</span>' . $timeHtml;
                         }elseif ($entry->type_vip == 2) {
@@ -199,7 +201,8 @@ class ArticleForLeaseController extends CrudController
                             return '<span class="label label-primary">Vip vàng</span>' . $timeHtml;
                         }elseif ($entry->type_vip == 4) {
                             return '<span class="label label-primary">Vip kim cương</span>' . $timeHtml;
-                        }elseif ($entry->type_vip == -1) {
+                        }
+                        if ($entry->disabled_vip == 1) {
                             return '<span class="label label-default">Vip bị dừng</span>' . $timeHtml;
                         }
                     }
@@ -289,12 +292,27 @@ class ArticleForLeaseController extends CrudController
             'name' => 'aprroval',
             'label' => 'Tình trạng',
             'type' => 'checkbox',
+            'wrapperAttributes' => [
+                'class' => 'form-group col-md-4',
+            ],
         ]);
         $this->crud->addField([    // CHECKBOX
             'name' => 'featured',
             'label' => 'Nỗi bật',
             'type' => 'checkbox',
+            'wrapperAttributes' => [
+                'class' => 'form-group col-md-4',
+            ],
         ]);
+        $this->crud->addField([
+            'name' => 'disabled_vip',
+            'label' => 'Dừng VIP',
+            'type' => 'checkbox',
+            'wrapperAttributes' => [
+                'class' => 'form-group col-md-4',
+            ],
+        ]);
+
         $this->crud->addField([    // CHECKBOX
             'name' => 'expired_vip',
             'label' => 'Thời hạn tin VIP',
@@ -320,7 +338,7 @@ class ArticleForLeaseController extends CrudController
             'label' => 'Loại vip đã mua',
             'type' => 'select_from_array',
             'name' => 'type_vip',
-            'options' => [0 => 'Tin thường', 1 => 'Tin Vip thường', 2 => 'Tin Vip bạc', 3 => 'Tin Vip vàng', 4 => 'Tin Vip Kim Cương', -1 => 'Vip bị dừng'],
+            'options' => [0 => 'Tin thường', 1 => 'Tin Vip thường', 2 => 'Tin Vip bạc', 3 => 'Tin Vip vàng', 4 => 'Tin Vip Kim Cương'],
             'allows_null' => false,
             'default' => 0,
             'wrapperAttributes' => [
@@ -351,6 +369,12 @@ class ArticleForLeaseController extends CrudController
             }
         }
 
+        if($request->type_vip != $request->type_vip_old) {
+            if($request->expired_vip_old >= time()) {
+                \Alert::error('Vip chưa được hết hạn nên không thể thay đổi cấp độ vip')->flash();
+                return \Redirect::to(url()->current().'/edit');
+            }
+        }
         // update the row in the db
         $dataArticle = ArticleForLeaseModel::where('id', $request->id)->first();
         if($dataArticle->aprroval == 0 && $request->aprroval && $dataArticle->contact_email) {
@@ -371,15 +395,10 @@ class ArticleForLeaseController extends CrudController
         $this->data['entry'] = $this->crud->entry = $item;
 
 
-        if($request->expired_vip_input == -1) {
-            $item->type_vip = -1;
+        if($request->expired_vip_input > 0) {
+            $item->created_time_vip = time();
+            $item->expired_vip = strtotime("+" . $request->expired_vip_input . " day");
             $item->save();
-        }else{
-            if($request->expired_vip_input > 0) {
-                $item->created_time_vip = time();
-                $item->expired_vip = strtotime("+" . $request->expired_vip_input . " day");
-                $item->save();
-            }
         }
 
         // show a success message
