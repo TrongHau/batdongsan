@@ -351,7 +351,7 @@ global $location_province_article_lease;
                                                                             <a href="/{{$link_url}}"
                                                                                class="property-box-image-inner">
                                                                                 <div>
-                                                                                    <img src="{{$img_}}" data-src="{{$img_}}" style="{{$Agent->isMobile() ? '' : 'width: 262px; height: 175px'}}" alt="{{$item['title']}}"/>
+                                                                                    <img src="{{$img_}}" data-src="{{$img_}}" style="width: 262px; height: 175px" alt="{{$item['title']}}"/>
                                                                                 </div>
                                                                             </a>
                                                                         </div>

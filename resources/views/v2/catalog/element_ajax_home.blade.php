@@ -33,7 +33,7 @@ $allCount = count($articleForLease);
                     <a href="/{{$link_url}}"
                        class="property-box-image-inner">
                         <div>
-                            <img src="{{$img_}}" data-src="{{$img_}}" width="480" height="310" alt="{{$item['title']}}" class="attachment-homesweet-standard-size unveil-image"/>
+                            <img src="{{$img_}}" data-src="{{$img_}}" style="width: 262px; height: 175px" alt="{{$item['title']}}" class="attachment-homesweet-standard-size unveil-image"/>
                         </div>
                     </a>
                 </div>
