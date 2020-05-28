@@ -297,7 +297,7 @@ global $location_district_article_lease;
                                                                         <div class="property-map-content">
                                                                             <div class="infobox"><a
                                                                                         class="infobox-image"
-                                                                                        href="/{{$link_url}}"><img
+                                                                                        href="{{$link_url}}"><img
                                                                                             width="1920" height="800"
                                                                                             src="{{$img_}}"
                                                                                             class="attachment-property-thumbnail size-property-thumbnail wp-post-image"
