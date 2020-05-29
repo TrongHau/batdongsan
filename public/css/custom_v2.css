@@ -200,3 +200,14 @@
 .widget-filter-form .btn_search_catalog {
     padding: 0 45px!important;
 }
+.status-featured {
+    content: ' ';
+    width: 58px;
+    height: 58px;
+    right: 0;
+    top: 0;
+    display: inline-block;
+    position: absolute;
+    background-image: url(../../imgs/feature_article.png);
+    background-position: 0 -1px;
+}

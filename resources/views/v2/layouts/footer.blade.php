@@ -127,7 +127,7 @@
                                                                 <a href="/chinh-sach-bao-mat-thong-tin" style="border: 1px dotted red;">Chính sách bảo mật</a></li>
                                                             <li id="menu-item-2511"
                                                                 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2511">
-                                                                <a href="#">Giải quyết khiếu nại</a></li>
+                                                                <a href="/giai-quyet-khieu-nai">Giải quyết khiếu nại</a></li>
                                                         </ul></div></div></div>
                                         </div>
                                     </div>

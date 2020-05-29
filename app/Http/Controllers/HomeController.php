@@ -48,17 +48,20 @@ class HomeController extends Controller
         $articleForLease = $articleForLease->get();
 //        dd($articleForLease->toArray());
 
-        $articleFeature= ArticleForLeaseModel::selectRaw('id, method_article, "lease" as method_table, featured, prefix_url, title, views, created_at, status, aprroval, gallery_image, note, updated_at, project, province_id, province, district_id, district, address, ddlPriceType, price_real, price, area, null as price_from, null as price_to, null as area_from, null as area_to, created_time_vip, type_vip')
-            ->where([['status', PUBLISHED_ARTICLE], ['aprroval', APPROVAL_ARTICLE_PUBLIC]])->where('featured', 1);
-        $articleFeature2 = ArticleForBuyModel::selectRaw('id, method_article, "buy" as method_table, featured, prefix_url, title, views, created_at, status, aprroval, gallery_image, note, updated_at, project, province_id, province, district_id, district, address, ddlPriceType, price_real, null as price, null as area, price_from, price_to, area_from, area_to, created_time_vip, type_vip')
-            ->where([['status', PUBLISHED_ARTICLE], ['aprroval', APPROVAL_ARTICLE_PUBLIC]])->where('featured', 1);
-        $articleFeature->union($articleFeature2)->limit($page_per)->orderBy('created_at', 'desc');
-        $articleFeature = $articleFeature->get();
+        // tin rao nỗi bật
+//        $articleFeature= ArticleForLeaseModel::selectRaw('id, method_article, "lease" as method_table, featured, prefix_url, title, views, created_at, status, aprroval, gallery_image, note, updated_at, project, province_id, province, district_id, district, address, ddlPriceType, price_real, price, area, null as price_from, null as price_to, null as area_from, null as area_to, created_time_vip, type_vip')
+//            ->where([['status', PUBLISHED_ARTICLE], ['aprroval', APPROVAL_ARTICLE_PUBLIC]])->where('featured', 1);
+//        $articleFeature2 = ArticleForBuyModel::selectRaw('id, method_article, "buy" as method_table, featured, prefix_url, title, views, created_at, status, aprroval, gallery_image, note, updated_at, project, province_id, province, district_id, district, address, ddlPriceType, price_real, null as price, null as area, price_from, price_to, area_from, area_to, created_time_vip, type_vip')
+//            ->where([['status', PUBLISHED_ARTICLE], ['aprroval', APPROVAL_ARTICLE_PUBLIC]])->where('featured', 1);
+//        $articleFeature->union($articleFeature2)->limit($page_per)->orderBy('created_at', 'desc');
+//        $articleFeature = $articleFeature->get();
+
+        $articleProject = ArticleModel::select('title', 'slug', 'short_content', 'image', 'status', 'featured', 'views', 'created_at', 'category_id')->where('status', PUBLISHED_ARTICLE)->where('featured', 1)->where('category_id', 24)->orderBy('created_at', 'desc')->limit(PAGING_LIST_PARTNER_HOME)->get()->toArray();
 
         $articlePartner = ArticleModel::select('title', 'slug', 'short_content', 'image', 'status', 'featured', 'views', 'created_at', 'category_id')->where('status', PUBLISHED_ARTICLE)->where('category_id', 23)->orderBy('created_at', 'desc')->limit(PAGING_LIST_PARTNER_HOME)->get()->toArray();
 
 
-        return view('v2.home', compact('articleForLease', 'articleFeature', 'articlePartner'));
+        return view('v2.home', compact('articleForLease', 'articleFeature', 'articlePartner', 'articleProject'));
     }
     public function ajaxArticleHome(Request $request) {
         $Agent = new Agent();

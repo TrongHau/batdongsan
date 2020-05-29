@@ -88,7 +88,9 @@ Route::group(['middleware' => ['auth']], function() {
 // About
 
 Route::get('/gioi-thieu', 'DetailController@aboutDetail');
+Route::get('/ve-chung-toi', 'DetailController@aboutDetail');
 Route::get('/quy-dinh-dang-tin', 'DetailController@aboutDetail');
+Route::get('/giai-quyet-khieu-nai', 'DetailController@aboutDetail');
 Route::get('/dieu-khoan-thoa-thuan', 'DetailController@aboutDetail');
 Route::get('/quy-che-hoat-dong', 'DetailController@aboutDetail');
 Route::get('/co-che-giai-quyet-khieu-nai', 'DetailController@aboutDetail');
@@ -97,7 +99,7 @@ Route::get('/nhung-cau-hoi-thuong-gap', 'DetailController@aboutDetail');
 Route::get('/lien-he', 'DetailController@aboutDetail');
 Route::get('/chinh-sach-bao-mat-thong-tin', 'DetailController@aboutDetail');
 
-Route::get('/du-an-noi-bat', 'CatalogController@ArticleFeature');
+Route::get('/du-an-noi-bat', 'CatalogController@ProjectFeature');
 
 // catalog bán nhà đất
 Route::get('/nha-dat-ban/{key?}', 'CatalogController@ArticleForLease_ban_dat');
