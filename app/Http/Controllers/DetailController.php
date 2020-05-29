@@ -45,7 +45,7 @@ class DetailController extends Controller
         if(Helpers::sessionCountTimes($article->id, 'article_lease')){
             $article->where('id', $id)->increment('views');
         }
-        $relateArticle = ArticleForLeaseModel::where([['status', PUBLISHED_ARTICLE], ['aprroval', APPROVAL_ARTICLE_PUBLIC]])->where([['id','!=' ,$id], ['method_article', $article->method_article], ['province_id', $article->province_id], ['district_id', $article->district_id]])->orderBy('id', 'desc')->limit(10)->get();
+        $relateArticle = ArticleForLeaseModel::where([['status', PUBLISHED_ARTICLE], ['aprroval', APPROVAL_ARTICLE_PUBLIC]])->where([['id','!=' ,$id], ['method_article', $article->method_article], ['province_id', $article->province_id], ['district_id', $article->district_id]])->orderBy('id', 'desc')->limit(8)->get();
         return view('v2.detail.index', compact('article', 'typeOf', 'relateArticle'));
     }
     public function articleForBuyDetail(Request $request, $position = null, $title = null, $id = null) {
