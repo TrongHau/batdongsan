@@ -92,7 +92,7 @@ $Agent = new Agent();
                                                                                class="property-box-image-inner">
                                                                                 <div>
                                                                                     <img src="{{$img_}}" style="width: 262px; height: 175px" data-src="{{$img_}}" width="480" height="310" alt="{{$item['title']}}" class="attachment-homesweet-standard-size unveil-image"/>
-                                                                                    @if($item->featured == 1)
+                                                                                    @if($item['featured'] == 1)
                                                                                         <div class="status-featured"></div>
                                                                                     @endif
                                                                                 </div>

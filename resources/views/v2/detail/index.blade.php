@@ -298,7 +298,7 @@ global $location_district_article_lease;
                                                                            class="property-box-image-inner">
                                                                             <div>
                                                                                 <img src="{{$img_}}" data-src="{{$img_}}" style="width: 262px; height: 175px" alt="{{$item['title']}}" class="attachment-homesweet-standard-size unveil-image"/>
-                                                                                @if($item->featured == 1)
+                                                                                @if($item['featured'] == 1)
                                                                                     <div class="status-featured"></div>
                                                                                 @endif
                                                                             </div>
