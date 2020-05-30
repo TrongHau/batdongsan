@@ -233,7 +233,7 @@ class ArticleController extends Controller
             'price' => 'max:999999',
             'bed_room' => 'max:99',
             'toilet' => 'max:99',
-            'g-recaptcha-response' => 'required',
+//            'g-recaptcha-response' => 'required',
         ];
         session_start();
         if(!Auth::check()) {
@@ -272,8 +272,8 @@ class ArticleController extends Controller
             'content_article' => $request->content_article,
             'facade' => $request->facade,
             'land_width' => $request->land_width,
-            'ddlHomeDirection' => $request->ddlHomeDirection,
-            'ddlBaconDirection' => $request->ddlBaconDirection,
+            'ddl_home_direction' => $request->ddl_home_direction,
+            'ddl_bacon_direction' => $request->ddl_bacon_direction,
             'floor' => $request->floor,
             'bed_room' => $request->bed_room,
             'toilet' => $request->toilet,

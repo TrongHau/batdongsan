@@ -363,7 +363,7 @@ global $province;
                                                             Hướng nhà
                                                         </div>
                                                         <div class="base2">
-                                                            <select id="ddlHomeDirection" name="ddl_home_direction" class="dropdown-list ">
+                                                            <select id="ddl_home_direction" name="ddl_home_direction" class="dropdown-list ">
                                                                 <option value="KXĐ">KXĐ</option>
                                                                 <option value="Đông">Đông</option>
                                                                 <option value="Tây">Tây</option>
@@ -374,8 +374,8 @@ global $province;
                                                                 <option value="Tây-Nam">Tây-Nam</option>
                                                                 <option value="Đông-Nam">Đông-Nam</option>
                                                             </select>
-                                                            @if ($errors->has('ddlHomeDirection'))
-                                                                <div class="errorMessage" style="display: block;"><p style="color: red">{{ str_replace('ddlHomeDirection', 'hướng nhà', $errors->first('ddlHomeDirection')) }}</p></div>
+                                                            @if ($errors->has('ddl_home_direction'))
+                                                                <div class="errorMessage" style="display: block;"><p style="color: red">{{ str_replace('ddl_home_direction', 'hướng nhà', $errors->first('ddl_home_direction')) }}</p></div>
                                                             @endif
                                                         </div>
                                                         <div class="spBanCong">
@@ -383,7 +383,7 @@ global $province;
                                                                 Hướng ban công
                                                             </div>
                                                             <div class="base4">
-                                                                <select id="ddlBaconDirection" name="ddl_bacon_direction" class="dropdown-list ">
+                                                                <select id="ddl_bacon_direction" name="ddl_bacon_direction" class="dropdown-list ">
                                                                     <option value="KXĐ">KXĐ</option>
                                                                     <option value="Đông">Đông</option>
                                                                     <option value="Tây">Tây</option>
@@ -394,8 +394,8 @@ global $province;
                                                                     <option value="Tây-Nam">Tây-Nam</option>
                                                                     <option value="Đông-Nam">Đông-Nam</option>
                                                                 </select>
-                                                                @if ($errors->has('ddlBaconDirection'))
-                                                                    <div class="errorMessage" style="display: block;"><p style="color: red">{{ str_replace('ddlBaconDirection', 'hướng ban công', $errors->first('ddlBaconDirection')) }}</p></div>
+                                                                @if ($errors->has('ddl_bacon_direction'))
+                                                                    <div class="errorMessage" style="display: block;"><p style="color: red">{{ str_replace('ddl_bacon_direction', 'hướng ban công', $errors->first('ddl_bacon_direction')) }}</p></div>
                                                                 @endif
                                                             </div>
                                                         </div>
@@ -780,14 +780,14 @@ global $province;
         });
         <?php
 
-            if(old('ddlHomeDirection') ?? $article->ddlHomeDirection ?? false){
+            if(old('ddl_home_direction') ?? $article->ddl_home_direction ?? false){
                 ?>
-                document.getElementById('ddlHomeDirection').value = '<?php echo old('ddlHomeDirection') ?? $article->ddlHomeDirection ?? '' ?>';
+                document.getElementById('ddl_home_direction').value = '<?php echo old('ddl_home_direction') ?? $article->ddl_home_direction ?? '' ?>';
                 <?php
             }
-            if(old('ddlBaconDirection') ?? $article->ddlBaconDirection ?? false){
+            if(old('ddl_bacon_direction') ?? $article->ddl_bacon_direction ?? false){
                 ?>
-                document.getElementById('ddlBaconDirection').value = '<?php echo old('ddlBaconDirection') ?? $article->ddlBaconDirection ?? '' ?>';
+                document.getElementById('ddl_bacon_direction').value = '<?php echo old('ddl_bacon_direction') ?? $article->ddl_bacon_direction ?? '' ?>';
                 <?php
             }
             if(old('method_article') ?? $article->method_article ?? false) {
