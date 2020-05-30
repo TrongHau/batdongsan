@@ -106,11 +106,15 @@
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <a href="#toggle_adv" class="toggle-adv text-theme visiable-line">
-                                <i class="icon-ap_settings"></i> <span>Mở rộng</span>
-                            </a>
-                            <div class="visiable-line">
-                                <button onclick="searchAdvance()" class="button btn btn-blue btn_search_catalog"><i class="fa fa-search"></i> Tìm Kiếm</button>
+                            <div class="col-md-4" style="padding: 0px;padding-top: 10px;">
+                                <a href="#toggle_adv" class="toggle-adv text-theme visiable-line">
+                                    <i class="icon-ap_settings"></i> <span>Mở rộng</span>
+                                </a>
+                            </div>
+                            <div class="col-md-2" style="padding: 0px;">
+                                <div class="visiable-line">
+                                    <button onclick="searchAdvance()" class="button btn btn-blue btn_search_catalog"><i class="fa fa-search"></i> Tìm Kiếm</button>
+                                </div>
                             </div>
                         </div>
                     </div>

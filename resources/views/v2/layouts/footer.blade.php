@@ -118,7 +118,7 @@
                                                                 <a href="/quy-dinh-dang-tin" style="border: 1px dotted red;">Quy định đăng tin</a></li>
                                                             <li id="menu-item-2508"
                                                                 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2508">
-                                                                <a href="#">Quy chế hoạt động</a></li>
+                                                                <a href="/quy-che-hoat-dong">Quy chế hoạt động</a></li>
                                                             <li id="menu-item-2509"
                                                                 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2509">
                                                                 <a href="/dieu-khoan-thoa-thuan" style="border: 1px dotted red;">Điều khoản thỏa thuận</a></li>

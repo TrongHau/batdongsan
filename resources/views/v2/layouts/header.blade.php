@@ -45,7 +45,7 @@
     <link rel='stylesheet' id='bootstrap-css' href='/wp-content/themes/homesweet/css/bootstrap55a0.css?ver=3.2.0' type='text/css' media='all' />
     <link rel='stylesheet' id='homesweet-template-css' href='/wp-content/themes/homesweet/css/templatecf1b.css?ver=3.2' type='text/css' media='all' />
     <style id='homesweet-template-inline-css' type='text/css'>
-        .vc_custom_1502157337810{padding-top: 40px !important;padding-bottom: 40px !important;background-color: #13293d !important;}
+        .vc_custom_1502157337810{padding-top: 40px !important;padding-bottom: 40px !important;}
         /* check main color *//* check second color *//* Typo *//* seting background main */body, p{}/* seting background main */h1,h2,h3,h4,h5,h6,.widget-title,.widgettitle{}/* Custom CSS */
     </style>
     <link rel='stylesheet' id='homesweet-style-css' href='/wp-content/themes/homesweet/stylecf1b.css?ver=3.2' type='text/css' media='all' />
