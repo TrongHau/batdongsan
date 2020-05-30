@@ -193,7 +193,7 @@
 .article_vip_silver .property_box_vip{
     border: 1px solid orange!important;
 }
-.article_vip_silver .property_box_vip :hover {
+.article_vip_silver .property_box_vip:hover {
     box-shadow: 4px 4px 10px #ffa5008c;
 }
 .article_vip_normal .title_home_vip a{
@@ -203,7 +203,7 @@
 .article_vip_normal .property_box_vip{
     border: 1px solid #4c58a4!important;
 }
-.article_vip_normal .property_box_vip :hover {
+.article_vip_normal .property_box_vip:hover {
     box-shadow: 4px 4px 10px #4c58a4ba;
 }
 .btn-blue, .btn-search {
