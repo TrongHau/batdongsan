@@ -147,7 +147,7 @@
     -webkit-appearance: none;
 }
 .property-box-wrapper {
-    border: 1px solid #f0f9fb;
+    /*border: 1px solid #f0f9fb;*/
 }
 .widget-text-heading .link-text-heading{
     color: #4c58a4;font-size: 13px;font-weight: 400;font-family: open sans,Helvetica,Arial,sans-serif;
