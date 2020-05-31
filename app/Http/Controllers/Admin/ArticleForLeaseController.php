@@ -398,6 +398,7 @@ class ArticleForLeaseController extends CrudController
         if($request->expired_vip_input > 0) {
             $item->created_time_vip = time();
             $item->expired_vip = strtotime("+" . $request->expired_vip_input . " day");
+            $item->expired_post = strtotime("+" . $request->expired_vip_input . " day");
             $item->save();
         }
 

@@ -44,7 +44,7 @@ class CatalogController extends Controller
         $titleArticle = TypeModel::where('url', $key ? explode('/', $request->path())[0] : $request->path())->first();
         if(!$titleArticle)
             return view('errors.404');
-        $article = ArticleForLeaseModel::selectRaw('*, IF(type_vip = 0 || expired_vip <= unix_timestamp(now()) || disabled_vip = 1, 0, type_vip) as type_vip, IF(type_vip = 0 || expired_vip <= unix_timestamp(now()) || disabled_vip = 1, created_at, created_time_vip) as created_at')->where([['status', PUBLISHED_ARTICLE], ['aprroval', APPROVAL_ARTICLE_PUBLIC]]);
+        $article = ArticleForLeaseModel::selectRaw('*, IF(type_vip = 0 || expired_vip <= unix_timestamp(now()) || disabled_vip = 1, 0, type_vip) as type_vip, IF(type_vip = 0 || expired_vip <= unix_timestamp(now()) || disabled_vip = 1, created_at, created_time_vip) as created_at')->where([['status', PUBLISHED_ARTICLE], ['aprroval', APPROVAL_ARTICLE_PUBLIC]])->where('expired_post', '>=', time());
         // hiển thị tất cả
         if($titleArticle->url == 'nha-dat-ban' || $titleArticle->url == 'nha-dat-cho-thue') {
             $article = $article->where('method_article', $titleArticle->name);
@@ -80,7 +80,7 @@ class CatalogController extends Controller
         $titleArticle = TypeModel::where('url', $key ? explode('/', $request->path())[0] : $request->path())->first();
         if(!$titleArticle)
             return view('errors.404');
-        $article = ArticleForBuyModel::selectRaw('*, IF(type_vip = 0 || expired_vip <= unix_timestamp(now()) || disabled_vip = 1, 0, type_vip) as type_vip, IF(type_vip = 0 || expired_vip <= unix_timestamp(now()) || disabled_vip = 1, created_at, created_time_vip) as created_at')->where([['status', PUBLISHED_ARTICLE], ['aprroval', APPROVAL_ARTICLE_PUBLIC]]);
+        $article = ArticleForBuyModel::selectRaw('*, IF(type_vip = 0 || expired_vip <= unix_timestamp(now()) || disabled_vip = 1, 0, type_vip) as type_vip, IF(type_vip = 0 || expired_vip <= unix_timestamp(now()) || disabled_vip = 1, created_at, created_time_vip) as created_at')->where([['status', PUBLISHED_ARTICLE], ['aprroval', APPROVAL_ARTICLE_PUBLIC]])->where('expired_post', '>=', time());
         // hiển thị tất cả
         if($titleArticle->url == 'nha-dat-can-mua' || $titleArticle->url == 'nha-dat-can-thue') {
             $article = $article->where('method_article', $titleArticle->name);

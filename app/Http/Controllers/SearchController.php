@@ -83,6 +83,7 @@ class SearchController extends Controller
             $article = ArticleForBuyModel::where('status', PUBLISHED_ARTICLE);
             $article = $article->where('method_article', 'Bán loại bất động sản khác');
         }
+        $article = $article->where('expired_post', '>=', time());
         // hiển thị tất cả các loại
         if($method == 'tat-ca-nha-ban') {
             $article = ArticleForLeaseModel::where('status', PUBLISHED_ARTICLE);
