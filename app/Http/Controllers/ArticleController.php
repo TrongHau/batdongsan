@@ -325,6 +325,7 @@ class ArticleController extends Controller
             $article['user_id'] = Auth::user()->id ?? 0;
             $article['aprroval'] = APPROVAL_ARTICLE_DEFAULT;
             $article['start_news'] = time();
+            $article['expired_post'] =  strtotime(TIME_EXPIRY_POST_ARTICLE);
             if($article['status'] != DRAFT_ARTICLE && Auth::check()) {
                 $user = Auth::user();
                 if($user->point_current < POINT_NEW_ARTICLE_FOR_LEASE) {
@@ -479,6 +480,7 @@ class ArticleController extends Controller
             $article['user_id'] = Auth::user()->id ?? 0;
             $article['aprroval'] = APPROVAL_ARTICLE_DEFAULT;
             $article['start_news'] = time();
+            $article['expired_post'] =  strtotime(TIME_EXPIRY_POST_ARTICLE);
             if($article['status'] != DRAFT_ARTICLE && Auth::check()) {
                 $user = Auth::user();
                 if($user->point_current < POINT_NEW_ARTICLE_FOR_BUY) {

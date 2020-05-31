@@ -53,6 +53,7 @@ define('POINT_NEW_ARTICLE_FOR_BUY', 3);
 define('TIME_EXPIRED_OTP', '+5 minutes'); // hạn otp 5 phút
 define('TIME_HOURS_EXPIRED_OTP', '3');
 define('TIME_EXPIRY_ADD_LISTEN_MUSIC', '+1 hour');
+define('TIME_EXPIRY_POST_ARTICLE', '+60 day');
 
 define('ARTICLE_VIP_DIAMOND', 4);
 define('ARTICLE_VIP_GOLD', 3);
