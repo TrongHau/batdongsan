@@ -1,3 +1,14 @@
+<?php
+use App\Models\ReportModel;
+use App\Models\ContactModel;
+$notif['report'] = ReportModel::where('status', 0)->count();
+$notif['contact'] = ContactModel::where('status', 0)->count();
+$htmlNotif['report'] = $notif['report'] > 0 ? '<span class="label pull-right bg-red _3-99 red-important">'.($notif['report'] > 9 ? '9+' : $notif['report']).'</span>' : '';
+$htmlNotif['contact'] = $notif['contact'] > 0 ? '<span class="label pull-right bg-red _3-99 red-important">'.($notif['contact'] > 9 ? '9+' : $notif['contact']).'</span>' : '';
+
+?>
+
+
 <li><a href="{{ backpack_url('dashboard') }}"><i class="fa fa-dashboard"></i> <span>{{ trans('backpack::base.dashboard') }}</span></a></li>
 <!-- Users, Roles Permissions -->
 
@@ -21,7 +32,8 @@
         <li><a href="{{ backpack_url('permission') }}"><i class="fa fa-key"></i> <span>Permissions</span></a></li>
     </ul>
 </li>
-<li><a href="{{backpack_url('report') }}"><i class="fa fa-flag"></i> <span>Cảnh báo tin</span></a></li>
+<li><a href="{{backpack_url('report') }}"><i class="fa fa-flag"></i> <span>Cảnh báo tin</span><?php echo $htmlNotif['report'] ?></a></li>
+<li><a href="{{backpack_url('contact') }}"><i class="fa fa-flag"></i> <span>Liên hệ</span><?php echo $htmlNotif['contact'] ?></a></li>
 <li class="treeview">
     <a href="#"><i class="fa fa-cloud-download"></i> <span>Lấy tin BĐS</span> <i class="fa fa-angle-left pull-right"></i></a>
     <ul class="treeview-menu">

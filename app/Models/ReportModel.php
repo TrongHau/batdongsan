@@ -11,7 +11,7 @@ class ReportModel extends Model
     use CrudTrait;
     protected $table = 'report';
     protected $primaryKey = 'id';
-    protected $fillable = ['name', 'user_id', 'email', 'reason_report', 'content', 'method', 'article_id'];
+    protected $fillable = ['name', 'user_id', 'email', 'reason_report', 'content', 'method', 'article_id', 'status'];
 
     public function user() {
         return $this->belongsTo('App\User', 'user_id');

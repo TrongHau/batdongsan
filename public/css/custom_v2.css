@@ -244,3 +244,7 @@
 .main-content-header-top, .main-content-header-top .apus-breadscrumb {
     background: #F0F2F5!important
 }
+.errorMessage {
+    color: red;
+    font-weight: 700;
+}

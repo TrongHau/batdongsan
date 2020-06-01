@@ -67,4 +67,10 @@ class DetailController extends Controller
             return view('errors.404');
         return view('v2.detail.page', compact('page'));
     }
+    public function aboutDetailContact(Request $request) {
+        $page = Page::where('slug', $request->path())->first();
+        if(!$page)
+            return view('errors.404');
+        return view('v2.detail.contact', compact('page'));
+    }
 }

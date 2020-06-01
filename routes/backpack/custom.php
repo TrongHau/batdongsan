@@ -15,6 +15,7 @@ Route::group([
     CRUD::resource('article_for_buy', 'ArticleForBuyController');
     CRUD::resource('phone', 'PhoneController');
     CRUD::resource('report', 'ReportController');
+    CRUD::resource('contact', 'ContactController');
 
     Route::get('sync_article_new/sync_article', 'SyncArticleController@getSyncArticle');
     Route::get('sync_article_new/approval/{id}', 'SyncArticleController@approvalSyncArticle');

@@ -28,7 +28,7 @@ class ReportController extends CrudController
        */
         $this->crud->setModel("App\Models\ReportModel");
         $this->crud->setRoute(config('backpack.base.route_prefix', 'admin').'/report');
-        $this->crud->setEntityNameStrings('phone', 'Danh sách than phiền');
+        $this->crud->setEntityNameStrings('report', 'Danh sách báo tin');
         $this->crud->orderBy('created_at', 'desc');
         $this->crud->denyAccess(['create']);
 
@@ -38,7 +38,7 @@ class ReportController extends CrudController
         $this->crud->addFilter([ // daterange filter
             'type' => 'date_range',
             'name' => 'from_to',
-            'label'=> 'Hiển thị theo thời gian cập nhật phone'
+            'label'=> 'Hiển thị theo thời gian cập nhật'
         ],
             false,
             function($value) {
@@ -47,7 +47,7 @@ class ReportController extends CrudController
                 $this->crud->addClause('whereDate', 'created_at', '<=', $dates->to);
             });
         $this->crud->addFilter([ // dropdown filter
-            'name' => 'status',
+            'name' => 'reason_report',
             'type' => 'dropdown',
             'label'=> 'Tình Trạng'
         ], [
@@ -57,6 +57,17 @@ class ReportController extends CrudController
             'Tiêu đề tin không dấu/có ký tự lạ.' => 'Tiêu đề tin không dấu/có ký tự lạ.',
             'Đăng tin sai quy định' => 'Đăng tin sai quy định',
             'Đăng tin khống.' => 'Đăng tin khống.',
+        ], function($value) { // if the filter is active
+            $this->crud->addClause('where', 'status', $value);
+        });
+        $this->crud->addFilter([ // dropdown filter
+            'name' => 'status',
+            'type' => 'dropdown',
+            'label'=> 'Tình trạng'
+        ], [
+            0 => 'Chưa xem',
+            1 => 'Chưa phù hợp',
+            2 => 'Đã xác nhận',
         ], function($value) { // if the filter is active
             $this->crud->addClause('where', 'status', $value);
         });
@@ -92,8 +103,18 @@ class ReportController extends CrudController
             'label' => 'Lý do gửi',
         ]);
         $this->crud->addColumn([
-            'name'  => 'content',
-            'label' => 'nội dung gửi',
+            'name'  => 'status',
+            'label' => 'Tình Trạng',
+            'type' => 'closure',
+            'function' => function($entry) {
+                if($entry->status == 0) {
+                    return '<span class="label label-warning">Chưa xem</span>';
+                }elseif($entry->status == 1) {
+                    return '<span class="label label-default">Chưa phù hợp</span>';
+                }elseif($entry->status == 2){
+                    return '<span class="label label-default">Đã xác nhận</span>';
+                }
+            },
         ]);
         $this->crud->addColumn([
             'name'  => 'method',
@@ -153,7 +174,14 @@ class ReportController extends CrudController
             'label' => 'Nội dung gửi',
             'type' => 'textarea',
         ]);
-
+        $this->crud->addField([
+            'label' => 'Tình trạng',
+            'type' => 'select_from_array',
+            'name' => 'status',
+            'options' => [0 => 'Chưa xem', 1 => 'Chưa phù hợp', 2 => 'Đã xác nhận'],
+            'allows_null' => false,
+            'default' => 0,
+        ]);
     }
 
     public function store(StoreRequest $request)

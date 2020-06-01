@@ -92,15 +92,15 @@
                                                     <a href="ho-tro">Hỗ trợ</a></li>
                                                 <li id="menu-item-2508"
                                                     class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2508">
-                                                    <a href="/bao-gia-ho-tro" rel="nofollow" style="border: 1px dotted red;">Báo giá &amp; hỗ trợ</a></li>
+                                                    <a href="/bao-gia-ho-tro" rel="nofollow" >Báo giá &amp; hỗ trợ</a></li>
                                                 <li id="menu-item-2510"
                                                     class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2510">
-                                                    <a href="/nhung-cau-hoi-thuong-gap" style="border: 1px dotted red;">Những câu hỏi thường gặp</a></li>
+                                                    <a href="/nhung-cau-hoi-thuong-gap" >Những câu hỏi thường gặp</a></li>
                                                 <li id="menu-item-2507" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2507">
-                                                    <a href="/ve-chung-toi" style="border: 1px dotted red;">Về chúng tôi</a></li>
+                                                    <a href="/ve-chung-toi" >Về chúng tôi</a></li>
                                                 <li id="menu-item-2511"
                                                     class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2511">
-                                                    <a href="/lien-he" style="border: 1px dotted red;">Liên hệ</a></li>
+                                                    <a href="/lien-he" >Liên hệ</a></li>
                                             </ul></div></div></div>
                                         </div>
                                     </div>
@@ -115,16 +115,16 @@
                                                         <ul id="menu-sub-link" class="menu">
                                                             <li id="menu-item-2507"
                                                                 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2507">
-                                                                <a href="/quy-dinh-dang-tin" style="border: 1px dotted red;">Quy định đăng tin</a></li>
+                                                                <a href="/quy-dinh-dang-tin" >Quy định đăng tin</a></li>
                                                             <li id="menu-item-2508"
                                                                 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2508">
                                                                 <a href="/quy-che-hoat-dong">Quy chế hoạt động</a></li>
                                                             <li id="menu-item-2509"
                                                                 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2509">
-                                                                <a href="/dieu-khoan-thoa-thuan" style="border: 1px dotted red;">Điều khoản thỏa thuận</a></li>
+                                                                <a href="/dieu-khoan-thoa-thuan" >Điều khoản thỏa thuận</a></li>
                                                             <li id="menu-item-2510"
                                                                 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2510">
-                                                                <a href="/chinh-sach-bao-mat-thong-tin" style="border: 1px dotted red;">Chính sách bảo mật</a></li>
+                                                                <a href="/chinh-sach-bao-mat-thong-tin" >Chính sách bảo mật</a></li>
                                                             <li id="menu-item-2511"
                                                                 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2511">
                                                                 <a href="/giai-quyet-khieu-nai">Giải quyết khiếu nại</a></li>
@@ -140,7 +140,7 @@
                                                     <h2 class="widgettitle" style="font-size: 20px">LIÊN KẾT</h2>
                                                     <div style="display: inline-flex; ">
                                                         <a style="margin-top: 5px;" id="facebook" target="_blank" rel="nofollow" href="https://www.facebook.com/sharer/sharer.php?u=http://batdongsan.ooo/">
-                                                            <img style="height: 28px; border: 1px dotted red;" src="/imgs/btn-share-facebook.png"></a>
+                                                            <img style="height: 28px;" src="/imgs/btn-share-facebook.png"></a>
                                                         <div style="margin-top: 5px; margin-left: 8px" class="sharethis-inline-share-buttons"></div>
                                                         <a href="https://twitter.com/share?url=http://batdongsan.ooo&amp;text=Bất%20Động%20Sản%20OOO&amp;hashtags=batdongsan" target="_blank">
                                                             <img style="width: 28px; margin-top: 6px;" src="https://simplesharebuttons.com/images/somacro/twitter.png" alt="Twitter">

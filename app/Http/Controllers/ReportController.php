@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Hash;
 use  App\User;
 use App\Models\ArticleForLeaseModel;
 use App\Models\ArticleForBuyModel;
+use App\Models\ContactModel;
 use File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Pagination\Paginator;
@@ -65,6 +66,22 @@ class ReportController extends Controller
         ]);
         return Helpers::ajaxResult(true, 'Cảm ơn bạn đã gửi thông báo về tin rao này.');
 
+    }
+    public function contact(Request $request) {
+        $this->validate($request, [
+            'title' => 'required|max:200',
+            'name' => 'required',
+            'message' => 'required|max:3000',
+        ]);
+        ContactModel::create([
+            'user_id' => Auth::user()->id ?? 0,
+            'title' => $request->title ?? '',
+            'name' => $request->name ?? '',
+            'phone' => $request->phone ?? '',
+            'address' => $request->address ?? '',
+            'message' => $request->message ?? '',
+        ]);
+        return redirect()->route('view.contact')->with('success', 'Gửi liên hệ thành công');
     }
 
 }
