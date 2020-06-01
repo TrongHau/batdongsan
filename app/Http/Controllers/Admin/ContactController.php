@@ -99,6 +99,10 @@ class ContactController extends CrudController
             },
         ]);
         $this->crud->addColumn([
+            'name'  => 'email',
+            'label' => 'Email',
+        ]);
+        $this->crud->addColumn([
             'label' => 'User',
             'type' => 'select',
             'name' => 'user_id',
@@ -115,6 +119,10 @@ class ContactController extends CrudController
         $this->crud->addField([
             'name' => 'title',
             'label' => 'Tiêu đề',
+        ]);
+        $this->crud->addField([
+            'name' => 'email',
+            'label' => 'Email',
         ]);
 
         $this->crud->addField([

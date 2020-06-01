@@ -70,13 +70,15 @@ class ReportController extends Controller
     public function contact(Request $request) {
         $this->validate($request, [
             'title' => 'required|max:200',
-            'name' => 'required',
+            'email' => 'required',
             'message' => 'required|max:3000',
+            'g-recaptcha-response' => 'required',
         ]);
         ContactModel::create([
             'user_id' => Auth::user()->id ?? 0,
             'title' => $request->title ?? '',
             'name' => $request->name ?? '',
+            'email' => $request->email ?? '',
             'phone' => $request->phone ?? '',
             'address' => $request->address ?? '',
             'message' => $request->message ?? '',

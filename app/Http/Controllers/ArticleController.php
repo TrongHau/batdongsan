@@ -233,7 +233,7 @@ class ArticleController extends Controller
             'price' => 'max:999999',
             'bed_room' => 'max:99',
             'toilet' => 'max:99',
-//            'g-recaptcha-response' => 'required',
+            'g-recaptcha-response' => 'required',
         ];
         session_start();
         if(!Auth::check()) {

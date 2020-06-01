@@ -4,6 +4,7 @@ use Jenssegers\Agent\Agent;
 $Agent = new Agent();
 ?>
 @section('contentCSS')
+    <script src='https://www.google.com/recaptcha/api.js'></script>
     <script src="https://sp.zalo.me/plugins/sdk.js"></script>
 @endsection
 @extends('v2.layouts.app')
@@ -48,11 +49,17 @@ $Agent = new Agent();
                                                             <div class="form-contact" style="background: none">
                                                                 <h3 class="title">Liên hệ đên chúng tôi</h3>
                                                                 <div class="row">
-                                                                    <div class="col-xs-12 col-sm-12">
+                                                                    <div class="col-xs-12 col-sm-6">
                                                                         @if ($errors->has('title'))
                                                                             <div class="errorMessage" style="display: block;">{{ $errors->first('title') }}</div>
                                                                         @endif
                                                                         <span class="wpcf7-form-control-wrap website"><input type="text" name="title" value="{{old('title')}}" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control" aria-required="true" aria-invalid="false" required placeholder="Tiêu đề"></span>
+                                                                    </div>
+                                                                    <div class="col-xs-12 col-sm-6">
+                                                                        @if ($errors->has('email'))
+                                                                            <div class="errorMessage" style="display: block;">{{ $errors->first('email') }}</div>
+                                                                        @endif
+                                                                        <span class="wpcf7-form-control-wrap website"><input type="text" name="email" value="{{old('email')}}" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control" aria-required="true" aria-invalid="false" required placeholder="Email"></span>
                                                                     </div>
                                                                 </div>
                                                                 <div class="row">
@@ -71,17 +78,23 @@ $Agent = new Agent();
                                                                         <span class="wpcf7-form-control-wrap"><input type="text" name="address" value="{{old('address')}}" size="300" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control" aria-required="true" aria-invalid="false" placeholder="Địa chỉ"></span>
                                                                     </div>
                                                                 </div>
-                                                                <p>
-                                                                    <span class="wpcf7-form-control-wrap message">
-                                                                        @if ($errors->has('message'))
-                                                                            <div class="errorMessage" style="display: block;">{{ $errors->first('message') }}</div>
-                                                                        @endif
-                                                                        <textarea name="message" cols="40" rows="10" value="{{old('message')}}" class="wpcf7-form-control wpcf7-textarea wpcf7-validates-as-required form-control" aria-required="true" aria-invalid="false" placeholder="Nội dung liên hệ"></textarea>
-                                                                    </span>
-                                                                    <br>
-                                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                                    <input type="submit" value="Gửi" class="wpcf7-form-control wpcf7-submit btn btn-submit"><span class="ajax-loader"></span>
-                                                                </p></div>
+                                                                <span class="wpcf7-form-control-wrap message">
+                                                                    @if ($errors->has('message'))
+                                                                        <div class="errorMessage" style="display: block;">{{ $errors->first('message') }}</div>
+                                                                    @endif
+                                                                    <textarea name="message" cols="40" rows="10" value="{{old('message')}}" class="wpcf7-form-control wpcf7-textarea wpcf7-validates-as-required form-control" aria-required="true" aria-invalid="false" placeholder="Nội dung liên hệ"></textarea>
+                                                                </span>
+                                                                <div>
+                                                                    @if ($errors->has('g-recaptcha-response'))
+                                                                        <p style="color: red">{{ str_replace('g-recaptcha-response', 'mã an toàn', $errors->first('g-recaptcha-response'))}}</p>
+                                                                    @endif
+                                                                    <div class="g-recaptcha" data-sitekey="{{env('NOCAPTCHA_SECRET')}}"></div>
+                                                                    <span id="errorCaptcha" style="color:Red;display:none;">Bạn chưa xác nhận mã an toàn</span>
+                                                                </div>
+                                                                <br>
+                                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                                <input type="submit" value="Gửi" class="wpcf7-form-control wpcf7-submit btn btn-submit"><span class="ajax-loader"></span>
+                                                                </div>
                                                             <div class="wpcf7-response-output wpcf7-display-none"></div></form>
                                                     </div>
                                                 </div>
