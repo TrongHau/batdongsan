@@ -248,3 +248,11 @@
     color: red;
     font-weight: 700;
 }
+#main-container {
+    background: white;
+}
+.property-box-image {
+    border-color: #dfebee;
+    border-style: solid;
+    border-width: 1px 1px 0px 1px;
+}
