@@ -229,7 +229,7 @@ class ArticleController extends Controller
             'district_id' => 'required',
             'content_article' => 'required',
             'address' => 'required',
-            'contact_phone' => 'required',
+//            'contact_phone' => 'required',
             'price' => 'max:999999',
             'bed_room' => 'max:99',
             'toilet' => 'max:99',

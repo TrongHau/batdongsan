@@ -412,7 +412,6 @@ use App\Library\Helpers;
                         <div class="dang_tin">
                             <a class="btn btn-submit" href="/guest/dang-tin-ban-cho-thue"><i class="ion-ios-plus-empty"></i>Đăng Tin</a>
                         </div>
-
                         @else
                         <a class="btn btn-submit" href="/quan-ly-tin/dang-tin-ban-cho-thue"><i class="ion-ios-plus-empty"></i>Đăng Tin</a>
                         @endif
