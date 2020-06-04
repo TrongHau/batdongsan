@@ -33,7 +33,7 @@ global $province;
         .table-search-article>thead>tr>th, .table-search-article>thead>tr>td, .table-search-article>tbody>tr>th, .table-search-article>tbody>tr>td, .table-search-article>tfoot>tr>th, .table-search-article>tfoot>tr>td, .table-bordered>thead>tr>th, .table-bordered>thead>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tbody>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>tfoot>tr>td{
             border: none;
         }
-        .form-control {
+        #apus-main-content .form-control {
             line-height: inherit;
             border: 1px solid #ddd;
             height: 32px;

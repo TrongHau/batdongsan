@@ -1,6 +1,7 @@
 <?php
 use App\Library\Helpers;
 global $province;
+session_start();
 ?>
 @include('cache.province')
 @section('contentCSS')
@@ -32,7 +33,7 @@ global $province;
         .table-search-article>thead>tr>th, .table-search-article>thead>tr>td, .table-search-article>tbody>tr>th, .table-search-article>tbody>tr>td, .table-search-article>tfoot>tr>th, .table-search-article>tfoot>tr>td, .table-bordered>thead>tr>th, .table-bordered>thead>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tbody>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>tfoot>tr>td{
             border: none;
         }
-        .form-control {
+        #apus-main-content .form-control {
             line-height: inherit;
             border: 1px solid #ddd;
             height: 32px;
@@ -792,6 +793,14 @@ global $province;
             $('.submit_type').val('draf');
             $('#btnSave').click();
         }
+        function enableSmsOtp() {
+            if($('#txtTitle').val() && $('#method_article').val() && $('#type_article').val() && $('.select-province').val() != 0 && $('.select-district').val() != 0) {
+                $('#MainContent__userPage_ctl00_lnkVerifyPrimaryNumber').attr('disabled', false);
+            }else{
+                $('#MainContent__userPage_ctl00_lnkVerifyPrimaryNumber').attr('disabled', true);
+            }
+            return false;
+        }
         <?php
         if(old('province_id') ?? $article->province_id ?? false) {
         ?>
@@ -1127,13 +1136,6 @@ global $province;
             });
         }
 
-        function enableSmsOtp() {
-            if($('#txtTitle').val() && $('#method_article').val() && $('#type_article').val() && $('.select-province').val() != 0 && $('.select-district').val() != 0) {
-                $('#MainContent__userPage_ctl00_lnkVerifyPrimaryNumber').attr('disabled', false);
-            }else{
-                $('#MainContent__userPage_ctl00_lnkVerifyPrimaryNumber').attr('disabled', true);
-            }
-            return false;
-        }
+
     </script>
 @endsection

@@ -211,9 +211,15 @@ class ArticleController extends Controller
     }
 
     public function newGuestArticleForLease(Request $request) {
+        if(Auth::check()) {
+            return redirect()->route('article.getArticleLease');
+        }
         return view('v2.article.new_for_lease_guest');
     }
     public function newGuestArticleForBuy(Request $request) {
+        if(Auth::check()) {
+            return redirect()->route('article.getArticleBuy');
+        }
         return view('v2.article.new_for_buy_guest');
     }
 
@@ -229,7 +235,7 @@ class ArticleController extends Controller
             'district_id' => 'required',
             'content_article' => 'required',
             'address' => 'required',
-//            'contact_phone' => 'required',
+            'contact_phone' => 'required',
             'price' => 'max:999999',
             'bed_room' => 'max:99',
             'toilet' => 'max:99',
@@ -238,7 +244,7 @@ class ArticleController extends Controller
         session_start();
         if(!Auth::check()) {
             if(!isset($_SESSION['verify_phone']) || !$_SESSION['verify_phone']) {
-                $excep['phone'] = 'required';
+                $excep['contact_phone'] = 'required';
             }else{
                 Input::merge(['contact_phone' => $_SESSION['verify_phone']]);
                 $typeAuthGuest = 'guest.';
@@ -399,7 +405,7 @@ class ArticleController extends Controller
         ];
         if(!Auth::check()) {
             if(!isset($_SESSION['verify_phone']) || !$_SESSION['verify_phone']) {
-                $excep['phone'] = 'required';
+                $excep['contact_phone'] = 'required';
             }else{
                 Input::merge(['contact_phone' => $_SESSION['verify_phone']]);
                 $typeAuthGuest = 'guest.';
