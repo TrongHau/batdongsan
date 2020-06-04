@@ -130,8 +130,8 @@
 }
 
 .verifyPopup .verifyPopupContent input[type=number] {
-    height: 28px;
-    border: 1px solid #ccc;
+    /*height: 28px;*/
+    /*border: 1px solid #ccc;*/
     padding: 0 10px
 }
 

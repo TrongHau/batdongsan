@@ -280,10 +280,8 @@ $mySelf = Auth::user();
                     <table style="width: 100%; margin-top: 20px; border: none;" class="t-4-c table-search-article">
                         <tbody>
                         <tr>
-                            <td style="width:170px;">Số điện thoại đăng tin</td>
-                            <td><input class="form-control" type="number" max="9999999999" min="0"
-                                       placeholder="Nhập số điện thoại bạn muốn thêm vào hồ sơ " style="width:280px;"
-                                       id="txtNumberPhone"></td>
+                            <td style="width:100px;"></td>
+                            <td><input class="form-control" type="number" max="9999999999" min="0" placeholder="Nhập số điện thoại bạn muốn thêm vào hồ sơ " id="txtNumberPhone"></td>
                         </tr>
                         <tr>
                             <td></td>
@@ -301,7 +299,7 @@ $mySelf = Auth::user();
                         <tr>
                             <td></td>
                             <td>
-                                <input placeholder="Nhập mã an toàn" type="text" id="captcha" value="" style=" height: 25px; border: 1px solid #ccc; padding: 0 10px; " />
+                                <input placeholder="Nhập mã an toàn" type="text" id="captcha" value="" class="form-control"/>
                             </td>
                         </tr>
                         <tr>
@@ -318,9 +316,9 @@ $mySelf = Auth::user();
                             </td>
                         </tr>
                         <tr>
-                            <td>Nhập mã xác thực</td>
+                            <td></td>
                             <td>
-                                <input type="number" style="font-weight: 700" min="0" class="form-control" max="999999" placeholder="Nhập mã số bạn nhận được qua SMS" style="width:240px; margin-right:20px;" id="txtOTP">
+                                <input type="number" style="font-weight: 700" min="0" class="form-control" max="999999" placeholder="Nhập mã số bạn nhận được qua SMS" id="txtOTP">
                             </td>
                             <td>
                                 <input type="button" class="button-blue1" value="Xác thực" onclick="VerifyOTPNumberPhone()">
