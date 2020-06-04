@@ -54,8 +54,8 @@ class ArticleController extends Controller
             ->where('user_id', Auth::user()->id)
 //            ->where('status', PUBLISHED_ARTICLE)
             ->orderBy('created_at', 'desc')->paginate(PAGING_LIST_ARTICLE);
-        $list = view('article.item_article_lease', compact('article'));
-        return view('article.manage_for_lease', compact('list'));
+        $list = view('v2.article.item_article_lease', compact('article'));
+        return view('v2.article.manage_for_lease', compact('list'));
     }
     public function listArticleForBuy(Request $request)
     {
@@ -65,8 +65,8 @@ class ArticleController extends Controller
             ->where('user_id', Auth::user()->id)
 //            ->where('status', PUBLISHED_ARTICLE)
             ->orderBy('created_at', 'desc')->paginate(PAGING_LIST_ARTICLE);
-        $list = view('article.item_article_buy', compact('article'));
-        return view('article.manage_for_buy', compact('list'));
+        $list = view('v2.article.item_article_buy', compact('article'));
+        return view('v2.article.manage_for_buy', compact('list'));
     }
     public function listDrafArticle(Request $request)
     {
@@ -83,8 +83,8 @@ class ArticleController extends Controller
         $slice = array_slice($article->toArray(), PAGING_LIST_ARTICLE * ($page - 1), PAGING_LIST_ARTICLE + 1);
         $article = new \Illuminate\Pagination\Paginator($slice, PAGING_LIST_ARTICLE);
 
-        $list = view('article.item_article_draf', compact('article'));
-        return view('article.manage_for_draf', compact('list'));
+        $list = view('v2.article.item_article_draf', compact('article'));
+        return view('v2.article.manage_for_draf', compact('list'));
     }
 
     public function getListArticleForLease(Request $request) {
@@ -105,7 +105,7 @@ class ArticleController extends Controller
             $article =  $article->where('aprroval', '=', $request->aprroval);
         }
         $article = $article->where('status', PUBLISHED_ARTICLE)->orderBy('created_at', 'desc')->paginate(PAGING_LIST_ARTICLE);
-        return view('article.item_article_lease', compact('article'));
+        return view('v2.article.item_article_lease', compact('article'));
     }
     public function getListArticleForBuy(Request $request) {
         $article = ArticleForBuyModel::select(['id', 'title', 'views', 'created_at', 'status', 'aprroval', 'gallery_image', 'note', 'updated_at'])
@@ -125,7 +125,7 @@ class ArticleController extends Controller
             $article =  $article->where('aprroval', '=', $request->aprroval);
         }
         $article = $article->where('status', PUBLISHED_ARTICLE)->orderBy('created_at', 'desc')->paginate(PAGING_LIST_ARTICLE);
-        return view('article.item_article_buy', compact('article'));
+        return view('v2.article.item_article_buy', compact('article'));
     }
     public function getListArticleForDraf(Request $request) {
         $page = $request->page ?? 1;
@@ -155,7 +155,7 @@ class ArticleController extends Controller
         $article = $articleForLease->union($articleForBuy)->orderBy('updated_at', 'desc')->get();
         $slice = array_slice($article->toArray(), PAGING_LIST_ARTICLE * ($page - 1), PAGING_LIST_ARTICLE + 1);
         $article = new \Illuminate\Pagination\Paginator($slice, PAGING_LIST_ARTICLE);
-        return view('article.item_article_draf', compact('article'));
+        return view('v2.article.item_article_draf', compact('article'));
     }
     public function deleteArticle(Request $request) {
         if($request->type == 1) {
@@ -191,7 +191,7 @@ class ArticleController extends Controller
                 return view('errors.404');
         }
 
-        return view('article.new_for_lease', compact('article'));
+        return view('v2.article.new_for_lease', compact('article'));
     }
     public function newArticleForBuy(Request $request, $id = null)
     {
@@ -207,7 +207,7 @@ class ArticleController extends Controller
                 return view('errors.404');
         }
        
-        return view('article.new_for_buy', compact('article'));
+        return view('v2.article.new_for_buy', compact('article'));
     }
 
     public function newGuestArticleForLease(Request $request) {
@@ -233,7 +233,7 @@ class ArticleController extends Controller
             'price' => 'max:999999',
             'bed_room' => 'max:99',
             'toilet' => 'max:99',
-            'g-recaptcha-response' => 'required',
+//            'g-recaptcha-response' => 'required',
         ];
         session_start();
         if(!Auth::check()) {
@@ -395,7 +395,7 @@ class ArticleController extends Controller
             'price' => 'max:999999',
             'bed_room' => 'max:99',
             'toilet' => 'max:99',
-            'g-recaptcha-response' => 'required',
+//            'g-recaptcha-response' => 'required',
         ];
         if(!Auth::check()) {
             if(!isset($_SESSION['verify_phone']) || !$_SESSION['verify_phone']) {

@@ -45,7 +45,7 @@ class UserController extends Controller
     }
     public function changeProfile(Request $request) {
         $province = ProvinceModel::get();
-        return view('user.change_profile', compact('province'));
+        return view('v2.user.change_profile', compact('province'));
     }
     public function storeProfile(Request $request) {
         $this->validate($request, [
@@ -90,7 +90,7 @@ class UserController extends Controller
         }
     }
     public function changePassword(Request $request) {
-        return view('user.change_password');
+        return view('v2.user.change_password');
     }
     public function storePassword(Request $request) {
         $this->validate($request, [
@@ -105,6 +105,8 @@ class UserController extends Controller
                 $user->password = Hash::make($request->input('password'));
                 $user->save();
                 return redirect()->route('user.changePassword')->with('success', 'Cập nhật mật khẩu thành công.');
+            }else{
+                return redirect()->route('user.changePassword')->with('error', 'Nhập khẩu cũ không chính xác');
             }
         }
         return redirect()->route('user.changePassword')->with('error', 'Xác nhận mật khẩu không chính xác');
