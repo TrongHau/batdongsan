@@ -541,3 +541,21 @@ body {
 .countTypeLength {
     color: black;
 }
+.profile_login li:nth-child(1) {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 110px;
+}
+.profile_login li:nth-child(2) {
+    white-space: nowrap;
+    overflow: hidden;
+}
+#MainContent__userPage_lblUserName {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 110px;
+    margin-left: auto;
+    margin-right: auto;
+}
