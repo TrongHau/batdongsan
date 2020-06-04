@@ -113,7 +113,7 @@ $mySelf = Auth::user();
                                                                     <span id="MainContent__userPage_ctl00_lblBirthDate">Ngày sinh</span>
                                                                 </td>
                                                                 <td>
-                                                                    <input name="birth_day" type="date" style="width: 50%" value="{{old('birth_day') ? date('Y-m-d', strtotime(old('birth_day'))) : $mySelf->birth_day ? date('Y-m-d', strtotime($mySelf->birth_day)) : ''}}   {{date('Y-m-d', strtotime(old('birth_day') ?? $mySelf->birth_day))}}" id="MainContent__userPage_ctl00_txtBirthDates" class="datetimepicker keycode hasDatepicker form-control" >
+                                                                    <input name="birth_day" type="date" style="width: 50%" value="{{old('birth_day') ? date('Y-m-d', strtotime(old('birth_day'))) : ($mySelf->birth_day ? date('Y-m-d', strtotime($mySelf->birth_day)) : '')}}" id="MainContent__userPage_ctl00_txtBirthDates" class="datetimepicker keycode hasDatepicker form-control" >
                                                                     @if ($errors->has('birth_day'))
                                                                         <span style="color: red;" id="errorFullName">{{ str_replace('birth day', 'ngày sinh', $errors->first('birth_day')) }}</span>
                                                                     @endif
