@@ -410,7 +410,7 @@ use App\Library\Helpers;
                         <div class="pull-right">
                         @if(!Auth::check())
                         <div class="login dang_tin">
-                            <a class="btn btn-submit" href="#customer_login"><i class="ion-ios-plus-empty"></i>Đăng Tin</a>
+                            <a class="btn btn-submit" href="/guest/dang-tin-ban-cho-thue"><i class="ion-ios-plus-empty"></i>Đăng Tin</a>
                         </div>
 
                         @else

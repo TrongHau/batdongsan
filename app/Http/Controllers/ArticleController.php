@@ -211,10 +211,10 @@ class ArticleController extends Controller
     }
 
     public function newGuestArticleForLease(Request $request) {
-        return view('article.new_for_lease_guest');
+        return view('v2.article.new_for_lease_guest');
     }
     public function newGuestArticleForBuy(Request $request) {
-        return view('article.new_for_buy_guest');
+        return view('v2.article.new_for_buy_guest');
     }
 
     public function storeArticleForLease(Request $request)
