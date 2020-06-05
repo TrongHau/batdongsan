@@ -566,3 +566,7 @@ button:disabled {
     width: 38%;
     float: left;
 }
+body {
+    color: #000000;
+
+}

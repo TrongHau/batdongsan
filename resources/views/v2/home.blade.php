@@ -42,7 +42,7 @@ global $location_province_article_lease;
     <div id="wrapper-container" class="wrapper-container">
         @include('v2.layouts.header_logo')
         <div id="apus-main-content">
-            <section id="main-container" class="container inner">
+            <section id="main-container" class="container inner container_home">
                 <div class="row">
                     <div id="main-content" class="main-page col-xs-12">
                         <main id="main" class="site-main" role="main">
@@ -346,7 +346,7 @@ global $location_province_article_lease;
                                                                     $searchMethod = 'nha-dat-cho-thue';
                                                                 }
                                                                 ?>
-                                                                <div class="isotope-item all SALE col-md-3 col-sm-4 {{$item->type_vip == ARTICLE_VIP_DIAMOND ? 'article_vip_diamond' : ($item->type_vip == ARTICLE_VIP_GOLD ? 'article_vip_gold' : ($item->type_vip == ARTICLE_VIP_SILVER ? 'article_vip_silver' : ($item->type_vip == ARTICLE_VIP_NORMAL ? 'article_vip_normal' : '')))}}" data-category="SALE">
+                                                                <div class="isotope-item all SALE col-md-3 col-sm-3 {{$item->type_vip == ARTICLE_VIP_DIAMOND ? 'article_vip_diamond' : ($item->type_vip == ARTICLE_VIP_GOLD ? 'article_vip_gold' : ($item->type_vip == ARTICLE_VIP_SILVER ? 'article_vip_silver' : ($item->type_vip == ARTICLE_VIP_NORMAL ? 'article_vip_normal' : '')))}}" data-category="SALE">
                                                                     <div class="property-box property-box-grid property-box-wrapper property_box_vip"
                                                                          data-latitude="40.5795317"
                                                                          data-longitude="-74.15020070000003"
