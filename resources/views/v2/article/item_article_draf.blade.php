@@ -49,9 +49,9 @@ $list = $article->toArray();
                 <span style="float: left; word-wrap: break-word; color: #055699;" id="view_18965371">
                     <img style="width: 77px; height: 62px; float: left; padding-right: 8px;" src="{{$item['gallery_image'] ? Helpers::file_path($item['id'], PUBLIC_ARTICLE_LEASE, true).THUMBNAIL_PATH.json_decode($item['gallery_image'])[0] : THUMBNAIL_DEFAULT }}" alt="{{$item['title']}}">{{$item['title']}}</span>
                     <div style="clear: both; text-align: right; padding-top: 5px;">
-                        <a id="MainContent__userPage_ctl00_rpItems_lnkEdit_0" href="/quan-ly-tin/dang-tin-ban-cho-thue/{{$item['id']}}">
+                        <a id="MainContent__userPage_ctl00_rpItems_lnkEdit_0" href="{{$item['typeOf'] == 'lease' ? '/quan-ly-tin/dang-tin-ban-cho-thue/' : '/quan-ly-tin/dang-tin-can-mua-can-thue/'}}{{$item['id']}}">
                             <img src="/imgs/sua.gif"> Sửa</a>&nbsp;
-                        <a id="MainContent__userPage_ctl00_rpItems_lnkDel_0" class="btn-xoa" onclick="deleteArticle('{{$item['id']}}')" href="javascript:void(0)">Xóa</a>
+                        <a id="MainContent__userPage_ctl00_rpItems_lnkDel_0" class="btn-xoa" onclick="deleteArticle('{{$item['id']}}', {{$item['typeOf'] == 'lease' ? 1 : 2}})" href="javascript:void(0)">Xóa</a>
                         <div style="display: none;">
 
                         </div>
@@ -59,7 +59,7 @@ $list = $article->toArray();
                 </td>
                 <td>
                     <p>
-                        <a id="pageviews_18965371" href="javascript: PageViewDaily('9fLJVubxXI8tONW9Zh5KSg==')" class="grey" style="text-decoration: underline">{{$item['views'] ? $item['views'] : '_'}}</a>
+                        {{$item['views'] ? $item['views'] : '_'}}
                     </p>
                     <p>
                         <br>

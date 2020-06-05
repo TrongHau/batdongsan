@@ -33,11 +33,12 @@ session_start();
         .table-search-article>thead>tr>th, .table-search-article>thead>tr>td, .table-search-article>tbody>tr>th, .table-search-article>tbody>tr>td, .table-search-article>tfoot>tr>th, .table-search-article>tfoot>tr>td, .table-bordered>thead>tr>th, .table-bordered>thead>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tbody>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>tfoot>tr>td{
             border: none;
         }
-        #apus-main-content .form-control {
+        .main-container .form-control {
             line-height: inherit;
             border: 1px solid #ddd;
             height: 32px;
             padding: 5px 5px;
+            color: #000000;
         }
         .table-search-article>tbody>tr>td {
             padding-left: 0px;
@@ -109,8 +110,9 @@ session_start();
     <div id="wrapper-container" class="wrapper-container">
         @include('v2.layouts.header_logo')
         <div id="apus-main-content"> <div class="properties-archive-main-container">
-                <section id="main-container" class="main-content  inner">
-                    <div class="container">
+                <section id="main-container" class="main-content inner">
+                    @include('v2.catalog.wapper_search')
+                    <div class="container main-container">
                         <div class="main-content-header-middle clearfix">
                             <div class="col-md-3" style="display: inline-flex; padding-left: 0px;">
                                 @include('v2.user.left_sidebar_avatar_guest')
@@ -125,9 +127,6 @@ session_start();
                                                         <div class="post-bg-Title mgt10">
                                                             <h1>ĐĂNG TIN RAO CẦN MUA, CẦN THUÊ NHÀ ĐẤT</h1>
                                                             <div style="margin-top: -10px;">(Quý vị nhập thông tin nhà đất cần mua hoặc cần thuê vào các mục dưới đây)</div>
-                                                            @if ($errors->has('g-recaptcha-response'))
-                                                                <p style="color: red">{{ str_replace('g-recaptcha-response', 'mã an toàn', $errors->first('g-recaptcha-response'))}}</p>
-                                                            @endif
                                                         </div>
                                                         <div class="rowHeader title_sidebar_top_left">
                                                             THÔNG TIN CƠ BẢN
@@ -142,15 +141,12 @@ session_start();
                                                                 <span><strong>Lỗi!</strong> <?php echo $message ?>.</span>
                                                             </div>
                                                         @endif
-                                                        @if ($errors->has('g-recaptcha-response'))
-                                                            <p style="color: red">{{ str_replace('g-recaptcha-response', 'mã an toàn', $errors->first('g-recaptcha-response'))}}</p>
-                                                        @endif
                                                         <div class="rowContent">
                                                             <div class="rowContentLeft">
                                                                 <div class="rowPost">
-                                                                    <div style="color: #f00; text-align: center; padding-bottom: 20px;">
-                                                                        <span id="MainContent__userPage_ctl00_lblServerErrorMsg"></span>
-                                                                    </div>
+                                                                    @if ($errors->has('g-recaptcha-response'))
+                                                                        <p style="color: red; padding-left: 42px; font-weight: 700">{{ str_replace('g-recaptcha-response', 'mã an toàn', $errors->first('g-recaptcha-response'))}}</p>
+                                                                    @endif
                                                                     <div class="leftArea leftPostArea">
                                                                         <div id="labeltitle">
                                                                             <label>
@@ -528,7 +524,7 @@ session_start();
                                                                     <td colspan="2" style="text-align: center">
                                                                         Xác nhận mã an toàn trước khi đăng tin.
                                                                         @if ($errors->has('g-recaptcha-response'))
-                                                                            <p style="color: red">{{ str_replace('g-recaptcha-response', 'mã an toàn', $errors->first('g-recaptcha-response'))}}</p>
+                                                                            <p style="color: red; font-weight: 700">{{ str_replace('g-recaptcha-response', 'mã an toàn', $errors->first('g-recaptcha-response'))}}</p>
                                                                         @endif
                                                                     </td>
                                                                 </tr>

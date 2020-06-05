@@ -326,6 +326,10 @@ global $location_province_article_lease;
                                                 <div class="widget-content">
                                                     <div class="properties-grid">
                                                         <div id="isotope-items-KPBhx" class="isotope-items row" data-isotope-duration="400">
+                                                            <?php
+                                                                $allCountArticleForLease = count($articleForLease);
+                                                                $page_per = PAGING_LIST_FEATURE_HOME;
+                                                            ?>
                                                             @foreach($articleForLease as $item)
                                                                 <?php
                                                                 $img_ = $item['gallery_image'] ? Helpers::file_path($item['id'], ($item['method_table']  == 'lease'? PUBLIC_ARTICLE_LEASE : PUBLIC_ARTICLE_BUY), true).json_decode($item['gallery_image'])[0] : THUMBNAIL_DEFAULT;
@@ -389,15 +393,17 @@ global $location_province_article_lease;
                                                             @endforeach
                                                         </div>
                                                     </div>
-                                                    <div class="clearfix load-product text-center space-tb-30">
-                                                        <a href="#widget-propertiesKPBhx"
-                                                           class="btn view-more-property " data-columns="4"
-                                                           data-item_style="" data-layout_type="mansory"
-                                                           data-contract="" data-orderby="latest" data-number="6"
-                                                           data-types="" data-statuses="" data-locations=""
-                                                           data-page="1" data-max-page="10">Xem Thêm Tin Rao</a>
-                                                        <p class="all-properties-loaded hidden">Các Dự Án Vip Đã Hiển Thị Hết</p>
-                                                    </div>
+                                                    @if($allCountArticleForLease >= $page_per)
+                                                        <div class="clearfix load-product text-center space-tb-30">
+                                                            <a href="#widget-propertiesKPBhx"
+                                                               class="btn view-more-property " data-columns="4"
+                                                               data-item_style="" data-layout_type="mansory"
+                                                               data-contract="" data-orderby="latest" data-number="6"
+                                                               data-types="" data-statuses="" data-locations=""
+                                                               data-page="1" data-max-page="10">Xem Thêm Tin Rao</a>
+                                                            <p class="all-properties-loaded hidden">Các Dự Án Vip Đã Hiển Thị Hết</p>
+                                                        </div>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>

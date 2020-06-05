@@ -1,9 +1,10 @@
 $(".select-province" ).change(function() {
     if($(this).val()) {
-        getDistrict($(this).val());
+        var divParent = $(this).parent().parent().parent().parent().parent().parent().parent();
+        getDistrict($(this).val(), '', divParent);
     }
 });
-function getDistrict(province_id, district_id = '') {
+function getDistrict(province_id, district_id = '', divParent) {
     $.ajax({
         url: "/get_district",
         type: "POST",
@@ -12,20 +13,20 @@ function getDistrict(province_id, district_id = '') {
         beforeSend: function () {
         },
         success: function(data) {
-            $('.select-district').html('<option value="">--Chọn Quận/Huyện--</option>');
-            $('.select-ward').html('<option value="">--Chọn Phường/Xã--</option>');
-            $('.select-street').html('<option value="">--Chọn Đường/Phố--</option>');
+            divParent.find('.select-district').html('<option value="">--Chọn Quận/Huyện--</option>');
+            divParent.find('.select-ward').html('<option value="">--Chọn Phường/Xã--</option>');
+            divParent.find('.select-street').html('<option value="">--Chọn Đường/Phố--</option>');
             if(district_id) {
                 $.each(data.data, function (index, value) {
                     if(district_id == value.id){
-                        $('.select-district').append('<option selected value="' + value.id + '">' + value._name + '</option>');
+                        divParent.find('.select-district').append('<option selected value="' + value.id + '">' + value._name + '</option>');
                     }else{
-                        $('.select-district').append('<option value="' + value.id + '">' + value._name + '</option>');
+                        divParent.find('.select-district').append('<option value="' + value.id + '">' + value._name + '</option>');
                     }
                 });
             }else{
                 $.each(data.data, function (index, value) {
-                    $('.select-district').append('<option value="' + value.id + '">' + value._name + '</option>');
+                    divParent.find('.select-district').append('<option value="' + value.id + '">' + value._name + '</option>');
                 });
             }
         }
@@ -33,10 +34,11 @@ function getDistrict(province_id, district_id = '') {
 }
 $(".select-district").change(function() {
     if($(this).val()) {
-        getWard($(this).val());
+        var divParent = $(this).parent().parent().parent().parent().parent().parent().parent();
+        getWard($(this).val(), '', '', divParent);
     }
 });
-function getWard(district_id, ward_id = '', street_id = '') {
+function getWard(district_id, ward_id = '', street_id = '', divParent) {
     $.ajax({
         url: "/get_ward",
         type: "POST",
@@ -45,32 +47,32 @@ function getWard(district_id, ward_id = '', street_id = '') {
         beforeSend: function () {
         },
         success: function(data) {
-            $('.select-ward').html('<option value="">--Chọn Phường/Xã--</option>');
-            $('.select-street').html('<option value="">--Chọn Đường/Phố--</option>');
+            divParent.find('.select-ward').html('<option value="">--Chọn Phường/Xã--</option>');
+            divParent.find('.select-street').html('<option value="">--Chọn Đường/Phố--</option>');
             if(ward_id) {
                 $.each(data.data.ward, function (index, value) {
                     if(ward_id == value.id){
-                        $('.select-ward').append('<option selected value="' + value.id + '">' + value._name + '</option>');
+                        divParent.find('.select-ward').append('<option selected value="' + value.id + '">' + value._name + '</option>');
                     }else {
-                        $('.select-ward').append('<option value="' + value.id + '">' + value._name + '</option>');
+                        divParent.find('.select-ward').append('<option value="' + value.id + '">' + value._name + '</option>');
                     }
                 });
             }else{
                 $.each(data.data.ward, function (index, value) {
-                    $('.select-ward').append('<option value="' + value.id + '">' + value._name + '</option>');
+                    divParent.find('.select-ward').append('<option value="' + value.id + '">' + value._name + '</option>');
                 });
             }
             if(street_id) {
                 $.each(data.data.street, function (index, value) {
                     if(street_id == value.id) {
-                        $('.select-street').append('<option selected value="' + value.id + '">' + value._name + '</option>');
+                        divParent.find('.select-street').append('<option selected value="' + value.id + '">' + value._name + '</option>');
                     }else {
-                        $('.select-street').append('<option value="' + value.id + '">' + value._name + '</option>');
+                        divParent.find('.select-street').append('<option value="' + value.id + '">' + value._name + '</option>');
                     }
                 });
             }else {
                 $.each(data.data.street, function (index, value) {
-                    $('.select-street').append('<option value="' + value.id + '">' + value._name + '</option>');
+                    divParent.find('.select-street').append('<option value="' + value.id + '">' + value._name + '</option>');
                 });
             }
         }

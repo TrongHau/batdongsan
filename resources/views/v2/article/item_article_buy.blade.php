@@ -59,7 +59,7 @@ $list = $article->toArray();
                 </td>
                 <td>
                     <p>
-                        <a id="pageviews_18965371" href="javascript: PageViewDaily('9fLJVubxXI8tONW9Zh5KSg==')" class="grey" style="text-decoration: underline">{{$item['views'] ? $item['views'] : '_'}}</a>
+                        {{$item['views'] ? $item['views'] : '_'}}
                     </p>
                     <p>
                         <br>

@@ -51,7 +51,7 @@
                                                                                 class="hidden">hidden</span></i></div>
                                                             </div>
                                                             <div class="media-body media-middle">
-                                                                154 Phạm Văn Chiêu, Phường 9, Quận Gò Vấp, Tp.Hồ Chí Minh
+                                                                154 Phạm Văn Chiêu, Phường 9,<br/>Quận Gò Vấp, Tp.Hồ Chí Minh
                                                             </div>
                                                         </div>
                                                         <div class="media">
@@ -209,19 +209,21 @@
                 <div class="row no-margin visibled-table">
                     <div class="visibled-cell no-padding col-sm-7">
                         <div class="login-form">
-                            <div class="form-group">
-                                <input placeholder="Địa chỉ E-Mail" type="email" name="email" class="form-control email" required="required">
-                            </div>
-                            <div class="form-group">
-                                <input placeholder="Mật khẩu" type="password" name="password" class="form-control password" required="required">
-                            </div>
-                            <label>
-                                <input type="checkbox" id="remember" name="remember"> Ghi nhớ đăng nhập
-                            </label>
-                            <a class="btn btn-link" href="http://batdongsan.localhost/password/reset" style="font-size: 13px">
-                                Tìm lại mật khẩu?
-                            </a>
-                            <button onclick="authLogin()" name="login_form" class="button btn btn-block btn-font-normal btn-theme">Đăng Nhập</button>
+                            <form action="javascript:authLogin();">
+                                <div class="form-group">
+                                    <input placeholder="Địa chỉ E-Mail" type="email" name="email" class="form-control email" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <input placeholder="Mật khẩu" type="password" name="password" class="form-control password" required="required">
+                                </div>
+                                <label>
+                                    <input type="checkbox" id="remember" autocomplete="off" name="remember"> Ghi nhớ đăng nhập
+                                </label>
+                                <a class="btn btn-link" href="http://batdongsan.localhost/password/reset" style="font-size: 13px">
+                                    Tìm lại mật khẩu?
+                                </a>
+                                <button onclick="authLogin()" name="login_form" class="button btn btn-block btn-font-normal btn-theme">Đăng Nhập</button>
+                            </form>
                         </div>
                     </div>
                     <div class="visibled-cell no-padding col-sm-5 left-social">
@@ -247,21 +249,23 @@
                 <div class="row no-margin visibled-table">
                     <div class="visibled-cell no-padding col-sm-7">
                         <div class="register-form">
-                            <div class="form-group">
-                                <input id="register-form-name-" placeholder="Tên hiển thị" type="text" name="name" class="form-control name" required="required">
-                            </div>
-                            <div class="form-group">
-                                <input id="register-form-email-" placeholder="Địa chỉ E-Mail" type="email" name="email" class="form-control email" required="required">
-                            </div>
-                            <div class="form-group">
-                                <input id="register-form-password-" placeholder="Mật khẩu" type="password" name="password" class="form-control password" required="required">
-                            </div>
-                            <div class="form-group">
-                                <input id="register-form-retype-" placeholder="Xác nhận lại mật khẩu" type="password" name="password_retype" class="form-control password_confirmation" required="required">
-                            </div>
-                            <div class="space-top-20">
-                                <button class="button btn btn-block btn-blue btn-font-normal" onclick="authRegister()" name="register_form">Đăng Ký</button>
-                            </div>
+                            <form action="javascript:authRegister();">
+                                <div class="form-group">
+                                    <input id="register-form-name-" placeholder="Tên hiển thị" type="text" name="name" class="form-control name" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <input id="register-form-email-" placeholder="Địa chỉ E-Mail" type="email" name="email" class="form-control email" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <input id="register-form-password-" placeholder="Mật khẩu" type="password" name="password" class="form-control password" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <input id="register-form-retype-" placeholder="Xác nhận lại mật khẩu" type="password" name="password_retype" class="form-control password_confirmation" required="required">
+                                </div>
+                                <div class="space-top-20">
+                                    <button class="button btn btn-block btn-blue btn-font-normal" onclick="authRegister()" name="register_form">Đăng Ký</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                     <div class="visibled-cell no-padding col-sm-5 left-social">
@@ -288,10 +292,12 @@
                 <div class="row no-margin visibled-table">
                     <div class="visibled-cell no-padding col-sm-7">
                         <div class="register-form forgot-form">
-                            <div class="form-group">
-                                <input id="login-form-username-XjcVX" placeholder="Địa chỉ E-Mail" type="email" name="email" class="form-control email" required="required">
-                            </div>
-                            <button onclick="authForgot()" name="login_form" class="button btn btn-block btn-font-normal btn-theme">Gửi Liên Kết Đặt Lại Mật Khẩu</button>
+                            <form action="javascript:authForgot();">
+                                <div class="form-group">
+                                    <input id="login-form-username-XjcVX" placeholder="Địa chỉ E-Mail" type="email" name="email" class="form-control email" required="required">
+                                </div>
+                                <button onclick="authForgot()" name="login_form" class="button btn btn-block btn-font-normal btn-theme">Gửi Liên Kết Đặt Lại Mật Khẩu</button>
+                            </form>
                         </div>
                     </div>
                     <div class="visibled-cell no-padding col-sm-5 left-social">
@@ -401,6 +407,8 @@
                     remember: ($('#remember').is( ":checked" ) ? true : '')
                 },
                 beforeSend: function () {
+                    if(loaded) return false;
+                    loaded = true;
                 },
                 error: function (data) {
                     var errors = data.responseJSON;
@@ -409,13 +417,7 @@
                     });
                 },
                 success: function(response) {
-                    <?php
-                    if(($_GET['back_url'] ?? '') != '') {
-                        echo "window.location = '".($_GET['back_url'] ?? '')."';";
-                    }else{
-                        echo 'location.reload();';
-                    }
-                    ?>
+                    window.location = '/thong-tin-ca-nhan';
                 }
             });
         }
@@ -456,6 +458,8 @@
 
                 },
                 beforeSend: function () {
+                    if(loaded) return false;
+                    loaded = true;
                 },
                 error: function (data) {
                     var errors = data.responseJSON;
@@ -464,7 +468,7 @@
                     });
                 },
                 success: function(response) {
-                    location.reload();
+                    window.location = '/thong-tin-ca-nhan';
                 }
             });
         }
@@ -482,6 +486,8 @@
                     email: email.val(),
                 },
                 beforeSend: function () {
+                    if(loaded) return false;
+                    loaded = true;
                 },
                 error: function (data) {
                     var errors = data.responseJSON;

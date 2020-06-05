@@ -2,9 +2,9 @@
 use Jenssegers\Agent\Agent;
 $page_per = PAGING_LIST_FEATURE_HOME;
 $Agent = new Agent();
-if($Agent->isMobile()) {
-    $page_per = PAGING_LIST_FEATURE_HOME / 2;
-}
+//if($Agent->isMobile()) {
+//    $page_per = PAGING_LIST_FEATURE_HOME / 2;
+//}
 $allCount = count($articleForLease);
 ?>
 @if($allCount > 0)

@@ -249,7 +249,7 @@ $mySelf = Auth::user();
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td style="text-align: center">
+                                                    <td style="padding-left: 140px">
                                                         <br/>
                                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                         <input type="submit" name="ctl00$MainContent$_userPage$ctl00$btnSave" value="Lưu lại" id="MainContent__userPage_ctl00_btnSave" class="button-blue">

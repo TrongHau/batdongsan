@@ -160,6 +160,14 @@ use App\Library\Helpers;
                         </ul>
                     </div>
                 </div>
+                <div class="agent-small">
+                    <div class="agent-small-inner title_sidebar_top_left">
+                        HƯỚNG DẪN ĐĂNG TIN
+                    </div>
+                    <div class="box-arround" style="padding: 20px;">
+                        Quý vị vui lòng điền tất cả thông tin có dấu (<span class="redfont">*</span>). Một tin đăng không liệt kê nhiều bất động sản khác nhau. Quý vị nên gõ tiếng việt có dấu và không viết tắt
+                    </div>
+                </div>
             </div>
         </div>
     </aside>

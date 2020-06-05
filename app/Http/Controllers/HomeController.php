@@ -46,7 +46,6 @@ class HomeController extends Controller
             ->where([['status', PUBLISHED_ARTICLE], ['aprroval', APPROVAL_ARTICLE_PUBLIC]])->where('disabled_vip', '=', 0)->where('type_vip', '!=', 0)->where('expired_vip', '>=', time())->where('expired_post', '>=', time());
         $articleForLease->union($articleForLease2)->limit($page_per)->orderBy('type_vip', 'desc')->orderBy('created_time_vip', 'desc');
         $articleForLease = $articleForLease->get();
-//        dd($articleForLease->toArray());
 
         // tin rao nỗi bật
 //        $articleFeature= ArticleForLeaseModel::selectRaw('id, method_article, "lease" as method_table, featured, prefix_url, title, views, created_at, status, aprroval, gallery_image, note, updated_at, project, province_id, province, district_id, district, address, ddlPriceType, price_real, price, area, null as price_from, null as price_to, null as area_from, null as area_to, created_time_vip, type_vip')
@@ -70,11 +69,13 @@ class HomeController extends Controller
             $page_per = PAGING_LIST_FEATURE_HOME / 2;
         }
 
-        $articleForLease = ArticleForLeaseModel::selectRaw('id, method_article, featured, prefix_url, title, views, created_at, status, aprroval, gallery_image, note, updated_at, project, province_id, province, district_id, district, address, ddlPriceType, price_real, price, area, null as price_from, null as price_to, null as area_from, null as area_to, created_time_vip, type_vip')
-            ->where([['status', PUBLISHED_ARTICLE], ['aprroval', APPROVAL_ARTICLE_PUBLIC]])->where('type_vip', 1)->where('expired_vip', '>=', date('Y/m/d', time()));
-        $articleForLease2 = ArticleForBuyModel::selectRaw('id, method_article, featured, prefix_url, title, views, created_at, status, aprroval, gallery_image, note, updated_at, project, province_id, province, district_id, district, address, ddlPriceType, price_real, null as price, null as area, price_from, price_to, area_from, area_to, created_time_vip, type_vip')
-            ->where([['status', PUBLISHED_ARTICLE], ['aprroval', APPROVAL_ARTICLE_PUBLIC]])->where('type_vip', 1)->where('expired_vip', '>=', date('Y/m/d', time()));
+        $articleForLease = ArticleForLeaseModel::selectRaw('id, method_article, "lease" as method_table, featured, prefix_url, title, views, created_at, status, aprroval, gallery_image, note, updated_at, project, province_id, province, district_id, district, address, ddlPriceType, price_real, price, area, null as price_from, null as price_to, null as area_from, null as area_to, created_time_vip, type_vip')
+            ->where([['status', PUBLISHED_ARTICLE], ['aprroval', APPROVAL_ARTICLE_PUBLIC]])->where('disabled_vip', '=', 0)->where('type_vip', '!=', 0)->where('expired_vip', '>=', time())->where('expired_post', '>=', time());
+        $articleForLease2 = ArticleForBuyModel::selectRaw('id, method_article, "buy" as method_table, featured, prefix_url, title, views, created_at, status, aprroval, gallery_image, note, updated_at, project, province_id, province, district_id, district, address, ddlPriceType, price_real, null as price, null as area, price_from, price_to, area_from, area_to, created_time_vip, type_vip')
+            ->where([['status', PUBLISHED_ARTICLE], ['aprroval', APPROVAL_ARTICLE_PUBLIC]])->where('disabled_vip', '=', 0)->where('type_vip', '!=', 0)->where('expired_vip', '>=', time())->where('expired_post', '>=', time());
+
         $articleForLease->union($articleForLease2)->offset($page_per * (($request->page ?? 0) - 1))->limit($page_per)->orderBy('type_vip', 'desc')->orderBy('created_time_vip', 'desc');
+
         $articleForLease = $articleForLease->get();
         return view('v2.catalog.element_ajax_home', compact('articleForLease'));
     }

@@ -31,11 +31,12 @@ $mySelf = Auth::user();
         .table-search-article>thead>tr>th, .table-search-article>thead>tr>td, .table-search-article>tbody>tr>th, .table-search-article>tbody>tr>td, .table-search-article>tfoot>tr>th, .table-search-article>tfoot>tr>td, .table-bordered>thead>tr>th, .table-bordered>thead>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tbody>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>tfoot>tr>td{
             border: none;
         }
-        #apus-main-content .form-control {
+        .main-container .form-control {
             line-height: inherit;
             border: 1px solid #ddd;
             height: 32px;
             padding: 5px 5px;
+            color: #000000;
         }
         .table-search-article>tbody>tr>td {
             padding-left: 0px;
@@ -55,8 +56,9 @@ $mySelf = Auth::user();
     <div id="wrapper-container" class="wrapper-container">
         @include('v2.layouts.header_logo')
         <div id="apus-main-content"> <div class="properties-archive-main-container">
-                <section id="main-container" class="main-content  inner">
-                    <div class="container">
+                <section id="main-container" class="main-content inner">
+                    @include('v2.catalog.wapper_search')
+                    <div class="container main-container">
                         <div class="main-content-header-middle clearfix">
                             <div class="col-md-3" style="display: inline-flex; padding-left: 0px;">
                                 @include('v2.user.left_sidebar_avatar', ['mySelf' => $mySelf])
