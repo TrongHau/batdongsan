@@ -4,7 +4,7 @@
             <aside id="filter_widget-13" class="widget widget_filter_widget">
                 <div class="filter-property-form widget-filter-form horizontal1">
                     <div class="row top-search">
-                        <div class="col-md-9">
+                        <div class="col-md-9 col-sm-9">
                             <div class="row row-first">
                                 <div class="col-sm-6">
                                     <div class="form-group">
@@ -105,13 +105,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="col-md-4" style="padding: 0px;padding-top: 10px;">
+                        <div class="col-md-3 col-sm-3">
+                            <div class="col-md-4 col-sm-4" style="padding: 0px;padding-top: 10px;">
                                 <a href="#toggle_adv" class="toggle-adv text-theme visiable-line">
                                     <i class="icon-ap_settings"></i> <span>Mở rộng</span>
                                 </a>
                             </div>
-                            <div class="col-md-2" style="padding: 0px;">
+                            <div class="col-md-2 col-sm-2" style="padding: 0px;">
                                 <div class="visiable-line">
                                     <button onclick="searchAdvance()" class="button btn btn-blue btn_search_catalog"><i class="fa fa-search"></i> Tìm Kiếm</button>
                                 </div>

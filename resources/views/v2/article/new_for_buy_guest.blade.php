@@ -114,10 +114,10 @@ session_start();
                     @include('v2.catalog.wapper_search')
                     <div class="container main-container">
                         <div class="main-content-header-middle clearfix">
-                            <div class="col-md-3" style="display: inline-flex; padding-left: 0px;">
+                            <div class="col-md-3 col-sm-3" style="display: inline-flex; padding-left: 0px;">
                                 @include('v2.user.left_sidebar_avatar_guest')
                             </div>
-                            <div class="col-md-9" style="display: inline-flex; padding-right: 0px">
+                            <div class="col-md-9 col-sm-9" style="display: inline-flex; padding-right: 0px">
                                 <div class="property-content" style="margin: 25px 0 30px; width: 100%;">
                                     <div id="column-no-right-user">
                                         <form action="/guest/quan-ly-tin/dang-tin-can-mua-can-thue" enctype="multipart/form-data" class="form_submit" method="POST">

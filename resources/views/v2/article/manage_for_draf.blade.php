@@ -56,15 +56,14 @@ $mySelf = Auth::user();
     <div id="wrapper-container" class="wrapper-container">
         @include('v2.layouts.header_logo')
         <div id="apus-main-content"> <div class="properties-archive-main-container">
-                @include('v2.layouts.header_logo')
                 <section id="main-container" class="main-content inner">
                     @include('v2.catalog.wapper_search')
                     <div class="container main-container">
                         <div class="main-content-header-middle clearfix">
-                            <div class="col-md-3" style="display: inline-flex; padding-left: 0px;">
+                            <div class="col-md-3 col-sm-3" style="display: inline-flex; padding-left: 0px;">
                                 @include('v2.user.left_sidebar_avatar', ['mySelf' => $mySelf])
                             </div>
-                            <div class="col-md-9" style="display: inline-flex; padding-right: 0px">
+                            <div class="col-md-9 col-sm-9" style="display: inline-flex; padding-right: 0px">
                                 <div class="property-content" style="margin: 25px 0 30px; width: 100%;">
                                     <div class="agent-small-inner title_sidebar_top_left">
                                         QUẢN LÝ TIN NHÁP

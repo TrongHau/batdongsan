@@ -114,10 +114,10 @@ global $province;
                     @include('v2.catalog.wapper_search')
                     <div class="container main-container">
                         <div class="main-content-header-middle clearfix">
-                            <div class="col-md-3" style="display: inline-flex; padding-left: 0px;">
+                            <div class="col-md-3 col-sm-3" style="display: inline-flex; padding-left: 0px;">
                                 @include('v2.user.left_sidebar_avatar', ['mySelf' => $mySelf])
                             </div>
-                            <div class="col-md-9" style="display: inline-flex; padding-right: 0px">
+                            <div class="col-md-9 col-sm-9" style="display: inline-flex; padding-right: 0px">
                                 <div class="property-content" style="margin: 25px 0 30px; width: 100%;">
                                     @if(Auth::user()->phone)
                                         <div id="column-no-right-user">
