@@ -110,7 +110,6 @@ global $province;
     <div id="wrapper-container" class="wrapper-container">
         @include('v2.layouts.header_logo')
         <div id="apus-main-content"> <div class="properties-archive-main-container">
-                @include('v2.catalog.wapper_search')
                 <section id="main-container" class="main-content inner">
                     @include('v2.catalog.wapper_search')
                     <div class="container main-container">
