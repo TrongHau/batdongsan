@@ -34,6 +34,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+//        dd(Helpers::sendSMS('0903353794', 'Khoa dang tin SDT cua Ban la 123456. Tin dang cua Quy Vi se duoc hien thi tren Website sau 8 gio lam viec.', $smsResult = false));
         $Agent = new Agent();
         $page_per = PAGING_LIST_FEATURE_HOME;
 //        if($Agent->isMobile()) {
