@@ -289,7 +289,7 @@ global $location_district_article_lease;
                                                                 $searchMethod = 'nha-dat-cho-thue';
                                                             }
                                                             ?>
-                                                            <div class="isotope-item all SALE col-md-3 col-sm-4" data-category="SALE">
+                                                            <div class="isotope-item all SALE col-md-3 col-sm-3" data-category="SALE">
                                                                 <div class="property-box property-box-grid property-box-wrapper"
                                                                      data-latitude="40.5795317"
                                                                      data-longitude="-74.15020070000003"
