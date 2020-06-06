@@ -1,5 +1,6 @@
 <?php
 use Jenssegers\Agent\Agent;
+use App\Library\Helpers;
 $page_per = PAGING_LIST_FEATURE_HOME;
 $Agent = new Agent();
 //if($Agent->isMobile()) {
