@@ -715,3 +715,7 @@ body {
     text-overflow: ellipsis;
     max-width: 230px;
 }
+.properties-default-top-sidebar-wrapper select {
+    width: 100%;
+    -webkit-appearance: none;
+}
