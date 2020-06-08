@@ -174,16 +174,14 @@ use App\Library\Helpers;
             </a>
         </div>
         <div class="pull-right header-mobile-right">
-            <button data-toggle="offcanvas" class="btn btn-offcanvas btn-toggle-canvas offcanvas pull-left"
-                    type="button">
-                <i class="fa fa-bars" style="font-size: 40px"></i>
+            <button data-toggle="offcanvas" class="btn btn-offcanvas btn-toggle-canvas offcanvas pull-left" type="button" style="padding: 10px 20px 0px 0px;">
+                <i class="fa fa-bars" style="font-size: 60px"></i>
             </button>
             <div class="pull-left">
                 <div class="btn-group">
                     @if(!Auth::check())
-                    <button class="btn btn-setting dropdown-toggle" type="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false"><i class="icon-ap_settings"
-                                                                          aria-hidden="true" style="font-size: 40px;"></i></button>
+                    <button class="btn btn-setting dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding: 10px 0px 0px 10px;">
+                        <i class="icon-ap_settings" aria-hidden="true" style="font-size: 60px;"></i></button>
                     <div class="user-menu dropdown-menu dropdown-menu-right dropdown-theme">
                         <ul class="nav navbar-nav menu login">
                             <li><a href="#customer_login">Đăng Nhập</a></li>
@@ -191,7 +189,8 @@ use App\Library\Helpers;
                         </ul>
                     </div>
                     @else
-                        <button class="btn btn-setting dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icon-ap_settings" aria-hidden="true" style="font-size: 40px;"></i></button>
+                        <button class="btn btn-setting dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding: 10px 0px 0px 10px;">
+                            <i class="icon-ap_settings" aria-hidden="true" style="font-size: 60px;"></i></button>
                         <div class="user-menu dropdown-menu dropdown-menu-right dropdown-theme">
                             <ul class="nav navbar-nav menu profile_login">
                                 <li><a href="/thong-tin-ca-nhan"><img src="/imgs/user.png" style="display: block; float: left; margin-top: 1px; margin-right: 5px;">{{Auth::user()->name}}</a></li>

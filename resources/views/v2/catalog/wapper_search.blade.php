@@ -6,101 +6,9 @@
                     <div class="row top-search">
                         <div class="col-md-9 col-sm-9">
                             <div class="row row-first">
-                                <div class="col-sm-6">
+                                <div class="col-sm-12">
                                     <div class="form-group">
                                         <input name="tu-khoa" type="text" id="tu-khoa" value="{{$key ?? ''}}" placeholder="Nhập từ khóa để tìm theo cụm từ" autocomplete="nope" class="txtKeyword form-control">
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="form-group">
-                                        <select class="form-control" name="filter-location" id="search-advance-method">
-                                            <option class="advance-options" value="-1">-- Chọn loại nhà đất --</option>
-                                            <option class="advance-options" value="nha-dat-ban">- Nhà đất bán</option>
-                                            <option class="advance-options" value="nha-dat-cho-thue">- Nhà đất cho thuê</option>
-                                            <option class="advance-options" value="nha-dat-can-mua">- Nhà đất cần mua</option>
-                                            <option class="advance-options" value="nha-dat-can-thue">- Nhà đất cần thuê</option>
-                                            <option class="advance-options" value="ban-can-ho-chung-cu">- Bán căn hộ chung cư</option>
-                                            <option class="advance-options" value="tat-ca-nha-ban">- Tất cả các loại nhà bán</option>
-                                            <option class="advance-options" value="ban-nha-rieng">&nbsp;&nbsp;&nbsp;&nbsp;+ Bán nhà riêng </option>
-                                            <option class="advance-options" value="ban-biet-thu-lien-ke">&nbsp;&nbsp;&nbsp;&nbsp;+ Bán biệt thự, liền kề</option>
-                                            <option class="advance-options" value="ban-nha-mat-pho">&nbsp;&nbsp;&nbsp;&nbsp;+ Bán nhà mặt phố</option>
-                                            <option class="advance-options" value="tat-ca-dat-ban">- Tất cả các loại đất bán</option>
-                                            <option class="advance-options" value="ban-dat-nen-du-an">&nbsp;&nbsp;&nbsp;&nbsp;+ Bán đất nền dự án</option>
-                                            <option class="advance-options" value="ban-dat">&nbsp;&nbsp;&nbsp;&nbsp;+ Bán đất </option>
-                                            <option class="advance-options" value="ban-trang-trai-khu-nghi-duong">- Bán trang trại, khu nghỉ dưỡng</option>
-                                            <option class="advance-options" value="ban-kho-nha-xuong">- Bán kho, nhà xưởng</option>
-                                            <option class="advance-options" value="ban-loai-bat-dong-san-khac">- Bán loại bất động sản khác</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="form-group group-select">
-                                        <select class="select-province form-control" id="select-province">
-                                            <option value="-1">-- Chọn Tỉnh/Thành phố --</option>
-                                            <option value="1">Hồ Chí Minh</option>
-                                            <option value="2">Hà Nội</option>
-                                            <option value="3">Đà Nẵng</option>
-                                            <option value="4">Bình Dương</option>
-                                            <option value="5">Đồng Nai</option>
-                                            <option value="6">Khánh Hòa</option>
-                                            <option value="7">Hải Phòng</option>
-                                            <option value="8">Long An</option>
-                                            <option value="9">Quảng Nam</option>
-                                            <option value="10">Bà Rịa Vũng Tàu</option>
-                                            <option value="11">Đắk Lắk</option>
-                                            <option value="12">Cần Thơ</option>
-                                            <option value="13">Bình Thuận  </option>
-                                            <option value="14">Lâm Đồng</option>
-                                            <option value="15">Thừa Thiên Huế</option>
-                                            <option value="16">Kiên Giang</option>
-                                            <option value="17">Bắc Ninh</option>
-                                            <option value="18">Quảng Ninh</option>
-                                            <option value="19">Thanh Hóa</option>
-                                            <option value="20">Nghệ An</option>
-                                            <option value="21">Hải Dương</option>
-                                            <option value="22">Gia Lai</option>
-                                            <option value="23">Bình Phước</option>
-                                            <option value="24">Hưng Yên</option>
-                                            <option value="25">Bình Định</option>
-                                            <option value="26">Tiền Giang</option>
-                                            <option value="27">Thái Bình</option>
-                                            <option value="28">Bắc Giang</option>
-                                            <option value="29">Hòa Bình</option>
-                                            <option value="30">An Giang</option>
-                                            <option value="31">Vĩnh Phúc</option>
-                                            <option value="32">Tây Ninh</option>
-                                            <option value="33">Thái Nguyên</option>
-                                            <option value="34">Lào Cai</option>
-                                            <option value="35">Nam Định</option>
-                                            <option value="36">Quảng Ngãi</option>
-                                            <option value="37">Bến Tre</option>
-                                            <option value="38">Đắk Nông</option>
-                                            <option value="39">Cà Mau</option>
-                                            <option value="40">Vĩnh Long</option>
-                                            <option value="41">Ninh Bình</option>
-                                            <option value="42">Phú Thọ</option>
-                                            <option value="43">Ninh Thuận</option>
-                                            <option value="44">Phú Yên</option>
-                                            <option value="45">Hà Nam</option>
-                                            <option value="46">Hà Tĩnh</option>
-                                            <option value="47">Đồng Tháp</option>
-                                            <option value="48">Sóc Trăng</option>
-                                            <option value="49">Kon Tum</option>
-                                            <option value="50">Quảng Bình</option>
-                                            <option value="51">Quảng Trị</option>
-                                            <option value="52">Trà Vinh</option>
-                                            <option value="53">Hậu Giang</option>
-                                            <option value="54">Sơn La</option>
-                                            <option value="55">Bạc Liêu</option>
-                                            <option value="56">Yên Bái</option>
-                                            <option value="57">Tuyên Quang</option>
-                                            <option value="58">Điện Biên</option>
-                                            <option value="59">Lai Châu</option>
-                                            <option value="60">Lạng Sơn</option>
-                                            <option value="61">Hà Giang</option>
-                                            <option value="62">Bắc Kạn</option>
-                                            <option value="63">Cao Bằng</option>
-                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -120,6 +28,98 @@
                     </div>
                     <div class="advance-fields clearfix" style="display: none;">
                         <div class="row">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <select class="form-control" name="filter-location" id="search-advance-method">
+                                        <option class="advance-options" value="0">- Tất cả tin bán -</option>
+                                        <option class="advance-options" value="nha-dat-ban">- Nhà đất bán</option>
+                                        <option class="advance-options" value="nha-dat-cho-thue">- Nhà đất cho thuê</option>
+                                        <option class="advance-options" value="nha-dat-can-mua">- Nhà đất cần mua</option>
+                                        <option class="advance-options" value="nha-dat-can-thue">- Nhà đất cần thuê</option>
+                                        <option class="advance-options" value="ban-can-ho-chung-cu">- Bán căn hộ chung cư</option>
+                                        <option class="advance-options" value="tat-ca-nha-ban">- Tất cả các loại nhà bán</option>
+                                        <option class="advance-options" value="ban-nha-rieng">&nbsp;&nbsp;&nbsp;&nbsp;+ Bán nhà riêng </option>
+                                        <option class="advance-options" value="ban-biet-thu-lien-ke">&nbsp;&nbsp;&nbsp;&nbsp;+ Bán biệt thự, liền kề</option>
+                                        <option class="advance-options" value="ban-nha-mat-pho">&nbsp;&nbsp;&nbsp;&nbsp;+ Bán nhà mặt phố</option>
+                                        <option class="advance-options" value="tat-ca-dat-ban">- Tất cả các loại đất bán</option>
+                                        <option class="advance-options" value="ban-dat-nen-du-an">&nbsp;&nbsp;&nbsp;&nbsp;+ Bán đất nền dự án</option>
+                                        <option class="advance-options" value="ban-dat">&nbsp;&nbsp;&nbsp;&nbsp;+ Bán đất </option>
+                                        <option class="advance-options" value="ban-trang-trai-khu-nghi-duong">- Bán trang trại, khu nghỉ dưỡng</option>
+                                        <option class="advance-options" value="ban-kho-nha-xuong">- Bán kho, nhà xưởng</option>
+                                        <option class="advance-options" value="ban-loai-bat-dong-san-khac">- Bán loại bất động sản khác</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group group-select">
+                                    <select class="select-province form-control" id="select-province">
+                                        <option value="-1">-- Chọn Tỉnh/Thành phố --</option>
+                                        <option value="1">Hồ Chí Minh</option>
+                                        <option value="2">Hà Nội</option>
+                                        <option value="3">Đà Nẵng</option>
+                                        <option value="4">Bình Dương</option>
+                                        <option value="5">Đồng Nai</option>
+                                        <option value="6">Khánh Hòa</option>
+                                        <option value="7">Hải Phòng</option>
+                                        <option value="8">Long An</option>
+                                        <option value="9">Quảng Nam</option>
+                                        <option value="10">Bà Rịa Vũng Tàu</option>
+                                        <option value="11">Đắk Lắk</option>
+                                        <option value="12">Cần Thơ</option>
+                                        <option value="13">Bình Thuận  </option>
+                                        <option value="14">Lâm Đồng</option>
+                                        <option value="15">Thừa Thiên Huế</option>
+                                        <option value="16">Kiên Giang</option>
+                                        <option value="17">Bắc Ninh</option>
+                                        <option value="18">Quảng Ninh</option>
+                                        <option value="19">Thanh Hóa</option>
+                                        <option value="20">Nghệ An</option>
+                                        <option value="21">Hải Dương</option>
+                                        <option value="22">Gia Lai</option>
+                                        <option value="23">Bình Phước</option>
+                                        <option value="24">Hưng Yên</option>
+                                        <option value="25">Bình Định</option>
+                                        <option value="26">Tiền Giang</option>
+                                        <option value="27">Thái Bình</option>
+                                        <option value="28">Bắc Giang</option>
+                                        <option value="29">Hòa Bình</option>
+                                        <option value="30">An Giang</option>
+                                        <option value="31">Vĩnh Phúc</option>
+                                        <option value="32">Tây Ninh</option>
+                                        <option value="33">Thái Nguyên</option>
+                                        <option value="34">Lào Cai</option>
+                                        <option value="35">Nam Định</option>
+                                        <option value="36">Quảng Ngãi</option>
+                                        <option value="37">Bến Tre</option>
+                                        <option value="38">Đắk Nông</option>
+                                        <option value="39">Cà Mau</option>
+                                        <option value="40">Vĩnh Long</option>
+                                        <option value="41">Ninh Bình</option>
+                                        <option value="42">Phú Thọ</option>
+                                        <option value="43">Ninh Thuận</option>
+                                        <option value="44">Phú Yên</option>
+                                        <option value="45">Hà Nam</option>
+                                        <option value="46">Hà Tĩnh</option>
+                                        <option value="47">Đồng Tháp</option>
+                                        <option value="48">Sóc Trăng</option>
+                                        <option value="49">Kon Tum</option>
+                                        <option value="50">Quảng Bình</option>
+                                        <option value="51">Quảng Trị</option>
+                                        <option value="52">Trà Vinh</option>
+                                        <option value="53">Hậu Giang</option>
+                                        <option value="54">Sơn La</option>
+                                        <option value="55">Bạc Liêu</option>
+                                        <option value="56">Yên Bái</option>
+                                        <option value="57">Tuyên Quang</option>
+                                        <option value="58">Điện Biên</option>
+                                        <option value="59">Lai Châu</option>
+                                        <option value="60">Lạng Sơn</option>
+                                        <option value="61">Hà Giang</option>
+                                        <option value="62">Bắc Kạn</option>
+                                        <option value="63">Cao Bằng</option>
+                                    </select>
+                                </div>
+                            </div>
                             <div class="col-sm-3">
                                 <div class="form-group group-select">
                                     <select class="form-control select-district">
@@ -214,7 +214,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-sm-3">
+                            <div class="col-sm-3 hidden">
                                 <div class="form-group group-select">
                                     <select id="search-advance-toilet" class="form-control">
                                         <option value="-1" class="advance-options">-- Chọn số toilet --</option>
@@ -227,7 +227,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-sm-3">
+                            <div class="col-sm-3 hidden">
                                 <div class="form-group group-select">
                                     <select id="search-advance-ddlHomeDirection" class="form-control" >
                                         <option value="-1">-- Chọn hướng nhà --</option>

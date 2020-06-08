@@ -443,7 +443,7 @@ global $location_province_article_lease;
                                                     <div class="content-meta">
                                                         <h3 class="title">{{$location_province_article_lease[0]['province']}}</h3>
                                                         <div class="properties">
-                                                            {{$location_province_article_lease[0]['total']}} Dự án
+                                                            {{$location_province_article_lease[0]['total']}} Tin rao
                                                         </div>
                                                     </div>
                                                 </a>
@@ -464,7 +464,7 @@ global $location_province_article_lease;
                                                     <div class="content-meta">
                                                         <h3 class="title">{{$location_province_article_lease[2]['province']}}</h3>
                                                         <div class="properties">
-                                                            {{$location_province_article_lease[2]['total']}} Dự án
+                                                            {{$location_province_article_lease[2]['total']}} Tin rao
                                                         </div>
                                                     </div>
                                                 </a>
@@ -484,7 +484,7 @@ global $location_province_article_lease;
                                                                     <div class="content-meta">
                                                                         <h3 class="title">{{$location_province_article_lease[1]['province']}}</h3>
                                                                         <div class="properties">
-                                                                            {{$location_province_article_lease[1]['total']}} Dự án
+                                                                            {{$location_province_article_lease[1]['total']}} Tin rao
                                                                         </div>
                                                                     </div>
                                                                 </a>
@@ -506,7 +506,7 @@ global $location_province_article_lease;
                                                                     <div class="content-meta">
                                                                         <h3 class="title">{{$location_province_article_lease[3]['province']}}</h3>
                                                                         <div class="properties">
-                                                                            {{$location_province_article_lease[3]['total']}} Dự án
+                                                                            {{$location_province_article_lease[3]['total']}} Tin rao
                                                                         </div>
                                                                     </div>
                                                                 </a>

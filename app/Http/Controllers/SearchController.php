@@ -36,12 +36,16 @@ class SearchController extends Controller
      */
     public function advance(Request $request, $method = -1, $province_id = -1, $district_id = -1, $ward_id = -1, $street_id = -1, $area = -1, $price = -1, $bed_room = -1, $toilet = -1, $ddlHomeDirection = -1, $key = '') {
         session_start();
-        $titleArticle = TypeModel::where('url', $method)->first();
-        if(!$titleArticle)
-            return view('errors.404');
+        if($method == 0) {
+            $titleArticle = null;
+        }else{
+            $titleArticle = TypeModel::where('url', $method)->first();
+        }
         $type = 'ban_dat';
         // hiển thị tất cả các loại
-        if($method == 'nha-dat-ban') {
+        if($method == 0) {
+            $article = ArticleForLeaseModel::where('status', PUBLISHED_ARTICLE);
+        }elseif($method == 'nha-dat-ban') {
             $article = ArticleForLeaseModel::where('status', PUBLISHED_ARTICLE);
             $article = $article->where('method_article', 'Nhà đất bán');
         }elseif($method == 'nha-dat-cho-thue') {

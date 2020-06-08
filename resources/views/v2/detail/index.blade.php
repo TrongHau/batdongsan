@@ -57,8 +57,8 @@ global $location_district_article_lease;
                                             <br/>
                                             <div class="container" style="padding: 0px">
                                                 <div class="entry-content sticky-v-wrapper">
-                                                    <div class="apus-col-8">
-                                                        <div class="property-content">
+                                                    <div class="col-md-8 col-sm-8">
+                                                        <div class="property-content detail-content">
                                                             <div id="property-section-address" class="property-section property-address">
                                                                 <h3 id="reply-title" class="comment-reply-title">{{$article->title}}</h3>
                                                                 <i class="icon-ap_pin" aria-hidden="true"></i> {{$article->address}}
@@ -207,7 +207,7 @@ global $location_district_article_lease;
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="apus-col-4 sidebar-detail sidebar sticky-this" style="">
+                                                    <div class="col-md-4 col-sm-4 sidebar-detail sidebar sticky-this" style="">
                                                         <aside id="agents_assigned_widget-4" class="widget widget_agents_assigned_widget">
                                                             <div class="type-small item-per-row-1">
                                                                 <div class="agents-container property-agents-wrapper clearfix">
@@ -270,7 +270,7 @@ global $location_district_article_lease;
                                                     </div>
                                                 </div>
                                                 @if(count($relateArticle))
-                                                <div class="property-similar-properties widget">
+                                                <div class="property-similar-properties widget col-md-12 col-sm-12">
                                                     <h3 class="widget-title"><span>Tin rao {{$article->method_article}}</span> tại {{$article->district}}</h3>
                                                     <div class="row">
                                                         @foreach($relateArticle as $item)

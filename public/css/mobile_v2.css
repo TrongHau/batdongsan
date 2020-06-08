@@ -1,3 +1,25 @@
 .container {
     width: 100%!important;
 }
+.widget-filter-form .btn {
+    padding: 0px 32px;
+}
+.widget-filter-form .btn_search_catalog {
+    padding: 0 15px!important;
+    margin-left: 11px;
+}
+.detail-content {
+    font-size: 18px!important;
+}
+.detail-content h3, h1{
+    font-size: 25px!important;
+}
+#main-mobile-menu {
+    font-size: 25px!important;
+}
+.login a{
+    font-size: 20px!important;
+}
+.profile_login a{
+    font-size: 20px!important;
+}

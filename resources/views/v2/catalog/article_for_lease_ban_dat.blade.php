@@ -27,7 +27,7 @@ $Agent = new Agent();
                                     <div class="clearfix">
                                         <div class="wrapper-breads">
                                             <div class="wrapper-breads-inner">
-                                                <h2 class="bread-title">{{$titleArticle->name}} tại {{$local ?? 'Việt Nam'}} </h2>
+                                                <h2 class="bread-title">{{$titleArticle ? $titleArticle->name : 'Tất cả tin bán'}} tại {{$local ?? 'Việt Nam'}} </h2>
                                                 <span>có {{number_format($article->total())}} bất động sản</span>
                                             </div>
                                         </div>
