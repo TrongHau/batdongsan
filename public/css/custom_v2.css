@@ -716,6 +716,9 @@ body {
     max-width: 230px;
 }
 .properties-default-top-sidebar-wrapper select {
-    width: 100%;
+    width: 100%!important;
     -webkit-appearance: none;
+}
+.wrapper-container {
+    min-height: 900px;
 }

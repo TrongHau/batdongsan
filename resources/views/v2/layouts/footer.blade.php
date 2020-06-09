@@ -92,7 +92,10 @@
                                                     <a href="ho-tro">Hỗ trợ</a></li>
                                                 <li id="menu-item-2508"
                                                     class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2508">
-                                                    <a href="/bao-gia-ho-tro" rel="nofollow" >Báo giá &amp; hỗ trợ</a></li>
+                                                    <a href="/bao-gia-ho-tro" rel="nofollow" >Báo giá</a></li>
+                                                <li id="menu-item-2510"
+                                                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2510">
+                                                    <a href="/nhung-cau-hoi-thuong-gap" >Câu hỏi thường gặp</a></li>
                                                 <li id="menu-item-2507" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2507">
                                                     <a href="/ve-chung-toi" >Về chúng tôi</a></li>
                                                 <li id="menu-item-2511"
