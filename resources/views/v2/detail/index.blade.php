@@ -207,7 +207,7 @@ global $location_district_article_lease;
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-4 col-sm-4 sidebar-detail sidebar sticky-this" style="">
+                                                    <div class="col-md-4 col-sm-4 sidebar">
                                                         <aside id="agents_assigned_widget-4" class="widget widget_agents_assigned_widget">
                                                             <div class="type-small item-per-row-1">
                                                                 <div class="agents-container property-agents-wrapper clearfix">

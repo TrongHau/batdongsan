@@ -25,7 +25,7 @@
                                         class="vc_empty_space_inner"></span></div>
                             <div class="vc_empty_space" style="height: 40px"><span class="vc_empty_space_inner"></span>
                             </div>
-                            <div class="vc_row wpb_row vc_inner vc_row-fluid">
+                            <div class="vc_row wpb_row vc_inner vc_row-fluid footer-body">
                                 <div class="wpb_column vc_column_container vc_col-sm-4 vc_col-lg-5 vc_col-md-4">
                                     <div class="vc_column-inner ">
                                         <div class="wpb_wrapper">
@@ -79,7 +79,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="wpb_column vc_column_container vc_col-sm-2 vc_col-lg-3 vc_col-md-2">
+                                <div class="wpb_column vc_column_container vc_col-sm-3 vc_col-lg-3 vc_col-md-2">
                                     <div class="vc_column-inner ">
                                         <div class="wpb_wrapper">
                                             <div class="apus_custom_menu wpb_content_element ">
@@ -105,7 +105,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="wpb_column vc_column_container vc_col-sm-2 vc_col-lg-2 vc_col-md-2">
+                                <div class="wpb_column vc_column_container vc_col-sm-3 vc_col-lg-2 vc_col-md-2">
                                     <div class="vc_column-inner ">
                                         <div class="wpb_wrapper">
                                             <div class="apus_custom_menu wpb_content_element ">
@@ -132,7 +132,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="wpb_column vc_column_container vc_col-sm-4 vc_col-lg-2 vc_col-md-4">
+                                <div class="wpb_column vc_column_container vc_col-sm-2 vc_col-lg-2 vc_col-md-4">
                                     <div class="vc_column-inner ">
                                         <div class="wpb_wrapper">
                                             <div class="apus_custom_menu wpb_content_element ">

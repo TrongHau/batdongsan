@@ -58,7 +58,7 @@ $Agent = new Agent();
                                                                         <div class="property-box-title-wrap">
                                                                             <div class="property-box-title">
                                                                                 <h3 class="entry-title"><a href="/{{$category->slug}}/{{$item['slug']}}">{{$item['title']}}</a></h3>
-                                                                                <div class="property-row-address"><?php echo preg_replace("/[\r\n]+/", "<br/>", mb_substr($item['short_content'], 0, LIMIT_SHORT_CONTENT_v2, "utf-8"))?></div>
+                                                                                <div class="property-row-address"><?php echo mb_substr($item['short_content'], 0, LIMIT_SHORT_CONTENT_v2, "utf-8")?></div>
                                                                             </div>
                                                                         </div>
                                                                         <div class="property-price-author clearfix">
