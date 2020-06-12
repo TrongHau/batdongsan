@@ -45,7 +45,7 @@ class DetailController extends Controller
         if(Helpers::sessionCountTimes($article->id, 'article_lease')){
             $article->where('id', $id)->increment('views');
         }
-        $relateArticle = ArticleForLeaseModel::where([['status', PUBLISHED_ARTICLE], ['aprroval', APPROVAL_ARTICLE_PUBLIC]])->where([['id','!=' ,$id], ['method_article', $article->method_article], ['province_id', $article->province_id], ['district_id', $article->district_id]])->where('expired_post', '>=', time())->orderBy('id', 'desc')->limit(8)->get();
+        $relateArticle = ArticleForLeaseModel::selectRaw('*, IF(type_vip = 0 || expired_vip <= unix_timestamp(now()) || disabled_vip = 1, 0, type_vip) as type_vip, IF(type_vip = 0 || expired_vip <= unix_timestamp(now()) || disabled_vip = 1, created_at, created_time_vip) as created_at')->where([['status', PUBLISHED_ARTICLE], ['aprroval', APPROVAL_ARTICLE_PUBLIC]])->where([['id','!=' ,$id], ['method_article', $article->method_article], ['province_id', $article->province_id], ['district_id', $article->district_id]])->where('expired_post', '>=', time())->orderBy('type_vip', 'desc')->orderBy('id', 'desc')->limit(8)->get();
         return view('v2.detail.index', compact('article', 'typeOf', 'relateArticle'));
     }
     public function articleForBuyDetail(Request $request, $position = null, $title = null, $id = null) {
@@ -58,7 +58,7 @@ class DetailController extends Controller
         if(Helpers::sessionCountTimes($article->id, 'article_lease')){
             $article->where('id', $id)->increment('views');
         }
-        $relateArticle = ArticleForBuyModel::where([['status', PUBLISHED_ARTICLE], ['aprroval', APPROVAL_ARTICLE_PUBLIC]])->where([['id','!=' ,$id], ['method_article', $article->method_article], ['province_id', $article->province_id], ['district_id', $article->district_id]])->where('expired_post', '>=', time())->orderBy('id', 'desc')->limit(8)->get();
+        $relateArticle = ArticleForBuyModel::selectRaw('*, IF(type_vip = 0 || expired_vip <= unix_timestamp(now()) || disabled_vip = 1, 0, type_vip) as type_vip, IF(type_vip = 0 || expired_vip <= unix_timestamp(now()) || disabled_vip = 1, created_at, created_time_vip) as created_at')->where([['status', PUBLISHED_ARTICLE], ['aprroval', APPROVAL_ARTICLE_PUBLIC]])->where([['id','!=' ,$id], ['method_article', $article->method_article], ['province_id', $article->province_id], ['district_id', $article->district_id]])->where('expired_post', '>=', time())->orderBy('type_vip', 'desc')->orderBy('id', 'desc')->limit(8)->get();
         return view('v2.detail.index', compact('article', 'typeOf', 'relateArticle'));
     }
     public function aboutDetail(Request $request) {

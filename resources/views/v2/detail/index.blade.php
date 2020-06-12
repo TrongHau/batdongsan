@@ -176,9 +176,6 @@ global $location_district_article_lease;
                                                                         @if($article->furniture)
                                                                             <li><span>Nội thất:</span> {{$article->furniture}}</li>
                                                                         @endif
-                                                                        @if($article->floor)
-                                                                            <li><span>Số tầng:</span> {{$article->floor}}</li>
-                                                                        @endif
                                                                         <li><span>Mã tin đăng:</span> {{$article->id}}</li>
                                                                         <li><span>Loại tin đăng:</span> {{$article->type_vip == ARTICLE_VIP_DIAMOND ? 'VIP Kim Cương' : ($article->type_vip == ARTICLE_VIP_GOLD ? 'VIP Vàng' : ($article->type_vip == ARTICLE_VIP_SILVER ? 'VIP Bạc' : ($article->type_vip == ARTICLE_VIP_NORMAL ? 'Tin Vip Thường' : 'Thường')))}}</li>
                                                                         <li><span>Ngày đăng:</span> {{date('d-m-Y', strtotime($article->created_at))}}</li>
@@ -289,8 +286,8 @@ global $location_district_article_lease;
                                                                 $searchMethod = 'nha-dat-cho-thue';
                                                             }
                                                             ?>
-                                                            <div class="isotope-item all SALE col-md-3 col-sm-3" data-category="SALE">
-                                                                <div class="property-box property-box-grid property-box-wrapper"
+                                                            <div class="isotope-item all SALE col-md-3 col-sm-3 {{$item['type_vip'] == ARTICLE_VIP_DIAMOND ? 'article_vip_diamond' : ($item['type_vip'] == ARTICLE_VIP_GOLD ? 'article_vip_gold' : ($item['type_vip'] == ARTICLE_VIP_SILVER ? 'article_vip_silver' : ($item['type_vip'] == ARTICLE_VIP_NORMAL ? 'article_vip_normal' : 'article_vip_none')))}}" data-category="SALE">
+                                                                <div class="property-box property-box-grid property-box-wrapper property_box_vip"
                                                                      data-latitude="40.5795317"
                                                                      data-longitude="-74.15020070000003"
                                                                      data-markerid="marker-3076">

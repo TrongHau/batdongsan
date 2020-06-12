@@ -758,25 +758,22 @@ session_start();
             let old = $('#remove_imgs').val();
             $('#remove_imgs').val((old ? (old + '|') : '') + img);
         }
-        $('.select-province').change(function() {
-            $('#txtAddress').val($('.select-province option:selected').text());
+        $('#user_manage_product .select-province').change(function() {
+            $('#txtAddress').val($('#user_manage_product .select-province option:selected').text());
         });
-        $('.select-district').change(function() {
-            $('#txtAddress').val($('.select-district option:selected').text() + ', ' + $('.select-province option:selected').text());
+        $('#user_manage_product .select-district').change(function() {
+            $('#txtAddress').val($('#user_manage_product .select-district option:selected').text() + ', ' + $('#user_manage_product .select-province option:selected').text());
         });
-        $('.select-ward').change(function() {
-            var ward = $('.select-ward option:selected').val() ? 'Phường ' + $('.select-ward option:selected').text() + ', ' : '';
-            var street = $('.select-street option:selected').val() ?  ('Đường ' + $('.select-street option:selected').text() + ', ') : '';
-            $('#txtAddress').val(street + ward + $('.select-district option:selected').text() + ', ' + $('.select-province option:selected').text());
+        $('#user_manage_product .select-ward').change(function() {
+            var ward = $('#user_manage_product .select-ward option:selected').val() ? 'Phường ' + $('#user_manage_product .select-ward option:selected').text() + ', ' : '';
+            var street = $('#user_manage_product .select-street option:selected').val() ?  ('Đường ' + $('#user_manage_product .select-street option:selected').text() + ', ') : '';
+            $('#txtAddress').val(street + ward + $('#user_manage_product .select-district option:selected').text() + ', ' + $('#user_manage_product .select-province option:selected').text());
         });
-        $('.select-street').change(function() {
-            var ward = $('.select-ward option:selected').val() ? 'Phường ' + $('.select-ward option:selected').text() + ', ' : '';
-            var street = $('.select-street option:selected').val() ?  ('Đường ' + $('.select-street option:selected').text() + ', ') : '';
-            $('#txtAddress').val(street + ward + $('.select-district option:selected').text() + ', ' + $('.select-province option:selected').text());
+        $('#user_manage_product .select-street').change(function() {
+            var ward = $('#user_manage_product .select-ward option:selected').val() ? 'Phường ' + $('#user_manage_product .select-ward option:selected').text() + ', ' : '';
+            var street = $('#user_manage_product .select-street option:selected').val() ?  ('Đường ' + $('#user_manage_product .select-street option:selected').text() + ', ') : '';
+            $('#txtAddress').val(street + ward + $('#user_manage_product .select-district option:selected').text() + ', ' + $('#user_manage_product .select-province option:selected').text());
         });
-        $('#ddlPriceType').change(function() {
-            $('#price_type').html($('#ddlPriceType').val());
-        })
 
 
     </script>

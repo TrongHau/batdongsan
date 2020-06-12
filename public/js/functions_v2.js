@@ -43,7 +43,7 @@ function getWard(district_id, ward_id = '', street_id = '', divParent) {
         url: "/get_ward",
         type: "POST",
         dataType: "json",
-        data: {district_id: district_id, province_id: $(".select-province").val()},
+        data: {district_id: district_id, province_id: divParent.find(".select-province").val()},
         beforeSend: function () {
         },
         success: function(data) {

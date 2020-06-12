@@ -61,13 +61,6 @@ $Agent = new Agent();
                                                                                 <div class="property-row-address"><?php echo mb_substr($item['short_content'], 0, LIMIT_SHORT_CONTENT_v2, "utf-8")?></div>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="property-price-author clearfix">
-                                                                            <div class="property-author pull-right">
-                                                                                <a href="https://demoapus.com/homesweet/agents/linda-young/" class="agent-small-image-inner">
-                                                                                    <span>{{date('d/m/Y', strtotime($item['created_at']))}}</span>
-                                                                                </a>
-                                                                            </div>
-                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
