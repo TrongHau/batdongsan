@@ -27,8 +27,8 @@
     min-height: 1000px;
 }
 .footer-body {
-    font-size: 16px!important;
-}
-#property-section-description {
     font-size: 18px!important;
+}
+#property-section-description, #property-section-address {
+    font-size: 20px!important;
 }

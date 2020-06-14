@@ -722,6 +722,9 @@ body {
 .navbar-nav.megamenu .dropdown-menu li>a:hover, .navbar-nav.megamenu .dropdown-menu li>a:active {
     color: #000000!important;
 }
-#property-section-description {
+#property-section-description, #property-section-address {
     font-size: 16px!important;
+}
+.navbar-nav.megamenu .dropdown-menu li>a {
+    color: #000000!important;
 }
