@@ -219,9 +219,7 @@
                                 <label>
                                     <input type="checkbox" id="remember" autocomplete="off" name="remember"> Ghi nhớ đăng nhập
                                 </label>
-                                <a class="btn btn-link" href="http://batdongsan.localhost/password/reset" style="font-size: 13px">
-                                    Tìm lại mật khẩu?
-                                </a>
+                                <a data-toggle="tab" class="btn btn-link" href="#login-register-forgot">Tìm Lại Mật Khẩu</a>
                                 <button onclick="authLogin()" name="login_form" class="button btn btn-block btn-font-normal btn-theme">Đăng Nhập</button>
                             </form>
                         </div>
