@@ -324,7 +324,9 @@ class SyncArticleForLeaseController extends CrudController
     }
     public function approvalSyncArticle(Request $request, $id) {
         $article = SyncArticleForLeaseModel::find($id);
-        $result = ArticleForLeaseModel::create($article->toArray());
+        $article = $article->toArray();
+        $article['expired_post'] = strtotime(TIME_EXPIRY_POST_ARTICLE);
+        $result = ArticleForLeaseModel::create($article);
         if($article->gallery_image) {
             $imgs = json_decode($article->gallery_image);
             $gallery_image = [];
@@ -526,7 +528,6 @@ class SyncArticleForLeaseController extends CrudController
                             'point' => -1,
                             'date_sync' => $dateStart,
                             'build_from' => $typeReq,
-                            'expired_post' => strtotime(TIME_EXPIRY_POST_ARTICLE),
                             'url_from' => $refixUrl . $data_url[2][$key]
                         ];
                         $result = SyncArticleForLeaseModel::create($article);

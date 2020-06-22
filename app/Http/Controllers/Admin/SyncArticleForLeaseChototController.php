@@ -317,7 +317,9 @@ class SyncArticleForLeaseChototController extends CrudController
     public function approvalSyncArticle(Request $request, $id) {
         $article = SyncArticleForLeaseModel::find($id);
         $article->content_article = nl2br($article->content_article);
-        $result = ArticleForLeaseModel::create($article->toArray());
+        $article = $article->toArray();
+        $article['expired_post'] = strtotime(TIME_EXPIRY_POST_ARTICLE);
+        $result = ArticleForLeaseModel::create($article);
         if($article->gallery_image) {
             $imgs = json_decode($article->gallery_image);
             $gallery_image = [];
@@ -483,7 +485,6 @@ class SyncArticleForLeaseChototController extends CrudController
                         'ward_url' => Helpers::rawTiengVietUrl($ward),
                         'street_url' => Helpers::rawTiengVietUrl($street),
                         'point' => -1,
-                        'expired_post' => strtotime(TIME_EXPIRY_POST_ARTICLE),
                         'date_sync' => null,
                         'build_from' => 'chotot.com',
                         'url_from' => $url,
