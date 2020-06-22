@@ -526,6 +526,7 @@ class SyncArticleForLeaseController extends CrudController
                             'point' => -1,
                             'date_sync' => $dateStart,
                             'build_from' => $typeReq,
+                            'expired_post' => strtotime(TIME_EXPIRY_POST_ARTICLE),
                             'url_from' => $refixUrl . $data_url[2][$key]
                         ];
                         $result = SyncArticleForLeaseModel::create($article);

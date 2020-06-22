@@ -28,7 +28,7 @@ class Kernel extends ConsoleKernel
         //          ->hourly();
         $schedule->call('\App\Http\Controllers\SyncController@homeTinTuc');
         $schedule->command('delete_temp')->dailyAt('00:10');
-        $schedule->command('article_province_district')->dailyAt('00:20');
+        $schedule->command('article_province')->dailyAt('00:20');
     }
 
     /**

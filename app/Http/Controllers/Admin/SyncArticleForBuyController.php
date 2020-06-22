@@ -480,6 +480,7 @@ class SyncArticleForBuyController extends CrudController
                             'ward_url' => Helpers::rawTiengVietUrl($ward),
                             'street_url' => Helpers::rawTiengVietUrl($street),
                             'point' => -1,
+                            'expired_post' => strtotime(TIME_EXPIRY_POST_ARTICLE),
                             'date_sync' => $dateStart,
                             'build_from' => $typeReq,
                             'url_from' => $refixUrl . $data_url_[1][0]

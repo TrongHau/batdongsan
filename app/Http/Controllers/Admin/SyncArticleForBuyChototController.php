@@ -493,6 +493,7 @@ class SyncArticleForBuyChototController extends CrudController
                         'street_url' => Helpers::rawTiengVietUrl($street),
                         'point' => -1,
                         'date_sync' => null,
+                        'expired_post' => strtotime(TIME_EXPIRY_POST_ARTICLE),
                         'build_from' => 'chotot.com',
                         'url_from' => $url,
                     ];
