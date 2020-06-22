@@ -162,6 +162,7 @@ $all_tin_tuc_moi = ' . var_export($noibat, true) . ';
         $articleForLease = ArticleForLeaseModel::select('province', 'province_id', DB::raw('count(*) as total'))
             ->where([['status', PUBLISHED_ARTICLE], ['aprroval', APPROVAL_ARTICLE_PUBLIC]])
             ->where('province_id', '>', 0)
+            ->where('expired_post', '>=', time())
             ->groupBy('province', 'province_id')->orderBy('total', 'desc')
             ->limit(20)->get()->toArray();
         file_put_contents(resource_path().'/views/cache/location_province_article_lease.blade.php',
@@ -178,6 +179,7 @@ $location_province_article_lease = ' . var_export($articleForLease, true) . ';
         $articleForLease = ArticleForLeaseModel::select('province_id', 'district', 'district_id', DB::raw('count(*) as total'))
             ->where([['status', PUBLISHED_ARTICLE], ['aprroval', APPROVAL_ARTICLE_PUBLIC]])
             ->where('district_id', '>', 0)
+            ->where('expired_post', '>=', time())
             ->groupBy('province_id', 'district', 'district_id')->orderBy('total', 'desc')
             ->get()->toArray();
         $articleForLease_ = [];
