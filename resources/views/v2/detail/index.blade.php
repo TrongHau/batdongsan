@@ -33,6 +33,7 @@ global $location_district_article_lease;
 @endsection
 @extends('v2.layouts.app')
 @section('content')
+
     <body class="archive post-type-archive post-type-archive-property image-lazy-loading wpb-js-composer js-comp-ver-5.1.1 vc_responsive">
     <div class="apus-page-loading" style="display: none;">
         <div class="spinner">
@@ -86,7 +87,7 @@ global $location_district_article_lease;
                                                             </div>
                                                             <div id="property-section-description" class="property-section property-description">
                                                                 <h3>Thông tin mô tả</h3>
-                                                                <p><?php echo str_replace("\r\n", '<br/>', $article->content_article) ?></p>
+                                                                <p><?php echo $article->content_article ?></p>
                                                             </div>
                                                             @if($article->gallery_image)
                                                             <div id="property-section-stats_graph" class="property-section property-page_views" style="padding-bottom: 100px;">
@@ -495,4 +496,14 @@ global $location_district_article_lease;
             });
         }
     </script>
+    <style>
+        .property-description {
+            padding-bottom: 0px!important;
+            margin-bottom: 0px!important;
+        }
+        .property-address {
+            padding-bottom: 0px!important;
+            margin-bottom: 0px!important;
+        }
+    </style>
 @endsection
