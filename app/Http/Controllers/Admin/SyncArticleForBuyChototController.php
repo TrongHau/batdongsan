@@ -326,9 +326,8 @@ class SyncArticleForBuyChototController extends CrudController
     }
     public function approvalSyncArticle(Request $request, $id) {
         $article = SyncArticleForBuyModel::find($id);
-        $article = $article->toArray();
-        $article['expired_post'] = strtotime(TIME_EXPIRY_POST_ARTICLE);
-        $result = ArticleForBuyModel::create($article);
+        $article->expired_post = strtotime(TIME_EXPIRY_POST_ARTICLE);
+        $result = ArticleForBuyModel::create($article->toArray());
         if($article->gallery_image) {
             $imgs = json_decode($article->gallery_image);
             $gallery_image = [];

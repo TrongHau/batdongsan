@@ -317,9 +317,8 @@ class SyncArticleForLeaseChototController extends CrudController
     public function approvalSyncArticle(Request $request, $id) {
         $article = SyncArticleForLeaseModel::find($id);
         $article->content_article = nl2br($article->content_article);
-        $article = $article->toArray();
-        $article['expired_post'] = strtotime(TIME_EXPIRY_POST_ARTICLE);
-        $result = ArticleForLeaseModel::create($article);
+        $article->expired_post = strtotime(TIME_EXPIRY_POST_ARTICLE);
+        $result = ArticleForLeaseModel::create($article->toArray());
         if($article->gallery_image) {
             $imgs = json_decode($article->gallery_image);
             $gallery_image = [];

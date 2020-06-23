@@ -430,6 +430,7 @@ global $location_province_article_lease;
                                 </div>
                             </div>
                             <div class="vc_row wpb_row vc_row-fluid">
+                                @if(isset($location_province_article_lease[0]))
                                 <div class="wpb_column vc_column_container vc_col-sm-6">
                                     <div class="vc_column-inner ">
                                         <div class="wpb_wrapper">
@@ -451,9 +452,11 @@ global $location_province_article_lease;
                                         </div>
                                     </div>
                                 </div>
+                                @endif
                                 <div class="wpb_column vc_column_container vc_col-sm-6">
                                     <div class="vc_column-inner ">
                                         <div class="wpb_wrapper">
+                                            @if(isset($location_province_article_lease[2]))
                                             <div class="widget widget-location-banner ">
                                                 <a href="/tim-kiem-nang-cao/nha-dat-ban/{{$location_province_article_lease[2]['province_id']}}/-1/-1/-1/-1/-1/-1/-1/-1" class="widget-content">
                                                     <div>
@@ -469,7 +472,9 @@ global $location_province_article_lease;
                                                     </div>
                                                 </a>
                                             </div>
+                                            @endif
                                             <div class="vc_row wpb_row vc_inner vc_row-fluid">
+                                                @if(isset($location_province_article_lease[1]))
                                                 <div class="wpb_column vc_column_container vc_col-sm-6">
                                                     <div class="vc_column-inner ">
                                                         <div class="wpb_wrapper">
@@ -492,6 +497,8 @@ global $location_province_article_lease;
                                                         </div>
                                                     </div>
                                                 </div>
+                                                @endif
+                                                @if(isset($location_province_article_lease[3]))
                                                 <div class="wpb_column vc_column_container vc_col-sm-6">
                                                     <div class="vc_column-inner ">
                                                         <div class="wpb_wrapper">
@@ -514,6 +521,7 @@ global $location_province_article_lease;
                                                         </div>
                                                     </div>
                                                 </div>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
