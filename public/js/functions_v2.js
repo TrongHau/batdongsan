@@ -7,6 +7,7 @@ $(".select-province" ).change(function() {
 function getDistrict(province_id, district_id = '', divParent) {
     if(typeof divParent == 'string')
         divParent = $('#user_manage_product');
+    
     $.ajax({
         url: "/get_district",
         type: "POST",
