@@ -1,6 +1,7 @@
 <?php
 
 namespace Backpack\Base\app\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -21,6 +22,9 @@ class AdminController extends Controller
      */
     public function dashboard()
     {
+        if(Auth::user()->rolesBDSRoleName() != ROLE_NAME_ADMIN) {
+            abort(404);
+        }
         $this->data['title'] = trans('backpack::base.dashboard'); // set the page title
 
         return view('backpack::dashboard', $this->data);
