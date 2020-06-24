@@ -5,6 +5,8 @@ $(".select-province" ).change(function() {
     }
 });
 function getDistrict(province_id, district_id = '', divParent) {
+    if(typeof divParent == 'string')
+        divParent = $('#user_manage_product');
     $.ajax({
         url: "/get_district",
         type: "POST",
@@ -39,6 +41,8 @@ $(".select-district").change(function() {
     }
 });
 function getWard(district_id, ward_id = '', street_id = '', divParent) {
+    if(typeof divParent == 'string')
+        divParent = $('#user_manage_product')
     $.ajax({
         url: "/get_ward",
         type: "POST",

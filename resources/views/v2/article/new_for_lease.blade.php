@@ -206,7 +206,7 @@ global $province;
                                                                         <div class="base2">
 
                                                                             <div id="divCity" class="comboboxs advance-select-box pad0">
-                                                                                <select id="select-province" name="province_id" class="advance-options select-province form-control" style="min-width: 220px;border: 1px solid #CCC;">
+                                                                                <select id="select-province_2" name="province_id" class="advance-options select-province form-control" style="min-width: 220px;border: 1px solid #CCC;">
                                                                                     <option value="">-- Chọn Tỉnh/Thành phố --</option>
                                                                                     @foreach($province as $item)
                                                                                         <option value="{{$item['id']}}">{{$item['_name']}}</option>
@@ -223,7 +223,7 @@ global $province;
                                                                         <div class="base4">
 
                                                                             <div id="divDistrict" class="comboboxs advance-select-box pad0">
-                                                                                <select name="district_id" class="advance-options select-district form-control" style="min-width: 220px;border: 1px solid #CCC;">
+                                                                                <select name="district_id_2" class="advance-options select-district form-control" style="min-width: 220px;border: 1px solid #CCC;">
                                                                                     <option value="0" class="advance-options" style="min-width: 168px;">-- Chọn Quận/Huyện --</option>
                                                                                 </select>
                                                                                 @if ($errors->has('district_id'))
@@ -239,7 +239,7 @@ global $province;
                                                                         <div class="base2">
 
                                                                             <div id="divWard" class="comboboxs advance-select-box pad0">
-                                                                                <select class="advance-options select-ward form-control" name="ward_id" id="select-ward" style="min-width: 220px;">
+                                                                                <select class="advance-options select-ward form-control" name="ward_id" id="select-ward_2" style="min-width: 220px;">
                                                                                     <option value="0" class="advance-options" style="min-width: 168px;">-- Chọn Phường/Xã --
                                                                                     </option>
                                                                                 </select>
@@ -254,7 +254,7 @@ global $province;
                                                                         <div class="base4">
 
                                                                             <div id="divStreet" class="comboboxs advance-select-box pad0">
-                                                                                <select class="advance-options select-street form-control" name="street_id" id="select-street" style="min-width: 220px;">
+                                                                                <select class="advance-options select-street form-control" name="street_id" id="select-street_2" style="min-width: 220px;">
                                                                                     <option value="0" class="advance-options" style="min-width: 168px;">-- Chọn Đường/Phố --
                                                                                     </option>
                                                                                 </select>
@@ -757,12 +757,12 @@ global $province;
         if(old('province_id') ?? $article->province_id ?? false) {
         ?>
         $(document).ready(function() {
-            document.getElementById('select-province').value = '<?php echo old('province_id') ?? $article->province_id ?? '' ?>';
-            getDistrict('<?php echo old('province_id') ?? $article->province_id ?? '' ?>', '<?php echo old('district_id') ?? $article->district_id ?? '' ?>', '<?php echo old('ward_id') ?? $article->ward_id ?? '' ?>', '<?php echo old('street_id') ?? $article->street_id ?? '' ?>');
+            document.getElementById('select-province_2').value = '<?php echo old('province_id') ?? $article->province_id ?? '' ?>';
+            getDistrict('<?php echo old('province_id') ?? $article->province_id ?? '' ?>', '<?php echo old('district_id') ?? $article->district_id ?? '' ?>', '<?php echo old('ward_id') ?? $article->ward_id ?? '' ?>', '<?php echo old('street_id') ?? $article->street_id ?? '' ?>', 'user_manage_product');
             <?php
             if(old('district_id') ?? $article->district_id ?? false) {
             ?>
-            getWard(' <?php echo old('district_id') ?? $article->district_id ?? '' ?>', ' <?php echo old('ward_id') ?? $article->ward_id ?? '' ?>', '<?php echo old('street_id') ?? $article->street_id ?? '' ?>');
+            getWard(' <?php echo old('district_id') ?? $article->district_id ?? '' ?>', ' <?php echo old('ward_id') ?? $article->ward_id ?? '' ?>', '<?php echo old('street_id') ?? $article->street_id ?? '' ?>', 'user_manage_product');
             <?php
             }
             ?>
@@ -889,19 +889,6 @@ global $province;
             var street = $('#user_manage_product .select-street option:selected').val() ?  ('Đường ' + $('#user_manage_product .select-street option:selected').text() + ', ') : '';
             $('#txtAddress').val(street + ward + $('#user_manage_product .select-district option:selected').text() + ', ' + $('#user_manage_product .select-province option:selected').text());
         });
-        $('#method_article').change(function() {
-            resetAddress();
-        });
-        $('#type_article').change(function() {
-            resetAddress();
-        });
-        function resetAddress() {
-            $('#user_manage_product .select-province').prop("selectedIndex", 0);
-            $('#user_manage_product .select-district').html('<option value="">--Chọn Quận/Huyện--</option>');
-            $('#user_manage_product .select-ward').html('<option value="">--Chọn Phường/Xã--</option>');
-            $('#user_manage_product .select-street').html('<option value="">--Chọn Đường/Phố--</option>');
-            $('#txtAddress').val('');
-        }
     </script>
     <script id="template-upload" type="text/x-tmpl">
     {% for (var i=0, file; file=o.files[i]; i++) { %}

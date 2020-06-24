@@ -726,19 +726,6 @@ global $province;
             var street = $('#user_manage_product .select-street option:selected').val() ?  ('Đường ' + $('#user_manage_product .select-street option:selected').text() + ', ') : '';
             $('#txtAddress').val(street + ward + $('#user_manage_product .select-district option:selected').text() + ', ' + $('#user_manage_product .select-province option:selected').text());
         });
-        $('#method_article').change(function() {
-            resetAddress();
-        });
-        $('#type_article').change(function() {
-            resetAddress();
-        });
-        function resetAddress() {
-            $('#user_manage_product .select-province').prop("selectedIndex", 0);
-            $('#user_manage_product .select-district').html('<option value="">--Chọn Quận/Huyện--</option>');
-            $('#user_manage_product .select-ward').html('<option value="">--Chọn Phường/Xã--</option>');
-            $('#user_manage_product .select-street').html('<option value="">--Chọn Đường/Phố--</option>');
-            $('#txtAddress').val('');
-        }
 
     </script>
     <script id="template-upload" type="text/x-tmpl">
