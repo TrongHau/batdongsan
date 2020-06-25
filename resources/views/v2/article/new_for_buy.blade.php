@@ -206,7 +206,7 @@ global $province;
                                                                         <div class="base2">
 
                                                                             <div id="divCity" class="comboboxs advance-select-box pad0">
-                                                                                <select id="select-province" name="province_id" class="advance-options select-province form-control" style="min-width: 220px;border: 1px solid #CCC;">
+                                                                                <select id="select-province_2" name="province_id" class="advance-options select-province form-control" style="min-width: 220px;border: 1px solid #CCC;">
                                                                                     <option value="">-- Chọn Tỉnh/Thành phố --</option>
                                                                                     @foreach($province as $item)
                                                                                         <option value="{{$item['id']}}">{{$item['_name']}}</option>
@@ -618,7 +618,7 @@ global $province;
         if(old('province_id') ?? $article->province_id ?? false) {
         ?>
         $(document).ready(function() {
-            document.getElementById('select-province').value = '<?php echo old('province_id') ?? $article->province_id ?? '' ?>';
+            document.getElementById('select-province_2').value = '<?php echo old('province_id') ?? $article->province_id ?? '' ?>';
             getDistrict('<?php echo old('province_id') ?? $article->province_id ?? '' ?>', '<?php echo old('district_id') ?? $article->district_id ?? '' ?>', '<?php echo old('ward_id') ?? $article->ward_id ?? '' ?>', '<?php echo old('street_id') ?? $article->street_id ?? '' ?>');
             <?php
             if(old('district_id') ?? $article->district_id ?? false) {

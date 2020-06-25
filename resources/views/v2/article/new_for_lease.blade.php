@@ -223,7 +223,7 @@ global $province;
                                                                         <div class="base4">
 
                                                                             <div id="divDistrict" class="comboboxs advance-select-box pad0">
-                                                                                <select name="district_id_2" class="advance-options select-district form-control" style="min-width: 220px;border: 1px solid #CCC;">
+                                                                                <select name="district_id" class="advance-options form-control select-district" style="min-width: 220px;border: 1px solid #CCC;">
                                                                                     <option value="0" class="advance-options" style="min-width: 168px;">-- Chọn Quận/Huyện --</option>
                                                                                 </select>
                                                                                 @if ($errors->has('district_id'))
