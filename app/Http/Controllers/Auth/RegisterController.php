@@ -71,6 +71,9 @@ class RegisterController extends Controller
     {
         $user =  User::create([
             'name' => $data['name'],
+            'tax_number' => $data['tax_number'],
+            'tax_address' => $data['tax_address'],
+            'tax_date' => $data['tax_date'],
             'email' => $data['email'],
             'status' => DEACTIVE_USER,
             'user_type' => DEFAULT_USER_TYPE,

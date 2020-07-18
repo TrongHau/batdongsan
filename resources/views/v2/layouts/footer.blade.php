@@ -255,6 +255,16 @@
                                     <input id="register-form-email-" placeholder="Địa chỉ E-Mail" type="email" name="email" class="form-control email" required="required">
                                 </div>
                                 <div class="form-group">
+                                    <input id="register-form-name-" placeholder="Mã số thuế cá nhân/ CMND" type="number" class="form-control tax_number" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <input id="register-form-name-" placeholder="Nơi cấp" type="text" name="name" class="form-control tax_address" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <span>Ngày cấp</span>
+                                    <input id="register-form-name-" placeholder="Ngày cấp" type="date" name="email" class="form-control tax_date" required="required">
+                                </div>
+                                <div class="form-group">
                                     <input id="register-form-password-" placeholder="Mật khẩu" type="password" name="password" class="form-control password" required="required">
                                 </div>
                                 <div class="form-group">
@@ -422,10 +432,25 @@
         function authRegister() {
             resetInputLogin();
             const name = $('.register-form').find('.name');
+            const tax_number = $('.register-form').find('.tax_number');
+            const tax_address = $('.register-form').find('.tax_address');
+            const tax_date = $('.register-form').find('.tax_date');
             const email = $('.register-form').find('.email');
             const password = $('.register-form').find('.password');
             const confirm_password = $('.register-form').find('.password_confirmation');
 
+            if(!name.val()) {
+                return addErrorInput(name, 'Tên hiển thị không được để trống');
+            }
+            if(!tax_number.val() && !tax_address.val() && !tax_date.val() ) {
+                return addErrorInput(name, 'Không được để trống');
+            }
+            if(!name.val()) {
+                return addErrorInput(name, 'Tên hiển thị không được để trống');
+            }
+            if(!name.val()) {
+                return addErrorInput(name, 'Tên hiển thị không được để trống');
+            }
             if(!name.val()) {
                 return addErrorInput(name, 'Tên hiển thị không được để trống');
             }
@@ -450,6 +475,9 @@
                 dataType: "json",
                 data: {
                     name: name.val(),
+                    tax_number: tax_number.val(),
+                    tax_address: tax_address.val(),
+                    tax_date: tax_date.val(),
                     email: email.val(),
                     password: password.val(),
                     password_confirmation: confirm_password.val(),

@@ -23,7 +23,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password', 'phone', 'status', 'avatar', 'app_facebook', 'app_google', 'point_total', 'point_current', 'aritcle_lease_total', 'aritcle_buy_total', 'cash_total', 'cash_curent', 'cash_promotion',
         'birth_day', 'gender', 'province', 'province_id', 'district', 'district_id', 'ward', 'ward_id', 'street', 'street_id', 'address', 'tax_code', 'facebook', 'skype', 'zalo',
-        'viber', 'user_type_id', 'nick_name'
+        'viber', 'user_type_id', 'nick_name', 'tax_number', 'tax_address', 'tax_date'
     ];
 
     /**

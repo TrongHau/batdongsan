@@ -95,13 +95,13 @@ $mySelf = Auth::user();
                                                             <span id="MainContent__userPage_ctl00_lblProfileTitle">Thông tin cá nhân</span>
                                                         </div>
                                                         <table style="width: 100%; margin-top: 20px; border: none;" class="t-4-c table-search-article">
-                                                            <tbody><tr>
+                                                            <tbody>
+                                                            <tr>
                                                                 <td style="width: 140px;">
                                                                     <span id="MainContent__userPage_ctl00_lblFullname">Họ và tên</span>
                                                                     <span style="color: #f00;">(*)</span>
                                                                 </td>
                                                                 <td>
-                                                                    <input type="hidden" name="ctl00$MainContent$_userPage$ctl00$hdIndividualId" id="MainContent__userPage_ctl00_hdIndividualId" value="877377">
                                                                     <input name="name" type="text" value="{{old('name') ?? $mySelf->name}}" maxlength="50" id="txtFullname" class="keycode capitalize form-control" style="width:50%;">
                                                                     @if ($errors->has('name'))
                                                                         <span style="color: red;" id="errorFullName">{{ str_replace('name', 'họ tên', $errors->first('name')) }}</span>
@@ -126,6 +126,42 @@ $mySelf = Auth::user();
                                                                 <td>
                                                                     <input type="radio" name="gender" value="1" {{(old('gender') ?? $mySelf->gender) == 1 ? 'checked="checked"' : ''}} ><label for="MainContent__userPage_ctl00_rdMale">&nbsp;Nam</label>
                                                                     <input type="radio" name="gender" value="0" {{(old('gender') ?? $mySelf->gender) == 0 ? 'checked="checked"' : ''}}><label for="MainContent__userPage_ctl00_rdFemale">&nbsp;Nữ</label>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="width: 140px;">
+                                                                    <span id="MainContent__userPage_ctl00_lblFullname">Mã số thuế cá nhân/CMND</span>
+                                                                    <span style="color: #f00;">(*)</span>
+                                                                </td>
+                                                                <td>
+                                                                    <input name="tax_number" type="number" value="{{old('tax_number') ?? $mySelf->tax_number}}" maxlength="50" id="txtFullname" class="keycode capitalize form-control" style="width:50%;">
+                                                                    @if ($errors->has('tax_number'))
+                                                                        <span style="color: red;" id="errorFullName">{{ str_replace('tax number', 'Mã số thuế cá nhân/CMND', $errors->first('tax_number')) }}</span>
+                                                                    @endif
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="width: 140px;">
+                                                                    <span id="MainContent__userPage_ctl00_lblFullname">Nơi Cấp</span>
+                                                                    <span style="color: #f00;">(*)</span>
+                                                                </td>
+                                                                <td>
+                                                                    <input name="tax_address" type="text" value="{{old('tax_address') ?? $mySelf->tax_address}}" id="txtFullname" class="keycode capitalize form-control" style="width:50%;">
+                                                                    @if ($errors->has('tax_address'))
+                                                                        <span style="color: red;" id="errorFullName">{{ str_replace('tax address', 'nơi cấp', $errors->first('tax_address')) }}</span>
+                                                                    @endif
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="width: 140px;">
+                                                                    <span id="MainContent__userPage_ctl00_lblFullname">Ngày cấp</span>
+                                                                    <span style="color: #f00;">(*)</span>
+                                                                </td>
+                                                                <td>
+                                                                    <input name="tax_date" type="date" value="{{substr((old('tax_date') ?? $mySelf->tax_date), 0, 10)}}" id="txtFullname" class="keycode capitalize form-control" style="width:50%;">
+                                                                    @if ($errors->has('tax_date'))
+                                                                        <span style="color: red;" id="errorFullName">{{ str_replace('tax date', 'ngày cấp', $errors->first('tax_date')) }}</span>
+                                                                    @endif
                                                                 </td>
                                                             </tr>
                                                             <tr>

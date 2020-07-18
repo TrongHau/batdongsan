@@ -50,12 +50,18 @@ class UserController extends Controller
     public function storeProfile(Request $request) {
         $this->validate($request, [
             'name' => 'required|max:20|min:3',
+            'tax_number' => 'required|max:50|min:3',
+            'tax_address' => 'required|max:220|min:3',
+            'tax_date' => 'required|max:20|min:3',
 //            'phone' => 'required|unique:users',
 //            'province_id' => 'required',
 //            'district_id' => 'required',
         ]);
         $profile = [
             'name' => $request->name,
+            'tax_number' => $request->tax_number,
+            'tax_address' => $request->tax_address,
+            'tax_date' => $request->tax_date,
 //            'nick_name' => $request->nick_name,
             'birth_day' => date("Y/m/d", strtotime($request->input('birth_day'))),
             'province_id' => $request->province_id,
