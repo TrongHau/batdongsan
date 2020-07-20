@@ -249,7 +249,8 @@
                         <div class="register-form">
                             <form action="javascript:authRegister();">
                                 <div class="form-group">
-                                    <input id="register-form-name-" placeholder="Tên hiển thị" type="text" name="name" class="form-control name" required="required">
+                                    <input id="register-form-name-" placeholder="Tên đầy đủ" type="text" name="name" class="form-control name" required="required">
+                                    <span style="opacity: 0.4;">Note: Mong muốn user ghi họ và tên theo CMND</span>
                                 </div>
                                 <div class="form-group">
                                     <input id="register-form-email-" placeholder="Địa chỉ E-Mail" type="email" name="email" class="form-control email" required="required">
@@ -295,7 +296,10 @@
                                 <li>
                                     Bằng cách nhấn vào Đăng ký, Bạn Đồng Ý với các Điều khoản thỏa thuận, Quy chế hoạt động, Chính sách bảo mật thông tin, Cơ chế giải quyết khiếu nại của Chúng tôi.
                                     <br/>
-                                    Để được trợ giúp vui lòng liên hệ 0899 675 679 hoặc email hotro@batdongsan.ooo
+                                    <br/>
+                                    Để trợ giúp vui lòng liên hệ:
+                                    <br/><br/>
+                                    0899 675 679 hoặc email hotro@batdongsan.ooo
                                 </li>
                             </ul>
                         </div>
