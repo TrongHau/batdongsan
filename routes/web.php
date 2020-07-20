@@ -95,6 +95,7 @@ Route::get('/dieu-khoan-thoa-thuan', 'DetailController@aboutDetail');
 Route::get('/quy-che-hoat-dong', 'DetailController@aboutDetail');
 Route::get('/co-che-giai-quyet-khieu-nai', 'DetailController@aboutDetail');
 Route::get('/bao-gia-ho-tro', 'DetailController@aboutDetail');
+Route::get('/ho-tro', 'DetailController@aboutDetail');
 Route::get('/nhung-cau-hoi-thuong-gap', 'DetailController@aboutDetail');
 Route::get('/lien-he', ['as' => 'view.contact', 'uses' => 'DetailController@aboutDetailContact']);
 Route::post('/lien-he', ['as' => 'form.contact', 'uses' => 'ReportController@contact']);

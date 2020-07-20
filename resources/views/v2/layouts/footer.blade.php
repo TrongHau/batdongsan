@@ -291,6 +291,12 @@
                                         <i class="fa fa-google" aria-hidden="true"></i>
                                         Đăng ký qua Google</a>
                                 </li>
+                                <br/>
+                                <li>
+                                    Bằng cách nhấn vào Đăng ký, Bạn Đồng Ý với các Điều khoản thỏa thuận, Quy chế hoạt động, Chính sách bảo mật thông tin, Cơ chế giải quyết khiếu nại của Chúng tôi.
+                                    <br/>
+                                    Để được trợ giúp vui lòng liên hệ 0899 675 679 hoặc email hotro@batdongsan.ooo
+                                </li>
                             </ul>
                         </div>
                     </div>
