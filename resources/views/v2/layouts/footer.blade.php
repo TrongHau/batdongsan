@@ -250,7 +250,6 @@
                             <form action="javascript:authRegister();">
                                 <div class="form-group">
                                     <input id="register-form-name-" placeholder="Tên đầy đủ" type="text" name="name" class="form-control name" required="required">
-                                    <span style="opacity: 0.4;">Note: Mong muốn user ghi họ và tên theo CMND</span>
                                 </div>
                                 <div class="form-group">
                                     <input id="register-form-email-" placeholder="Địa chỉ E-Mail" type="email" name="email" class="form-control email" required="required">
